@@ -1,0 +1,17 @@
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+.card {
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+.card h2 {
+  margin-bottom: 0.5rem;
+}
+.card p {
+  line-height: 1.5;
+}
