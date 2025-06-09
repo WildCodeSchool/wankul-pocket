@@ -1,6 +1,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bodyGradient1: #5e74ff;
+  --bodyGradient2: #0b356c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,8 +20,12 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    var(--bodyGradient1),
+    var(--bodyGradient2)
+  );
+  font-family: var(--font-jaldi), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
