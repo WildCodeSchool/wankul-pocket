@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Origins",
+    "image": "/booster/boosterS1Recto.webp",
+    "season": 1,
+    "set_name": "Origins"
+  },
+  {
+    "id": 2,
+    "name": "Campus",
+    "image": "/booster/boosterS2Recto.webp",
+    "season": 2,
+    "set_name": "Campus"
+  },
+  {
+    "id": 3,
+    "name": "Battle",
+    "image": "/booster/boosterS3Recto.webp",
+    "season": 3,
+    "set_name": "Battle"
+  },
+  {
+    "id": 4,
+    "name": "Stellar",
+    "image": "/booster/boosterS4Recto.webp",
+    "season": 4,
+    "set_name": "Stellar"
+  }
+]
