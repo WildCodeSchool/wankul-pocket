@@ -8,11 +8,13 @@ export default function GoogleConnexion() {
   return (
     <div>
       {!session ? (
-        <button onClick={() => signIn("google")}>Sign in with Google</button>
+        <button onClick={() => signIn("google")}>
+          Connecte toi avec Google
+        </button>
       ) : (
         <div>
-          <p>Welcome, {session.user?.name}</p>
-          <button onClick={() => signOut()}>Sign out</button>
+          <p>Bien le bonjour, {session.user?.name}</p>
+          <button onClick={() => signOut()}>Se déconnecter</button>
         </div>
       )}
     </div>
