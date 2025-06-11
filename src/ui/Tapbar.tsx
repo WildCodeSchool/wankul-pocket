@@ -7,13 +7,23 @@ import styles from "./Tapbar.module.css";
 
 export default function Tapbar() {
   const pathname = usePathname();
+  console.log("Pathname:", pathname);
+  console.log(
+    "Applied class:",
+    pathname === "/LandingPage" ? styles.none : styles.globalNav
+  );
+
   return (
-    <nav className={styles.globalNav}>
+    <nav
+      className={pathname === "/LandingPage" ? styles.none : styles.globalNav}
+    >
       <ul className={styles.linksContainer}>
         <li className={styles.listItem}>
-          <Link href="/cards">
+          <Link href="/Collection">
             <div
-              className={pathname === "/cards" ? styles.active : styles.image}
+              className={
+                pathname === "/Collection" ? styles.active : styles.image
+              }
             >
               <Image
                 src="/cardsIcon.png"
@@ -25,9 +35,9 @@ export default function Tapbar() {
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link href="/trade">
+          <Link href="/Echange">
             <div
-              className={pathname === "/trade" ? styles.active : styles.image}
+              className={pathname === "/Echange" ? styles.active : styles.image}
             >
               <Image
                 src="/tradeIcon.png"
@@ -39,8 +49,12 @@ export default function Tapbar() {
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link href="/">
-            <div className={pathname === "/" ? styles.active : styles.image}>
+          <Link href="/Homepage">
+            <div
+              className={
+                pathname === "/Homepage" ? styles.active : styles.image
+              }
+            >
               <Image
                 src="/homeIcon.png"
                 alt="Page d'accueil"
@@ -51,9 +65,9 @@ export default function Tapbar() {
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link href="/friends">
+          <Link href="/Amis">
             <div
-              className={pathname === "/friends" ? styles.active : styles.image}
+              className={pathname === "/Amis" ? styles.active : styles.image}
             >
               <Image
                 src="/friendsIcon.png"
@@ -65,9 +79,11 @@ export default function Tapbar() {
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link href="/quests">
+          <Link href="/Objectifs">
             <div
-              className={pathname === "/quests" ? styles.active : styles.image}
+              className={
+                pathname === "/Objectifs" ? styles.active : styles.image
+              }
             >
               <Image
                 src="/questsIcon.png"
