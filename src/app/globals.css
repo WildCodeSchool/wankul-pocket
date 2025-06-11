@@ -25,6 +25,7 @@ body {
     var(--bodyGradient1),
     var(--bodyGradient2)
   );
+  height: 100dvh;
   font-family: var(--font-jaldi), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

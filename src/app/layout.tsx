@@ -1,3 +1,4 @@
+import Tapbar from "@/ui/Tapbar";
 import type { Metadata } from "next";
 import { Jaldi } from "next/font/google";
 import "./globals.css";
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${jaldi.variable}`}>{children}</body>
+      <body className={`${jaldi.variable}`}>
+        {children}
+        <Tapbar />
+      </body>
     </html>
   );
 }
