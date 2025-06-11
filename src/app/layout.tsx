@@ -1,8 +1,6 @@
-"use client";
-
 import { Jaldi } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
+import SessionWrapper from "./SessionWrapper";
 
 const jaldi = Jaldi({
   variable: "--font-jaldi",
@@ -18,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${jaldi.variable}`}>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionWrapper>{children}</SessionWrapper>
       </body>
     </html>
   );

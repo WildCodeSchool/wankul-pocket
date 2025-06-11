@@ -1,9 +1,15 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function GoogleConnexion() {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.push("/homepage");
+  }
 
   return (
     <div>
