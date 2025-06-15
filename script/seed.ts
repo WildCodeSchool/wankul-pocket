@@ -40,12 +40,13 @@ const seed = async () => {
       clan,
       rarity,
       drop_rate,
+      official_rate,
       is_holo,
       quote,
       booster_id,
     } of cards) {
       await db.query(
-        "INSERT INTO card (name, image_path, card_number, clan, rarity, drop_rate, is_holo, quote, booster_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO card (name, image_path, card_number, clan, rarity, drop_rate, official_rate, is_holo, quote, booster_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           name,
           image_path,
@@ -53,6 +54,7 @@ const seed = async () => {
           clan,
           rarity,
           drop_rate,
+          official_rate,
           is_holo,
           quote,
           booster_id,
