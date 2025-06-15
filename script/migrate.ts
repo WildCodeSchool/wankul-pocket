@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS card (
     clan VARCHAR(50) NOT NULL,
     rarity VARCHAR(50) NOT NULL,
     drop_rate DECIMAL(4, 2) NOT NULL,
+    official_rate DECIMAL(4, 2) NOT NULL,
     is_holo BOOLEAN DEFAULT FALSE,
     quote TEXT, 
     booster_id INT NOT NULL,
