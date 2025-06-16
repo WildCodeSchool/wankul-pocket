@@ -6,7 +6,8 @@
     "card_number": 1,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -18,7 +19,8 @@
     "card_number": 2,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -30,7 +32,8 @@
     "card_number": 3,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -42,7 +45,8 @@
     "card_number": 4,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -54,7 +58,8 @@
     "card_number": 5,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -66,7 +71,8 @@
     "card_number": 6,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -78,7 +84,8 @@
     "card_number": 7,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -90,7 +97,8 @@
     "card_number": 8,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -102,7 +110,8 @@
     "card_number": 9,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -114,7 +123,8 @@
     "card_number": 10,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -126,7 +136,8 @@
     "card_number": 11,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -138,7 +149,8 @@
     "card_number": 12,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -150,7 +162,8 @@
     "card_number": 13,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -162,7 +175,8 @@
     "card_number": 14,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -174,7 +188,8 @@
     "card_number": 15,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -186,7 +201,8 @@
     "card_number": 16,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -198,7 +214,8 @@
     "card_number": 17,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -210,7 +227,8 @@
     "card_number": 18,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -222,7 +240,8 @@
     "card_number": 19,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -234,7 +253,8 @@
     "card_number": 20,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -246,7 +266,8 @@
     "card_number": 21,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -258,7 +279,8 @@
     "card_number": 22,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -270,7 +292,8 @@
     "card_number": 23,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -282,7 +305,8 @@
     "card_number": 24,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -294,7 +318,8 @@
     "card_number": 25,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -306,7 +331,8 @@
     "card_number": 26,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -318,7 +344,8 @@
     "card_number": 27,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -330,7 +357,8 @@
     "card_number": 28,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -342,7 +370,8 @@
     "card_number": 29,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -354,7 +383,8 @@
     "card_number": 30,
     "clan": "Terrain",
     "rarity": "Terrain",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": null,
     "booster_id": 1
@@ -366,7 +396,8 @@
     "card_number": 31,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "C’est la rotule d’embrayage de la culasse qu’a pété. On sera dans les 5000 balles, ma bonne dame.",
     "booster_id": 1
@@ -378,7 +409,8 @@
     "card_number": 32,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Sur le côté droit, on trouve la jauge à huile. Sur le côté gauche, on trouve le côté gauche.",
     "booster_id": 1
@@ -390,7 +422,8 @@
     "card_number": 33,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Quand je vois les flammes sur mon camtar, ça me donne envie de chialer.",
     "booster_id": 1
@@ -402,7 +435,8 @@
     "card_number": 34,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Souvent vu sur l’A1 à 150 km/h, avec du pinard, un sandwich rosette et Johnny à fond dans la cabine.",
     "booster_id": 1
@@ -414,7 +448,8 @@
     "card_number": 35,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Le saviez-vous ? Brico Sympa est né de la collaboration entre 2 types qui savent pas percer un mur.",
     "booster_id": 1
@@ -426,7 +461,8 @@
     "card_number": 36,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Vu à la télé, Socisseau est LA révolution de la saucisse sous vide au goût douteux !",
     "booster_id": 1
@@ -438,7 +474,8 @@
     "card_number": 37,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Aucun de ses propriétaires n’a jamais eu à se plaindre d'elle (ils sont tous morts).",
     "booster_id": 1
@@ -450,7 +487,8 @@
     "card_number": 38,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Elle fait peur comme ça, mais en réalité, si on apprend à la connaître, elle est super sympa.",
     "booster_id": 1
@@ -462,7 +500,8 @@
     "card_number": 39,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Allô, Houston ! Il y a un invité surprise dans le vaisseau, vous pourriez m’aider ?",
     "booster_id": 1
@@ -474,7 +513,8 @@
     "card_number": 40,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Ses dernières paroles ont été : “Hal, pourquoi tu as ouvert tous les SAS de sécurité ?”",
     "booster_id": 1
@@ -486,7 +526,8 @@
     "card_number": 41,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Couché tout le temps au 1er round, mais ne baisse jamais les bras car monte toujours sa garde.",
     "booster_id": 1
@@ -498,7 +539,8 @@
     "card_number": 42,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "La seule ceinture qu’il a eue était celle de sécurité dans sa Peugeot 206.",
     "booster_id": 1
@@ -510,7 +552,8 @@
     "card_number": 43,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Eeeeeuuuh... zbaaaarg mhhhh oooooergggg !",
     "booster_id": 1
@@ -522,7 +565,8 @@
     "card_number": 44,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Blaaaarg mhhhhoooooo euuuuuoooo saucisse zbeeeeerg !",
     "booster_id": 1
@@ -534,7 +578,8 @@
     "card_number": 45,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Depuis qu’il a quitté la ville pour un village, il a la belle vie à la ferme de Tournan-en-Brie.",
     "booster_id": 1
@@ -546,7 +591,8 @@
     "card_number": 46,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il a tout plaqué et est parti élever des vaches par passion. Le lait qu’il produit est dégueulasse.",
     "booster_id": 1
@@ -558,7 +604,8 @@
     "card_number": 47,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Wouf wouf !",
     "booster_id": 1
@@ -570,7 +617,8 @@
     "card_number": 48,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Gruik, gruik !",
     "booster_id": 1
@@ -582,7 +630,8 @@
     "card_number": 49,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "L’avantage est que, dans sa fromagerie, il peut faire un prout bien odorant en toute discrétion.",
     "booster_id": 1
@@ -594,7 +643,8 @@
     "card_number": 50,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Jambon, saucisson, terrine, rillettes, mais surtout un excellent boudin qui pue bien comme il faut.",
     "booster_id": 1
@@ -606,7 +656,8 @@
     "card_number": 51,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il paraît qu’il a racheté tous les hôpitaux pour en faire des casinos",
     "booster_id": 1
@@ -618,7 +669,8 @@
     "card_number": 52,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Inventeur de la paille saucisse et de l’œuf sur PC, il est désormais étudié pour son “intelligence”.",
     "booster_id": 1
@@ -630,7 +682,8 @@
     "card_number": 53,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il pense encore que le tacos saucisse va révolutionner le monde de la cuisine.",
     "booster_id": 1
@@ -642,7 +695,8 @@
     "card_number": 54,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il est incapable de compter le nombre de dents de sa fourche, mais y a pas plus calé en cochon !",
     "booster_id": 1
@@ -654,7 +708,8 @@
     "card_number": 55,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Une fois le paysan voisin lui a volé une chèvre. Pour se venger, il lui a cramé sa baraque.",
     "booster_id": 1
@@ -666,7 +721,8 @@
     "card_number": 56,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Célèbre inventeur du nutri-score F et reconnu pour sa cuisine généreuse (voire dangereuse).",
     "booster_id": 1
@@ -678,7 +734,8 @@
     "card_number": 57,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il a participé brièvement à une émission de cuisine, intoxiqué tout le jury et brûlé 50% du studio.",
     "booster_id": 1
@@ -690,7 +747,8 @@
     "card_number": 58,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il semble avoir trouvé le jouet de maman.",
     "booster_id": 1
@@ -702,7 +760,8 @@
     "card_number": 59,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Avec 18 compotes par jour, bébé est obligé de rester constamment sur le pot.",
     "booster_id": 1
@@ -714,7 +773,8 @@
     "card_number": 60,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "J’ai abattu un cerf ce matin ! Par contre, super bizarre, il avait un anorak jaune et des moufles.",
     "booster_id": 1
@@ -726,7 +786,8 @@
     "card_number": 61,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Mesdames, messieurs, bienvenue à bord du vol 370, veuillez attacher vos ceintures, ça va secouer",
     "booster_id": 1
@@ -738,7 +799,8 @@
     "card_number": 62,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Tout le village a voté pour le pendre la première nuit alors qu’il était Maire depuis 5 minutes.",
     "booster_id": 1
@@ -750,7 +812,8 @@
     "card_number": 63,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Une fois il s’est transformé en loup-garou mais vu qu’il est végétarien, il est resté super sympa.",
     "booster_id": 1
@@ -762,7 +825,8 @@
     "card_number": 64,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "On lui a ordonné de protéger le bien le plus précieux du château : la cave à bière.",
     "booster_id": 1
@@ -774,7 +838,8 @@
     "card_number": 65,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il a bravé tous les dangers pour sauver la princesse de Montmirail (marcher sous la pluie).",
     "booster_id": 1
@@ -786,7 +851,8 @@
     "card_number": 66,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il utilise le pointillisme, comme un de ses camarades de classe autrichiens d’ailleurs.",
     "booster_id": 1
@@ -798,7 +864,8 @@
     "card_number": 67,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Beaucoup de talent, mais si vous voulez le féliciter pour ça, alors ne parlez qu’à sa droite.",
     "booster_id": 1
@@ -810,7 +877,8 @@
     "card_number": 68,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Le pauvre, il ne voulait être pompier que pour draguer, il ne savait pas qu’il allait être sur le terrain.",
     "booster_id": 1
@@ -822,7 +890,8 @@
     "card_number": 69,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Un vrai pompier choisira toujours de sauver en premier ce qu’il y a de plus important.",
     "booster_id": 1
@@ -834,7 +903,8 @@
     "card_number": 70,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Demandez-lui une potion d’invisibilité et vous aurez une chance sur deux d’être empoisonné.",
     "booster_id": 1
@@ -846,7 +916,8 @@
     "card_number": 71,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Une fois il a fait disparaître le petit Jimmy pendant un spectacle, il n’est jamais réapparu.",
     "booster_id": 1
@@ -858,7 +929,8 @@
     "card_number": 72,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Surnommé “l’Architecte”, il aurait construit un 15m² intégralement en carton.",
     "booster_id": 1
@@ -870,7 +942,8 @@
     "card_number": 73,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il a sorti une chanson à succès sur sa liberté de penser et ça s'est fini par un contrôle fiscal.",
     "booster_id": 1
@@ -882,7 +955,8 @@
     "card_number": 74,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Habitué du camping des Vaguelettes depuis 30 ans, tireur de slips et responsable des apéros.",
     "booster_id": 1
@@ -894,7 +968,8 @@
     "card_number": 75,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Détenteur du record de tubes de Biafine utilisés en une semaine.",
     "booster_id": 1
@@ -906,7 +981,8 @@
     "card_number": 76,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Très gentil mais incapable de retenir “pain viande salade pain”.",
     "booster_id": 1
@@ -918,7 +994,8 @@
     "card_number": 77,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il fait pipi dans les frites des clients qui ne disent pas bonjour.",
     "booster_id": 1
@@ -930,7 +1007,8 @@
     "card_number": 78,
     "clan": "Laink",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il a utilisé son fémur comme arme contre le dernier aventurier venu explorer sa grotte.",
     "booster_id": 1
@@ -942,7 +1020,8 @@
     "card_number": 79,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "Il garde le trésor enfoui de la caverne Longmur depuis plus de 300 ans. Il a avoué s’ennuyer un peu.",
     "booster_id": 1
@@ -954,7 +1033,8 @@
     "card_number": 80,
     "clan": "Terracid",
     "rarity": "Commune",
-    "drop_rate": 45,
+    "drop_rate": 38.62,
+    "official_rate": 45,
     "is_holo": false,
     "quote": "C’est lui qui a inventé la formation tortue, en référence à l’animal du même nom (la tortue).",
     "booster_id": 1
@@ -966,7 +1046,8 @@
     "card_number": 81,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "La race d’araignées était super bof. Du coup, il fait 50 kg, ne sait pas se battre et livre des pizzas.",
     "booster_id": 1
@@ -978,7 +1059,8 @@
     "card_number": 82,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Si vous pouviez vous dépêcher de prendre la photo, car le marteau est très lourd.",
     "booster_id": 1
@@ -990,7 +1072,8 @@
     "card_number": 83,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Soldat d’élite reconnu, il perd cependant tous ses moyens quand un Russe crie dans son micro.",
     "booster_id": 1
@@ -1002,7 +1085,8 @@
     "card_number": 84,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il faut que je maîtrise mon nova pomme d’amour comme je maîtrise ma vie.",
     "booster_id": 1
@@ -1014,7 +1098,8 @@
     "card_number": 85,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il a vécu 20 ans dans le placard d’enfance de Terracid, mais n’a jamais été remarqué (dépressif).",
     "booster_id": 1
@@ -1026,7 +1111,8 @@
     "card_number": 86,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il a œuvré toute sa vie contre l’addiction aux drogues chez les développeurs de jeux.",
     "booster_id": 1
@@ -1038,7 +1124,8 @@
     "card_number": 87,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Autrefois YouTuber émérite, Seb vit désormais dans la jungle au sein d’une famille de chimpanzés.",
     "booster_id": 1
@@ -1050,7 +1137,8 @@
     "card_number": 88,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Grand entrepreneur et futur astronaute, mais a tendance à égarer les objets offerts par ses amis.",
     "booster_id": 1
@@ -1062,7 +1150,8 @@
     "card_number": 89,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "On raconte que son navire a coulé dans le sud du Pacifique (à cause du poids de l’or dans la cale).",
     "booster_id": 1
@@ -1074,7 +1163,8 @@
     "card_number": 90,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il aime l’or, le sang, la bagarre, mais aussi l’odeur des croissants chauds de la boulangerie.",
     "booster_id": 1
@@ -1086,7 +1176,8 @@
     "card_number": 91,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Malgré les difficultés, il insiste pour entretenir une romance hétéro curieux avec son compagnon.",
     "booster_id": 1
@@ -1098,7 +1189,8 @@
     "card_number": 92,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il ne l’avouera pas, mais il cherche par tous les moyens à s’accaparer la rondelle de son compagnon.",
     "booster_id": 1
@@ -1110,7 +1202,8 @@
     "card_number": 93,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il fait croire à tout le monde qu’il n’a pris aucun plaisir en embrassant sa propre mère.",
     "booster_id": 1
@@ -1122,7 +1215,8 @@
     "card_number": 94,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "A la base, il voulait juste mettre de la nitro dans sa DeLorean, puis ça a dégénéré.",
     "booster_id": 1
@@ -1134,7 +1228,8 @@
     "card_number": 95,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "J’ai déjà vu le maréchal Pétain en slip. Eh bé, croyez-moi, c’était pas beau à voir !",
     "booster_id": 1
@@ -1146,7 +1241,8 @@
     "card_number": 96,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Moi, de mon temps, on avait un bâton et des cailloux pour s’amuser et c’était très bien comme ça !",
     "booster_id": 1
@@ -1158,7 +1254,8 @@
     "card_number": 97,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "A seulement 16 ans, comme chaque viewer du tchat, il est à la fois archéologue, boulanger, comptable, mécanicien...",
     "booster_id": 1
@@ -1170,7 +1267,8 @@
     "card_number": 98,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Ne vous fiez pas à son air innocent, elle a écrit pas moins de 326 fanfictions érotiques sur ses YouTubeurs préférés.",
     "booster_id": 1
@@ -1182,7 +1280,8 @@
     "card_number": 99,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Les journaux l’appellent “French Monster” ou “Celui qui a pris une belle tête par Terracid”.",
     "booster_id": 1
@@ -1194,7 +1293,8 @@
     "card_number": 100,
     "clan": "Random",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il aime Noël, sa casquette, mais surtout assassiner des gens discrètement.",
     "booster_id": 1
@@ -1206,7 +1306,8 @@
     "card_number": 101,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "S’il mange après minuit, ce monstre est capable de péter et roter indéfiniment.",
     "booster_id": 1
@@ -1218,7 +1319,8 @@
     "card_number": 102,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Avant, il avait une ferme avec beaucoup d’animaux très mignons, mais un jour, il a eu besoin d’XP...",
     "booster_id": 1
@@ -1230,7 +1332,8 @@
     "card_number": 103,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Ne lui montrez surtout pas un diamant, sinon il devient inarrêtable.",
     "booster_id": 1
@@ -1242,7 +1345,8 @@
     "card_number": 104,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Plus qu’une goutte de polymorphie et ma potion contre l’acné juvénile sera enfin prête.",
     "booster_id": 1
@@ -1254,7 +1358,8 @@
     "card_number": 105,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il veut faire des saloperies avec la chaussette de son maître.",
     "booster_id": 1
@@ -1266,7 +1371,8 @@
     "card_number": 106,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Quand il s’énerve, il est capable de déverser plus de sel que toute la mer Méditerranée.",
     "booster_id": 1
@@ -1278,7 +1384,8 @@
     "card_number": 107,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Quand il rage, il a le pouvoir de faire augmenter en flèche votre hypertension artérielle.",
     "booster_id": 1
@@ -1290,7 +1397,8 @@
     "card_number": 108,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Drôle, musclé, chanteur, a-t-il un défaut ? Aucun, sauf son furoncle entre les fesses depuis 2014.",
     "booster_id": 1
@@ -1302,7 +1410,8 @@
     "card_number": 109,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il est très gentil, mais ne tombez surtout pas sur son double maléfique Diabo.",
     "booster_id": 1
@@ -1314,7 +1423,8 @@
     "card_number": 110,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "C’est le premier à avoir avoué qu’il y avait assez de place pour tout le monde dans cette ville.",
     "booster_id": 1
@@ -1326,7 +1436,8 @@
     "card_number": 111,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il a gagné son duel contre McNuggets. En même temps, c’était pas compliqué, McNuggets était aveugle.",
     "booster_id": 1
@@ -1338,7 +1449,8 @@
     "card_number": 112,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Partir en intervention le ventre vide, c’est irresponsable, voire carrément dangereux !",
     "booster_id": 1
@@ -1350,7 +1462,8 @@
     "card_number": 113,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Mon bon monsieur, votre femme qui accouche, c’est pas mon problème. Ici, c’est une place réservée.",
     "booster_id": 1
@@ -1362,7 +1475,8 @@
     "card_number": 114,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il n'a absolument pas le temps de réparer sa douche, il a raid tous les soirs !",
     "booster_id": 1
@@ -1374,7 +1488,8 @@
     "card_number": 115,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "OUH OUH AAAAH AH OUH caca OUUUUUH !",
     "booster_id": 1
@@ -1386,7 +1501,8 @@
     "card_number": 116,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "La seule enquête qu’il n’a pas encore résolue, c’est celle du fantôme à la kékette tordue.",
     "booster_id": 1
@@ -1398,7 +1514,8 @@
     "card_number": 117,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il aurait proposé à la production de jeter les candidats éliminés dans une cage aux lions.",
     "booster_id": 1
@@ -1410,7 +1527,8 @@
     "card_number": 118,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il a dépensé le PIB de la Guyane mais au moins sa tenue est très jolie !",
     "booster_id": 1
@@ -1422,7 +1540,8 @@
     "card_number": 119,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Cela fait maintenant 30 jours qu’il est coincé dans les backrooms, mais apparemment il s’y sent bien.",
     "booster_id": 1
@@ -1434,7 +1553,8 @@
     "card_number": 120,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Ça fait 3 jours qu’elle pédale après celui qui a osé voler sa recette de crêpes aux huîtres.",
     "booster_id": 1
@@ -1446,7 +1566,8 @@
     "card_number": 121,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "On espère pour lui qu’il gardera sa tête, malgré l’impôt qu’il augmente chaque année.",
     "booster_id": 1
@@ -1458,7 +1579,8 @@
     "card_number": 122,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Le seul cowboy de la ville qui monte un âne et arrive quand même à braquer des banques.",
     "booster_id": 1
@@ -1470,7 +1592,8 @@
     "card_number": 123,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Tout le monde l’appelle “le fast”, même sa copine, mais peut-être pas pour les mêmes raisons.",
     "booster_id": 1
@@ -1482,7 +1605,8 @@
     "card_number": 124,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Si vous trouvez que mes cheveux sont très longs alors attendez de voir en dessous.",
     "booster_id": 1
@@ -1494,7 +1618,8 @@
     "card_number": 125,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "On m’a donné cette délicieuse pomme à Gare du Nord, je peux donc la croquer sans risque !",
     "booster_id": 1
@@ -1506,7 +1631,8 @@
     "card_number": 126,
     "clan": "Terracid",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Tu veux claquer de l’escalope et dégivrer le gigot mon mignon ?",
     "booster_id": 1
@@ -1518,7 +1644,8 @@
     "card_number": 127,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Elle est très mignonne, mais méfiez-vous : ses sorts préférés sont l’abcès anal et la varicelle.",
     "booster_id": 1
@@ -1530,7 +1657,8 @@
     "card_number": 128,
     "clan": "Random",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "J’explorais les catacombes et puis j’ai cramé.",
     "booster_id": 1
@@ -1542,7 +1670,8 @@
     "card_number": 129,
     "clan": "Guest",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "On peut penser qu’il est très intelligent, mais sachez qu’il a déjà construit un bateau en béton.",
     "booster_id": 1
@@ -1554,7 +1683,8 @@
     "card_number": 130,
     "clan": "Laink",
     "rarity": "Peu commune",
-    "drop_rate": 30,
+    "drop_rate": 25.75,
+    "official_rate": 30,
     "is_holo": false,
     "quote": "Il voulait être charpentier, mais à cause de sa calvitie, il a dû changer de vocation.",
     "booster_id": 1
@@ -1566,7 +1696,8 @@
     "card_number": 131,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il a fait pipi sur une voiture de la mafia et a démarré une guerre de gangs qui dure depuis 10 ans.",
     "booster_id": 1
@@ -1578,7 +1709,8 @@
     "card_number": 132,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Moi ? Le cybersexe ? N’importe quoi, trop nul le cybersexe, je vais jamais au cybersexe, moi.",
     "booster_id": 1
@@ -1590,7 +1722,8 @@
     "card_number": 133,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "BRANCARDIER ! J’ai des douleurs dans la nuque, c’est très désagréable ! Et j’ai mal au bidou !",
     "booster_id": 1
@@ -1602,7 +1735,8 @@
     "card_number": 134,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Héros de guerre légendaire (il n’a tiré aucune balle et a poussé quelqu’un pour survivre).",
     "booster_id": 1
@@ -1614,7 +1748,8 @@
     "card_number": 135,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Oui, c’est un peu comme des combats de chiens sauf que, là, on les garde dans des boules.",
     "booster_id": 1
@@ -1626,7 +1761,8 @@
     "card_number": 136,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Meilleur dresseur du monde mais chômeur et pas de parents.",
     "booster_id": 1
@@ -1638,7 +1774,8 @@
     "card_number": 137,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Pour survivre, il a dû faire des choses horribles, comme boire l’eau du robinet.",
     "booster_id": 1
@@ -1650,7 +1787,8 @@
     "card_number": 138,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il me reste seulement 18 boîtes de conserve. Je ne tiendrai jamais la journée.",
     "booster_id": 1
@@ -1662,7 +1800,8 @@
     "card_number": 139,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "C’est le tout dernier Call Of neuf sous blister ? Je peux vous le reprendre 2€, si vous voulez.",
     "booster_id": 1
@@ -1674,7 +1813,8 @@
     "card_number": 140,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il a eu sa première vision avec une tranche de jambon de Bayonne, à l’âge de 9 ans.",
     "booster_id": 1
@@ -1686,7 +1826,8 @@
     "card_number": 141,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il paraît que Pinoche a embrassé Giselle sur la bouche près du vieux châtaignier.",
     "booster_id": 1
@@ -1698,7 +1839,8 @@
     "card_number": 142,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il a joué avec un vieil obus trouvé près de la rivière et depuis il est puni.",
     "booster_id": 1
@@ -1710,7 +1852,8 @@
     "card_number": 143,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Le taux de réussite au BAC dans sa classe est de 15 %, et c’est déjà pas mal.",
     "booster_id": 1
@@ -1722,7 +1865,8 @@
     "card_number": 144,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "La réponse est simple : “On ne mange pas avec les doigts.”",
     "booster_id": 1
@@ -1734,7 +1878,8 @@
     "card_number": 145,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Il a raté son harakiri. Maintenant, il a une sonde urinaire et nettoie les murs du temple.",
     "booster_id": 1
@@ -1746,7 +1891,8 @@
     "card_number": 146,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Autrefois grand maître de kung-fu, il arnaque aujourd’hui les touristes sur le mont Fuji.",
     "booster_id": 1
@@ -1758,7 +1904,8 @@
     "card_number": 147,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Elle a tendance à râler pendant qu’elle bosse et à insulter copieusement Martine dans son dos.",
     "booster_id": 1
@@ -1770,7 +1917,8 @@
     "card_number": 148,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "Les gens sont des porcs. C’est fou ce qu’on peut trouver par terre de nos jours.",
     "booster_id": 1
@@ -1782,7 +1930,8 @@
     "card_number": 149,
     "clan": "Laink",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.58,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "C’est ici que...",
     "booster_id": 1
@@ -1794,7 +1943,8 @@
     "card_number": 150,
     "clan": "Terracid",
     "rarity": "Rare",
-    "drop_rate": 10,
+    "drop_rate": 8.5,
+    "official_rate": 10,
     "is_holo": false,
     "quote": "... tout a commencé.",
     "booster_id": 1
@@ -1806,7 +1956,8 @@
     "card_number": 151,
     "clan": "Laink",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "C’est le premier à avoir avoué qu’il y avait assez de place pour tout le monde dans cette ville.",
     "booster_id": 1
@@ -1818,7 +1969,8 @@
     "card_number": 152,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Il a gagné son duel contre McNuggets. En même temps, c’était pas compliqué, McNuggets était aveugle",
     "booster_id": 1
@@ -1830,7 +1982,8 @@
     "card_number": 153,
     "clan": "Laink",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Partir en intervention le ventre vide, c’est irresponsable, voire carrément dangereux !",
     "booster_id": 1
@@ -1842,7 +1995,8 @@
     "card_number": 154,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Mon bon monsieur, votre femme qui accouche, c’est pas mon problème. Ici, c’est une place réservée.",
     "booster_id": 1
@@ -1854,7 +2008,8 @@
     "card_number": 155,
     "clan": "Laink",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Quand il s’énerve, il est capable de déverser plus de sel que toute la mer Méditerranée.",
     "booster_id": 1
@@ -1866,7 +2021,8 @@
     "card_number": 156,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Quand il rage, il a le pouvoir de faire augmenter en flèche votre hypertension artérielle.",
     "booster_id": 1
@@ -1878,7 +2034,8 @@
     "card_number": 157,
     "clan": "Laink",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "L’avantage est que, dans sa fromagerie, il peut faire un prout bien odorant en toute discrétion.",
     "booster_id": 1
@@ -1890,7 +2047,8 @@
     "card_number": 158,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Jambon, saucisson, terrine, rillettes, mais surtout un excellent boudin qui pue bien comme il faut.",
     "booster_id": 1
@@ -1902,7 +2060,8 @@
     "card_number": 159,
     "clan": "Guest",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Les journaux l’appellent “French Monster” ou “Celui qui a pris une belle tête par Terracid”.",
     "booster_id": 1
@@ -1914,7 +2073,8 @@
     "card_number": 160,
     "clan": "Guest",
     "rarity": "Ultra rare holo 1",
-    "drop_rate": 2.24,
+    "drop_rate": 9.61,
+    "official_rate": 2.24,
     "is_holo": true,
     "quote": "Grand entrepreneur et futur astronaute, mais a tendance à égarer les objets offerts par ses amis.",
     "booster_id": 1
@@ -1926,7 +2086,8 @@
     "card_number": 161,
     "clan": "Laink",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "On raconte que son navire a coulé dans le sud du Pacifique (à cause du poids de l’or dans la cale).",
     "booster_id": 1
@@ -1938,7 +2099,8 @@
     "card_number": 162,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Il aime l’or, le sang, la bagarre, mais aussi l’odeur des croissants chauds de la boulangerie.",
     "booster_id": 1
@@ -1950,7 +2112,8 @@
     "card_number": 163,
     "clan": "Guest",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Drôle, musclé, chanteur, a-t-il un défaut ? Aucun, sauf son furoncle entre les fesses depuis 2014.",
     "booster_id": 1
@@ -1962,7 +2125,8 @@
     "card_number": 164,
     "clan": "Random",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "J’explorais les catacombes et puis j’ai cramé.",
     "booster_id": 1
@@ -1974,7 +2138,8 @@
     "card_number": 165,
     "clan": "Laink",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Soldat d’élite reconnu, il perd cependant tous ses moyens quand un Russe crie dans son micro.",
     "booster_id": 1
@@ -1986,7 +2151,8 @@
     "card_number": 166,
     "clan": "Terracid",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Il faut que je maîtrise mon nova pomme d’amour comme je maîtrise ma vie.",
     "booster_id": 1
@@ -1998,7 +2164,8 @@
     "card_number": 167,
     "clan": "Guest",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Il a œuvré toute sa vie contre l’addiction aux drogues chez les développeurs de jeux.",
     "booster_id": 1
@@ -2010,7 +2177,8 @@
     "card_number": 168,
     "clan": "Guest",
     "rarity": "Ultra rare holo 2",
-    "drop_rate": 1.6,
+    "drop_rate": 8.59,
+    "official_rate": 1.6,
     "is_holo": true,
     "quote": "Autrefois YouTuber émérite, Seb vit désormais dans la jungle au sein d’une famille de chimpanzés.",
     "booster_id": 1
@@ -2022,7 +2190,8 @@
     "card_number": 169,
     "clan": "Laink",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "C’est le tout dernier Call Of neuf sous blister ? Je peux vous le reprendre 2€, si vous voulez.",
     "booster_id": 1
@@ -2034,7 +2203,8 @@
     "card_number": 170,
     "clan": "Terracid",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "Il a eu sa première vision avec une tranche de jambon de Bayonne, à l’âge de 9 ans.",
     "booster_id": 1
@@ -2046,7 +2216,8 @@
     "card_number": 171,
     "clan": "Laink",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "Il paraît que Pinoche a embrassé Giselle sur la bouche près du vieux châtaignier.",
     "booster_id": 1
@@ -2058,7 +2229,8 @@
     "card_number": 172,
     "clan": "Terracid",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "Il a joué avec un vieil obus trouvé près de la rivière et depuis il est puni.",
     "booster_id": 1
@@ -2070,7 +2242,8 @@
     "card_number": 173,
     "clan": "Laink",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "Pour survivre, il a dû faire des choses horribles, comme boire l’eau du robinet.",
     "booster_id": 1
@@ -2082,7 +2255,8 @@
     "card_number": 174,
     "clan": "Terracid",
     "rarity": "Légendaire Bronze",
-    "drop_rate": 0.8,
+    "drop_rate": 5.72,
+    "official_rate": 0.8,
     "is_holo": true,
     "quote": "Il me reste seulement 18 boîtes de conserve. Je ne tiendrai jamais la journée.",
     "booster_id": 1
@@ -2094,7 +2268,8 @@
     "card_number": 175,
     "clan": "Laink",
     "rarity": "Légendaire Argent",
-    "drop_rate": 0.28,
+    "drop_rate": 3,
+    "official_rate": 0.28,
     "is_holo": true,
     "quote": "BRANCARDIER ! J’ai des douleurs dans la nuque, c’est très désagréable ! Et j’ai mal au bidou !",
     "booster_id": 1
@@ -2106,7 +2281,8 @@
     "card_number": 176,
     "clan": "Terracid",
     "rarity": "Légendaire Argent",
-    "drop_rate": 0.28,
+    "drop_rate": 3,
+    "official_rate": 0.28,
     "is_holo": true,
     "quote": "Héros de guerre légendaire (il n’a tiré aucune balle et a poussé quelqu’un pour survivre).",
     "booster_id": 1
@@ -2118,7 +2294,8 @@
     "card_number": 177,
     "clan": "Laink",
     "rarity": "Légendaire Argent",
-    "drop_rate": 0.28,
+    "drop_rate": 3,
+    "official_rate": 0.28,
     "is_holo": true,
     "quote": "Elle a tendance à râler pendant qu’elle bosse et à insulter copieusement Martine dans son dos.",
     "booster_id": 1
@@ -2130,7 +2307,8 @@
     "card_number": 178,
     "clan": "Terracid",
     "rarity": "Légendaire Argent",
-    "drop_rate": 0.28,
+    "drop_rate": 3,
+    "official_rate": 0.28,
     "is_holo": true,
     "quote": "Les gens sont des porcs. C’est fou ce qu’on peut trouver par terre de nos jours.",
     "booster_id": 1
@@ -2142,7 +2320,8 @@
     "card_number": 179,
     "clan": "Laink",
     "rarity": "Légendaire Or",
-    "drop_rate": 0.08,
+    "drop_rate": 1.72,
+    "official_rate": 0.08,
     "is_holo": true,
     "quote": "C’est ici que...",
     "booster_id": 1
@@ -2154,7 +2333,8 @@
     "card_number": 180,
     "clan": "Terracid",
     "rarity": "Légendaire Or",
-    "drop_rate": 0.08,
+    "drop_rate": 1.72,
+    "official_rate": 0.08,
     "is_holo": true,
     "quote": "... tout a commencé.",
     "booster_id": 1

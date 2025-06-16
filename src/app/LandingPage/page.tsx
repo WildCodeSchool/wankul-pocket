@@ -1,7 +1,19 @@
 "use client";
+
+import GoogleConnexion from "@/ui/GoogleConnexion";
 import styles from "./LandingPage.module.css";
 
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 export default function LandingPage() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.push("/Homepage");
+  }
+
   return (
     <div className={styles.page}>
       <div className={styles.bubble}>
@@ -11,6 +23,7 @@ export default function LandingPage() {
           est impératif de te connecter via ton compte google.
         </p>
       </div>
+      <GoogleConnexion />
     </div>
   );
 }
