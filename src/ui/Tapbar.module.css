@@ -50,3 +50,9 @@
   border-radius: 50%;
   box-shadow: 0 0 10px var(--activeIconBoxShadow);
 }
+
+@media screen and (min-width: 900px) {
+  .globalNav {
+    display: none;
+  }
+}
