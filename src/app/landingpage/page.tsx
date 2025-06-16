@@ -12,7 +12,7 @@ export default function LandingPage() {
   const router = useRouter();
 
   if (session) {
-    router.push("/Homepage");
+    router.push("/homepage");
   }
 
   return (
