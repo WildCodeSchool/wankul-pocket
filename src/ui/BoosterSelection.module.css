@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  height: calc(100dvh - 140px);
+  text-align: center;
+  overflow: auto;
+}
+
+.boosterList {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 0.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.boosterItem {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 120px;
+  transition: transform 0.3s ease;
+  scroll-snap-align: start;
+}
+
+.boosterItemSelected {
+  transform: scale(1.1);
+}
+
+.boosterImage {
+  height: 150px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.selectedBooster {
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.selectedBoosterImage {
+  height: 350px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.selectButton {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
