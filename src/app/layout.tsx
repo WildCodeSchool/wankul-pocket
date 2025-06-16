@@ -1,3 +1,4 @@
+import Tapbar from "@/ui/Tapbar";
 import { Jaldi } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./SessionWrapper";
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${jaldi.variable}`}>
-        <SessionWrapper>{children}</SessionWrapper>
+        <SessionWrapper>
+          {children}
+          <Tapbar />
+        </SessionWrapper>
       </body>
     </html>
   );
