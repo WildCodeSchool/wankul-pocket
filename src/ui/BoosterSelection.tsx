@@ -50,13 +50,13 @@ export default function BoosterSelection({
       )}
       <div>
         <button className={styles.selectButton} onClick={navigateToBoosterPage}>
-          Selectionner ce booster
+          Sélectionner ce booster
         </button>
       </div>
       <div className={styles.boosterList}>
-        {boosters.map((booster, index) => (
+        {boosters.map((booster) => (
           <div
-            key={index}
+            key={booster.id}
             className={`${styles.boosterItem} ${
               selectedBooster?.id === booster.id
                 ? styles.boosterItemSelected

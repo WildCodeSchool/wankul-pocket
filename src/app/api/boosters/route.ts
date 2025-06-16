@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { infoMessages } from "@/data/responseMessages";
-import { BoosterModel } from "@/model/BoosterModel";
 
 interface BoosterResponse {
   id: number;

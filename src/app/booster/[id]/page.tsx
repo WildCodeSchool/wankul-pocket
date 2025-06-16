@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { BoosterModel } from "@/model/BoosterModel";
+import type { BoosterModel } from "@/model/BoosterModel";
 import { getOneById } from "@/service/BoosterService";
 import { infoMessages } from "@/data/responseMessages";
 import styles from "./boosterId.module.css";
@@ -11,7 +11,7 @@ interface PageParams {
 }
 
 export default async function InfoDetailPage({ params }: PageParams) {
-  const idNum = parseInt(await params.id, 10);
+  const idNum = parseInt(params.id, 10);
   if (isNaN(idNum)) {
     notFound();
   }

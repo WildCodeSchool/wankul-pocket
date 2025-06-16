@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { infoMessages } from "@/data/responseMessages";
-import { BoosterModel } from "@/model/BoosterModel";
+import type { BoosterModel } from "@/model/BoosterModel";
 
 export async function GET(
   _req: Request,
