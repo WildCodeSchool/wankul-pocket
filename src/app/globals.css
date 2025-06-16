@@ -3,6 +3,11 @@
   --foreground: #171717;
   --bodyGradient1: #5e74ff;
   --bodyGradient2: #0b356c;
+  --tapBarGradientTop: rgba(255, 255, 255, 0.1);
+  --tapBarGradientBottom: rgba(255, 255, 255, 0);
+  --activeIconGradientTop: rgba(255, 255, 255, 0.2);
+  --activeIconGradientBottom: rgba(255, 255, 255, 0);
+  --activeIconBoxShadow: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
