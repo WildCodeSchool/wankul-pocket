@@ -5,6 +5,7 @@ import styles from "./LandingPage.module.css";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import ModalLandingPage from "@/ui/ModalLandingPage";
 
 export default function LandingPage() {
   const { data: session } = useSession();
@@ -24,6 +25,7 @@ export default function LandingPage() {
         </p>
       </div>
       <GoogleConnexion />
+      <ModalLandingPage />
     </div>
   );
 }
