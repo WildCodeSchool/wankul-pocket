@@ -7,12 +7,6 @@ import styles from "./Tapbar.module.css";
 
 export default function Tapbar() {
   const pathname = usePathname();
-  console.log("Pathname:", pathname);
-  console.log(
-    "Applied class:",
-    pathname === "/LandingPage" ? styles.none : styles.globalNav
-  );
-
   return (
     <nav
       className={pathname === "/LandingPage" ? styles.none : styles.globalNav}

@@ -18,8 +18,8 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${jaldi.variable}`}>
         <SessionWrapper>
-          <Tapbar />
           {children}
+          <Tapbar />
         </SessionWrapper>
       </body>
     </html>
