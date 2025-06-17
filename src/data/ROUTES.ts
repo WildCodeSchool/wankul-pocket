@@ -7,7 +7,6 @@ const apiRoutes = {
   PROFILPICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
-  OPENNING: (id: number) => `${apiUrl}/api/boosters/${id}/openning`,
 };
 
 const appRoutes = {
@@ -19,7 +18,6 @@ const appRoutes = {
   BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
   CARDS: `${appUrl}/cards`,
   CARDS_ID: (id: number) => `${appUrl}/cards/${id}`,
-  OPENNING: (id: number) => `${appUrl}/boosters/${id}/openning`,
 };
 
 export { apiRoutes, appRoutes };

@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
+import { boostersMessages } from "@/data/responseMessages";
 
 export async function manageOpening(boosterId: number): Promise<CardsModel[]> {
   try {
@@ -10,7 +11,7 @@ export async function manageOpening(boosterId: number): Promise<CardsModel[]> {
     const cards: CardsModel[] = rows as CardsModel[];
 
     if (cards.length === 0) {
-      throw new Error("Aucune carte trouvée pour ce booster.");
+      throw new Error(boostersMessages.notFound);
     }
 
     function getRandomCard(cards: CardsModel[]): CardsModel {
