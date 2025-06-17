@@ -4,6 +4,7 @@ const apiRoutes = {
   INFOS: `${apiUrl}/api/infos`,
   USERS: `${apiUrl}/api/users`,
   PROFILPICTURES: `${apiUrl}/api/profilpictures`,
+  BOOSTERS: `${apiUrl}/api/boosters`,
 };
 
 const appRoutes = {
@@ -11,6 +12,8 @@ const appRoutes = {
   INFOS_ID: (id: number) => `${appUrl}/infos/${id}`,
   INFOS_ADD: `${appUrl}/infos/ajouter-info`,
   INFOS_EDIT: (id: number) => `${appUrl}/infos/${id}/editer-info`,
+  BOOSTERS: `${appUrl}/boosters`,
+  BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
 };
 
 export { apiRoutes, appRoutes };
