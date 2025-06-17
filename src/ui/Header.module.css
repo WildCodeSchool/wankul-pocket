@@ -18,6 +18,12 @@
   display: none;
 }
 
+.headerLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .bananasLink,
 .profilLink {
   display: flex;
@@ -71,7 +77,7 @@
       transition: 0.3s ease;
 
       &:hover {
-        color: var(--yellow);
+        color: var(--activeLinkColor);
       }
     }
   }
@@ -87,7 +93,7 @@
   }
 
   .active {
-    color: var(--yellow);
+    color: var(--activeLinkColor);
   }
 
   .link {

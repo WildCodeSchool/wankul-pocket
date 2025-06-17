@@ -7,7 +7,7 @@ export async function GET(
   _req: Request,
   { params }: { params: { email: string } }
 ) {
-  const userEmail = await params.email;
+  const userEmail = params.email;
   if (typeof userEmail !== "string") {
     return NextResponse.json(
       { error: userMessages.invalidEmail },

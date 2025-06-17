@@ -132,6 +132,7 @@ export async function PATCH(req: Request) {
         bananas,
         profil_picture_id,
         profil_id,
+        id,
       ]
     )) as [UpdateResult, unknown];
 

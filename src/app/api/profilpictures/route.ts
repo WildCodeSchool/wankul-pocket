@@ -85,7 +85,7 @@ export async function PATCH(req: Request) {
 
     const [result] = (await db.query(
       "UPDATE profil_picture SET image_path = ? WHERE id = ?",
-      [image_path.trim()]
+      [image_path.trim(), id]
     )) as [UpdateResult, unknown];
 
     if (result.affectedRows === 0) {
