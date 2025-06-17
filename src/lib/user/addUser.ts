@@ -4,7 +4,7 @@ import { apiRoutes } from "@/data/ROUTES";
 export async function addUser(user: {
   username: string;
   email: string;
-  created_at: string;
+  created_at: Date;
   bananas: number;
   profil_picture_id: number;
   profil_id: number;

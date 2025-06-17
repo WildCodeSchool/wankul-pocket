@@ -3,7 +3,7 @@ export class UserModel {
     private _id: number,
     private _username: string,
     private _email: string,
-    private _created_at: string,
+    private _created_at: Date,
     private _bananas: number,
     private _profil_picture_id: number,
     private _profil_id: number,
@@ -26,7 +26,7 @@ export class UserModel {
     return this._email;
   }
 
-  get created_at(): string {
+  get created_at(): Date {
     return this._created_at;
   }
 

@@ -40,16 +40,13 @@ export async function POST(req: Request) {
     if (
       typeof username !== "string" ||
       typeof email !== "string" ||
-      typeof created_at !== "string" ||
       typeof bananas !== "number" ||
       typeof profil_picture_id !== "number" ||
       typeof profil_id !== "number" ||
       username.trim() === "" ||
       email.trim() === "" ||
-      created_at.trim() === "" ||
       username.length > 100 ||
       email.length > 100 ||
-      created_at.length > 10 ||
       bananas < 0 ||
       profil_picture_id <= 0 ||
       profil_id <= 0
@@ -65,7 +62,7 @@ export async function POST(req: Request) {
       [
         username.trim(),
         email.trim(),
-        created_at.trim(),
+        created_at,
         bananas,
         profil_picture_id,
         profil_id,
@@ -103,16 +100,13 @@ export async function PATCH(req: Request) {
     if (
       typeof username !== "string" ||
       typeof email !== "string" ||
-      typeof created_at !== "string" ||
       typeof bananas !== "number" ||
       typeof profil_picture_id !== "number" ||
       typeof profil_id !== "number" ||
       username.trim() === "" ||
       email.trim() === "" ||
-      created_at.trim() === "" ||
       username.length > 100 ||
       email.length > 100 ||
-      created_at.length > 10 ||
       bananas < 0 ||
       profil_picture_id <= 0 ||
       profil_id <= 0
@@ -128,7 +122,7 @@ export async function PATCH(req: Request) {
       [
         username.trim(),
         email.trim(),
-        created_at.trim(),
+        created_at,
         bananas,
         profil_picture_id,
         profil_id,
@@ -138,7 +132,7 @@ export async function PATCH(req: Request) {
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
-        { error: userMessages.notFound || "Utilisateur non trouvée" },
+        { error: userMessages.notFound || "Utilisateur non trouvé" },
         { status: 404 }
       );
     }
