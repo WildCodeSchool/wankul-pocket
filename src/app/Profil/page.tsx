@@ -1,11 +1,17 @@
 import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
+import styles from "./profil.module.css";
+import ModificationAvatar from "@/ui/ModificationAvatar";
 
 export default function Profil() {
   return (
     <div>
-      <h1>Mon Profil</h1>
-      <p>Bienvenue sur votre page de profil !</p>
-      <GoogleDeconnexion />
+      <div className={styles.bubble}>
+        <ModificationAvatar />
+      </div>
+      <p>Statistique</p>
+      <div className={styles.bubble}>
+        <GoogleDeconnexion />
+      </div>
     </div>
   );
 }
