@@ -1,4 +1,3 @@
-import { addUser } from "@/lib/user/addUser";
 import { deleteUser } from "@/lib/user/deleteUser";
 import { getOne } from "@/lib/user/getUser";
 import { getUsers } from "@/lib/user/getUsers";
@@ -15,10 +14,6 @@ export async function getOneById(email: string): Promise<UserModel> {
 
 export async function deleteOne(id: number) {
   return deleteUser(id);
-}
-
-export async function addOne(user: Omit<UserModel, "id">) {
-  return addUser(user);
 }
 
 export async function editOne(user: UserModel): Promise<{ message: string }> {

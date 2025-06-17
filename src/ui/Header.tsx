@@ -10,7 +10,6 @@ export default function Header() {
   const { user } = useUserContext();
   const pathname = usePathname();
 
-  console.log(user);
   if (!user) {
     return (
       <header className={styles.globalHeader}>
