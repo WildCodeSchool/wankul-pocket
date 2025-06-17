@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { NextRequest, NextResponse } from "next/server";
 import { cardsMessages } from "@/data/responseMessages";
+import { manageOpening } from "@/service/OpenBoosterService";
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const boosterId = parseInt(params.id, 10);
@@ -13,12 +13,15 @@ export async function GET(
       { status: 400 }
     );
   }
+
+  const searchParams = request.nextUrl.searchParams;
+  const isOpening = searchParams.get("opening");
+
   try {
-    const [rows] = await db.query(
-      "SELECT id, name, image_path, card_number, clan, rarity, drop_rate, official_rate, is_holo, quote, booster_id FROM card WHERE booster_id = ?;",
-      [boosterId]
-    );
-    return NextResponse.json(rows);
+    if (isOpening === "true") {
+      const cards = await manageOpening(boosterId);
+      return NextResponse.json(cards, { status: 200 });
+    }
   } catch (error) {
     console.error("Erreur MySQL :", error);
     return NextResponse.json({ error: cardsMessages.server }, { status: 500 });
