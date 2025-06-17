@@ -1,6 +1,6 @@
+import { db } from "@/lib/db";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { db } from "@/lib/db";
 
 const handler = NextAuth({
   providers: [

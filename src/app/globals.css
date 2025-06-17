@@ -3,17 +3,22 @@
   --foreground: #171717;
   --bodyGradient1: #5e74ff;
   --bodyGradient2: #0b356c;
+  --headerHeight: 70px;
   --headerBackgroundColor: #0c366e;
   --headerGradientTop: rgba(255, 255, 255, 0.1);
   --headerGradientBottom: rgba(255, 255, 255, 0);
   --headerBoxShadow: 0px 5px 5.8px -1px rgba(0, 0, 0, 0.39);
   --headerLinkGradientTop: rgba(217, 217, 217, 0.2);
   --headerLinkGradientBottom: rgba(217, 217, 217, 0.1);
+  --tapBarHeight: 70px;
   --tapBarGradientTop: rgba(255, 255, 255, 0.1);
   --tapBarGradientBottom: rgba(255, 255, 255, 0);
   --activeIconGradientTop: rgba(255, 255, 255, 0.2);
   --activeIconGradientBottom: rgba(255, 255, 255, 0);
   --activeIconBoxShadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  --activeLinkColor: #f8f006;
+  --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
+  --landingPageHeight: calc(100dvh - var(--headerHeight));
 }
 
 @media (prefers-color-scheme: dark) {

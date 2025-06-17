@@ -3,6 +3,8 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
 const apiRoutes = {
   INFOS: `${apiUrl}/api/infos`,
+  USERS: `${apiUrl}/api/users`,
+  PROFILPICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
   OPENNING: (id: number) => `${apiUrl}/api/boosters/${id}/openning`,
