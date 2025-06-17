@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({
@@ -9,12 +9,12 @@ export async function middleware(request: NextRequest) {
   });
 
   if (!token) {
-    return NextResponse.redirect(new URL("/LandingPage", request.url));
+    return NextResponse.redirect(new URL("/landingpage", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/((?!LandingPage|_next|api|favicon.ico).*)"],
+  matcher: ["/((?!landingpage|_next|api|favicon.ico).*)"],
 };

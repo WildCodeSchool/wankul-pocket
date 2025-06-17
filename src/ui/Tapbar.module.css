@@ -1,0 +1,58 @@
+.globalNav {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: var(--tapBarHeight);
+  background: linear-gradient(
+    to bottom,
+    var(--tapBarGradientTop),
+    var(--tapBarGradientBottom)
+  );
+}
+
+.none {
+  display: none;
+}
+
+.linksContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.listItem {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image,
+.active {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.active {
+  background: linear-gradient(
+    to bottom,
+    var(--activeIconGradientTop),
+    var(--activeIconGradientBottom)
+  );
+  padding: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--activeIconBoxShadow);
+}
+
+@media screen and (min-width: 900px) {
+  .globalNav {
+    display: none;
+  }
+}

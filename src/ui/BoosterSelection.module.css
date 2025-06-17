@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  height: calc(100dvh - 140px);
+  text-align: center;
+  overflow: auto;
+  gap: 20px;
+}
+
+.boosterList {
+  min-height: 180px;
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.boosterItem {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 120px;
+  transition: transform 0.3s ease;
+  scroll-snap-align: start;
+}
+
+.boosterItemSelected {
+  transform: scale(1.1);
+}
+
+.boosterImage {
+  height: 150px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.selectedBooster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.selectedBoosterImage {
+  height: 80%;
+}
+
+.selectButton {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+}
