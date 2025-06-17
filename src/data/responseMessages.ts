@@ -37,4 +37,24 @@ const profilPictureMessages = {
   updateSuccess: "Image mise à jour avec succès",
 };
 
-export { profilPictureMessages, userMessages };
+const collectionMessages = {
+  error:
+    "Erreur lors de la récupération de la collection, veuillez réessayer ulterieurement",
+  errorDetail: "Erreur lors de la récupération de la collection",
+  server: "Une erreur est survenue, veuillez réessayer plus tard",
+  invalidId: "Contenu invalide, veuillez recommencer",
+  invalidEmail: "Contenu invalide, veuillez recommencer",
+  deleted: "Collection supprimée avec succès",
+  deleteFail:
+    "erreur lors de la suppression de la collection, veuillez réessayer ulterieurement",
+  addFail:
+    "erreur lors de l'ajout de la collection, veuillez réessayer ulterieurement",
+  editFail:
+    "erreur lors de la modification de la collection, veuillez réessayer ulterieurement",
+  invalidData: "Les données fournies sont invalides",
+  addSuccess: "Collection ajoutée avec succès",
+  notFound: "Aucune collection trouvée avec cet ID",
+  updateSuccess: "Collection mise à jour avec succès",
+};
+
+export { collectionMessages, profilPictureMessages, userMessages };
