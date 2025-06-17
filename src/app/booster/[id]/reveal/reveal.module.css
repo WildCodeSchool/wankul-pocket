@@ -1,0 +1,4 @@
+.revealPage {
+  height: var(--pageHeight);
+  overflow-x: hidden;
+}
