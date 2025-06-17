@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import type { BoosterModel } from "@/model/BoosterModel";
 import { getOneById } from "@/service/BoosterService";
-import { infoMessages } from "@/data/responseMessages";
+import { boostersMessages } from "@/data/responseMessages";
 import styles from "./boosterId.module.css";
+import OpenBoosterButton from "@/ui/OpenBoosterButton";
 
 interface PageParams {
   params: {
@@ -20,7 +21,7 @@ export default async function InfoDetailPage({ params }: PageParams) {
   try {
     booster = await getOneById(idNum);
   } catch (err: unknown) {
-    console.error(infoMessages.errorDetail, err);
+    console.error(boostersMessages.errorDetail, err);
     return notFound();
   }
 
@@ -35,6 +36,7 @@ export default async function InfoDetailPage({ params }: PageParams) {
         />
         <p>Coût : 10 bananes</p>
       </article>
+      <OpenBoosterButton boosterId={booster.id} />
     </main>
   );
 }

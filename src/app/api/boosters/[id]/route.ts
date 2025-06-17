@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { infoMessages } from "@/data/responseMessages";
+import { boostersMessages } from "@/data/responseMessages";
 import type { BoosterModel } from "@/model/BoosterModel";
 
 export async function GET(
@@ -10,7 +10,7 @@ export async function GET(
   const boosterId = parseInt(params.id, 10);
   if (isNaN(boosterId)) {
     return NextResponse.json(
-      { error: infoMessages.invalidId },
+      { error: boostersMessages.invalidId },
       { status: 400 }
     );
   }
@@ -24,7 +24,7 @@ export async function GET(
 
     if (results.length === 0) {
       return NextResponse.json(
-        { error: infoMessages.notFound },
+        { error: boostersMessages.notFound },
         { status: 404 }
       );
     }
@@ -32,6 +32,9 @@ export async function GET(
     return NextResponse.json(results[0]);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/boosters/[id]) :", error);
-    return NextResponse.json({ error: infoMessages.server }, { status: 500 });
+    return NextResponse.json(
+      { error: boostersMessages.server },
+      { status: 500 }
+    );
   }
 }

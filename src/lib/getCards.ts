@@ -1,4 +1,4 @@
-import { infoMessages } from "@/data/responseMessages";
+import { cardsMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
 import type { CardsModel } from "@/model/CardsModel";
 
@@ -10,6 +10,6 @@ export async function getCards(): Promise<CardsModel[]> {
       "Content-Type": "application/json",
     },
   });
-  if (!res.ok) throw new Error(infoMessages.error);
+  if (!res.ok) throw new Error(cardsMessages.error);
   return res.json();
 }

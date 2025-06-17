@@ -1,6 +1,7 @@
 export class CardsModel {
   constructor(
     private _id: number,
+    private _name: string,
     private _image_path: string,
     private _card_number: number,
     private _clan: string,
@@ -14,6 +15,10 @@ export class CardsModel {
 
   get id(): number {
     return this._id;
+  }
+
+  get name(): string {
+    return this._name;
   }
 
   get image_path(): string {
