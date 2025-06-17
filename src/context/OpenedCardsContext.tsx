@@ -31,8 +31,8 @@ export const OpenedCardsProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <OpenedCardsContext.Provider value={{ openedCards, updateOpenedCards }}>
+    <OpenedCardsContext value={{ openedCards, updateOpenedCards }}>
       {children}
-    </OpenedCardsContext.Provider>
+    </OpenedCardsContext>
   );
 };
