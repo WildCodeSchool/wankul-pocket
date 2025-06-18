@@ -1,11 +1,10 @@
 export async function getBoosterOpening(boosterId: number, userId: number) {
-  const res = await fetch(`/api/boosters/${boosterId}/open`, {
-    //const res = await fetch(`/api/boosters/${boosterId}/cards?opening=true`, {
-    method: "POST",
+  const res = await fetch(`/api/boosters/${boosterId}/cards?opening=true`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "x-user-id": userId.toString(),
     },
-    body: JSON.stringify({ userId }),
   });
 
   if (!res.ok) {

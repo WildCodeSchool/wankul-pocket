@@ -1,8 +1,9 @@
-import { getCardsByBoosterId } from "@/lib/openBooster/getCardsByBoosterID";
-import { updateUserBananas } from "@/lib/openBooster/updateBananas";
-import { addCardToCollection } from "@/lib/openBooster/addCardToCollection";
+import { getCardsByBoosterId } from "@/service/CardsService";
+import { updateUserBananas } from "@/service/UserService";
+import { addCardToCollection } from "@/service/CollectionService";
 import { CardsModel } from "@/model/CardsModel";
 import { boostersMessages } from "@/data/responseMessages";
+import { getRandomCard } from "@/utils/getRandomCard";
 
 export async function manageOpening(
   boosterId: number,
@@ -11,6 +12,9 @@ export async function manageOpening(
   if (!userId) {
     throw new Error("Utilisateur non authentifié.");
   }
+
+  const bananasCost = 10;
+
   try {
     const cards = await getCardsByBoosterId(boosterId);
 
@@ -18,35 +22,7 @@ export async function manageOpening(
       throw new Error(boostersMessages.notFound);
     }
 
-    function getRandomCard(cards: CardsModel[]): CardsModel {
-      const totalDropRate = cards.reduce(
-        (sum, card) => sum + Number(card.drop_rate || 0),
-        0
-      );
-      if (totalDropRate === 0) {
-        throw new Error(
-          "Le total des drop_rate est nul, impossible de sélectionner une carte."
-        );
-      }
-      const randomValue = Math.random() * totalDropRate;
-      let cumulativeRate = 0;
-      for (const card of cards) {
-        const dropRate = Number(card.drop_rate || 0);
-        cumulativeRate += dropRate;
-        if (randomValue <= cumulativeRate) {
-          return card;
-        }
-      }
-      throw new Error(
-        "La logique de sélection aléatoire a échoué. Vérifiez les données et les calculs."
-      );
-    }
-
-    const selectedCards: CardsModel[] = [];
-    for (let i = 0; i < 4; i++) {
-      const card = getRandomCard(cards);
-      selectedCards.push(card);
-    }
+    const selectedCards = Array.from({ length: 4 }, () => getRandomCard(cards));
 
     const filteredCards = cards.filter(
       (card) => card.official_rate && card.official_rate <= 30
@@ -54,10 +30,10 @@ export async function manageOpening(
     if (filteredCards.length === 0) {
       throw new Error("Aucune carte avec un official_rate <= 30 trouvée.");
     }
+
     const fifthCard = getRandomCard(filteredCards);
     selectedCards.push(fifthCard);
 
-    const bananasCost = 10;
     await updateUserBananas(userId, bananasCost);
 
     await Promise.all(

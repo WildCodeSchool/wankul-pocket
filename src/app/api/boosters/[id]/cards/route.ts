@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCardsByBoosterId } from "@/lib/openBooster/getCardsByBoosterID";
+import { getCardsByBoosterId } from "@/service/CardsService";
+import { manageOpening } from "@/service/OpenBoosterService";
 import { cardsMessages } from "@/data/responseMessages";
 
 export async function GET(
@@ -14,13 +15,25 @@ export async function GET(
     );
   }
 
+  const url = new URL(request.url);
+  const isOpening = url.searchParams.get("opening") === "true";
+
   try {
+    if (isOpening) {
+      const userIdHeader = request.headers.get("x-user-id");
+      if (!userIdHeader) {
+        return NextResponse.json({ error: "User ID requis." }, { status: 400 });
+      }
+
+      const userId = parseInt(userIdHeader, 10);
+      const openedCards = await manageOpening(boosterId, userId);
+      return NextResponse.json(openedCards, { status: 200 });
+    }
+
     const cards = await getCardsByBoosterId(boosterId);
-    //if query.opening ?
-    // get 5 cards from the booster
     return NextResponse.json(cards, { status: 200 });
   } catch (error) {
-    console.error("Erreur MySQL :", error);
+    console.error("Erreur:", error);
     return NextResponse.json({ error: cardsMessages.server }, { status: 500 });
   }
 }
