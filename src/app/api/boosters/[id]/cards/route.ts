@@ -16,6 +16,8 @@ export async function GET(
 
   try {
     const cards = await getCardsByBoosterId(boosterId);
+    //if query.opening ?
+    // get 5 cards from the booster
     return NextResponse.json(cards, { status: 200 });
   } catch (error) {
     console.error("Erreur MySQL :", error);
