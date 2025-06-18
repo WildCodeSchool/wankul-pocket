@@ -11,6 +11,9 @@ export default function CollectionContainer() {
   return (
     <section>
       <h2 className={styles.season}>Saison 1 : Origins</h2>
+      <p className={styles.counter}>
+        Cartes obtenues : {collection?.length} / 180
+      </p>
       <ul className={styles.container}>
         {collection
           ?.filter((card) => card.season === 1)
