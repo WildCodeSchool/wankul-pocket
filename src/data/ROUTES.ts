@@ -7,6 +7,7 @@ const apiRoutes = {
   PROFILPICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
+  COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
 };
 
 const appRoutes = {

@@ -1,3 +1,4 @@
+import { CollectionProvider } from "@/context/CollectionContext";
 import { UserProvider } from "@/context/UserContext";
 import Header from "@/ui/Header";
 import Tapbar from "@/ui/Tapbar";
@@ -23,9 +24,11 @@ export default function RootLayout({
         <SessionWrapper>
           <UserProvider>
             <OpenedCardsProvider>
-              <Header />
-              {children}
-              <Tapbar />
+              <CollectionProvider>
+                <Header />
+                <main>{children}</main>
+                <Tapbar />
+              </CollectionProvider>
             </OpenedCardsProvider>
           </UserProvider>
         </SessionWrapper>
