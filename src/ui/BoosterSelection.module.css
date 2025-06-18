@@ -1,4 +1,6 @@
 .container {
+  width: 95%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,6 +25,23 @@
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0)
   );
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.boosterList::-webkit-scrollbar {
+  height: 4px;
+  border-radius: 25px;
+}
+
+.boosterList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.142);
+  border-radius: 25px;
+  cursor: grab;
+}
+
+.boosterList::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 
 .boosterItem {
@@ -65,6 +84,23 @@
   );
   overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.selectedBooster::-webkit-scrollbar {
+  height: 4px;
+  border-radius: 25px;
+}
+
+.selectedBooster::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  cursor: grab;
+}
+
+.selectedBooster::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 
 .selectedBoosterImage {
@@ -80,4 +116,5 @@
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0)
   );
+  cursor: pointer;
 }

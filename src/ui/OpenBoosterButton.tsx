@@ -50,7 +50,13 @@ export default function OpenBoosterButton({
   };
 
   return (
-    <button className={styles.openBoosterButton} onClick={handleOpening}>
+    <button
+      className={`${styles.openBoosterButton} ${
+        !user || user.bananas < 10 ? styles.disabled : ""
+      }`}
+      onClick={handleOpening}
+      disabled={!user || user.bananas < 10}
+    >
       Ouvrir
     </button>
   );
