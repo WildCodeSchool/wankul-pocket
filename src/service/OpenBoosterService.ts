@@ -36,10 +36,6 @@ export async function manageOpening(
 
     await updateUserBananas(userId, bananasCost);
 
-    await Promise.all(
-      selectedCards.map((card) => addCardToCollection(userId, card.id))
-    );
-
     return selectedCards;
   } catch (error) {
     console.error("Erreur lors de l'ouverture du booster :", error);

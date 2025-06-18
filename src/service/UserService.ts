@@ -30,3 +30,12 @@ export async function updateUserBananas(
     userId,
   ]);
 }
+
+export async function getUserIdByEmail(email: string): Promise<number | null> {
+  const [rows] = await db.query(`SELECT id FROM user WHERE email = ?`, [email]);
+  const result = rows as { id: number }[];
+  if (!Array.isArray(result) || result.length === 0) {
+    return null;
+  }
+  return result[0].id;
+}

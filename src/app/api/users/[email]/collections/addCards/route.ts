@@ -1,26 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addCardToCollection } from "@/service/CollectionService";
+import { getUserIdByEmail } from "@/service/UserService"; // Ajoute une fonction pour récupérer userId à partir de l'email
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { email: string } }
 ) {
-  const userId = parseInt(params.id, 10);
-  if (isNaN(userId)) {
-    return NextResponse.json(
-      { error: "ID utilisateur invalide." },
-      { status: 400 }
-    );
-  }
+  const email = params.email;
 
   try {
     const body = await request.json();
+    console.log("Email reçu :", email); // Log l'email reçu
+    console.log("Corps de la requête reçu :", body); // Log le corps de la requête
+
     const cardIds: number[] = body.cardIds;
 
     if (!Array.isArray(cardIds) || cardIds.length === 0) {
       return NextResponse.json(
         { error: "Aucune carte à ajouter." },
         { status: 400 }
+      );
+    }
+
+    // Récupère userId à partir de l'email
+    const userId = await getUserIdByEmail(email);
+    if (!userId) {
+      return NextResponse.json(
+        { error: "Utilisateur introuvable." },
+        { status: 404 }
       );
     }
 

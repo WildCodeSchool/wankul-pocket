@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards } from "@/context/OpenedCardsContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
+import { addToCollection } from "@/lib/openBooster/addToCollection";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -40,6 +41,12 @@ export default function OpenBoosterButton({
           drop_rate: card.drop_rate,
           image_path: card.image_path,
         }));
+
+        await addToCollection(
+          user.email,
+          formattedCards.map((card) => card.id)
+        );
+
         updateOpenedCards(formattedCards);
 
         router.push(`/booster/${boosterId}/reveal`);
