@@ -70,6 +70,19 @@ ul {
   list-style-type: none;
 }
 
+button {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  cursor: pointer;
+  color: white;
+}
+
 @media screen and (min-width: 900px) {
   main {
     height: var(--landingPageHeight);

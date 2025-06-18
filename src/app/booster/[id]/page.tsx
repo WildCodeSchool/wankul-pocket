@@ -26,7 +26,7 @@ export default async function InfoDetailPage({ params }: PageParams) {
   }
 
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <h2>Booster selectionné : {booster.name}</h2>
       <article className={styles.card}>
         <img
@@ -37,6 +37,6 @@ export default async function InfoDetailPage({ params }: PageParams) {
         <p>Coût : 10 bananes</p>
       </article>
       <OpenBoosterButton boosterId={booster.id} />
-    </main>
+    </div>
   );
 }

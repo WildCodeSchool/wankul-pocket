@@ -26,8 +26,8 @@
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  height: calc(100dvh - 140px);
   text-align: center;
   overflow: auto;
   gap: 10px;
+  height: 100%;
 }

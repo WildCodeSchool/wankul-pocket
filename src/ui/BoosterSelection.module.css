@@ -4,11 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 20px;
-  height: calc(100dvh - 140px);
   text-align: center;
-  overflow: auto;
   gap: 20px;
+  height: 100%;
 }
 
 .boosterList {
@@ -105,16 +103,4 @@
 
 .selectedBoosterImage {
   height: 80%;
-}
-
-.selectButton {
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 25px;
-  padding: 1rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
-  );
-  cursor: pointer;
 }
