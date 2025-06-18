@@ -34,7 +34,7 @@ export function CollectionProvider({
         const data: CardsModel[] = await res.json();
         setCollection(data);
       } catch (err) {
-        console.error("Erreur fetch collecction context :", err);
+        console.error("Erreur fetch collection context :", err);
         setCollection([]);
       } finally {
         setLoading(false);
