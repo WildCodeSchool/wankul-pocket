@@ -1,7 +1,7 @@
 import { fetchBoosterCards } from "@/service/CardsService";
 import { selectCards } from "@/utils/cardSelectionUtils";
 import { deductBananas } from "@/service/BananasService";
-import { addCardsToCollection } from "@/service/CollectionService";
+import { addToCollection } from "@/lib/openBooster/addToCollection";
 import { CardsModel } from "@/model/CardsModel";
 
 export async function manageOpening(
@@ -22,7 +22,8 @@ export async function manageOpening(
 
     await deductBananas(userId, bananasCost);
 
-    await addCardsToCollection(emailId, selectedCards);
+    const cardIds = selectedCards.map((card) => card.id);
+    await addToCollection(emailId, cardIds);
 
     return selectedCards;
   } catch (error) {
