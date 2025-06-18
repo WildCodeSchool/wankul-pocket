@@ -16,10 +16,11 @@ export async function GET(
 
   const searchParams = request.nextUrl.searchParams;
   const isOpening = searchParams.get("opening");
+  const userId = searchParams.get("userId");
 
   try {
     if (isOpening === "true") {
-      const cards = await manageOpening(boosterId);
+      const cards = await manageOpening(boosterId, Number(userId));
       return NextResponse.json(cards, { status: 200 });
     }
   } catch (error) {

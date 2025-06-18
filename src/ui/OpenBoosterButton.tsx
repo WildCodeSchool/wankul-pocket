@@ -2,10 +2,9 @@
 
 import styles from "./OpenBoosterButton.module.css";
 import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards } from "@/context/OpenedCardsContext";
-import { getBoosterOpening } from "@/lib/getBoosterOpening";
+import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -15,7 +14,6 @@ export default function OpenBoosterButton({
   boosterId,
 }: OpenBoosterButtonProps) {
   const router = useRouter();
-  const { id } = useParams();
   const { user } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
 
@@ -27,7 +25,7 @@ export default function OpenBoosterButton({
 
     if (user.bananas >= 10) {
       try {
-        const cards = await getBoosterOpening(boosterId);
+        const cards = await getBoosterOpening(boosterId, user.id);
 
         interface Card {
           id: number;

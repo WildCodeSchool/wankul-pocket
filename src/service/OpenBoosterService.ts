@@ -1,14 +1,18 @@
-import { db } from "@/lib/db";
+import { getCardsByBoosterId } from "@/lib/openBooster/getCardsByBoosterID";
+import { updateUserBananas } from "@/lib/openBooster/updateBananas";
+import { addCardToCollection } from "@/lib/openBooster/addCardToCollection";
 import { CardsModel } from "@/model/CardsModel";
 import { boostersMessages } from "@/data/responseMessages";
 
-export async function manageOpening(boosterId: number): Promise<CardsModel[]> {
+export async function manageOpening(
+  boosterId: number,
+  userId: number
+): Promise<CardsModel[]> {
+  if (!userId) {
+    throw new Error("Utilisateur non authentifié.");
+  }
   try {
-    const [rows] = await db.query(`SELECT * FROM card WHERE booster_id = ?`, [
-      boosterId,
-    ]);
-
-    const cards: CardsModel[] = rows as CardsModel[];
+    const cards = await getCardsByBoosterId(boosterId);
 
     if (cards.length === 0) {
       throw new Error(boostersMessages.notFound);
@@ -19,25 +23,20 @@ export async function manageOpening(boosterId: number): Promise<CardsModel[]> {
         (sum, card) => sum + Number(card.drop_rate || 0),
         0
       );
-
       if (totalDropRate === 0) {
         throw new Error(
           "Le total des drop_rate est nul, impossible de sélectionner une carte."
         );
       }
-
       const randomValue = Math.random() * totalDropRate;
-
       let cumulativeRate = 0;
       for (const card of cards) {
         const dropRate = Number(card.drop_rate || 0);
         cumulativeRate += dropRate;
-
         if (randomValue <= cumulativeRate) {
           return card;
         }
       }
-
       throw new Error(
         "La logique de sélection aléatoire a échoué. Vérifiez les données et les calculs."
       );
@@ -52,13 +51,18 @@ export async function manageOpening(boosterId: number): Promise<CardsModel[]> {
     const filteredCards = cards.filter(
       (card) => card.official_rate && card.official_rate <= 30
     );
-
     if (filteredCards.length === 0) {
       throw new Error("Aucune carte avec un official_rate <= 30 trouvée.");
     }
-
     const fifthCard = getRandomCard(filteredCards);
     selectedCards.push(fifthCard);
+
+    const bananasCost = 10;
+    await updateUserBananas(userId, bananasCost);
+
+    await Promise.all(
+      selectedCards.map((card) => addCardToCollection(userId, card.id))
+    );
 
     return selectedCards;
   } catch (error) {
