@@ -10,7 +10,10 @@ export class CardsModel {
     private _official_rate: number,
     private _is_holo: boolean,
     private _quote: string,
-    private _booster_id: number
+    private _booster_id: number,
+    private _quantity: number,
+    private _season: number,
+    private _set_name: string
   ) {}
 
   get id(): number {
@@ -55,5 +58,17 @@ export class CardsModel {
 
   get booster_id(): number {
     return this._booster_id;
+  }
+
+  get quantity(): number {
+    return this._quantity;
+  }
+
+  get season(): number {
+    return this._season;
+  }
+
+  get set_name(): string {
+    return this._set_name;
   }
 }

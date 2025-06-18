@@ -17,7 +17,7 @@ export async function GET(
 
   try {
     const [rows] = await db.query(
-      "SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, c.is_holo, c.quote, c.booster_id FROM card AS c JOIN collection AS co ON c.id = co.card_id JOIN user AS u ON u.id = co.user_id WHERE u.id = ? ORDER BY c.id ASC",
+      "SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, c.is_holo, c.quote, c.booster_id, co.quantity, b.season, b.set_name FROM card AS c JOIN collection AS co ON c.id = co.card_id JOIN user AS u ON u.id = co.user_id JOIN booster AS b ON c.booster_id = b.id WHERE u.id = ? ORDER BY c.card_number ASC",
       [userId]
     );
     const results = Array.isArray(rows) ? (rows as CardsModel[]) : [];

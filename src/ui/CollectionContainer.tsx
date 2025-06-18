@@ -7,19 +7,27 @@ import styles from "./CollectionContainer.module.css";
 
 export default function CollectionContainer() {
   const { collection } = useCollectionContext();
+
   return (
-    <ul className={styles.container}>
-      {collection?.map((card: CardsModel) => (
-        <li key={card.id}>
-          <Image
-            src={card.image_path}
-            alt={card.name}
-            width={200}
-            height={279}
-          />
-          <p>{card.name}</p>
-        </li>
-      ))}
-    </ul>
+    <section>
+      <h2 className={styles.season}>Saison 1 : Origins</h2>
+      <ul className={styles.container}>
+        {collection
+          ?.filter((card) => card.season === 1)
+          .map((card: CardsModel) => (
+            <li key={card.id} className={styles.cardItem}>
+              <Image
+                src={card.image_path}
+                alt={card.name}
+                width={150}
+                height={209}
+              />
+              <div className={styles.quantity}>
+                <p>{card.quantity}</p>
+              </div>
+            </li>
+          ))}
+      </ul>
+    </section>
   );
 }

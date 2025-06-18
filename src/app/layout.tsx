@@ -24,7 +24,7 @@ export default function RootLayout({
           <UserProvider>
             <CollectionProvider>
               <Header />
-              {children}
+              <main>{children}</main>
               <Tapbar />
             </CollectionProvider>
           </UserProvider>
