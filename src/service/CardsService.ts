@@ -19,3 +19,15 @@ export async function getCardsByBoosterId(
   ]);
   return rows as CardsModel[];
 }
+
+export async function fetchBoosterCards(
+  boosterId: number
+): Promise<CardsModel[]> {
+  const cards = await getCardsByBoosterId(boosterId);
+
+  if (cards.length === 0) {
+    throw new Error("Aucune carte trouvée pour ce booster.");
+  }
+
+  return cards;
+}

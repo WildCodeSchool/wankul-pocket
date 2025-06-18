@@ -1,13 +1,13 @@
-import { getCardsByBoosterId } from "@/service/CardsService";
-import { updateUserBananas } from "@/service/UserService";
-import { addCardToCollection } from "@/service/CollectionService";
+import { fetchBoosterCards } from "@/service/CardsService";
+import { selectCards } from "@/utils/cardSelectionUtils";
+import { deductBananas } from "@/service/BananasService";
+import { addCardsToCollection } from "@/service/CollectionService";
 import { CardsModel } from "@/model/CardsModel";
-import { boostersMessages } from "@/data/responseMessages";
-import { getRandomCard } from "@/utils/getRandomCard";
 
 export async function manageOpening(
   boosterId: number,
-  userId: number
+  userId: number,
+  emailId: string
 ): Promise<CardsModel[]> {
   if (!userId) {
     throw new Error("Utilisateur non authentifié.");
@@ -16,25 +16,13 @@ export async function manageOpening(
   const bananasCost = 10;
 
   try {
-    const cards = await getCardsByBoosterId(boosterId);
+    const cards = await fetchBoosterCards(boosterId);
 
-    if (cards.length === 0) {
-      throw new Error(boostersMessages.notFound);
-    }
+    const selectedCards = selectCards(cards);
 
-    const selectedCards = Array.from({ length: 4 }, () => getRandomCard(cards));
+    await deductBananas(userId, bananasCost);
 
-    const filteredCards = cards.filter(
-      (card) => card.official_rate && card.official_rate <= 30
-    );
-    if (filteredCards.length === 0) {
-      throw new Error("Aucune carte avec un official_rate <= 30 trouvée.");
-    }
-
-    const fifthCard = getRandomCard(filteredCards);
-    selectedCards.push(fifthCard);
-
-    await updateUserBananas(userId, bananasCost);
+    await addCardsToCollection(emailId, selectedCards);
 
     return selectedCards;
   } catch (error) {

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards } from "@/context/OpenedCardsContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
-import { addToCollection } from "@/lib/openBooster/addToCollection";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -26,7 +25,7 @@ export default function OpenBoosterButton({
 
     if (user.bananas >= 10) {
       try {
-        const cards = await getBoosterOpening(boosterId, user.id);
+        const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
         interface Card {
           id: number;
@@ -41,11 +40,6 @@ export default function OpenBoosterButton({
           drop_rate: card.drop_rate,
           image_path: card.image_path,
         }));
-
-        await addToCollection(
-          user.email,
-          formattedCards.map((card) => card.id)
-        );
 
         updateOpenedCards(formattedCards);
 

@@ -21,12 +21,20 @@ export async function GET(
   try {
     if (isOpening) {
       const userIdHeader = request.headers.get("x-user-id");
+      const emailHeader = request.headers.get("x-user-email");
       if (!userIdHeader) {
         return NextResponse.json({ error: "User ID requis." }, { status: 400 });
       }
+      if (!emailHeader) {
+        return NextResponse.json(
+          { error: "User email requis." },
+          { status: 400 }
+        );
+      }
 
       const userId = parseInt(userIdHeader, 10);
-      const openedCards = await manageOpening(boosterId, userId);
+      const emailID = emailHeader;
+      const openedCards = await manageOpening(boosterId, userId, emailID);
       return NextResponse.json(openedCards, { status: 200 });
     }
 

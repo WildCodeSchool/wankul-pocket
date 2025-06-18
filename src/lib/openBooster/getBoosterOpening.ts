@@ -1,9 +1,14 @@
-export async function getBoosterOpening(boosterId: number, userId: number) {
+export async function getBoosterOpening(
+  boosterId: number,
+  userId: number,
+  emailID: string
+) {
   const res = await fetch(`/api/boosters/${boosterId}/cards?opening=true`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "x-user-id": userId.toString(),
+      "x-user-email": emailID,
     },
   });
 

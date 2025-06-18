@@ -8,6 +8,8 @@ const apiRoutes = {
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
   COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
+  COLLECTIONS_ADD_CARDS: (email: string) =>
+    `${apiUrl}/api/users/${email}/collections/addCards`,
 };
 
 const appRoutes = {
