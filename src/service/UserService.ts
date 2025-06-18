@@ -21,16 +21,6 @@ export async function editOne(user: UserModel): Promise<{ message: string }> {
   return patchUser(user);
 }
 
-export async function updateUserBananas(
-  userId: number,
-  bananasCost: number
-): Promise<void> {
-  await db.query(`UPDATE user SET bananas = bananas - ? WHERE id = ?`, [
-    bananasCost,
-    userId,
-  ]);
-}
-
 export async function getUserIdByEmail(email: string): Promise<number | null> {
   const [rows] = await db.query(`SELECT id FROM user WHERE email = ?`, [email]);
   const result = rows as { id: number }[];
