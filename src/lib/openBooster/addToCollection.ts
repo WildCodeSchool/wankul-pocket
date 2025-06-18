@@ -1,11 +1,11 @@
 export async function addToCollection(emailID: string, cardIds: number[]) {
-  console.log("Requête envoyée :", { emailID, cardIds }); // Log les données envoyées
+  console.log("Requête envoyée :", { emailID, cardIds });
   const res = await fetch(`/api/users/${emailID}/collections/addCards`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ cardIds }), // Envoie uniquement cardIds dans le corps
+    body: JSON.stringify({ cardIds }),
   });
 
   if (!res.ok) {

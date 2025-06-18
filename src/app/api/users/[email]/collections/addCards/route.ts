@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addCardToCollection } from "@/service/CollectionService";
-import { getUserIdByEmail } from "@/service/UserService"; // Ajoute une fonction pour récupérer userId à partir de l'email
+import { getUserIdByEmail } from "@/service/UserService";
 
 export async function POST(
   request: NextRequest,
@@ -10,8 +10,6 @@ export async function POST(
 
   try {
     const body = await request.json();
-    console.log("Email reçu :", email); // Log l'email reçu
-    console.log("Corps de la requête reçu :", body); // Log le corps de la requête
 
     const cardIds: number[] = body.cardIds;
 
@@ -22,7 +20,6 @@ export async function POST(
       );
     }
 
-    // Récupère userId à partir de l'email
     const userId = await getUserIdByEmail(email);
     if (!userId) {
       return NextResponse.json(
