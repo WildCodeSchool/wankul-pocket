@@ -27,10 +27,10 @@ export function CollectionProvider({
 
   useEffect(() => {
     const fetchCollection = async () => {
-      if (!user?.id) return;
+      if (!user?.email) return;
 
       try {
-        const res = await fetch(`/api/collections/${user.id}`);
+        const res = await fetch(`/api/users/${user.email}/collections`);
         const data: CardsModel[] = await res.json();
         setCollection(data);
       } catch (err) {
@@ -41,7 +41,7 @@ export function CollectionProvider({
       }
     };
     fetchCollection();
-  }, [user?.id]);
+  }, [user?.email]);
 
   return (
     <CollectionContext.Provider value={{ collection, loading }}>

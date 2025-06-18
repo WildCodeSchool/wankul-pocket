@@ -5,7 +5,7 @@ const apiRoutes = {
   USERS: `${apiUrl}/api/users`,
   PROFILPICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
-  COLLECTIONS: `${apiUrl}/api/collections`,
+  COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
 };
 
 const appRoutes = {
