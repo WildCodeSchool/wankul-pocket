@@ -3,16 +3,20 @@
 import { useCollectionContext } from "@/context/CollectionContext";
 import { CardsModel } from "@/model/CardsModel";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardModal from "./CardModal";
 import styles from "./CollectionContainer.module.css";
 
 export default function CollectionContainer() {
-  const { collection } = useCollectionContext();
+  const { collection, refreshCollection } = useCollectionContext();
   const [selectedCard, setSelectedCard] = useState<CardsModel | null>(null);
   const seasonOneCards = Array.isArray(collection)
     ? collection.filter((card: CardsModel) => card.season === 1)
     : [];
+
+  useEffect(() => {
+    refreshCollection();
+  }, []);
 
   return (
     <section>

@@ -90,10 +90,10 @@
 .illusion {
   height: 100%;
   width: 100%;
-  position: relative;
-  top: -100%;
+  position: absolute;
+  top: 0;
   background: url("/illusion.png") center center / contain;
-  opacity: 0.01;
+  opacity: 0.03;
   mix-blend-mode: difference;
 }
 
@@ -125,5 +125,15 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+
+  .illusion {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: url("/illusion.png") center center / contain;
+    opacity: 0.03;
+    mix-blend-mode: difference;
   }
 }
