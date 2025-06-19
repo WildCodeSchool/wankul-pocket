@@ -22,7 +22,7 @@
 .cardItem {
   cursor: pointer;
   img {
-    border-radius: 5px;
+    border-radius: 7px;
   }
 }
 
