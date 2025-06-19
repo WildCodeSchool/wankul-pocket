@@ -28,6 +28,10 @@
 .fadeIn {
   animation: fadeIn 0.7s cubic-bezier(0.4, 0.2, 0.2, 1) both;
 }
+
+.hiddenBeforeFade {
+  opacity: 0;
+}
 .cardInner {
   width: 100%;
   height: 100%;

@@ -39,7 +39,9 @@ export default function RevealedCards() {
         return (
           <li
             key={index}
-            className={`${styles.card} ${pageLoaded ? styles.fadeIn : ""}`}
+            className={`${styles.card} ${
+              pageLoaded ? styles.fadeIn : styles.hiddenBeforeFade
+            }`}
             style={pageLoaded ? { animationDelay: `${index * 0.12}s` } : {}}
             onClick={() => handleReveal(card.id.toString())}
           >
