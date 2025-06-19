@@ -7,14 +7,24 @@ import styles from "./CollectionContainer.module.css";
 
 export default function CollectionContainer() {
   const { collection } = useCollectionContext();
+  const seasonOneCards = Array.isArray(collection)
+    ? collection.filter((card: CardsModel) => card.season === 1)
+    : [];
 
   return (
     <section>
       <h2 className={styles.season}>Saison 1 : Origins</h2>
-      <ul className={styles.container}>
-        {collection
-          ?.filter((card) => card.season === 1)
-          .map((card: CardsModel) => (
+      <p className={styles.counter}>
+        Cartes obtenues : {seasonOneCards?.length} / 180
+      </p>
+      {seasonOneCards?.length === 0 ? (
+        <p className={styles.noCard}>
+          Aucune carte de la saison 1 dans ta collection. Ouvre des boosters et
+          commence à collectionner!
+        </p>
+      ) : (
+        <ul className={styles.container}>
+          {seasonOneCards?.map((card) => (
             <li key={card.id} className={styles.cardItem}>
               <Image
                 src={card.image_path}
@@ -27,7 +37,8 @@ export default function CollectionContainer() {
               </div>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </section>
   );
 }
