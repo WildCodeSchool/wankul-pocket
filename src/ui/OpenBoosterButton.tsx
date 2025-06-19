@@ -24,7 +24,9 @@ export default function OpenBoosterButton({
       return;
     }
 
-    if (user.bananas >= 10) {
+    const boosterCost = 10; // Coût d'ouverture du booster en bananes
+
+    if (user.bananas >= boosterCost) {
       try {
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 

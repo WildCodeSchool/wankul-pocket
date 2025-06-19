@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCardsByBoosterId } from "@/service/CardsService";
-import { manageOpening } from "@/service/OpenBoosterService";
+import { manageOpening } from "@/service/BoosterService";
 import { cardsMessages } from "@/data/responseMessages";
 
 export async function GET(
