@@ -1,45 +1,65 @@
 .bubble {
-  width: 200px;
+  width: 190px;
+  height: 48.28 px;
   border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 20px; /* Ajout px pour la valeur */
-  padding: 1rem;
+  border-radius: 20px;
+  padding: 2rem;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0)
   );
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.avatarWithName {
+.username {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.pageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem auto;
+  justify-content: center;
 }
 
-.avatarCircle {
-  width: 100px;
-  height: 100px;
+.avatarContainer {
+  margin-top: 3rem;
+}
+
+.bubblesGroup {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rem;
+  color: white;
+}
+
+.avatarBubble {
+  width: 276px;
+  height: 276px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
 }
 
-.avatarImage {
+.avatarBubble img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
-
-.username {
-  margin-top: 0.5rem;
-  font-size: 1rem;
+.bubbleText {
   color: white;
   font-weight: bold;
+  font-size: 1rem;
+  margin: 0;
   text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
 }

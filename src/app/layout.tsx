@@ -1,3 +1,4 @@
+import { CollectionProvider } from "@/context/CollectionContext";
 import { UserProvider } from "@/context/UserContext";
 import Header from "@/ui/Header";
 import Tapbar from "@/ui/Tapbar";
@@ -21,9 +22,11 @@ export default function RootLayout({
       <body className={`${jaldi.variable}`}>
         <SessionWrapper>
           <UserProvider>
-            <Header />
-            {children}
-            <Tapbar />
+            <CollectionProvider>
+              <Header />
+              <main>{children}</main>
+              <Tapbar />
+            </CollectionProvider>
           </UserProvider>
         </SessionWrapper>
       </body>
