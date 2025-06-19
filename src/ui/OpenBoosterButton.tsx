@@ -28,15 +28,7 @@ export default function OpenBoosterButton({
       try {
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
-        const formattedCards: CardsModel[] = cards.map((card: CardsModel) => ({
-          id: card.id,
-          name: card.name,
-          drop_rate: card.drop_rate,
-          image_path: card.image_path,
-          rarity: card.rarity,
-          quantity: card.quantity,
-        }));
-
+        const formattedCards: CardsModel[] = cards;
         updateOpenedCards(formattedCards);
 
         router.push(`/booster/${boosterId}/reveal`);
