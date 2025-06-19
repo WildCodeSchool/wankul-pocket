@@ -11,6 +11,7 @@
   transition: 0.15s ease-out;
   will-change: transform;
   transform-style: preserve-3d;
+  border-radius: 5px;
 
   img {
     width: 100%;
