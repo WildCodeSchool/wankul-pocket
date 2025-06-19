@@ -1,7 +1,7 @@
 import { apiRoutes } from "@/data/ROUTES";
 
 export async function addToCollection(emailID: string, cardIds: number[]) {
-  const res = await fetch(apiRoutes.COLLECTIONS_ADD_CARDS(emailID), {
+  const res = await fetch(apiRoutes.COLLECTIONS(emailID), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
