@@ -104,3 +104,28 @@
 .selectedBoosterImage {
   height: 80%;
 }
+
+.disabledBooster {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.disabledBooster > img {
+  filter: grayscale(50%) contrast(0.5);
+}
+
+.disabledText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  pointer-events: none;
+  text-align: center;
+  width: 80%;
+}

@@ -1,3 +1,131 @@
-.cardImage {
+.revealedCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.card {
+  width: 150px;
   height: 200px;
+  perspective: 1000px;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.7s cubic-bezier(0.4, 0.2, 0.2, 1) both;
+}
+.cardInner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cardFront {
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  flex-direction: column;
+  padding: 10px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+.revealed {
+  transform: rotateY(180deg);
+}
+
+.new {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 4px;
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 2;
+  text-shadow: 0px 0px 4px rgb(255, 0, 0);
+}
+
+.terrain {
+  filter: drop-shadow(0 0 10px rgb(37, 222, 239));
+}
+.commune {
+  filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+}
+.peuCommune {
+  filter: drop-shadow(0 0 10px rgb(51, 255, 0));
+}
+.rare {
+  filter: drop-shadow(0 0 10px rgb(255, 251, 0));
+}
+.ultraRareHolo1 {
+  filter: drop-shadow(0 0 10px rgb(212, 56, 255));
+}
+.ultraRareHolo2 {
+  filter: drop-shadow(0 0 10px rgb(254, 0, 254));
+}
+.légendaireBronze {
+  filter: drop-shadow(0 0 10px rgb(255, 162, 95));
+}
+.légendaireArgent {
+  filter: drop-shadow(0 0 10px rgb(255, 47, 0));
+}
+.légendaireOr {
+  filter: drop-shadow(0 0 10px rgb(255, 0, 0));
+}
+
+@media (min-width: 900px) {
+  .revealedCards {
+    max-width: 900px;
+    gap: 24px;
+    padding: 24px;
+  }
+  .card {
+    width: 220px;
+    height: 320px;
+    cursor: pointer;
+  }
+  .cardImage {
+    height: 270px;
+  }
 }

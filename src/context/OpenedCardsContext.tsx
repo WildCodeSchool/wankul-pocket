@@ -7,6 +7,8 @@ export interface OpenedCard {
   name: string;
   drop_rate: number;
   image_path: string;
+  rarity: string;
+  quantity: number;
 }
 
 const OpenedCardsContext = createContext<{

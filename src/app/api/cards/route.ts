@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { cardsMessages } from "@/data/responseMessages";
+import { CardsModel } from "@/model/CardsModel";
 
-interface CardsResponse {
-  name: string;
-  image_path: string;
-  card_number: number;
-  clan: string;
-  rarity: string;
-  drop_rate: number;
-  official_rate: number;
-  is_holo: boolean;
-  quote: string;
+interface CardsResponse extends CardsModel {
   booster_id: number;
 }
 
