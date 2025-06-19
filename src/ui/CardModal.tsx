@@ -8,45 +8,15 @@ type CardModalProps = {
 };
 
 export default function CardModal({ card, onClose }: CardModalProps) {
-  const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const el = event.currentTarget;
-    const elRect = el.getBoundingClientRect();
-
-    const x = event.clientX - elRect.x;
-    const y = event.clientY - elRect.y;
-
-    const midCardWidth = elRect.width / 2;
-    const midCardHeight = elRect.height / 2;
-
-    const angleY = (x - midCardWidth) / 8;
-    const angleX = -(y - midCardHeight) / 8;
-
-    const shadowX = (x - midCardWidth) / 5;
-    const shadowY = (y - midCardHeight) / 5;
-
-    el.children[0].setAttribute(
-      "style",
-      `transform: rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05); transition: transform 0.1s ease; box-shadow: ${-shadowX}px ${-shadowY}px 30px rgba(0, 0, 0, 0.25)`
-    );
-
-    const holo = el.querySelector(`.${styles.holoLayer}`) as HTMLElement;
-    if (holo) {
-      const posX = (x / elRect.width) * 100;
-      const posY = (y / elRect.height) * 100;
-      holo.style.backgroundPosition = `${posX}% ${posY}%`;
-    }
-  };
-
-  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    const el = event.currentTarget;
-    const elRect = el.getBoundingClientRect();
-
-    const x = touch.clientX - elRect.left;
-    const y = touch.clientY - elRect.top;
-
-    const midX = elRect.width / 2;
-    const midY = elRect.height / 2;
+  const applyTransform = (
+    el: HTMLDivElement,
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ) => {
+    const midX = width / 2;
+    const midY = height / 2;
 
     const angleY = (x - midX) / 8;
     const angleX = -(y - midY) / 8;
@@ -58,17 +28,24 @@ export default function CardModal({ card, onClose }: CardModalProps) {
       "style",
       `transform: rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05); transition: transform 0.1s ease; box-shadow: ${-shadowX}px ${-shadowY}px 30px rgba(0, 0, 0, 0.25)`
     );
+  };
 
+  const updateHoloLayer = (
+    el: HTMLDivElement,
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ) => {
     const holo = el.querySelector(`.${styles.holoLayer}`) as HTMLElement;
     if (holo) {
-      const posX = (x / elRect.width) * 100;
-      const posY = (y / elRect.height) * 100;
+      const posX = (x / width) * 100;
+      const posY = (y / height) * 100;
       holo.style.backgroundPosition = `${posX}% ${posY}%`;
     }
   };
 
-  const resetMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const el = event.currentTarget;
+  const resetTransform = (el: HTMLDivElement) => {
     el.children[0].setAttribute(
       "style",
       "transform: rotateX(0deg) rotateY(0deg) scale(1); transition: transform 0.3s ease; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1)"
@@ -77,23 +54,43 @@ export default function CardModal({ card, onClose }: CardModalProps) {
     if (holo) {
       holo.style.backgroundPosition = `50% 50%`;
     }
+  };
+  const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    applyTransform(el, x, y, rect.width, rect.height);
+    updateHoloLayer(el, x, y, rect.width, rect.height);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    const el = event.currentTarget;
+    const touch = event.touches[0];
+    const rect = el.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    applyTransform(el, x, y, rect.width, rect.height);
+    updateHoloLayer(el, x, y, rect.width, rect.height);
+  };
+
+  const resetMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    resetTransform(event.currentTarget);
   };
 
   const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
-    const el = event.currentTarget;
-    el.children[0].setAttribute(
-      "style",
-      "transform: rotateX(0deg) rotateY(0deg) scale(1); transition: transform 0.3s ease; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1)"
-    );
-
-    const holo = el.querySelector(`.${styles.holoLayer}`) as HTMLElement;
-    if (holo) {
-      holo.style.backgroundPosition = `50% 50%`;
-    }
+    resetTransform(event.currentTarget);
   };
+
   return (
     <section className={styles.modal}>
-      <button onClick={onClose} className={styles.closeBtn}>
+      <button
+        onClick={onClose}
+        className={styles.closeBtn}
+        aria-label="Close modal"
+      >
         ✖
       </button>
       <div
