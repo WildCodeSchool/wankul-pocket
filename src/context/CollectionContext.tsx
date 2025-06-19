@@ -5,12 +5,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useUserContext } from "./UserContext";
 
 type CollectionContextType = {
-  collection: CardsModel[] | null;
+  collection: CardsModel[] | [];
   loading: boolean;
 };
 
 const CollectionContext = createContext<CollectionContextType>({
-  collection: null,
+  collection: [],
   loading: true,
 });
 
@@ -22,7 +22,7 @@ export function CollectionProvider({
   children: React.ReactNode;
 }) {
   const { user } = useUserContext();
-  const [collection, setCollection] = useState<CardsModel[] | null>(null);
+  const [collection, setCollection] = useState<CardsModel[] | []>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

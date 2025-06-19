@@ -6,6 +6,11 @@
   padding-top: 1rem;
 }
 
+.noCard {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .season {
   text-align: center;
 }
