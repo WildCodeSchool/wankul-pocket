@@ -1,17 +1,19 @@
 "use client";
 
+import { getOne } from "@/lib/user/getUser";
 import { UserModel } from "@/model/UserModel";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
   user: UserModel | null;
-  loading: boolean;
+  setUser: React.Dispatch<React.SetStateAction<UserModel | null>>;
 };
 
 const UserContext = createContext<UserContextType>({
   user: null,
-  loading: true,
+  setUser: () => {},
 });
 
 export const useUserContext = () => useContext(UserContext);
@@ -19,34 +21,28 @@ export const useUserContext = () => useContext(UserContext);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const [user, setUser] = useState<UserModel | null>(null);
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (!session?.user?.email) return;
+      if (!session?.user?.email) {
+        router.push("/landingpage");
+        return;
+      }
 
       try {
-        const res = await fetch(`/api/users/${session.user.email}`);
-        const data: UserModel = await res.json();
+        const data = await getOne(session.user.email);
         setUser(data);
       } catch (err) {
         console.error("Erreur fetch user context :", err);
         setUser(null);
-      } finally {
-        setLoading(false);
       }
     };
 
     if (status === "authenticated") {
       fetchUser();
-    } else if (status !== "loading") {
-      setLoading(false);
     }
   }, [session, status]);
 
-  return (
-    <UserContext.Provider value={{ user, loading }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext value={{ user, setUser }}>{children}</UserContext>;
 }

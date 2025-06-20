@@ -21,6 +21,9 @@
 
 .cardItem {
   cursor: pointer;
+  img {
+    border-radius: 7px;
+  }
 }
 
 .quantity {
@@ -47,5 +50,7 @@
 @media screen and (min-width: 900px) {
   .container {
     padding: 1rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
   }
 }
