@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./editavatar.module.css";
-import { avatarList } from "@/ui/avatarList";
+import { avatarList } from "@/data/avatarList";
 
 export default function EditAvatarPage() {
   const router = useRouter();
