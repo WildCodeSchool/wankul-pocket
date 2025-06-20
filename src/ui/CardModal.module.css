@@ -1,0 +1,61 @@
+.modal {
+  position: absolute;
+  top: var(--headerHeight);
+  left: 0;
+  height: var(--pageHeight);
+  width: 100%;
+  background-color: rgba(11, 53, 108, 0.9);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+.closeBtn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 1rem;
+  right: 1rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--textColor);
+  color: var(--textColor);
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid var(--textColor);
+    color: var(--textColor);
+    background-color: red;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.quote {
+  font-style: italic;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .modal {
+    height: var(--landingPageHeight);
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
