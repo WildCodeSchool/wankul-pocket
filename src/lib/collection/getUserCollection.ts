@@ -12,11 +12,11 @@ export async function getOne(email: string): Promise<CardsModel[]> {
   });
 
   if (res.status === 404) {
-    throw new Error(collectionMessages.notFound || "Collection non trouvée");
+    console.error(collectionMessages.notFound || "Collection non trouvée");
   }
 
   if (!res.ok) {
-    throw new Error(collectionMessages.error);
+    console.error(collectionMessages.error);
   }
 
   return res.json();

@@ -3,6 +3,7 @@
 import { getOne } from "@/lib/user/getUser";
 import { UserModel } from "@/model/UserModel";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
@@ -20,10 +21,14 @@ export const useUserContext = () => useContext(UserContext);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const [user, setUser] = useState<UserModel | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (!session?.user?.email) return;
+      if (!session?.user?.email) {
+        router.push("/landingpage");
+        return;
+      }
 
       try {
         const data = await getOne(session.user.email);
@@ -39,9 +44,5 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [session, status]);
 
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext value={{ user, setUser }}>{children}</UserContext>;
 }

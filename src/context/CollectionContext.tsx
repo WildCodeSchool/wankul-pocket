@@ -2,6 +2,7 @@
 
 import { getOne } from "@/lib/collection/getUserCollection";
 import { CardsModel } from "@/model/CardsModel";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUserContext } from "./UserContext";
 
@@ -24,10 +25,14 @@ export function CollectionProvider({
 }) {
   const { user } = useUserContext();
   const [collection, setCollection] = useState<CardsModel[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCollection = async () => {
-      if (!user?.email) return;
+      if (!user?.email) {
+        router.push("/landingpage");
+        return;
+      }
 
       try {
         const data = await getOne(user.email);
@@ -46,8 +51,8 @@ export function CollectionProvider({
   }, [user?.email]);
 
   return (
-    <CollectionContext.Provider value={{ collection, setCollection }}>
+    <CollectionContext value={{ collection, setCollection }}>
       {children}
-    </CollectionContext.Provider>
+    </CollectionContext>
   );
 }
