@@ -44,7 +44,7 @@ export default function EditAvatarPage() {
 
       <input
         type="text"
-        placeholder="Nom de l’avatar"
+        placeholder="Nom de ton avatar"
         value={avatarName}
         onChange={(e) => setAvatarName(e.target.value)}
         className={styles.input}
