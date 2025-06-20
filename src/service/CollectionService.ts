@@ -9,7 +9,8 @@ export async function getCollection(user_id: number): Promise<CardsModel[]> {
 
 export async function addCardToCollection(
   userId: number,
-  cardId: number
+  cardId: number,
+  boosterId: number
 ): Promise<void> {
   await db.query(
     `INSERT INTO collection (user_id, card_id, quantity)
