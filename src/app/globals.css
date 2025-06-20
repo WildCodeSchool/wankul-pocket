@@ -24,6 +24,18 @@
   );
   --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
   --landingPageHeight: calc(100dvh - var(--headerHeight));
+  --avatarBorder: 3px solid rgba(255, 255, 255, 0.3);
+  --avatarShadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  --buttonBorder: 1px solid rgba(255, 255, 255, 0.13);
+  --buttonRadius: 25px;
+  --buttonPadding: 0.75rem 1.5rem;
+  --buttonFontSize: 1rem;
+  --buttonFontWeight: bold;
+  --buttonBorderRadius: 10px;
+  --buttonTransition: background-color 0.2s ease;
+  --bubbleWidth: 190px;
+  --bubbleHeight: 48.28px;
+  --avatarSize: 276px;
 }
 
 html,
