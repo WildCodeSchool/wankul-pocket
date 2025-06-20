@@ -1,0 +1,29 @@
+.boosterImage {
+  height: 80%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: var(--bubbleGradient);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  overflow: auto;
+  gap: 10px;
+  height: 100%;
+}

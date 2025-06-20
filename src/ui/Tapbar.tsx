@@ -1,0 +1,94 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import styles from "./Tapbar.module.css";
+
+export default function Tapbar() {
+  const pathname = usePathname();
+  return (
+    <nav
+      className={pathname === "/landingpage" ? styles.none : styles.globalNav}
+    >
+      <ul className={styles.linksContainer}>
+        <li className={styles.listItem}>
+          <Link href="/collection">
+            <div
+              className={
+                pathname === "/collection" ? styles.active : styles.image
+              }
+            >
+              <Image
+                src="/cardsIcon.png"
+                alt="Collection de cartes"
+                height={41}
+                width={41}
+              />
+            </div>
+          </Link>
+        </li>
+        <li className={styles.listItem}>
+          <Link href="/echange">
+            <div
+              className={pathname === "/echange" ? styles.active : styles.image}
+            >
+              <Image
+                src="/tradeIcon.png"
+                alt="Échanges de cartes"
+                height={41}
+                width={41}
+              />
+            </div>
+          </Link>
+        </li>
+        <li className={styles.listItem}>
+          <Link href="/homepage">
+            <div
+              className={
+                pathname === "/homepage" ? styles.active : styles.image
+              }
+            >
+              <Image
+                src="/homeIcon.png"
+                alt="Page d'accueil"
+                height={41}
+                width={41}
+              />
+            </div>
+          </Link>
+        </li>
+        <li className={styles.listItem}>
+          <Link href="/amis">
+            <div
+              className={pathname === "/amis" ? styles.active : styles.image}
+            >
+              <Image
+                src="/friendsIcon.png"
+                alt="Liste d'amis"
+                height={41}
+                width={41}
+              />
+            </div>
+          </Link>
+        </li>
+        <li className={styles.listItem}>
+          <Link href="/objectifs">
+            <div
+              className={
+                pathname === "/objectifs" ? styles.active : styles.image
+              }
+            >
+              <Image
+                src="/questsIcon.png"
+                alt="Objectifs"
+                height={41}
+                width={41}
+              />
+            </div>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}

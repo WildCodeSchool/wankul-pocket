@@ -1,0 +1,90 @@
+.card {
+  width: 300px;
+  height: 419px;
+  perspective: 1000px;
+}
+
+.contentCard {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.15s ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+  border-radius: 7px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.holoLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 419px;
+  pointer-events: none;
+  background: linear-gradient(360deg, #000522 0%, #c1ecf5 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #00ffc2 0%, #ff4d00 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #51d500 0%, #fff500 100%);
+  background-blend-mode: overlay, difference, normal;
+  background-size: 200% 200%;
+  opacity: 0.3;
+  filter: blur(5px);
+  z-index: 2;
+  transition: background-position 0.1s ease;
+}
+
+.illusion {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background: url("/illusion.png") center center / contain;
+  opacity: 0.03;
+  mix-blend-mode: difference;
+}
+
+@keyframes rotateHolo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.none {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .modal {
+    height: var(--landingPageHeight);
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .contentCard {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .illusion {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: url("/illusion.png") center center / contain;
+    opacity: 0.03;
+    mix-blend-mode: difference;
+  }
+}
