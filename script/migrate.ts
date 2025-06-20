@@ -61,11 +61,9 @@ CREATE TABLE IF NOT EXISTS collection (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     card_id INT NOT NULL,
-    booster_id INT NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (card_id) REFERENCES card(id),
-    FOREIGN KEY (booster_id) REFERENCES booster(id),
     UNIQUE KEY unique_user_card (user_id, card_id)
 );
 
