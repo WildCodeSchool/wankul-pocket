@@ -1,12 +1,39 @@
-.openBoosterButton {
-  width: 100px;
-}
-
 .openBoosterButton.disabled {
   background: linear-gradient(
     to bottom,
-    rgba(108, 108, 108, 0.634),
+    rgba(150, 81, 81, 0.634),
     rgba(93, 93, 93, 0.134)
   );
+  color: rgb(48, 20, 20);
   cursor: not-allowed;
+}
+
+.bananaIcon {
+  height: 20px;
+}
+
+.openBoosterButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+}
+
+.text {
+  margin-right: 12px;
+}
+
+.cost {
+  display: inline-flex;
+  align-items: center;
+}
+
+.bananaIcon {
+  width: 16px;
+  height: 16px;
+  vertical-align: bottom;
 }
