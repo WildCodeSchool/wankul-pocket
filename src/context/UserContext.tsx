@@ -1,5 +1,6 @@
 "use client";
 
+import { getOne } from "@/lib/user/getUser";
 import { UserModel } from "@/model/UserModel";
 import { useSession } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -28,8 +29,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/${session.user.email}`);
-      const data: UserModel = await res.json();
+      const data: UserModel = await getOne(session?.user?.email);
       setUser(data);
     } catch (err) {
       console.error("Erreur fetch user context :", err);

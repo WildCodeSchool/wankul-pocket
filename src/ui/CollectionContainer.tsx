@@ -1,22 +1,20 @@
 "use client";
 
-import { useCollectionContext } from "@/context/CollectionContext";
 import { CardsModel } from "@/model/CardsModel";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardModal from "./CardModal";
 import styles from "./CollectionContainer.module.css";
 
-export default function CollectionContainer() {
-  const { collection, refreshCollection } = useCollectionContext();
+type Props = {
+  collection: CardsModel[];
+};
+
+export default function CollectionContainer({ collection }: Props) {
   const [selectedCard, setSelectedCard] = useState<CardsModel | null>(null);
   const seasonOneCards = Array.isArray(collection)
     ? collection.filter((card: CardsModel) => card.season === 1)
     : [];
-
-  useEffect(() => {
-    refreshCollection();
-  }, []);
 
   return (
     <section>
