@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { infoMessages } from "@/data/responseMessages";
+import { boostersMessages } from "@/data/responseMessages";
 
 interface BoosterResponse {
   id: number;
@@ -18,6 +18,9 @@ export async function GET() {
     return NextResponse.json(rows);
   } catch (error) {
     console.error("Erreur MySQL :", error);
-    return NextResponse.json({ error: infoMessages.server }, { status: 500 });
+    return NextResponse.json(
+      { error: boostersMessages.server },
+      { status: 500 }
+    );
   }
 }

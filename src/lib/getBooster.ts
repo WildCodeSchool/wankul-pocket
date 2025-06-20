@@ -1,4 +1,4 @@
-import { infoMessages } from "@/data/responseMessages";
+import { boostersMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
 import { BoosterModel } from "@/model/BoosterModel";
 
@@ -12,11 +12,11 @@ export async function getOne(id: number): Promise<BoosterModel> {
   });
 
   if (res.status === 404) {
-    throw new Error(infoMessages.notFound || "Information non trouvée");
+    throw new Error(boostersMessages.notFound || "Information non trouvée");
   }
 
   if (!res.ok) {
-    throw new Error(infoMessages.error);
+    throw new Error(boostersMessages.error);
   }
 
   return res.json();
