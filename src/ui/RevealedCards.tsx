@@ -34,7 +34,7 @@ export default function RevealedCards() {
             i === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
           )
           .join("");
-        const isRevealed = revealedIds.includes(card.id.toString());
+        const isRevealed = revealedIds.includes(index.toString());
 
         return (
           <li
@@ -43,7 +43,7 @@ export default function RevealedCards() {
               pageLoaded ? styles.fadeIn : styles.hiddenBeforeFade
             }`}
             style={pageLoaded ? { animationDelay: `${index * 0.12}s` } : {}}
-            onClick={() => handleReveal(card.id.toString())}
+            onClick={() => handleReveal(index.toString())}
           >
             <div
               className={`${styles.cardInner} ${
