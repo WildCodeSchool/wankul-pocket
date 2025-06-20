@@ -1,4 +1,4 @@
-import { infoMessages } from "@/data/responseMessages";
+import { boostersMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
 import type { BoosterModel } from "@/model/BoosterModel";
 
@@ -10,6 +10,6 @@ export async function getBoosters(): Promise<BoosterModel[]> {
       "Content-Type": "application/json",
     },
   });
-  if (!res.ok) throw new Error(infoMessages.error);
+  if (!res.ok) throw new Error(boostersMessages.error);
   return res.json();
 }

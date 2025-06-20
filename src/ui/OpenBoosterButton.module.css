@@ -1,0 +1,12 @@
+.openBoosterButton {
+  width: 100px;
+}
+
+.openBoosterButton.disabled {
+  background: linear-gradient(
+    to bottom,
+    rgba(108, 108, 108, 0.634),
+    rgba(93, 93, 93, 0.134)
+  );
+  cursor: not-allowed;
+}

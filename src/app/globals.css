@@ -17,6 +17,11 @@
   --activeIconGradientBottom: rgba(255, 255, 255, 0);
   --activeIconBoxShadow: 0 0 10px rgba(0, 0, 0, 0.2);
   --activeLinkColor: #f8f006;
+  --bubbleGradient: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
   --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
   --landingPageHeight: calc(100dvh - var(--headerHeight));
 }
@@ -68,6 +73,15 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+button {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+  padding: 1rem;
+  background: var(--bubbleGradient);
+  cursor: pointer;
+  color: white;
 }
 
 @media screen and (min-width: 900px) {

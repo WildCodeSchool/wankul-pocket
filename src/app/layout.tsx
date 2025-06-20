@@ -5,6 +5,7 @@ import Tapbar from "@/ui/Tapbar";
 import { Jaldi } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./SessionWrapper";
+import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
 
 const jaldi = Jaldi({
   variable: "--font-jaldi",
@@ -22,11 +23,13 @@ export default function RootLayout({
       <body className={`${jaldi.variable}`}>
         <SessionWrapper>
           <UserProvider>
-            <CollectionProvider>
-              <Header />
-              <main>{children}</main>
-              <Tapbar />
-            </CollectionProvider>
+            <OpenedCardsProvider>
+              <CollectionProvider>
+                <Header />
+                <main>{children}</main>
+                <Tapbar />
+              </CollectionProvider>
+            </OpenedCardsProvider>
           </UserProvider>
         </SessionWrapper>
       </body>

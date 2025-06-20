@@ -53,25 +53,38 @@ export default function BoosterSelection({
           Sélectionner ce booster
         </button>
       </div>
-      <div className={styles.boosterList}>
-        {boosters.map((booster) => (
-          <div
-            key={booster.id}
-            className={`${styles.boosterItem} ${
-              selectedBooster?.id === booster.id
-                ? styles.boosterItemSelected
-                : ""
-            }`}
-            onClick={() => handleSelectBooster(booster)}
-          >
-            <img
-              src={booster.image}
-              alt={booster.name}
-              className={styles.boosterImage}
-            />
-          </div>
-        ))}
-      </div>
+      <ul className={styles.boosterList}>
+        {boosters.map((booster) => {
+          const isDisabled = booster.id !== boosters[0].id;
+          return (
+            <li
+              key={booster.id}
+              className={`${styles.boosterItem} ${
+                selectedBooster?.id === booster.id
+                  ? styles.boosterItemSelected
+                  : ""
+              } ${isDisabled ? styles.disabledBooster : ""}`}
+              onClick={() => {
+                if (!isDisabled) {
+                  handleSelectBooster(booster);
+                }
+              }}
+              aria-disabled={isDisabled}
+            >
+              <img
+                src={booster.image}
+                alt={booster.name}
+                className={styles.boosterImage}
+              />
+              {isDisabled && (
+                <p className={styles.disabledText}>
+                  Ce booster n&apos;est pas encore disponible.
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
