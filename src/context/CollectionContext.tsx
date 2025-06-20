@@ -1,17 +1,19 @@
 "use client";
 
+import { getOne } from "@/lib/collection/getUserCollection";
 import { CardsModel } from "@/model/CardsModel";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUserContext } from "./UserContext";
 
 type CollectionContextType = {
-  collection: CardsModel[] | [];
-  loading: boolean;
+  collection: CardsModel[];
+  setCollection: React.Dispatch<React.SetStateAction<CardsModel[]>>;
 };
 
 const CollectionContext = createContext<CollectionContextType>({
   collection: [],
-  loading: true,
+  setCollection: () => {},
 });
 
 export const useCollectionContext = () => useContext(CollectionContext);
@@ -22,30 +24,35 @@ export function CollectionProvider({
   children: React.ReactNode;
 }) {
   const { user } = useUserContext();
-  const [collection, setCollection] = useState<CardsModel[] | []>([]);
-  const [loading, setLoading] = useState(true);
+  const [collection, setCollection] = useState<CardsModel[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCollection = async () => {
-      if (!user?.email) return;
+      if (!user?.email) {
+        router.push("/landingpage");
+        return;
+      }
 
       try {
-        const res = await fetch(`/api/users/${user.email}/collections`);
-        const data: CardsModel[] = await res.json();
-        setCollection(data);
+        const data = await getOne(user.email);
+        if (Array.isArray(data)) {
+          setCollection(data);
+        } else {
+          throw new Error("Format de données invalide");
+        }
       } catch (err) {
         console.error("Erreur fetch collection context :", err);
         setCollection([]);
-      } finally {
-        setLoading(false);
       }
     };
+
     fetchCollection();
   }, [user?.email]);
 
   return (
-    <CollectionContext.Provider value={{ collection, loading }}>
+    <CollectionContext value={{ collection, setCollection }}>
       {children}
-    </CollectionContext.Provider>
+    </CollectionContext>
   );
 }

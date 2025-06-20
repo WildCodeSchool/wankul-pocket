@@ -1,4 +1,4 @@
-import { getOne } from "@/lib/collection/getCollection";
+import { getOne } from "@/lib/collection/getUserCollection";
 import { CardsModel } from "@/model/CardsModel";
 import { db } from "@/lib/db";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
