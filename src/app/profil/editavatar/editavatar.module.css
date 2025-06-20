@@ -13,12 +13,12 @@
 }
 
 .avatarBubble {
-  width: 276px;
-  height: 276px;
+  width: var(--avatarSize);
+  height: var(--avatarSize);
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border: var(--avatarBorder);
+  box-shadow: var(--avatarShadow);
 }
 
 .avatarBubble img {
@@ -59,19 +59,15 @@
 }
 
 .button {
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
-  );
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
+  padding: var(--buttonPadding);
+  background: var(--bubbleGradient);
+  color: var(--textColor);
+  font-size: var(--buttonFontSize);
+  font-weight: var(--buttonFontWeight);
+  border-radius: var(--buttonBorderRadius);
+  border: var(--buttonBorder);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: var(--buttonTransition);
   margin-top: 1rem;
 }
 

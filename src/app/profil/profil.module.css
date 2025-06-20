@@ -1,7 +1,7 @@
 .bubble {
-  width: 190px;
-  height: 48.28 px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  width: var(--bubbleWidth);
+  height: var(--bubbleHeight);
+  border: var(--buttonBorder);
   border-radius: 20px;
   padding: 2rem;
   background: linear-gradient(
