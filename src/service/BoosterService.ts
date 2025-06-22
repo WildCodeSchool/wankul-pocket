@@ -3,7 +3,7 @@ import { getBoosters } from "@/lib/getBoosters";
 import { BoosterModel } from "@/model/BoosterModel";
 import { fetchBoosterCards } from "@/service/CardsService";
 import { selectCards } from "@/utils/cardSelectionUtils";
-import { deductBananas } from "@/service/BananasService";
+import { deductBananas } from "@/service/UserService";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
 import { CardsModel } from "@/model/CardsModel";
 
