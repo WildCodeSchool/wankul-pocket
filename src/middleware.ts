@@ -8,7 +8,17 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  if (!token) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/api/users")) {
+    return NextResponse.redirect(new URL("/landingpage", request.url));
+  }
+
+  if (token && pathname === "/landingpage") {
+    return NextResponse.redirect(new URL("/homepage", request.url));
+  }
+
+  if (!token && pathname !== "/landingpage") {
     return NextResponse.redirect(new URL("/landingpage", request.url));
   }
 
@@ -16,5 +26,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!landingpage|_next|api|favicon.ico).*)"],
+  matcher: ["/((?!_next|favicon.ico).*)"],
 };
