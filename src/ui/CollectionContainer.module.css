@@ -64,7 +64,6 @@
 
     input {
       border-radius: 25px;
-      background-color: rgba(248, 240, 6, 0.13);
       background: var(--bubbleGradient);
       height: 32px;
       width: 150px;

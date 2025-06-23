@@ -13,10 +13,11 @@ type Props = {
 export default function CollectionContainer({ collection }: Props) {
   const [selectedCard, setSelectedCard] = useState<CardsModel | null>(null);
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("nom");
+  const [sort, setSort] = useState("rarity-asc");
+  const seasonOne: number = 1;
   const filteredCards = useMemo(() => {
     const seasonOneCards = Array.isArray(collection)
-      ? collection.filter((card: CardsModel) => card.season === 1)
+      ? collection.filter((card: CardsModel) => card.season === seasonOne)
       : [];
     return seasonOneCards
       .filter((card) => card.name.toLowerCase().includes(search.toLowerCase()))
