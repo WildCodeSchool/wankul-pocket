@@ -53,6 +53,8 @@ CREATE TABLE IF NOT EXISTS is_friend(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   user_profil_id VARCHAR(19) NOT NULL,
   friend_profil_id VARCHAR(19) NOT NULL,
+  status BOOLEAN DEFAULT NULL, 
+  acceptance BOOLEAN DEFAULT NULL,
   FOREIGN KEY (user_profil_id) REFERENCES user(profil_id),
   FOREIGN KEY (friend_profil_id) REFERENCES user(profil_id)
 );
