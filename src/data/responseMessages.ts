@@ -97,22 +97,23 @@ const collectionMessages = {
 
 const friendsMessages = {
   error:
-    "Erreur lors de la récupération de la collection, veuillez réessayer ultérieurement",
-  errorDetail: "Erreur lors de la récupération de la collection",
+    "Erreur lors de la récupération de la liste des amis, veuillez réessayer ultérieurement",
+  errorDetail: "Erreur lors de la récupération de la liste des amis",
   server: "Une erreur est survenue, veuillez réessayer plus tard",
   invalidId: "Contenu invalide, veuillez recommencer",
   invalidEmail: "Contenu invalide, veuillez recommencer",
-  deleted: "Collection supprimée avec succès",
+  deleted: "Ami supprimé avec succès",
   deleteFail:
-    "erreur lors de la suppression de la collection, veuillez réessayer ultérieurement",
-  addFail:
-    "erreur lors de l'ajout de la collection, veuillez réessayer ultérieurement",
+    "erreur lors de la suppression de l'ami, veuillez réessayer ultérieurement",
+  addFail: "erreur lors de l'ajout de l'ami, veuillez réessayer ultérieurement",
   editFail:
-    "erreur lors de la modification de la collection, veuillez réessayer ultérieurement",
+    "erreur lors de la modification de l'ami, veuillez réessayer ultérieurement",
   invalidData: "Les données fournies sont invalides",
-  addSuccess: "Collection ajoutée avec succès",
-  notFound: "Aucune collection trouvée avec cet ID",
-  updateSuccess: "Collection mise à jour avec succès",
+  addSuccess: "Ami ajouté avec succès",
+  notFound: "Aucun ami trouvé avec cet ID",
+  updateSuccess: "Ami mis à jour avec succès",
+  addFriendSuccess: "Demande d'ami envoyée avec succès",
+  alreadyFriends: "Vous êtes déjà amis avec ce profil",
 };
 
 export {

@@ -4,7 +4,11 @@ export class FriendsModel {
     private _user_profil_id: string,
     private _friend_profil_id: string,
     private _status: boolean,
-    private _acceptance: boolean
+    private _acceptance: boolean,
+    private _user_username?: string,
+    private _friend_username?: string,
+    private _user_image_path?: string,
+    private _friend_image_path?: string
   ) {}
 
   get id(): number {
@@ -33,5 +37,21 @@ export class FriendsModel {
 
   set acceptance(value: boolean) {
     this._acceptance = value;
+  }
+
+  get user_username(): string | undefined {
+    return this._user_username;
+  }
+
+  get friend_username(): string | undefined {
+    return this._friend_username;
+  }
+
+  get user_image_path(): string | undefined {
+    return this._user_image_path;
+  }
+
+  get friend_image_path(): string | undefined {
+    return this._friend_image_path;
   }
 }

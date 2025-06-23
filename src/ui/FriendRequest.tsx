@@ -48,10 +48,10 @@ export default function FriendRequest() {
         acceptance: false,
       });
       if (response.error) {
-        setError(response.error);
+        setError(response.error || friendsMessages.alreadyFriends);
         setSuccess("");
       } else {
-        setSuccess(friendsMessages.addSuccess);
+        setSuccess(friendsMessages.addFriendSuccess);
         setError("");
       }
     } catch (err: any) {

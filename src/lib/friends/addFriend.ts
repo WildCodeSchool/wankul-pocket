@@ -1,21 +1,16 @@
 import { friendsMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
+import { FriendsModel } from "@/model/FriendsModel";
 
-export async function addFriend(info: {
-  user_profil_id: string;
-  friend_profil_id: string;
-  status: boolean;
-  acceptance: boolean;
-}) {
+export async function addFriend(is_friend: FriendsModel) {
   const res = await fetch(apiRoutes.FRIENDS, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(info),
+    body: JSON.stringify(is_friend),
   });
-
-  if (!res.ok) throw new Error(friendsMessages.addFail);
-  return res.json();
+  const result = await res.json();
+  return result;
 }
