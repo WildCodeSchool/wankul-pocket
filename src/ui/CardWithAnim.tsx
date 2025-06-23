@@ -84,7 +84,7 @@ export default function CardWithAnim({ card }: CardWithAnimProps) {
   };
   return (
     <div
-      className={styles.card}
+      className={card.rarity === "Terrain" ? styles.landscape : styles.card}
       onMouseMove={handleMove}
       onMouseLeave={resetMove}
       onTouchMove={handleTouchMove}
