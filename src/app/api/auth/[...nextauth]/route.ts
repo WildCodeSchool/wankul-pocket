@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { getUniqueProfilID } from "@/utils/getUniqueProfilID";
 
 const handler = NextAuth({
   providers: [
@@ -34,11 +35,12 @@ const handler = NextAuth({
         );
 
         if (rows.length === 0) {
+          const profilID = await getUniqueProfilID();
           await db.query(
             `INSERT INTO user 
-    (username, email, created_at, profil_picture_id) 
-   VALUES (?, ?, NOW(), ?)`,
-            [name, user.email, 1]
+    (username, email, created_at, profil_picture_id, profil_id) 
+   VALUES (?, ?, NOW(), ?, ?)`,
+            [name, user.email, 1, profilID]
           );
         }
 

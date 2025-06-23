@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS user(
   created_at DATE NOT NULL,
   bananas INT NOT NULL DEFAULT 10,
   profil_picture_id INT NOT NULL,
-  profil_id BIGINT NOT NULL UNIQUE DEFAULT (UUID_SHORT()),
+  profil_id VARCHAR(19) NOT NULL UNIQUE,
   FOREIGN KEY (profil_picture_id) REFERENCES profil_picture(id)
 );
 
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS card (
 
 CREATE TABLE IF NOT EXISTS is_friend(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  user_profil_id BIGINT NOT NULL,
-  friend_profil_id BIGINT NOT NULL,
+  user_profil_id VARCHAR(19) NOT NULL,
+  friend_profil_id VARCHAR(19) NOT NULL,
   FOREIGN KEY (user_profil_id) REFERENCES user(profil_id),
   FOREIGN KEY (friend_profil_id) REFERENCES user(profil_id)
 );
