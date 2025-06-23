@@ -1,0 +1,63 @@
+export class TradeModel {
+  constructor(
+    private _id: number,
+    private _from_user_id: number,
+    private _to_user_id: number,
+    private _offered_card_id: number,
+    private _requested_card_id: number,
+    private _status: boolean,
+    private _acceptance: boolean
+  ) {}
+
+  get id(): number {
+    return this._id;
+  }
+
+  get from_user_id(): number {
+    return this._from_user_id;
+  }
+
+  set from_user_id(value: number) {
+    this._from_user_id = value;
+  }
+
+  get to_user_id(): number {
+    return this._to_user_id;
+  }
+
+  set to_user_id(value: number) {
+    this._to_user_id = value;
+  }
+
+  get offered_card_id(): number {
+    return this._offered_card_id;
+  }
+
+  set offered_card_id(value: number) {
+    this._offered_card_id = value;
+  }
+
+  get requested_card_id(): number {
+    return this._requested_card_id;
+  }
+
+  set requested_card_id(value: number) {
+    this._requested_card_id = value;
+  }
+
+  get status(): boolean {
+    return this._status;
+  }
+
+  set status(value: boolean) {
+    this._status = value;
+  }
+
+  get acceptance(): boolean {
+    return this._acceptance;
+  }
+
+  set acceptance(value: boolean) {
+    this._acceptance = value;
+  }
+}

@@ -95,10 +95,30 @@ const collectionMessages = {
   updateSuccess: "Collection mise à jour avec succès",
 };
 
+const tradesMessages = {
+  error:
+    "Erreur lors de la récupération des échanges, veuillez réessayer ultérieurement",
+  errorDetail: "Erreur lors de la récupération de l'échange",
+  server: "Une erreur est survenue, veuillez réessayer plus tard",
+  invalidId: "Contenu invalide, veuillez recommencer",
+  deleted: "Echange supprimé avec succès",
+  deleteFail:
+    "erreur lors de la suppression de l'échange, veuillez réessayer ultérieurement",
+  addFail:
+    "erreur lors de l'ajout de l'échange, veuillez réessayer ultérieurement",
+  editFail:
+    "erreur lors de la modification de l'échange, veuillez réessayer ultérieurement",
+  invalidData: "Les données fournies sont invalides",
+  addSuccess: "Echange ajouté avec succès",
+  notFound: "Aucun échange trouvé avec cet ID",
+  updateSuccess: "Echange mis à jour avec succès",
+};
+
 export {
-  profilPictureMessages,
-  userMessages,
-  cardsMessages,
   boostersMessages,
+  cardsMessages,
   collectionMessages,
+  profilPictureMessages,
+  tradesMessages,
+  userMessages,
 };
