@@ -6,7 +6,7 @@ export class UserModel {
     private _created_at: Date,
     private _bananas: number,
     private _profil_picture_id: number,
-    private _profil_id: number,
+    private _profil_id: string,
     private _profil_picture_url: string
   ) {}
 
@@ -46,7 +46,7 @@ export class UserModel {
     this._profil_picture_id = value;
   }
 
-  get profil_id(): number {
+  get profil_id(): string {
     return this._profil_id;
   }
 
