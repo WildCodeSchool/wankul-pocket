@@ -4,6 +4,7 @@ import { getOneById } from "@/service/BoosterService";
 import { boostersMessages } from "@/data/responseMessages";
 import styles from "./boosterId.module.css";
 import OpenBoosterButton from "@/ui/OpenBoosterButton";
+import BackToBoosterSelection from "@/ui/BackToBoosterSelection";
 
 interface PageParams {
   params: {
@@ -34,9 +35,9 @@ export default async function InfoDetailPage({ params }: PageParams) {
           alt={booster.name}
           className={styles.boosterImage}
         />
-        <p>Coût : 10 bananes</p>
       </article>
       <OpenBoosterButton boosterId={booster.id} />
+      <BackToBoosterSelection />
     </div>
   );
 }
