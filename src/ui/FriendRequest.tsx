@@ -1,10 +1,13 @@
 "use client";
 
+import styles from "./FriendRequest.module.css";
+
 import { useState } from "react";
 import { addOne } from "@/service/FriendsService";
 import { friendsMessages } from "@/data/responseMessages";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
+import { FriendsModel } from "@/model/FriendsModel";
 
 export default function FriendRequest() {
   const [targetProfileID, setProfileID] = useState("");
@@ -41,12 +44,20 @@ export default function FriendRequest() {
     setProfileID("");
 
     try {
-      const response = await addOne({
-        user_profil_id: user.profil_id,
-        friend_profil_id: targetProfileID,
-        status: true,
-        acceptance: false,
-      });
+      const friend = new FriendsModel(
+        0,
+        user.profil_id,
+        targetProfileID,
+        true,
+        false
+      );
+      const friendPayload = {
+        user_profil_id: friend.user_profil_id,
+        friend_profil_id: friend.friend_profil_id,
+        status: friend.status,
+        acceptance: friend.acceptance,
+      };
+      const response = await addOne(friendPayload as any);
       if (response.error) {
         setError(response.error || friendsMessages.alreadyFriends);
         setSuccess("");
@@ -61,9 +72,10 @@ export default function FriendRequest() {
   };
 
   return (
-    <div>
-      <h1>Friend Request</h1>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.friendRequestContainer}>
+      <h2>Ajouter un ami</h2>
+
+      <form action="" onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
           value={targetProfileID}
@@ -73,9 +85,11 @@ export default function FriendRequest() {
           minLength={19}
           pattern="[a-zA-Z0-9-]{19}"
           required
+          className={styles.inputField}
         />
-        <button type="submit">Envoyer demande d'ami</button>
+        <button type="submit">Envoyer</button>
       </form>
+
       {error && <div style={{ color: "red" }}>{error}</div>}
       {success && <div style={{ color: "green" }}>{success}</div>}
     </div>

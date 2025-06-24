@@ -4,6 +4,8 @@ import { getEveryFriends } from "@/service/FriendsService";
 import { useUserContext } from "@/context/UserContext";
 import { FriendsModel } from "@/model/FriendsModel";
 import { useEffect, useState } from "react";
+import styles from "./DisplayFriendList.module.css";
+import Unfriend from "./Unfriend";
 
 export default function DisplayFriendList() {
   const { user } = useUserContext();
@@ -20,25 +22,31 @@ export default function DisplayFriendList() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Liste d'amis</h2>
-      {friends.map((friend) => {
-        const isMe = friend.user_profil_id === userProfilId;
-        const username = isMe ? friend.friend_username : friend.user_username;
-        return (
-          <div key={friend.id}>
-            <p>{username}</p>
-            <img
-              src={
-                isMe
-                  ? `${friend.friend_image_path}`
-                  : `${friend.user_image_path}`
-              }
-              alt={username}
-            />
-          </div>
-        );
-      })}
+      <ul className={styles.friendList}>
+        {friends.map((friend) => {
+          const isMe = friend.user_profil_id === userProfilId;
+          const username = isMe ? friend.friend_username : friend.user_username;
+          return (
+            <li key={friend.id} className={styles.friendItem}>
+              <img
+                className={styles.friendImage}
+                src={
+                  isMe
+                    ? `${friend.friend_image_path}`
+                    : `${friend.user_image_path}`
+                }
+                alt={username}
+              />
+              <p>{username}</p>
+              <div className={styles.unfriendButton}>
+                <Unfriend userId={friend.id} />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

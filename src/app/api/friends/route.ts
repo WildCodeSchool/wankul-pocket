@@ -87,10 +87,16 @@ export async function GET(req: NextRequest) {
   try {
     if (isPending) {
       const [friendsRequests] = (await db.query(
-        `SELECT * FROM is_friend 
-           WHERE friend_profil_id = ? AND status = 1 AND acceptance = 0`,
+        `SELECT 
+        f.*, 
+        u.username AS friend_username, 
+        pp.image_path AS friend_image_path
+     FROM is_friend f
+     JOIN user u ON u.profil_id = f.user_profil_id
+     LEFT JOIN profil_picture pp ON pp.id = u.profil_picture_id
+     WHERE f.friend_profil_id = ? AND f.status = 1 AND f.acceptance = 0`,
         [myId]
-      )) as [FriendsModel[], unknown];
+      )) as [any[], unknown];
 
       if (friendsRequests.length === 0) {
         return NextResponse.json(
