@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: var(--bubbleGradient);
+  border-radius: var(--buttonRadius);
+  border: var(--buttonBorder);
+  padding: 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.topSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  img {
+    border-radius: 50%;
+    background: var(--bubbleGradient);
+  }
+}
+
+.cardsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.buttonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

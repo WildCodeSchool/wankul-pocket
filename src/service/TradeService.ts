@@ -8,7 +8,7 @@ export async function getall(email: string) {
   return getTrades(email);
 }
 
-export async function getOneById(email: string): Promise<TradeModel> {
+export async function getOneByEmail(email: string): Promise<TradeModel> {
   return getOne(email);
 }
 
