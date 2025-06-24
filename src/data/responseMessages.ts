@@ -100,6 +100,7 @@ const tradesMessages = {
     "Erreur lors de la récupération des échanges, veuillez réessayer ultérieurement",
   errorDetail: "Erreur lors de la récupération de l'échange",
   server: "Une erreur est survenue, veuillez réessayer plus tard",
+  invalidEmail: "Contenu invalide, veuillez recommencer",
   invalidId: "Contenu invalide, veuillez recommencer",
   deleted: "Echange supprimé avec succès",
   deleteFail:

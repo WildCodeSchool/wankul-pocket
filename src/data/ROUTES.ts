@@ -7,7 +7,8 @@ const apiRoutes = {
   PROFILPICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
-  TRADES: `${apiUrl}/api/trades`,
+  TRADES: (email: string) => `${apiUrl}/api/users/${email}/trades`,
+  TRADESBYID: (email: string) => `${apiUrl}/api/users/${email}/trades/[id]`,
   COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
 };
 
