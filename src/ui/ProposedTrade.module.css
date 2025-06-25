@@ -4,9 +4,10 @@
   background: var(--bubbleGradient);
   border-radius: var(--buttonRadius);
   border: var(--buttonBorder);
-  padding: 1rem;
-  gap: 1rem;
-  margin-top: 1rem;
+  padding: 2rem 1rem;
+  gap: 2rem;
+  margin: 1rem auto 0;
+  width: clamp(300px, 100%, 500px);
 }
 
 .topSection {
@@ -39,5 +40,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+  margin-top: 2rem;
 }

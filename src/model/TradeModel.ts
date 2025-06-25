@@ -3,6 +3,7 @@ export class TradeModel {
     private _id: number,
     private _from_username: string,
     private _to_username: string,
+    private _to_user_email: string,
     private _from_user_id: number,
     private _to_user_id: number,
     private _from_user_avatar: string,
@@ -48,6 +49,14 @@ export class TradeModel {
 
   set to_username(value: string) {
     this._to_username = value;
+  }
+
+  get to_user_email(): string {
+    return this._to_user_email;
+  }
+
+  set to_user_email(value: string) {
+    this._to_user_email = value;
   }
 
   get from_user_avatar(): string {

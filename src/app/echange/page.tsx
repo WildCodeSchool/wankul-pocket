@@ -1,8 +1,10 @@
 import { TradeModel } from "@/model/TradeModel";
-import { getOneByEmail } from "@/service/TradeService";
+import { getall } from "@/service/TradeService";
+import NewTrade from "@/ui/NewTrade";
 import ProposedTrade from "@/ui/ProposedTrade";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import styles from "./TradePage.module.css";
 
 export default async function Echange() {
   const session = await getServerSession();
@@ -15,16 +17,15 @@ export default async function Echange() {
       </>
     );
   }
-  const trade: TradeModel = await getOneByEmail(session?.user?.email);
-  console.log(trade);
+  const trades: TradeModel[] = await getall(session?.user?.email);
+  const displayedTrade = trades[0];
   return (
-    <div>
-      <h1>Échanges</h1>
-      {trade === null || undefined ? (
-        <p>Aucun échange en cours</p>
+    <section className={styles.page}>
+      {trades.length === 0 ? (
+        <NewTrade />
       ) : (
-        <ProposedTrade trade={trade} />
+        <ProposedTrade trade={displayedTrade} />
       )}
-    </div>
+    </section>
   );
 }

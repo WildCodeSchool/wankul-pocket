@@ -1,3 +1,5 @@
+"use client";
+
 import { TradeModel } from "@/model/TradeModel";
 import Image from "next/image";
 import styles from "./ProposedTrade.module.css";
@@ -44,8 +46,8 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
         </div>
       </section>
       <div className={styles.buttonSection}>
-        <TradeAcceptButton />
-        <TradeDeclineButton />
+        <TradeAcceptButton trade={trade} />
+        <TradeDeclineButton trade={trade} />
       </div>
     </>
   );

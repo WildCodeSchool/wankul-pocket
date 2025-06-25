@@ -28,19 +28,16 @@ export async function GET(
 
   try {
     const [rows] = await db.query(
-      "SELECT e.id, u1.username AS from_username, u2.username AS to_username, u1.id AS from_user_id, u2.id AS to_user_id, pp.image_path AS from_user_avatar, c1.image_path AS offered_card_img, c2.image_path AS requested_card_img, c1.id AS offered_card_id, c2.id AS requested_card_id, e.status, e.acceptance FROM exchange AS e JOIN user AS u1 ON e.from_user_id = u1.id JOIN user AS u2 ON e.to_user_id = u2.id JOIN profil_picture AS pp ON u1.profil_picture_id = pp.id JOIN card AS c1 ON e.offered_card_id = c1.id JOIN card AS c2 ON e.requested_card_id = c2.id WHERE u2.email = ? AND (e.status IS NULL OR e.status = FALSE)",
+      "SELECT e.id, u1.username AS from_username, u2.username AS to_username, u1.id AS from_user_id, u2.id AS to_user_id, u2.email AS to_user_email, pp.image_path AS from_user_avatar, c1.image_path AS offered_card_img, c2.image_path AS requested_card_img, c1.id AS offered_card_id, c2.id AS requested_card_id, e.status, e.acceptance FROM exchange AS e JOIN user AS u1 ON e.from_user_id = u1.id JOIN user AS u2 ON e.to_user_id = u2.id JOIN profil_picture AS pp ON u1.profil_picture_id = pp.id JOIN card AS c1 ON e.offered_card_id = c1.id JOIN card AS c2 ON e.requested_card_id = c2.id WHERE u2.email = ? AND (e.status IS NULL OR e.status = FALSE)",
       [userEmail]
     );
     const results = Array.isArray(rows) ? (rows as TradeModel[]) : [];
 
     if (results.length === 0) {
-      return NextResponse.json(
-        { error: tradesMessages.notFound },
-        { status: 404 }
-      );
+      return NextResponse.json([]);
     }
 
-    return NextResponse.json(results[0]);
+    return NextResponse.json(results);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]/trades) :", error);
     return NextResponse.json({ error: tradesMessages.server }, { status: 500 });
