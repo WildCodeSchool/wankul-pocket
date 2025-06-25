@@ -1,3 +1,4 @@
+import { UpdatedCard, patchCollection } from "@/lib/collection/patchCollection";
 import { deleteTrade } from "@/lib/trade/deleteTrade";
 import { getOne } from "@/lib/trade/getTrade";
 import { getTrades } from "@/lib/trade/getTrades";
@@ -21,4 +22,11 @@ export async function editOne(
   trade: TradeModel
 ): Promise<{ message: string }> {
   return patchTrade(email, trade);
+}
+
+export async function editCollection(
+  email: string,
+  updatedCard: UpdatedCard
+): Promise<{ message: string }> {
+  return patchCollection(email, updatedCard);
 }

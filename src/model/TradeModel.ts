@@ -2,6 +2,7 @@ export class TradeModel {
   constructor(
     private _id: number,
     private _from_username: string,
+    private _from_user_email: string,
     private _to_username: string,
     private _to_user_email: string,
     private _from_user_id: number,
@@ -11,6 +12,8 @@ export class TradeModel {
     private _requested_card_img: string,
     private _offered_card_id: number,
     private _requested_card_id: number,
+    private _offered_card_quantity: number,
+    private _requested_card_quantity: number,
     private _status: boolean,
     private _acceptance: boolean
   ) {}
@@ -41,6 +44,14 @@ export class TradeModel {
 
   set from_username(value: string) {
     this._from_username = value;
+  }
+
+  get from_user_email(): string {
+    return this._from_user_email;
+  }
+
+  set from_user_email(value: string) {
+    this._from_user_email = value;
   }
 
   get to_username(): string {
@@ -79,12 +90,28 @@ export class TradeModel {
     this._offered_card_id = value;
   }
 
+  get offered_card_quantity(): number {
+    return this._offered_card_quantity;
+  }
+
+  set offered_card_quantity(value: number) {
+    this._offered_card_quantity = value;
+  }
+
   get requested_card_id(): number {
     return this._requested_card_id;
   }
 
   set requested_card_id(value: number) {
     this._requested_card_id = value;
+  }
+
+  get requested_card_quantity(): number {
+    return this._requested_card_quantity;
+  }
+
+  set requested_card_quantity(value: number) {
+    this._requested_card_quantity = value;
   }
 
   get status(): boolean {

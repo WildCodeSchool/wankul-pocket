@@ -1,4 +1,4 @@
-"user client";
+"use client";
 
 import { TradeModel } from "@/model/TradeModel";
 import { deleteOne } from "@/service/TradeService";
@@ -12,8 +12,8 @@ interface ProposedTradeProps {
 
 export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
   const router = useRouter();
-  const handleDecline = () => {
-    deleteOne(trade.to_user_email, trade.id);
+  const handleDecline = async () => {
+    await deleteOne(trade.to_user_email, trade.id);
     router.refresh();
   };
   return (
