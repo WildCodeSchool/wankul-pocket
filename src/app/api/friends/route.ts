@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const [friendExists] = (await db.query(
       "SELECT 1 FROM user WHERE profil_id = ? LIMIT 1",
       [friend_profil_id.trim()]
-    )) as [any[], unknown];
+    )) as [FriendsModel[], unknown];
 
     if (friendExists.length === 0) {
       return NextResponse.json(
@@ -45,11 +45,11 @@ export async function POST(req: NextRequest) {
         friend_profil_id.trim(),
         user_profil_id.trim(),
       ]
-    )) as [any[], unknown];
+    )) as [FriendsModel[], unknown];
 
     if (existing.length > 0) {
       return NextResponse.json(
-        { error: "Une demande d'ami existe déjà entre ces deux profils." },
+        { error: friendsMessages.alreadyRequested },
         { status: 409 }
       );
     }
@@ -96,7 +96,7 @@ export async function GET(req: NextRequest) {
      LEFT JOIN profil_picture pp ON pp.id = u.profil_picture_id
      WHERE f.friend_profil_id = ? AND f.status = 1 AND f.acceptance = 0`,
         [myId]
-      )) as [any[], unknown];
+      )) as [FriendsModel[], unknown];
 
       if (friendsRequests.length === 0) {
         return NextResponse.json(
@@ -163,7 +163,7 @@ export async function PATCH(req: Request) {
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
-        { error: friendsMessages.notFound || "Demande d'ami non trouvée" },
+        { error: friendsMessages.notFound },
         { status: 404 }
       );
     }

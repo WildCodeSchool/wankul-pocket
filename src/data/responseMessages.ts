@@ -114,6 +114,8 @@ const friendsMessages = {
   updateSuccess: "Ami mis à jour avec succès",
   addFriendSuccess: "Demande d'ami envoyée avec succès",
   alreadyFriends: "Vous êtes déjà amis avec ce profil",
+  alreadyRequested: "Une demande d'ami existe déjà entre ces deux profils",
+  noRequests: "Aucune demande d'ami en attente",
 };
 
 export {
