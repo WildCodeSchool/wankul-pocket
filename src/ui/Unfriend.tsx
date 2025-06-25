@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { refuseFriendRequest } from "@/service/FriendsService";
+import { friendsMessages } from "@/data/responseMessages";
 import styles from "./Unfriend.module.css";
 
 interface UnfriendProps {
@@ -48,7 +49,7 @@ export default function Unfriend({ userId }: UnfriendProps) {
           <div className={styles.modal}>
             <div className={styles["modal-content"]}>
               {deleted ? (
-                <p>utilisateur supprimé</p>
+                <p>{friendsMessages.deleted}</p>
               ) : (
                 <>
                   <p>Confirmer la suppression</p>

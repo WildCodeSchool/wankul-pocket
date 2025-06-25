@@ -27,7 +27,9 @@ export default function DisplayFriendList() {
       <ul className={styles.friendList}>
         {friends.map((friend) => {
           const isMe = friend.user_profil_id === userProfilId;
-          const username = isMe ? friend.friend_username : friend.user_username;
+          const username = isMe
+            ? friend.friend_username || "Unknown"
+            : friend.user_username || "Unknown";
           return (
             <li key={friend.id} className={styles.friendItem}>
               <img

@@ -8,8 +8,12 @@ interface Props {
 
 export function AcceptFriendRequestButton({ friend, onAccepted }: Props) {
   const handleAccept = async () => {
-    await acceptRequest(friend);
-    onAccepted?.();
+    try {
+      await acceptRequest(friend);
+      onAccepted?.();
+    } catch (error) {
+      console.error("Failed to accept friend request:", error);
+    }
   };
 
   return (

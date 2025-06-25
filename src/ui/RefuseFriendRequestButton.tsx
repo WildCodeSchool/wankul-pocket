@@ -1,4 +1,5 @@
 import { refuseFriendRequest } from "@/service/FriendsService";
+import { friendsMessages } from "@/data/responseMessages";
 
 interface Props {
   id: number;
@@ -7,8 +8,12 @@ interface Props {
 
 export function RefuseFriendRequestButton({ id, onRefused }: Props) {
   const handleRefuse = async () => {
-    await refuseFriendRequest(id);
-    onRefused?.();
+    try {
+      await refuseFriendRequest(id);
+      onRefused?.();
+    } catch (error) {
+      console.error("Failed to refuse friend request:", error);
+    }
   };
 
   return (
