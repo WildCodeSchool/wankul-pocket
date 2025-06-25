@@ -22,6 +22,7 @@
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0)
   );
+  --bubbleBorder: 1px solid rgba(255, 255, 255, 0.13);
   --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
   --landingPageHeight: calc(100dvh - var(--headerHeight));
   --avatarBorder: 3px solid rgba(255, 255, 255, 0.3);
@@ -85,6 +86,27 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+input {
+  border-radius: 25px;
+  background: var(--bubbleGradient);
+  height: 32px;
+  width: 150px;
+  padding: 0 8px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid #9f9f9f;
+  color: var(--textColor);
+  border-radius: 25px;
+
+  &::placeholder {
+    color: #9f9f9f;
+  }
+
+  &:focus {
+    border: 1px solid #ffffff;
+    outline: none;
+  }
 }
 
 button {
