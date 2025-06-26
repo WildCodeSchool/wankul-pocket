@@ -2,6 +2,8 @@ import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+const publicPaths = ["/landingpage"];
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -10,7 +12,6 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  const publicPaths = ["/landingpage"];
   const isPublicPath = publicPaths.includes(pathname);
 
   if (!token && !isPublicPath) {
