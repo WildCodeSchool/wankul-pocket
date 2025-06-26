@@ -115,10 +115,34 @@ const tradesMessages = {
   updateSuccess: "Echange mis à jour avec succès",
 };
 
+const friendsMessages = {
+  error:
+    "Erreur lors de la récupération de la liste des amis, veuillez réessayer ultérieurement",
+  errorDetail: "Erreur lors de la récupération de la liste des amis",
+  server: "Une erreur est survenue, veuillez réessayer plus tard",
+  invalidId: "Contenu invalide, veuillez recommencer",
+  invalidEmail: "Contenu invalide, veuillez recommencer",
+  deleted: "Ami supprimé avec succès",
+  deleteFail:
+    "erreur lors de la suppression de l'ami, veuillez réessayer ultérieurement",
+  addFail: "erreur lors de l'ajout de l'ami, veuillez réessayer ultérieurement",
+  editFail:
+    "erreur lors de la modification de l'ami, veuillez réessayer ultérieurement",
+  invalidData: "Les données fournies sont invalides",
+  addSuccess: "Ami ajouté avec succès",
+  notFound: "Aucun ami trouvé avec cet ID",
+  updateSuccess: "Ami mis à jour avec succès",
+  addFriendSuccess: "Demande d'ami envoyée avec succès",
+  alreadyFriends: "Vous êtes déjà amis avec ce profil",
+  alreadyRequested: "Une demande d'ami existe déjà entre ces deux profils",
+  noRequests: "Aucune demande d'ami en attente",
+};
+
 export {
   boostersMessages,
   cardsMessages,
   collectionMessages,
+  friendsMessages,
   profilPictureMessages,
   tradesMessages,
   userMessages,
