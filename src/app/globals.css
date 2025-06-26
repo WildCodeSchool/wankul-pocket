@@ -23,6 +23,7 @@
     rgba(255, 255, 255, 0)
   );
   --bubbleBorder: 1px solid rgba(255, 255, 255, 0.13);
+  --bubbleTitleBackground: #6c81e0;
   --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
   --landingPageHeight: calc(100dvh - var(--headerHeight));
   --avatarBorder: 3px solid rgba(255, 255, 255, 0.3);
