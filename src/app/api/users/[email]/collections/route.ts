@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
 import { NextResponse, NextRequest } from "next/server";
 import { getUserIdByEmail } from "@/service/UserService";
-import { addCardToCollection } from "@/service/CollectionService";
 
 export async function GET(
   _req: Request,
@@ -68,7 +67,14 @@ export async function POST(
     }
 
     await Promise.all(
-      cardIds.map((cardId) => addCardToCollection(userId, cardId))
+      cardIds.map((cardId) =>
+        db.query(
+          `INSERT INTO collection (user_id, card_id, quantity)
+     VALUES (?, ?, 1)
+     ON DUPLICATE KEY UPDATE quantity = quantity + 1`,
+          [userId, cardId]
+        )
+      )
     );
 
     return NextResponse.json(
