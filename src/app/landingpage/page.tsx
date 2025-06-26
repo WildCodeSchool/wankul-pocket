@@ -1,20 +1,9 @@
-"use client";
-
 import GoogleConnexion from "@/ui/GoogleConnexion";
 import styles from "./LandingPage.module.css";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import ModalLandingPage from "@/ui/ModalLandingPage";
 
 export default function LandingPage() {
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  if (session) {
-    router.push("/homepage");
-  }
-
   return (
     <div className={styles.page}>
       <div className={styles.bubble}>
