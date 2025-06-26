@@ -40,7 +40,7 @@ export default function NewTrade() {
     setSelectedFriend(friend);
     setSearch("");
   };
-
+  console.log(selectedFriend);
   return (
     <>
       <section>
