@@ -2,8 +2,21 @@ import { collectionMessages } from "@/data/responseMessages";
 import { apiUrl } from "@/data/ROUTES";
 import { CardsModel } from "@/model/CardsModel";
 
-export async function getOne(email: string): Promise<CardsModel[]> {
-  const res = await fetch(`${apiUrl}/api/users/${email}/collections`, {
+interface GetOneOptions {
+  rarity?: string;
+}
+
+export async function getOne(
+  email: string,
+  options: GetOneOptions = {}
+): Promise<CardsModel[]> {
+  const { rarity } = options;
+
+  let url = `${apiUrl}/api/users/${email}/collections`;
+  if (rarity) {
+    url += `?rarity=${encodeURIComponent(rarity)}`;
+  }
+  const res = await fetch(url, {
     method: "GET",
     headers: {
       Accept: "application/json",
