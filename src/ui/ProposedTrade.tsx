@@ -11,7 +11,6 @@ interface ProposedTradeProps {
 }
 
 export default function ProposedTrade({ trade }: ProposedTradeProps) {
-  console.log(trade);
   return (
     <>
       <section className={styles.container}>
