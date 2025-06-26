@@ -8,18 +8,6 @@ interface UpdateResult {
   warningStatus?: number;
 }
 
-export async function GET() {
-  try {
-    const [rows] = await db.query(
-      "SELECT id, username, email, created_at, bananas, profil_picture_id, profil_id FROM user ORDER BY id DESC"
-    );
-    return NextResponse.json(rows);
-  } catch (error) {
-    console.error("Erreur MySQL :", error);
-    return NextResponse.json({ error: userMessages.server }, { status: 500 });
-  }
-}
-
 export async function PATCH(req: Request) {
   try {
     const payload = (await req.json()) as UserModel;
