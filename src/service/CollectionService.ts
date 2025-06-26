@@ -7,18 +7,6 @@ export async function getCollection(email: string): Promise<CardsModel[]> {
   return getOne(email);
 }
 
-export async function addCardToCollection(
-  userId: number,
-  cardId: number
-): Promise<void> {
-  await db.query(
-    `INSERT INTO collection (user_id, card_id, quantity)
-     VALUES (?, ?, 1)
-     ON DUPLICATE KEY UPDATE quantity = quantity + 1`,
-    [userId, cardId]
-  );
-}
-
 export async function addCardsToCollection(
   emailId: string,
   cards: CardsModel[]

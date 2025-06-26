@@ -35,7 +35,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchUser = async () => {
       if (!session?.user?.email) {
-        router.push("/landingpage");
         return;
       }
 
