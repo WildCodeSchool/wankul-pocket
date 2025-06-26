@@ -1,7 +1,7 @@
-import { NextResponse, NextRequest } from "next/server";
-import { db } from "@/lib/db";
 import { friendsMessages } from "@/data/responseMessages";
+import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
@@ -114,6 +114,8 @@ export async function GET(req: NextRequest) {
       f.friend_profil_id,
       u1.username AS user_username,
       u2.username AS friend_username,
+      u1.email AS user_email,
+      u2.email AS friend_email,
       pp1.image_path AS user_image_path,
       pp2.image_path AS friend_image_path
    FROM is_friend f

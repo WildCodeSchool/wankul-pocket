@@ -1,0 +1,22 @@
+.container {
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  width: clamp(300px, 100%, 600px);
+  margin: 1rem auto 0;
+  padding: 1rem;
+  border-radius: var(--buttonRadius);
+}
+
+.cardsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button {
+  height: 168px;
+  width: 120px;
+  border-radius: 8px;
+}

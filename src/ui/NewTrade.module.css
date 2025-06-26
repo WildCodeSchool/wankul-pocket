@@ -1,0 +1,27 @@
+.none {
+  display: none;
+}
+.searchSection {
+  width: 250px;
+  margin: 0 auto 2rem;
+
+  .input {
+    width: 100%;
+    background-color: var(--bodyGradient1);
+    text-align: center;
+  }
+}
+
+.list {
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  width: 250px;
+  margin: -2rem auto 0;
+  padding-top: 2rem;
+  border-radius: 25px;
+  position: absolute;
+}
+
+.friend {
+  cursor: pointer;
+}
