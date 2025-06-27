@@ -6,6 +6,7 @@ import { FriendsModel } from "@/model/FriendsModel";
 import { getEveryFriends } from "@/service/FriendsService";
 import { useEffect, useState } from "react";
 import styles from "./NewTrade.module.css";
+import ProposeTradeButton from "./ProposeTradeButton";
 import TradeAdd from "./TradeAdd";
 
 export default function NewTrade() {
@@ -77,6 +78,13 @@ export default function NewTrade() {
         </div>
       </section>
       <TradeAdd
+        selectedFriend={selectedFriend}
+        myCard={myCard}
+        setMyCard={setMyCard}
+        friendCard={friendCard}
+        setFriendCard={setFriendCard}
+      />
+      <ProposeTradeButton
         selectedFriend={selectedFriend}
         myCard={myCard}
         setMyCard={setMyCard}
