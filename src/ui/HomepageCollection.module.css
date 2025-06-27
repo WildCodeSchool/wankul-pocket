@@ -7,54 +7,55 @@
   background: var(--bubbleGradient);
   border: var(--bubbleBorder);
   border-radius: 25px;
-  width: 340px;
-  padding-top: -40px;
+  min-width: 170px;
+  max-width: 200px;
 }
 
-.boosters {
+.collection {
   margin-top: -15px;
 }
 
-.boosterList {
+.collectionList {
   display: flex;
   list-style: none;
   padding: 0;
 }
 
-.boosterList li:not(:first-child) {
-  margin-left: -60px;
+.collectionList li:not(:first-child) {
+  margin-left: -65px;
 }
 
-.boosterList li {
+.collectionList li {
   position: relative;
   transition: transform 0.2s ease, z-index 0.2s ease;
 }
 
-.boosterList li:nth-child(1) {
+.collectionList li:nth-child(1) {
   z-index: 5;
 }
-.boosterList li:nth-child(2) {
+.collectionList li:nth-child(2) {
   z-index: 4;
 }
-.boosterList li:nth-child(3) {
+.collectionList li:nth-child(3) {
   z-index: 3;
 }
-.boosterList li:nth-child(4) {
+.collectionList li:nth-child(4) {
   z-index: 2;
 }
-.boosterList li:nth-child(5) {
+.collectionList li:nth-child(5) {
   z-index: 1;
 }
 
 .image {
-  height: 200px;
+  height: 120px;
   border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.144);
 }
 
 .title {
   position: relative;
   left: 50%;
-  bottom: -252px;
+  bottom: -172px;
   transform: translateX(-50%);
   font-size: 1rem;
   font-weight: lighter;
