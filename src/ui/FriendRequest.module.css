@@ -18,3 +18,11 @@
   gap: 1rem;
   max-width: 500px;
 }
+
+.error {
+  color: red;
+}
+
+.success {
+  color: white;
+}

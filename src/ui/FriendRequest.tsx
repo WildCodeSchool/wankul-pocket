@@ -90,8 +90,8 @@ export default function FriendRequest() {
         <button type="submit">Envoyer</button>
       </form>
 
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {success && <div style={{ color: "green" }}>{success}</div>}
+      {error && <div className={styles.error}>{error}</div>}
+      {success && <div className={styles.success}>{success}</div>}
     </div>
   );
 }
