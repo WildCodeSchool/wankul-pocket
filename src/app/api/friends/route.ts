@@ -114,6 +114,8 @@ export async function GET(req: NextRequest) {
       f.friend_profil_id,
       u1.username AS user_username,
       u2.username AS friend_username,
+      u1.id AS user_id,
+      u2.id AS friend_id,
       u1.email AS user_email,
       u2.email AS friend_email,
       pp1.image_path AS user_image_path,

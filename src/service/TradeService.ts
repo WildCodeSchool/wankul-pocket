@@ -6,7 +6,16 @@ import { getTrades } from "@/lib/trade/getTrades";
 import { patchTrade } from "@/lib/trade/patchTrade";
 import { TradeModel } from "@/model/TradeModel";
 
-export async function addOne(email: string, trade: TradeModel) {
+interface newTradeModel {
+  from_user_id: number | undefined;
+  to_user_id: number | undefined;
+  offered_card_id: number | undefined;
+  requested_card_id: number | undefined;
+  status: true;
+  acceptance: null;
+}
+
+export async function addOne(email: string | undefined, trade: newTradeModel) {
   return addTrade(email, trade);
 }
 

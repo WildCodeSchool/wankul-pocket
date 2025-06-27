@@ -86,8 +86,11 @@ export default function NewTrade() {
       />
       <ProposeTradeButton
         selectedFriend={selectedFriend}
+        setSelectedFriend={setSelectedFriend}
         myCard={myCard}
+        setMyCard={setMyCard}
         friendCard={friendCard}
+        setFriendCard={setFriendCard}
       />
     </>
   );

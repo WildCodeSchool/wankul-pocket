@@ -22,7 +22,7 @@ export class TradeModel {
     return this._id;
   }
 
-  get from_user_id(): number {
+  get from_user_id(): number | undefined {
     return this._from_user_id;
   }
 
@@ -30,7 +30,7 @@ export class TradeModel {
     this._from_user_id = value;
   }
 
-  get to_user_id(): number {
+  get to_user_id(): number | undefined {
     return this._to_user_id;
   }
 
@@ -82,7 +82,7 @@ export class TradeModel {
     return this._requested_card_img;
   }
 
-  get offered_card_id(): number {
+  get offered_card_id(): number | undefined {
     return this._offered_card_id;
   }
 
@@ -98,7 +98,7 @@ export class TradeModel {
     this._offered_card_quantity = value;
   }
 
-  get requested_card_id(): number {
+  get requested_card_id(): number | undefined {
     return this._requested_card_id;
   }
 
@@ -122,7 +122,7 @@ export class TradeModel {
     this._status = value;
   }
 
-  get acceptance(): boolean {
+  get acceptance(): boolean | null {
     return this._acceptance;
   }
 
