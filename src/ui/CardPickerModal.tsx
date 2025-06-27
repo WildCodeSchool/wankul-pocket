@@ -19,6 +19,7 @@ export default function CardPickerModal({
 }: Props) {
   const [cards, setCards] = useState<CardsModel[]>([]);
   const [loading, setLoading] = useState(true);
+  const tradableCards = cards.filter((card) => card.quantity > 1);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -39,13 +40,13 @@ export default function CardPickerModal({
 
       {loading ? (
         <p>Chargement...</p>
-      ) : cards.length === 0 ? (
+      ) : tradableCards.length === 0 ? (
         <p>
           Aucune carte de rareté équivalente trouvée pour procéder à un échange
         </p>
       ) : (
         <div className={styles.cardContainer}>
-          {cards
+          {tradableCards
             .filter((card) => card.quantity > 1)
             .map((card) => (
               <div key={card.id} onClick={() => onSelect(card)}>
