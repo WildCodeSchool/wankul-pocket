@@ -16,12 +16,12 @@ image_path VARCHAR(255) NOT NULL
 
 CREATE TABLE IF NOT EXISTS user(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  username VARCHAR(100) NOT NULL,
+  username VARCHAR(25) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
   created_at DATE NOT NULL,
   bananas INT NOT NULL DEFAULT 10,
   profil_picture_id INT NOT NULL,
-  profil_id BIGINT NOT NULL UNIQUE DEFAULT (UUID_SHORT()),
+  profil_id VARCHAR(19) NOT NULL UNIQUE,
   FOREIGN KEY (profil_picture_id) REFERENCES profil_picture(id)
 );
 
@@ -51,8 +51,10 @@ CREATE TABLE IF NOT EXISTS card (
 
 CREATE TABLE IF NOT EXISTS is_friend(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  user_profil_id BIGINT NOT NULL,
-  friend_profil_id BIGINT NOT NULL,
+  user_profil_id VARCHAR(19) NOT NULL,
+  friend_profil_id VARCHAR(19) NOT NULL,
+  status BOOLEAN DEFAULT NULL, 
+  acceptance BOOLEAN DEFAULT NULL,
   FOREIGN KEY (user_profil_id) REFERENCES user(profil_id),
   FOREIGN KEY (friend_profil_id) REFERENCES user(profil_id)
 );
@@ -88,8 +90,8 @@ CREATE TABLE IF NOT EXISTS exchange (
     to_user_id INT NOT NULL,
     offered_card_id INT NOT NULL,
     requested_card_id INT NOT NULL,
-    status BOOLEAN NOT NULL DEFAULT TRUE, 
-    acceptance BOOLEAN DEFAULT NULL,      
+    status BOOLEAN DEFAULT NULL, 
+    acceptance BOOLEAN DEFAULT NULL,     
     FOREIGN KEY (from_user_id) REFERENCES user(id),
     FOREIGN KEY (to_user_id) REFERENCES user(id),
     FOREIGN KEY (offered_card_id) REFERENCES card(id),

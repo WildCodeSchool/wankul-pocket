@@ -30,7 +30,6 @@ export function CollectionProvider({
   useEffect(() => {
     const fetchCollection = async () => {
       if (!user?.email) {
-        router.push("/landingpage");
         return;
       }
 

@@ -1,9 +1,14 @@
-export default function Amis() {
+import FriendRequest from "@/ui/FriendRequest";
+import { PendingFriendRequest } from "@/ui/PendingFriendRequest";
+import DisplayFriendList from "@/ui/DisplayFriendList";
+import styles from "./amis.module.css";
+
+export default async function Amis() {
   return (
-    <div>
-      <h1>Mes Amis</h1>
-      <p>Bienvenue dans votre liste d'amis !</p>
-      <p>Vous pouvez y gérer vos contacts et interactions.</p>
+    <div className={styles.container}>
+      <FriendRequest />
+      <PendingFriendRequest />
+      <DisplayFriendList />
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function OpenBoosterButton({
   boosterId,
 }: OpenBoosterButtonProps) {
   const router = useRouter();
-  const { user } = useUserContext();
+  const { user, updateUserBananas } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
 
   const handleOpening = async () => {
@@ -24,10 +24,11 @@ export default function OpenBoosterButton({
       return;
     }
 
-    const boosterCost = 10; // Coût d'ouverture du booster en bananes
+    const boosterCost = 10;
 
     if (user.bananas >= boosterCost) {
       try {
+        updateUserBananas(user.bananas - boosterCost);
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
         const formattedCards: CardsModel[] = cards;
@@ -36,6 +37,7 @@ export default function OpenBoosterButton({
         router.push(`/booster/${boosterId}/reveal`);
       } catch (error) {
         console.error("Erreur lors de l’ouverture du booster :", error);
+        updateUserBananas(user.bananas + boosterCost);
       }
     }
   };
@@ -48,7 +50,13 @@ export default function OpenBoosterButton({
       onClick={handleOpening}
       disabled={!user || user.bananas < 10}
     >
-      Ouvrir
+      <p className={styles.buttonContent}>
+        <span className={styles.text}>Ouvrir</span>
+        <span className={styles.cost}>
+          (10
+          <img src="/banana.png" alt="Banana" className={styles.bananaIcon} />)
+        </span>
+      </p>
     </button>
   );
 }

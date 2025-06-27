@@ -9,11 +9,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 type UserContextType = {
   user: UserModel | null;
   setUser: React.Dispatch<React.SetStateAction<UserModel | null>>;
+  updateUserBananas: (newBananas: number) => void;
 };
 
 const UserContext = createContext<UserContextType>({
   user: null,
   setUser: () => {},
+  updateUserBananas: () => {},
 });
 
 export const useUserContext = () => useContext(UserContext);
@@ -23,10 +25,16 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserModel | null>(null);
   const router = useRouter();
 
+  const updateUserBananas = (newBananas: number) => {
+    setUser((prevUser) => {
+      if (!prevUser) return prevUser;
+      return { ...prevUser, bananas: newBananas } as UserModel;
+    });
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       if (!session?.user?.email) {
-        router.push("/landingpage");
         return;
       }
 
@@ -44,5 +52,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [session, status]);
 
-  return <UserContext value={{ user, setUser }}>{children}</UserContext>;
+  return (
+    <UserContext value={{ user, setUser, updateUserBananas }}>
+      {children}
+    </UserContext>
+  );
 }

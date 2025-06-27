@@ -43,12 +43,8 @@ export default function Tapbar() {
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link href="/homepage">
-            <div
-              className={
-                pathname === "/homepage" ? styles.active : styles.image
-              }
-            >
+          <Link href="/">
+            <div className={pathname === "/" ? styles.active : styles.image}>
               <Image
                 src="/homeIcon.png"
                 alt="Page d'accueil"
