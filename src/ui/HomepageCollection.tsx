@@ -18,60 +18,30 @@ export function HomepageCollection({
           .sort((a, b) => a.official_rate - b.official_rate)
           .slice(0, 4);
 
-  if (safeCollection.length === 0) {
-    return (
-      <Link href={`/collection`} className={styles.container}>
-        <div className={styles.collection}>
-          <h2 className={styles.title}>Collection</h2>
-          <ul className={styles.collectionList}>
-            <li>
-              <img
-                src="/cardVerso.png"
-                alt="Carte Verso"
-                className={styles.image}
-              />
-            </li>
-            <li>
-              <img
-                src="/cardVerso.png"
-                alt="Carte Verso"
-                className={styles.image}
-              />
-            </li>
-            <li>
-              <img
-                src="/cardVerso.png"
-                alt="Carte Verso"
-                className={styles.image}
-              />
-            </li>
-            <li>
-              <img
-                src="/cardVerso.png"
-                alt="Carte Verso"
-                className={styles.image}
-              />
-            </li>
-          </ul>
-        </div>
-      </Link>
-    );
-  }
-
   return (
     <Link href={`/collection`} className={styles.container}>
       <div className={styles.collection}>
         <h2 className={styles.title}>Collection</h2>
         <ul className={styles.collectionList}>
-          {sortedCollection.map((item) => (
-            <li key={item.id} className={styles.collectionItem}>
-              <img
-                src={item.image_path}
-                alt={item.name}
-                className={styles.image}
-              />
-            </li>
-          ))}
+          {safeCollection.length === 0
+            ? [...Array(4)].map((_, i) => (
+                <li key={i}>
+                  <img
+                    src="/cardVerso.png"
+                    alt="Carte Verso"
+                    className={styles.image}
+                  />
+                </li>
+              ))
+            : sortedCollection.map((item) => (
+                <li key={item.id} className={styles.collectionItem}>
+                  <img
+                    src={item.image_path}
+                    alt={item.name}
+                    className={styles.image}
+                  />
+                </li>
+              ))}
         </ul>
       </div>
     </Link>
