@@ -1,9 +1,0 @@
-.modal {
-  position: absolute;
-  margin: 0 auto;
-  border: var(--bubbleBorder);
-  border-radius: var(--buttonRadius);
-  background: var(--bubbleGradient);
-  height: 80%;
-  width: 80%;
-}

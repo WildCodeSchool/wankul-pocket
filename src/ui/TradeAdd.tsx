@@ -7,19 +7,24 @@ import styles from "./TradeAdd.module.css";
 
 type TradeAddProps = {
   selectedFriend: FriendsModel | null;
+  myCard: CardsModel | null;
+  setMyCard: React.Dispatch<React.SetStateAction<CardsModel | null>>;
+  friendCard: CardsModel | null;
+  setFriendCard: React.Dispatch<React.SetStateAction<CardsModel | null>>;
 };
 
-export default function TradeAdd({ selectedFriend }: TradeAddProps) {
+export default function TradeAdd({
+  selectedFriend,
+  myCard,
+  setMyCard,
+  friendCard,
+  setFriendCard,
+}: TradeAddProps) {
   const [isModalOpen, setIsModalOpen] = useState<"mine" | "friend" | null>(
     null
   );
-  const [myCard, setMyCard] = useState<CardsModel | null>(null);
-  const [friendCard, setFriendCard] = useState<CardsModel | null>(null);
   const userEmail = selectedFriend?.user_email ?? "";
   const friendEmail = selectedFriend?.friend_email ?? "";
-
-  console.log(myCard);
-  console.log(friendCard);
 
   return (
     <>
@@ -38,14 +43,24 @@ export default function TradeAdd({ selectedFriend }: TradeAddProps) {
               }}
               disabled={!selectedFriend}
             >
-              <Image
-                src={"/add.png"}
-                alt="Choisir une carte"
-                height={30}
-                width={30}
-              />
+              {myCard ? (
+                <Image
+                  src={myCard.image_path}
+                  alt="Ta carte"
+                  height={168}
+                  width={120}
+                  className={styles.selectedCard}
+                />
+              ) : (
+                <Image
+                  src={"/add.png"}
+                  alt="Choisir une carte"
+                  height={30}
+                  width={30}
+                />
+              )}
             </button>
-            <p>Votre carte</p>
+            <p>Ta carte</p>
           </div>
           <Image src={"/tradeIcon.png"} alt="Echange" height={30} width={30} />
           <div className={styles.cardContainer}>
@@ -54,12 +69,22 @@ export default function TradeAdd({ selectedFriend }: TradeAddProps) {
               onClick={() => setIsModalOpen("friend")}
               disabled={!selectedFriend}
             >
-              <Image
-                src={"/add.png"}
-                alt="Choisir une carte"
-                height={30}
-                width={30}
-              />
+              {friendCard ? (
+                <Image
+                  src={friendCard?.image_path}
+                  alt="Carte de ton ami"
+                  height={168}
+                  width={120}
+                  className={styles.selectedCard}
+                />
+              ) : (
+                <Image
+                  src={"/add.png"}
+                  alt="Choisir une carte"
+                  height={30}
+                  width={30}
+                />
+              )}
             </button>
             <p>Carte demandée</p>
           </div>
@@ -69,6 +94,9 @@ export default function TradeAdd({ selectedFriend }: TradeAddProps) {
         <CardPickerModal
           onClose={() => setIsModalOpen(null)}
           email={isModalOpen === "mine" ? userEmail : friendEmail}
+          rarity={
+            isModalOpen === "friend" ? myCard?.rarity : friendCard?.rarity
+          }
           onSelect={(card) => {
             if (isModalOpen === "mine") setMyCard(card);
             else setFriendCard(card);

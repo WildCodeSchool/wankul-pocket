@@ -45,13 +45,6 @@ export async function GET(
     const [rows] = await db.query(query, values);
     const results = Array.isArray(rows) ? (rows as CardsModel[]) : [];
 
-    if (results.length === 0) {
-      return NextResponse.json(
-        { error: collectionMessages.notFound },
-        { status: 404 }
-      );
-    }
-
     return NextResponse.json(results);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]/collections) :", error);

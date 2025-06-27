@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
+import { CardsModel } from "@/model/CardsModel";
 import { FriendsModel } from "@/model/FriendsModel";
 import { getEveryFriends } from "@/service/FriendsService";
 import { useEffect, useState } from "react";
@@ -15,6 +16,8 @@ export default function NewTrade() {
   const [selectedFriend, setSelectedFriend] = useState<FriendsModel | null>(
     null
   );
+  const [myCard, setMyCard] = useState<CardsModel | null>(null);
+  const [friendCard, setFriendCard] = useState<CardsModel | null>(null);
 
   useEffect(() => {
     if (!userProfilId) return;
@@ -22,7 +25,7 @@ export default function NewTrade() {
   }, [userProfilId]);
 
   if (!userProfilId) {
-    return <div>Aucun utilisateur trouvé</div>;
+    return <div>Chargement...</div>;
   }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,8 +42,9 @@ export default function NewTrade() {
   const handleFriendSelection = (friend: FriendsModel) => {
     setSelectedFriend(friend);
     setSearch("");
+    setMyCard(null);
+    setFriendCard(null);
   };
-  console.log(selectedFriend);
   return (
     <>
       <section>
@@ -72,7 +76,13 @@ export default function NewTrade() {
           )}
         </div>
       </section>
-      <TradeAdd selectedFriend={selectedFriend} />
+      <TradeAdd
+        selectedFriend={selectedFriend}
+        myCard={myCard}
+        setMyCard={setMyCard}
+        friendCard={friendCard}
+        setFriendCard={setFriendCard}
+      />
     </>
   );
 }
