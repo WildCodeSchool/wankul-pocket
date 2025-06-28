@@ -39,11 +39,15 @@ export default function ProposeTradeButton({
     acceptance: null,
   };
   const handleClick = () => {
-    addOne(friendEmail, newTrade);
-    setMyCard(null);
-    setFriendCard(null);
-    setSelectedFriend(null);
+    if (myCard !== null && friendCard !== null) {
+      addOne(friendEmail, newTrade);
+      setMyCard(null);
+      setFriendCard(null);
+      setSelectedFriend(null);
+    }
   };
+  console.log("my card :", myCard);
+  console.log("friendCard", friendCard);
   return (
     <button
       className={styles.button}

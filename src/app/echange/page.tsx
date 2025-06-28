@@ -18,6 +18,7 @@ export default async function Echange() {
     );
   }
   const trades: TradeModel[] = await getall(session?.user?.email);
+  console.log(trades);
   const displayedTrade = trades[0];
   return (
     <section className={styles.page}>
