@@ -67,7 +67,9 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
               ✖
             </button>
             <div className={styles.modalContent}>
-              <h2>Informations sur les taux de drop</h2>
+              <h2 className={styles.modalTitle}>
+                Informations sur les taux de drop
+              </h2>
 
               {RARITY_CONFIG.map(({ rate, title, percentage, className }) => {
                 const filteredCards = getCardsByRate(rate);
