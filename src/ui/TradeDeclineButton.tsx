@@ -19,15 +19,20 @@ interface RefusedTradeModel {
 export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
   const router = useRouter();
   const handleDecline = async () => {
-    const { id: tradeId, to_user_email } = trade;
-    const refusedTrade: RefusedTradeModel = {
-      id: tradeId,
-      status: false,
-      acceptance: false,
-    };
-    await editOne(to_user_email, refusedTrade);
-    router.refresh();
+    try {
+      const { id: tradeId, to_user_email } = trade;
+      const refusedTrade: RefusedTradeModel = {
+        id: tradeId,
+        status: false,
+        acceptance: false,
+      };
+      await editOne(to_user_email, refusedTrade);
+      router.refresh();
+    } catch (error) {
+      console.error("Erreur lors du refus de l'échange :", error);
+    }
   };
+
   return (
     <button type="submit" className={styles.button} onClick={handleDecline}>
       <Image
