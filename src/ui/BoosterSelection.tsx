@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { BoosterModel } from "@/model/BoosterModel";
+import { CardsModel } from "@/model/CardsModel";
+import { InfoDroprate } from "./InfoDroprate";
+import { getCardsByBoosterId } from "@/lib/getCardsByBoosterID";
 import styles from "./BoosterSelection.module.css";
-
-type BoosterModel = {
-  id: string;
-  name: string;
-  image: string;
-};
 
 export default function BoosterSelection({
   boosters,
@@ -18,6 +16,7 @@ export default function BoosterSelection({
   const [selectedBooster, setSelectedBooster] = useState<BoosterModel | null>(
     null
   );
+  const [cards, setCards] = useState<CardsModel[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -25,6 +24,16 @@ export default function BoosterSelection({
       setSelectedBooster(boosters[0]);
     }
   }, [boosters]);
+
+  useEffect(() => {
+    if (selectedBooster) {
+      const fetchCards = async () => {
+        const cards = await getCardsByBoosterId(selectedBooster.id);
+        setCards(cards);
+      };
+      fetchCards();
+    }
+  }, [selectedBooster]);
 
   const handleSelectBooster = (booster: BoosterModel) => {
     setSelectedBooster(booster);
@@ -48,10 +57,11 @@ export default function BoosterSelection({
           <h3>{selectedBooster.name}</h3>
         </div>
       )}
-      <div>
+      <div className={styles.buttonsContainer}>
         <button className={styles.selectButton} onClick={navigateToBoosterPage}>
           Sélectionner ce booster
         </button>
+        <InfoDroprate cards={cards} />
       </div>
       <ul className={styles.boosterList}>
         {boosters.map((booster) => {
