@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (token && pathname === "/landingpage") {
-    return NextResponse.redirect(new URL("/homepage", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();

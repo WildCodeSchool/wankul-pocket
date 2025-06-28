@@ -13,7 +13,7 @@ export default function Header() {
   if (!user) {
     return (
       <header className={styles.globalHeader}>
-        <Link href={"/homepage"}>
+        <Link href={"/"}>
           <Image
             src={"/headerLogo.png"}
             alt="Logo Wankul Pocket"
@@ -34,7 +34,7 @@ export default function Header() {
           width={50}
         />
       </Link>
-      <Link href={"/homepage"} className={styles.headerLogo}>
+      <Link href={"/"} className={styles.headerLogo}>
         <Image
           src={"/headerLogo.png"}
           alt="Logo Wankul Pocket"
