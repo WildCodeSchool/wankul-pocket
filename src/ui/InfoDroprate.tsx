@@ -75,7 +75,7 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
                 return (
                   <div key={rate} className={styles.containerCards}>
                     <h3>
-                      Rareté: {title} ({percentage})
+                      {title} ({percentage})
                     </h3>
                     <ul className={className}>
                       {filteredCards.map((card) => (
