@@ -1,6 +1,7 @@
 import { CardsModel } from "@/model/CardsModel";
 import { FriendsModel } from "@/model/FriendsModel";
 import { addOne } from "@/service/TradeService";
+import { useRouter } from "next/navigation";
 import styles from "./ProposeTradeButton.module.css";
 
 interface TradeBtnProps {
@@ -9,7 +10,7 @@ interface TradeBtnProps {
   setMyCard: React.Dispatch<React.SetStateAction<CardsModel | null>>;
   friendCard: CardsModel | null;
   setFriendCard: React.Dispatch<React.SetStateAction<CardsModel | null>>;
-  setSelectedFriend: React.Dispatch<React.SetStateAction<CardsModel | null>>;
+  setSelectedFriend: React.Dispatch<React.SetStateAction<FriendsModel | null>>;
 }
 
 interface newTradeModel {
@@ -29,6 +30,7 @@ export default function ProposeTradeButton({
   setFriendCard,
   setSelectedFriend,
 }: TradeBtnProps) {
+  const router = useRouter();
   const friendEmail: string | undefined = selectedFriend?.friend_email;
   const newTrade: newTradeModel = {
     from_user_id: selectedFriend?.user_id,
@@ -44,10 +46,10 @@ export default function ProposeTradeButton({
       setMyCard(null);
       setFriendCard(null);
       setSelectedFriend(null);
+      router.refresh();
+    } else {
     }
   };
-  console.log("my card :", myCard);
-  console.log("friendCard", friendCard);
   return (
     <button
       className={styles.button}

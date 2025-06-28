@@ -1,10 +1,15 @@
 import { apiRoutes } from "@/data/ROUTES";
 import { tradesMessages } from "@/data/responseMessages";
-import { TradeModel } from "@/model/TradeModel";
+
+interface UpdatedTradeModel {
+  id: number;
+  status: boolean;
+  acceptance: boolean;
+}
 
 export async function patchTrade(
   email: string,
-  trade: TradeModel
+  trade: UpdatedTradeModel
 ): Promise<{ message: string }> {
   const res = await fetch(`${apiRoutes.USERS}/${email}/trades`, {
     method: "PATCH",

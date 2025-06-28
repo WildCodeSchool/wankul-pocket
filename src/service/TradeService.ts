@@ -11,16 +11,24 @@ interface newTradeModel {
   to_user_id: number | undefined;
   offered_card_id: number | undefined;
   requested_card_id: number | undefined;
-  status: true;
+  status: boolean;
   acceptance: null;
 }
+
+interface UpdatedTradeModel {
+  id: number;
+  status: boolean;
+  acceptance: boolean;
+}
+
+type TradeType = "received" | "sent";
 
 export async function addOne(email: string | undefined, trade: newTradeModel) {
   return addTrade(email, trade);
 }
 
-export async function getall(email: string) {
-  return getTrades(email);
+export async function getall(email: string, type: TradeType = "received") {
+  return getTrades(email, type);
 }
 
 export async function getOneByEmail(email: string): Promise<TradeModel> {
@@ -33,7 +41,7 @@ export async function deleteOne(email: string, id: number) {
 
 export async function editOne(
   email: string,
-  trade: TradeModel
+  trade: UpdatedTradeModel
 ): Promise<{ message: string }> {
   return patchTrade(email, trade);
 }

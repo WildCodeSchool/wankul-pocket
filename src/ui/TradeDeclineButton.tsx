@@ -1,7 +1,7 @@
 "use client";
 
 import { TradeModel } from "@/model/TradeModel";
-import { deleteOne } from "@/service/TradeService";
+import { editOne } from "@/service/TradeService";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./TradeButton.module.css";
@@ -10,10 +10,22 @@ interface ProposedTradeProps {
   trade: TradeModel;
 }
 
+interface RefusedTradeModel {
+  id: number;
+  status: boolean;
+  acceptance: boolean;
+}
+
 export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
   const router = useRouter();
   const handleDecline = async () => {
-    await deleteOne(trade.to_user_email, trade.id);
+    const { id: tradeId, to_user_email } = trade;
+    const refusedTrade: RefusedTradeModel = {
+      id: tradeId,
+      status: false,
+      acceptance: false,
+    };
+    await editOne(to_user_email, refusedTrade);
     router.refresh();
   };
   return (

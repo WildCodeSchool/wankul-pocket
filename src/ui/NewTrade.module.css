@@ -9,6 +9,8 @@
     width: 100%;
     background-color: var(--bodyGradient1);
     text-align: center;
+    opacity: 1;
+    backdrop-filter: none;
   }
 }
 
@@ -18,10 +20,15 @@
   width: 250px;
   margin: -2rem auto 0;
   padding-top: 2rem;
-  border-radius: 25px;
+  border-radius: 20px;
   position: absolute;
+  overflow: hidden;
 }
 
 .friend {
+  transition: 0.3s ease;
   cursor: pointer;
+  &:hover {
+    background-color: var(--bodyGradient2);
+  }
 }

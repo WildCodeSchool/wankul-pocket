@@ -2,15 +2,20 @@
 
 import { UpdatedCard } from "@/lib/collection/patchCollection";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
-import { deleteTrade } from "@/lib/trade/deleteTrade";
 import { TradeModel } from "@/model/TradeModel";
-import { editCollection } from "@/service/TradeService";
+import { editCollection, editOne } from "@/service/TradeService";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
+}
+
+interface AcceptedTradeModel {
+  id: number;
+  status: boolean;
+  acceptance: boolean;
 }
 
 export const TradeAcceptButton = ({ trade }: ProposedTradeProps) => {
@@ -29,12 +34,18 @@ export const TradeAcceptButton = ({ trade }: ProposedTradeProps) => {
 
     const offeredCard: UpdatedCard = {
       id: Number(offered_card_id),
-      quantity: Math.max(offered_card_quantity - 1, 0),
+      quantity: offered_card_quantity - 1,
     };
 
     const requestedCard: UpdatedCard = {
       id: Number(requested_card_id),
-      quantity: Math.max(requested_card_quantity - 1, 0),
+      quantity: requested_card_quantity - 1,
+    };
+
+    const acceptedTrade: AcceptedTradeModel = {
+      id: tradeId,
+      status: false,
+      acceptance: true,
     };
 
     try {
@@ -46,7 +57,7 @@ export const TradeAcceptButton = ({ trade }: ProposedTradeProps) => {
         addToCollection(to_user_email, [offered_card_id]),
         addToCollection(from_user_email, [requested_card_id]),
       ]);
-      await deleteTrade(to_user_email, tradeId);
+      await editOne(to_user_email, acceptedTrade);
       router.refresh();
     } catch (error: any | unknown) {
       console.error("Erreur pendant l'acceptation de l'échange :", error);

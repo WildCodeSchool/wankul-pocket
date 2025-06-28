@@ -6,8 +6,8 @@ interface newTradeModel {
   to_user_id: number | undefined;
   offered_card_id: number | undefined;
   requested_card_id: number | undefined;
-  status: true;
-  acceptance: null;
+  status: boolean;
+  acceptance: boolean | null;
 }
 
 export async function addTrade(
