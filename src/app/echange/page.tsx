@@ -23,16 +23,17 @@ export default async function Echange() {
     "received"
   );
   const sentTrades: TradeModel[] = await getall(session?.user?.email, "sent");
-  const displayedReceivedTrade = receivedTrades[0];
-  const displayedSentTrade = sentTrades[0];
+  const displayedReceivedTrade =
+    receivedTrades.length > 0 ? receivedTrades[0] : null;
+  const displayedSentTrade = sentTrades.length > 0 ? sentTrades[0] : null;
 
   return (
     <section className={styles.page}>
-      {receivedTrades.length >= 1 && (
+      {displayedReceivedTrade && (
         <ProposedTrade trade={displayedReceivedTrade} />
       )}
-      {sentTrades.length >= 1 && <SentTrade trade={displayedSentTrade} />}
-      {receivedTrades.length === 0 && sentTrades.length === 0 && <NewTrade />}
+      {displayedSentTrade && <SentTrade trade={displayedSentTrade} />}
+      {!displayedReceivedTrade && !displayedSentTrade && <NewTrade />}
     </section>
   );
 }
