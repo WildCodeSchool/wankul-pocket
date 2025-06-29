@@ -14,8 +14,7 @@ export class FriendsModel {
     private _user_email?: string,
     private _friend_email?: string,
     private _user_image_path?: string,
-    private _friend_image_path?: string,
-    private _cards: CardsModel[] = []
+    private _friend_image_path?: string
   ) {}
 
   get id(): number {
@@ -76,9 +75,5 @@ export class FriendsModel {
 
   get friend_image_path(): string | undefined {
     return this._friend_image_path;
-  }
-
-  get cards(): CardsModel[] {
-    return this._cards;
   }
 }
