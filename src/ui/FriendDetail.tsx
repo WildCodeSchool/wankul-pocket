@@ -18,7 +18,6 @@ interface FriendDetailProps {
 export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [friendCards, setFriendCards] = useState<FriendCard[]>([]);
-  const [loading, setLoading] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -26,7 +25,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   useEffect(() => {
     if (!friendProfilId || !isModalOpen) return;
 
-    setLoading(true);
+
     getFriendDetails(friendProfilId)
       .then((data) => {
         setFriendCards(data || []);
@@ -35,9 +34,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
         console.error("Error fetching friend details:", error);
         setFriendCards([]);
       })
-      .finally(() => {
-        setLoading(false);
-      });
+
   }, [friendProfilId, isModalOpen]);
 
   const userInfo = friendCards.length > 0 ? friendCards[0] : null;

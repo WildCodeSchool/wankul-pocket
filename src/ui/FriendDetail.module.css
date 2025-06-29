@@ -41,6 +41,12 @@
   padding: 2rem;
   max-height: 80svh;
   overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .closeBtn {
