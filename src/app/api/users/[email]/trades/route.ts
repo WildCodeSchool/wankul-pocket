@@ -78,6 +78,8 @@ export async function POST(req: Request) {
       typeof to_user_id !== "number" ||
       typeof offered_card_id !== "number" ||
       typeof requested_card_id !== "number" ||
+      typeof status !== "boolean" ||
+      acceptance !== null ||
       from_user_id <= 0 ||
       to_user_id <= 0 ||
       offered_card_id <= 0 ||

@@ -37,11 +37,12 @@ export default function CardPickerModal({
         ✖
       </button>
       <h2>Sélectionne une carte</h2>
+      <h3>Cartes éligibles à un échange :</h3>
 
       {loading ? (
         <p>Chargement...</p>
       ) : tradableCards.length === 0 ? (
-        <p>
+        <p className={styles.noCard}>
           Aucune carte de rareté équivalente trouvée pour procéder à un échange
         </p>
       ) : (

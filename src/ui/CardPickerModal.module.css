@@ -50,6 +50,10 @@
   gap: 1rem;
   margin-top: 2rem;
   padding: 0 2rem 1rem;
+
+  img {
+    cursor: pointer;
+  }
 }
 
 .quantity {
@@ -71,6 +75,10 @@
   z-index: 9;
   color: var(--black);
   font-weight: bold;
+}
+
+.noCard {
+  margin-top: 2rem;
 }
 
 @media screen and (min-width: 900px) {
