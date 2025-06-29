@@ -2,7 +2,6 @@
 
 import { getOne } from "@/lib/collection/getUserCollection";
 import { CardsModel } from "@/model/CardsModel";
-import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUserContext } from "./UserContext";
 
@@ -25,7 +24,6 @@ export function CollectionProvider({
 }) {
   const { user } = useUserContext();
   const [collection, setCollection] = useState<CardsModel[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchCollection = async () => {

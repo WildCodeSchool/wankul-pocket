@@ -1,10 +1,16 @@
 import { getOne } from "@/lib/collection/getUserCollection";
-import { CardsModel } from "@/model/CardsModel";
-import { db } from "@/lib/db";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
+import { CardsModel } from "@/model/CardsModel";
 
-export async function getCollection(user_id: number): Promise<CardsModel[]> {
-  return getOne(user_id);
+interface GetOneOptions {
+  rarity?: string;
+}
+
+export async function getCollection(
+  email: string,
+  options: GetOneOptions = {}
+): Promise<CardsModel[]> {
+  return getOne(email, options);
 }
 
 export async function addCardsToCollection(

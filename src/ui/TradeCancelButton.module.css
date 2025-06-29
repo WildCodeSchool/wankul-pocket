@@ -1,0 +1,5 @@
+.button {
+  margin: 0 auto;
+  width: clamp(100px, 50%, 200px);
+  cursor: pointer;
+}
