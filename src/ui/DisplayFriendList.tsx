@@ -4,6 +4,7 @@ import { getEveryFriends } from "@/service/FriendsService";
 import { useUserContext } from "@/context/UserContext";
 import { FriendsModel } from "@/model/FriendsModel";
 import { useEffect, useState } from "react";
+import { FriendDetail } from "./FriendDetail";
 import styles from "./DisplayFriendList.module.css";
 import Unfriend from "./Unfriend";
 
@@ -30,22 +31,33 @@ export default function DisplayFriendList() {
           const username = isMe
             ? friend.friend_username || "Unknown"
             : friend.user_username || "Unknown";
+          const friendProfilId = isMe
+            ? friend.friend_profil_id
+            : friend.user_profil_id;
           return (
-            <li key={friend.id} className={styles.friendItem}>
-              <img
-                className={styles.friendImage}
-                src={
-                  isMe
-                    ? `${friend.friend_image_path}`
-                    : `${friend.user_image_path}`
-                }
-                alt={username}
-              />
-              <p>{username}</p>
-              <div className={styles.unfriendButton}>
-                <Unfriend userId={friend.id} />
-              </div>
-            </li>
+            <div key={friend.id} className={styles.friendDetail}>
+              <FriendDetail friendProfilId={friendProfilId}>
+                <li className={styles.friendItem}>
+                  <img
+                    className={styles.friendImage}
+                    src={
+                      isMe
+                        ? `${friend.friend_image_path}`
+                        : `${friend.user_image_path}`
+                    }
+                    alt={username}
+                  />
+
+                  <p>{username}</p>
+                  <div
+                    className={styles.unfriendButton}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Unfriend userId={friend.id} />
+                  </div>
+                </li>
+              </FriendDetail>
+            </div>
           );
         })}
       </ul>
