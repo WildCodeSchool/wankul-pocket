@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { db } from "@/lib/db";
 import { friendsMessages } from "@/data/responseMessages";
-import { FriendsModel } from "@/model/FriendsModel";
 
 export async function GET(
   request: NextRequest,
@@ -14,19 +13,37 @@ export async function GET(
   }
 
   try {
+    type FriendRow = {
+      username: string;
+      user_image_path: string;
+      card_id: number;
+      rarity: string;
+      card_image_path: string;
+    };
+
     const [rows] = await db.query(
       "SELECT u.username, pp.image_path as user_image_path, c.id AS card_id, c.rarity, c.image_path as card_image_path FROM user u JOIN profil_picture pp ON u.profil_picture_id = pp.id JOIN collection col ON col.user_id = u.id JOIN card c ON col.card_id = c.id WHERE u.profil_id = ? ;",
       [friendProfilId]
     );
 
-    if (!rows || (Array.isArray(rows) && rows.length === 0)) {
+    const rawData = rows as FriendRow[];
+
+    if (!rawData || rawData.length === 0) {
       return NextResponse.json(
         { error: friendsMessages.notFound },
         { status: 404 }
       );
     }
 
-    const friendDetails = Array.isArray(rows) ? (rows as FriendsModel[]) : [];
+    const friendDetails = {
+      username: rawData[0]?.username,
+      user_image_path: rawData[0]?.user_image_path,
+      cards: rawData.map((row) => ({
+        card_id: row.card_id,
+        rarity: row.rarity,
+        card_image_path: row.card_image_path,
+      })),
+    };
 
     return NextResponse.json(friendDetails);
   } catch (error) {
