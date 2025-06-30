@@ -2,6 +2,17 @@
   height: 100px;
 }
 
+.cardTerrain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0px 35px;
+}
+
+.cardTerrain > * {
+  rotate: 90deg;
+}
+
 .card45 {
   display: flex;
   flex-wrap: wrap;

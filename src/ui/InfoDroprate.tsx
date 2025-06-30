@@ -2,57 +2,29 @@ import styles from "./InfoDroprate.module.css";
 import { useState } from "react";
 import { CardsModel } from "@/model/CardsModel";
 
-const RARITY_CONFIG = [
-  {
-    rate: "45.00",
-    title: "Commune",
-    percentage: "45%",
-    className: styles.card45,
-  },
-  {
-    rate: "30.00",
-    title: "Peu Commune",
-    percentage: "30%",
-    className: styles.card30,
-  },
-  { rate: "10.00", title: "Rare", percentage: "10%", className: styles.card10 },
-  {
-    rate: "2.24",
-    title: "Ultra Rare Holo 1",
-    percentage: "2.24%",
-    className: styles.card2_24,
-  },
-  {
-    rate: "1.60",
-    title: "Ultra Rare Holo 2",
-    percentage: "1.60%",
-    className: styles.card1_60,
-  },
-  {
-    rate: "0.80",
-    title: "Légendaire Bronze",
-    percentage: "0.80%",
-    className: styles.card0_80,
-  },
-  {
-    rate: "0.28",
-    title: "Légendaire Argent",
-    percentage: "0.28%",
-    className: styles.card0_28,
-  },
-  {
-    rate: "0.08",
-    title: "Légendaire Or",
-    percentage: "0.08%",
-    className: styles.card0_08,
-  },
-];
+const RARITY_STYLES: { [key: string]: string } = {
+  Terrain: styles.cardTerrain,
+  Commune: styles.card45,
+  "Peu commune": styles.card30,
+  Rare: styles.card10,
+  "Ultra rare holo 1": styles.card2_24,
+  "Ultra rare holo 2": styles.card1_60,
+  "Légendaire Bronze": styles.card0_80,
+  "Légendaire Argent": styles.card0_28,
+  "Légendaire Or": styles.card0_08,
+};
 
 export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const getCardsByRate = (rate: string) =>
-    cards.filter((card) => Number(card.official_rate).toFixed(2) === rate);
+  const cardsByRarity = cards.reduce((acc, card) => {
+    const rarity = card.rarity;
+    if (!acc[rarity]) {
+      acc[rarity] = [];
+    }
+    acc[rarity].push(card);
+    return acc;
+  }, {} as { [key: string]: CardsModel[] });
 
   return (
     <>
@@ -71,16 +43,18 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
                 Informations sur les taux de drop
               </h2>
 
-              {RARITY_CONFIG.map(({ rate, title, percentage, className }) => {
-                const filteredCards = getCardsByRate(rate);
+              {Object.entries(cardsByRarity).map(([rarity, rarityCards]) => {
+                const officialRate = rarityCards[0]?.official_rate || 0;
+                const percentage = `${officialRate}%`;
+                const className = RARITY_STYLES[rarity] || styles.defaultCard;
 
                 return (
-                  <div key={rate} className={styles.containerCards}>
+                  <div key={rarity} className={styles.containerCards}>
                     <h3>
-                      {title} ({percentage})
+                      {rarity} ({percentage})
                     </h3>
                     <ul className={className}>
-                      {filteredCards.map((card) => (
+                      {rarityCards.map((card) => (
                         <li key={card.id}>
                           <img
                             src={card.image_path}
