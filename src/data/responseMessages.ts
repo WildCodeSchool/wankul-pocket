@@ -91,7 +91,7 @@ const collectionMessages = {
     "erreur lors de la modification de la collection, veuillez réessayer ultérieurement",
   invalidData: "Les données fournies sont invalides",
   addSuccess: "Collection ajoutée avec succès",
-  notFound: "Aucune collection trouvée avec cet email",
+  notFound: "Aucune collection trouvée avec ce compte",
   updateSuccess: "Collection mise à jour avec succès",
 };
 
