@@ -36,24 +36,20 @@ export default function ProposeTradeButton({
     status: true,
     acceptance: null,
   };
-  const handleClick = () => {
+  async function handleClick() {
     if (myCard !== null && friendCard !== null) {
-      addOne(friendEmail, newTrade);
+      await addOne(friendEmail, newTrade);
       router.refresh();
     } else {
       setErrorMessage(true);
-      console.log("Error message :", errorMessage);
     }
-  };
-  console.log("Mycard :", myCard);
-  console.log("FriendCard :", friendCard);
-  console.log("Error message :", errorMessage);
+  }
   return (
     <>
       <button
         className={styles.button}
         onClick={handleClick}
-        disabled={!myCard && !friendCard}
+        disabled={!(myCard && friendCard)}
       >
         Proposer
       </button>
