@@ -61,7 +61,7 @@ export default function BoosterSelection({
         <button className={styles.selectButton} onClick={navigateToBoosterPage}>
           Sélectionner ce booster
         </button>
-        <InfoDroprate cards={cards} />
+        {selectedBooster && <InfoDroprate cards={cards} />}
       </div>
       <ul className={styles.boosterList}>
         {boosters.map((booster) => {
