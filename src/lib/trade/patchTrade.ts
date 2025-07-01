@@ -1,11 +1,6 @@
 import { apiRoutes } from "@/data/ROUTES";
 import { tradesMessages } from "@/data/responseMessages";
-
-interface UpdatedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
-}
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 
 export async function patchTrade(
   email: string,

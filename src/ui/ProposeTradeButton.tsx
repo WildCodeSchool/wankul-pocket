@@ -1,4 +1,5 @@
 import { CardsModel } from "@/model/CardsModel";
+import { newTradeModel } from "@/model/NewTradeModel";
 import { addOne } from "@/service/TradeService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,15 +10,6 @@ interface TradeBtnProps {
   selectedFriend: NormalizedFriendModel | null;
   myCard: CardsModel | null;
   friendCard: CardsModel | null;
-}
-
-interface newTradeModel {
-  from_user_id: number | undefined;
-  to_user_id: number | undefined;
-  offered_card_id: number | undefined;
-  requested_card_id: number | undefined;
-  status: true;
-  acceptance: null;
 }
 
 export default function ProposeTradeButton({

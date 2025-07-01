@@ -4,22 +4,9 @@ import { deleteTrade } from "@/lib/trade/deleteTrade";
 import { getOne } from "@/lib/trade/getTrade";
 import { getTrades } from "@/lib/trade/getTrades";
 import { patchTrade } from "@/lib/trade/patchTrade";
+import { newTradeModel } from "@/model/NewTradeModel";
 import { TradeModel } from "@/model/TradeModel";
-
-interface newTradeModel {
-  from_user_id: number | undefined;
-  to_user_id: number | undefined;
-  offered_card_id: number | undefined;
-  requested_card_id: number | undefined;
-  status: boolean;
-  acceptance: null;
-}
-
-interface UpdatedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
-}
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 
 type TradeType = "received" | "sent";
 

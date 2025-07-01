@@ -1,6 +1,7 @@
 import { tradesMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { TradeModel } from "@/model/TradeModel";
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { NextResponse } from "next/server";
 
 interface InsertResult {
@@ -12,12 +13,6 @@ interface InsertResult {
 interface UpdateResult {
   affectedRows: number;
   warningStatus?: number;
-}
-
-interface UpdatedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
 }
 
 export async function GET(
