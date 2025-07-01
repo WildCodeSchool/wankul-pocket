@@ -7,6 +7,10 @@ export class FriendsModel {
     private _acceptance: boolean,
     private _user_username?: string,
     private _friend_username?: string,
+    private _user_id?: number,
+    private _friend_id?: number,
+    private _user_email?: string,
+    private _friend_email?: string,
     private _user_image_path?: string,
     private _friend_image_path?: string
   ) {}
@@ -45,6 +49,22 @@ export class FriendsModel {
 
   get friend_username(): string | undefined {
     return this._friend_username;
+  }
+
+  get user_id(): number | undefined {
+    return this._user_id;
+  }
+
+  get friend_id(): number | undefined {
+    return this._friend_id;
+  }
+
+  get user_email(): string | undefined {
+    return this._user_email;
+  }
+
+  get friend_email(): string | undefined {
+    return this._friend_email;
   }
 
   get user_image_path(): string | undefined {

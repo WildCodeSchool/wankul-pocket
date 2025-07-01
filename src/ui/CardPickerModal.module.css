@@ -1,0 +1,88 @@
+.modal {
+  position: absolute;
+  top: var(--headerHeight);
+  left: 0;
+  height: var(--pageHeight);
+  width: 100vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background: var(--modalBackground);
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  h2 {
+    margin-top: 2rem;
+  }
+}
+
+.modalClose {
+  position: fixed;
+  top: calc(var(--headerHeight) + 2rem);
+  right: 1rem;
+  height: 38px;
+  width: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--textColor);
+  color: var(--textColor);
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    border: 2px solid var(--textColor);
+    color: var(--textColor);
+    background-color: red;
+  }
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 0 2rem 1rem;
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.6)
+  );
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--textColor);
+  text-align: center;
+  position: relative;
+  top: -3rem;
+  z-index: 9;
+  color: var(--black);
+  font-weight: bold;
+}
+
+.noCard {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 900px) {
+  .modal {
+    height: var(--landingPageHeight);
+  }
+}

@@ -1,14 +1,22 @@
 import { collectionMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
-import { NextResponse, NextRequest } from "next/server";
 import { getUserIdByEmail } from "@/service/UserService";
+import { NextRequest, NextResponse } from "next/server";
+
+interface UpdateResult {
+  affectedRows: number;
+  warningStatus?: number;
+}
 
 export async function GET(
   _req: Request,
   { params }: { params: { email: string } }
 ) {
   const userEmail = params.email;
+  const { searchParams } = new URL(_req.url);
+  const rarity = searchParams.get("rarity");
+
   if (typeof userEmail !== "string") {
     return NextResponse.json(
       { error: collectionMessages.invalidEmail },
@@ -16,23 +24,30 @@ export async function GET(
     );
   }
   try {
-    const [rows] = await db.query(
-      "SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, c.is_holo, c.quote, c.booster_id, co.quantity, b.season, b.set_name FROM card AS c JOIN collection AS co ON c.id = co.card_id JOIN user AS u ON u.id = co.user_id JOIN booster AS b ON c.booster_id = b.id WHERE u.email = ? ORDER BY c.card_number ASC",
-      [userEmail]
-    );
-    const results = Array.isArray(rows) ? (rows as CardsModel[]) : [];
-    if (results.length === 0) {
-      return NextResponse.json(
-        { error: collectionMessages.notFound },
-        { status: 404 }
-      );
+    let query = `
+      SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, 
+             c.is_holo, c.quote, c.booster_id, co.quantity, b.season, b.set_name
+      FROM card AS c
+      JOIN collection AS co ON c.id = co.card_id
+      JOIN user AS u ON u.id = co.user_id
+      JOIN booster AS b ON c.booster_id = b.id
+      WHERE u.email = ?
+    `;
+    const values: string[] = [userEmail];
+
+    if (rarity) {
+      query += " AND c.rarity = ?";
+      values.push(rarity);
     }
+
+    query += " ORDER BY c.card_number ASC";
+
+    const [rows] = await db.query(query, values);
+    const results = Array.isArray(rows) ? (rows as CardsModel[]) : [];
+
     return NextResponse.json(results);
   } catch (error) {
-    console.error(
-      "Erreur MySQL (GET /api/collections/users/[email]/collection) :",
-      error
-    );
+    console.error("Erreur MySQL (GET /api/users/[email]/collections) :", error);
     return NextResponse.json(
       { error: collectionMessages.server },
       { status: 500 }
@@ -84,5 +99,54 @@ export async function POST(
   } catch (error) {
     console.error("Erreur ajout collection :", error);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
+  }
+}
+
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { email: string } }
+) {
+  try {
+    const { id, quantity } = (await req.json()) as CardsModel;
+    const userEmail = params.email;
+    if (typeof userEmail !== "string") {
+      return NextResponse.json(
+        { error: collectionMessages.invalidEmail },
+        { status: 400 }
+      );
+    }
+
+    if (
+      typeof quantity !== "number" ||
+      isNaN(quantity) ||
+      quantity < 0 ||
+      typeof id !== "number" ||
+      isNaN(id)
+    ) {
+      return NextResponse.json(
+        { error: collectionMessages.invalidData },
+        { status: 400 }
+      );
+    }
+
+    const [result] = (await db.query(
+      "UPDATE collection SET quantity = ? WHERE card_id = ?",
+      [quantity, id]
+    )) as [UpdateResult, unknown];
+
+    if (result.affectedRows === 0) {
+      return NextResponse.json(
+        { error: collectionMessages.notFound },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ message: collectionMessages.updateSuccess });
+  } catch (error) {
+    console.error("Erreur PATCH /collections:", error);
+    return NextResponse.json(
+      { error: collectionMessages.server },
+      { status: 500 }
+    );
   }
 }
