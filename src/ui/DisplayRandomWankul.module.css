@@ -1,0 +1,29 @@
+.laink {
+  display: none;
+}
+
+.terracid {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .laink {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 10%;
+    transform: translateX(-50%);
+    height: 350px;
+    z-index: -1;
+  }
+
+  .terracid {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 90%;
+    transform: translateX(-50%);
+    height: 350px;
+    z-index: -1;
+  }
+}

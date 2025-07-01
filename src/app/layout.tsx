@@ -6,6 +6,7 @@ import { Jaldi } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./SessionWrapper";
 import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
+import { DisplayRandomWankul } from "@/ui/DisplayRandomWankul";
 
 const jaldi = Jaldi({
   variable: "--font-jaldi",
@@ -27,6 +28,7 @@ export default function RootLayout({
               <CollectionProvider>
                 <Header />
                 <main>{children}</main>
+                <DisplayRandomWankul />
                 <Tapbar />
               </CollectionProvider>
             </OpenedCardsProvider>

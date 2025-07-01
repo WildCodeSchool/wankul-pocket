@@ -2,6 +2,7 @@ import GoogleConnexion from "@/ui/GoogleConnexion";
 import styles from "./LandingPage.module.css";
 
 import ModalLandingPage from "@/ui/ModalLandingPage";
+import { Wankul } from "@/data/wankulList";
 
 export default function LandingPage() {
   return (
@@ -15,6 +16,16 @@ export default function LandingPage() {
       </div>
       <GoogleConnexion />
       <ModalLandingPage />
+      <img
+        src={`${(() => {
+          const keys = Object.keys(Wankul) as (keyof typeof Wankul)[];
+          const randomKey = keys[Math.floor(Math.random() * keys.length)];
+          const images = Wankul[randomKey];
+          return images[Math.floor(Math.random() * images.length)];
+        })()}`}
+        alt="Wankul aléatoire"
+        className={styles.wankulImage}
+      />
     </div>
   );
 }
