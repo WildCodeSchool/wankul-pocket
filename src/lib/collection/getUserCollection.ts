@@ -21,13 +21,18 @@ export async function getOne(
     },
   });
 
-  if (res.status === 404) {
-    console.error(collectionMessages.notFound || "Collection non trouvée");
-  }
+    if (res.status === 404) {
+      return [];
+    }
 
-  if (!res.ok) {
-    console.error(collectionMessages.error);
-  }
+    if (!res.ok) {
+      console.error(collectionMessages.error);
+      throw new Error(`Erreur HTTP: ${res.status}`);
+    }
 
-  return res.json();
+    return res.json();
+  } catch (error) {
+    console.error("Erreur lors de la récupération de la collection:", error);
+    return [];
+  }
 }
