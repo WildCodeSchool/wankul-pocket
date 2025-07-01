@@ -96,8 +96,6 @@ export default function NewTrade() {
     setMyCard(null);
     setFriendCard(null);
   };
-  console.log(friends);
-  console.log(selectedFriend);
   return (
     <>
       <section>
