@@ -1,12 +1,12 @@
 import { CardsModel } from "@/model/CardsModel";
-import { FriendsModel } from "@/model/FriendsModel";
 import { addOne } from "@/service/TradeService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { NormalizedFriendModel } from "./NewTrade";
 import styles from "./ProposeTradeButton.module.css";
 
 interface TradeBtnProps {
-  selectedFriend: FriendsModel | null;
+  selectedFriend: NormalizedFriendModel | null;
   myCard: CardsModel | null;
   friendCard: CardsModel | null;
 }
@@ -26,11 +26,11 @@ export default function ProposeTradeButton({
   friendCard,
 }: TradeBtnProps) {
   const router = useRouter();
-  const friendEmail: string | undefined = selectedFriend?.friend_email;
+  const friendEmail: string | undefined = selectedFriend?.user2_email;
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
   const newTrade: newTradeModel = {
-    from_user_id: selectedFriend?.user_id,
-    to_user_id: selectedFriend?.friend_id,
+    from_user_id: selectedFriend?.user1_id,
+    to_user_id: selectedFriend?.user2_id,
     offered_card_id: myCard?.id,
     requested_card_id: friendCard?.id,
     status: true,

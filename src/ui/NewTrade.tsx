@@ -9,20 +9,70 @@ import styles from "./NewTrade.module.css";
 import ProposeTradeButton from "./ProposeTradeButton";
 import TradeAdd from "./TradeAdd";
 
+export interface NormalizedFriendModel {
+  id: number;
+
+  user1_id: number;
+  user1_username: string;
+  user1_email: string;
+  user1_profil_id: string;
+  user1_image_path: string;
+
+  user2_id: number;
+  user2_username: string;
+  user2_email: string;
+  user2_profil_id: string;
+  user2_image_path: string;
+}
+
 export default function NewTrade() {
   const { user } = useUserContext();
   const userProfilId = user?.profil_id;
-  const [friends, setFriends] = useState<FriendsModel[]>([]);
+  const [friends, setFriends] = useState<NormalizedFriendModel[]>([]);
   const [search, setSearch] = useState("");
-  const [selectedFriend, setSelectedFriend] = useState<FriendsModel | null>(
-    null
-  );
+  const [selectedFriend, setSelectedFriend] =
+    useState<NormalizedFriendModel | null>(null);
   const [myCard, setMyCard] = useState<CardsModel | null>(null);
   const [friendCard, setFriendCard] = useState<CardsModel | null>(null);
 
   useEffect(() => {
     if (!userProfilId) return;
-    getEveryFriends(userProfilId).then(setFriends);
+
+    getEveryFriends(userProfilId).then((fetchedFriends) => {
+      const normalizedFriends = fetchedFriends.map((relation: FriendsModel) => {
+        const isUser1 = relation.user_profil_id === userProfilId;
+
+        return {
+          id: relation.id,
+
+          user1_id: isUser1 ? relation.user_id : relation.friend_id,
+          user1_username: isUser1
+            ? relation.user_username
+            : relation.friend_username,
+          user1_email: isUser1 ? relation.user_email : relation.friend_email,
+          user1_profil_id: isUser1
+            ? relation.user_profil_id
+            : relation.friend_profil_id,
+          user1_image_path: isUser1
+            ? relation.user_image_path
+            : relation.friend_image_path,
+
+          user2_id: isUser1 ? relation.friend_id : relation.user_id,
+          user2_username: isUser1
+            ? relation.friend_username
+            : relation.user_username,
+          user2_email: isUser1 ? relation.friend_email : relation.user_email,
+          user2_profil_id: isUser1
+            ? relation.friend_profil_id
+            : relation.user_profil_id,
+          user2_image_path: isUser1
+            ? relation.friend_image_path
+            : relation.user_image_path,
+        };
+      });
+
+      setFriends(normalizedFriends);
+    });
   }, [userProfilId]);
 
   if (!userProfilId) {
@@ -37,15 +87,17 @@ export default function NewTrade() {
     search.length === 0
       ? []
       : friends.filter((friend) =>
-          friend.friend_username?.toLowerCase().includes(search.toLowerCase())
+          friend.user2_username?.toLowerCase().includes(search.toLowerCase())
         );
 
-  const handleFriendSelection = (friend: FriendsModel) => {
+  const handleFriendSelection = (friend: NormalizedFriendModel) => {
     setSelectedFriend(friend);
     setSearch("");
     setMyCard(null);
     setFriendCard(null);
   };
+  console.log(friends);
+  console.log(selectedFriend);
   return (
     <>
       <section>
@@ -67,7 +119,7 @@ export default function NewTrade() {
                     className={styles.friend}
                     onClick={() => handleFriendSelection(friend)}
                   >
-                    {friend.friend_username}
+                    {friend.user2_username}
                   </li>
                 ))
               ) : (
