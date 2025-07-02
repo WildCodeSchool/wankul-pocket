@@ -11,6 +11,8 @@ const apiRoutes = {
   TRADES_BY_ID: (email: string) => `${apiUrl}/api/users/${email}/trades/[id]`,
   COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
   FRIENDS: `${apiUrl}/api/friends`,
+  FRIEND_DETAILS: (friendProfilId: string) =>
+    `${apiUrl}/api/friends/${friendProfilId}/details`,
 };
 
 const appRoutes = {

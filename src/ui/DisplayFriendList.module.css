@@ -25,6 +25,12 @@
   align-items: center;
 }
 
+.friendDetail {
+  width: 100%;
+  min-width: 0;
+  max-width: 400px;
+}
+
 .friendItem {
   display: flex;
   justify-content: flex-start;
@@ -38,6 +44,18 @@
   min-width: 0;
   max-width: 400px;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.friendItem:hover {
+  border: rgba(255, 255, 255, 0.63) 1px solid;
+}
+
+.friendItem p {
+  font-size: 1.3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .unfriendButton {
