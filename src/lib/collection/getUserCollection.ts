@@ -8,18 +8,18 @@ export async function getOne(
   option: GetOneOption = {}
 ): Promise<CardsModel[]> {
   const { rarity } = option;
-
-  let url = `${apiUrl}/api/users/${email}/collections`;
-  if (rarity) {
-    url += `?rarity=${encodeURIComponent(rarity)}`;
-  }
-  const res = await fetch(url, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    let url = `${apiUrl}/api/users/${email}/collections`;
+    if (rarity) {
+      url += `?rarity=${encodeURIComponent(rarity)}`;
+    }
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
 
     if (res.status === 404) {
       return [];

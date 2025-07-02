@@ -8,6 +8,7 @@ export async function getCollection(
   option: GetOneOption = {}
 ): Promise<CardsModel[]> {
   return getOne(email, option);
+}
 
 export async function addCardsToCollection(
   emailId: string,
