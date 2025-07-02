@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { FriendDetail } from "./FriendDetail";
 import styles from "./DisplayFriendList.module.css";
 import Unfriend from "./Unfriend";
+import TradeFromFriendList from "./TradeFromFriendList";
 
 export default function DisplayFriendList() {
   const { user } = useUserContext();
@@ -34,6 +35,7 @@ export default function DisplayFriendList() {
           const friendProfilId = isMe
             ? friend.friend_profil_id
             : friend.user_profil_id;
+          const friendMail = isMe ? friend.friend_email : friend.user_email;
           return (
             <div key={friend.id} className={styles.friendDetail}>
               <FriendDetail friendProfilId={friendProfilId}>
@@ -53,6 +55,7 @@ export default function DisplayFriendList() {
                     className={styles.unfriendButton}
                     onClick={(e) => e.stopPropagation()}
                   >
+                    <TradeFromFriendList friendId={friend.id.toString()} />
                     <Unfriend userId={friend.id} />
                   </div>
                 </li>

@@ -46,7 +46,7 @@ export default function Unfriend({ userId }: UnfriendProps) {
         type="button"
         className={styles.unfriendButton}
       >
-        <img src="/unfriend.png" alt="Unfriend" />
+        <img src="/unfriend.png" alt="Unfriend" className={styles.icon} />
       </button>
       {showModal && (
         <div className={styles.overlay}>

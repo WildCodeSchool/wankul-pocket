@@ -7,7 +7,13 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import styles from "./TradePage.module.css";
 
-export default async function Echange() {
+interface EchangeProps {
+  searchParams: Promise<{
+    friendId?: string;
+  }>;
+}
+
+export default async function Echange({ searchParams }: EchangeProps) {
   const session = await getServerSession();
 
   if (!session?.user?.email) {
@@ -18,6 +24,9 @@ export default async function Echange() {
       </>
     );
   }
+
+  const params = await searchParams;
+
   const receivedTrades: TradeModel[] = await getall(
     session?.user?.email,
     "received"
@@ -34,7 +43,9 @@ export default async function Echange() {
         <ProposedTrade trade={displayedReceivedTrade} />
       )}
       {displayedSentTrade && <SentTrade trade={displayedSentTrade} />}
-      {!displayedReceivedTrade && !displayedSentTrade && <NewTrade />}
+      {!displayedReceivedTrade && !displayedSentTrade && (
+        <NewTrade preselectedFriendId={params.friendId} />
+      )}
     </section>
   );
 }

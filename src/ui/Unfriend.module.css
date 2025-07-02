@@ -2,6 +2,10 @@
   padding: 0.4rem 1rem;
 }
 
+.icon {
+  height: 1.5rem;
+}
+
 .overlay {
   position: fixed;
   top: 0;
