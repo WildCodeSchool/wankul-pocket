@@ -35,7 +35,6 @@ export default function DisplayFriendList() {
           const friendProfilId = isMe
             ? friend.friend_profil_id
             : friend.user_profil_id;
-          const friendMail = isMe ? friend.friend_email : friend.user_email;
           return (
             <div key={friend.id} className={styles.friendDetail}>
               <FriendDetail friendProfilId={friendProfilId}>
