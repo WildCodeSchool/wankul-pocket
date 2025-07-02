@@ -4,7 +4,7 @@
   left: 0;
   height: var(--pageHeight);
   width: 100%;
-  background-color: rgba(11, 53, 108, 0.9);
+  background-color: var(--modalBackground);
   z-index: 10;
   display: flex;
   flex-direction: column;

@@ -79,6 +79,6 @@
 
 .cardImage {
   height: 100px;
-  border-radius: 10px;
+  border-radius: 5px;
   background: var(--bubbleGradient);
 }
