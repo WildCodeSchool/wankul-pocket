@@ -2,7 +2,7 @@ import { friendsMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
 
 export async function getFriendDetails(friendProfilId: string) {
-  const res = await fetch(apiRoutes.FRIENDS_DETAILS(friendProfilId), {
+  const res = await fetch(apiRoutes.FRIEND_DETAILS(friendProfilId), {
     method: "GET",
     headers: {
       Accept: "application/json",

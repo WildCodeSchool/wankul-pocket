@@ -9,7 +9,7 @@ const apiRoutes = {
   CARDS: `${apiUrl}/api/cards`,
   COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
   FRIENDS: `${apiUrl}/api/friends`,
-  FRIENDS_DETAILS: (friendProfilId: string) =>
+  FRIEND_DETAILS: (friendProfilId: string) =>
     `${apiUrl}/api/friends/${friendProfilId}/details`,
 };
 

@@ -39,9 +39,9 @@ export async function GET(
       username: rawData[0]?.username,
       user_image_path: rawData[0]?.user_image_path,
       cards: rawData.map((row) => ({
-        card_id: row.card_id,
+        id: row.card_id,
         rarity: row.rarity,
-        card_image_path: row.card_image_path,
+        image_path: row.card_image_path,
       })),
     };
 

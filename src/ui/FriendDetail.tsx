@@ -1,17 +1,12 @@
 import { ReactNode, useState, useEffect } from "react";
 import { getFriendDetails } from "@/lib/friends/getFriendDetails";
 import styles from "./FriendDetail.module.css";
-
-interface Card {
-  card_id: number;
-  rarity: string;
-  card_image_path: string;
-}
+import { CardsModel } from "@/model/CardsModel";
 
 interface FriendDetails {
   username: string;
   user_image_path: string;
-  cards: Card[];
+  cards: CardsModel[];
 }
 
 interface FriendDetailProps {
@@ -77,10 +72,10 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
 
                 <div className={styles.cardsGrid}>
                   {friendDetails.cards.map((card) => (
-                    <div key={card.card_id} className={styles.cardItem}>
+                    <div key={card.id} className={styles.cardItem}>
                       <img
-                        src={card.card_image_path}
-                        alt={`Carte ${card.card_id}`}
+                        src={card.image_path}
+                        alt={`Carte ${card.id}`}
                         className={styles.cardImage}
                       />
                     </div>
