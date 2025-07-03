@@ -37,9 +37,9 @@ export default async function Homepage() {
     }
   }
   let displayedTrade: TradeModel | null = null;
-  if (receivedTrade) {
+  if (receivedTrade !== null && receivedTrade.length > 0) {
     displayedTrade = receivedTrade[0];
-  } else if (sentTrade) {
+  } else if (sentTrade !== null && sentTrade.length > 0) {
     displayedTrade = sentTrade[0];
   } else {
     displayedTrade = null;
@@ -47,8 +47,10 @@ export default async function Homepage() {
 
   return (
     <div className={styles.homepage}>
-      <HomepageTrade trade={displayedTrade} />
-      <HomepageCollection collection={collection} />
+      <section className={styles.topRow}>
+        <HomepageTrade trade={displayedTrade} />
+        <HomepageCollection collection={collection} />
+      </section>
       <HomepageBoosters boosters={boosters} />
     </div>
   );

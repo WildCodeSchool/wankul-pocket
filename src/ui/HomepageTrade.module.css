@@ -1,4 +1,5 @@
-.container {
+.container,
+.containerNoTrade {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,8 +8,12 @@
   background: var(--bubbleGradient);
   border: var(--bubbleBorder);
   border-radius: 25px;
-  min-width: 170px;
-  max-width: 200px;
+  width: 170px;
+  height: 173px;
+}
+
+.containerNoTrade {
+  padding-bottom: 10px;
 }
 
 .trade {
@@ -25,14 +30,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.144);
 }
 
-.title {
+.title,
+.titleNoTrade {
   position: relative;
-  left: 50%;
-  bottom: -172px;
-  transform: translateX(-50%);
+  bottom: -147px;
   font-size: 1rem;
   font-weight: lighter;
-  margin-bottom: 10px;
   text-align: center;
   background: #6c81e0;
   border-radius: 25px;
@@ -40,12 +43,19 @@
   z-index: 10;
 }
 
+.titleNoTrade {
+  bottom: -130px;
+}
+
 .notification {
+  position: relative;
+  top: -7px;
   margin: 0 auto;
 }
 
 .cardsContainer {
-  height: 70px;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,4 +63,12 @@
 
 .card {
   border-radius: 5px;
+}
+
+.tradeIcon {
+  position: relative;
+  margin: 0 -15px;
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  border-radius: 50%;
 }

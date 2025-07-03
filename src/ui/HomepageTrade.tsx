@@ -1,5 +1,3 @@
-"use client";
-
 import { TradeModel } from "@/model/TradeModel";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,52 +8,46 @@ interface Props {
 }
 
 export default function HomepageTrade({ trade }: Props) {
-  console.log(trade);
-  if (trade === null || undefined) {
-    return (
-      <Link href={`/echange`} className={styles.container}>
-        <div className={styles.trade}>
-          <h2 className={styles.title}>Echanges</h2>
-          <Image
-            src={"./notification.png"}
-            alt="Echange"
-            width={50}
-            height={50}
-          />
-        </div>
-      </Link>
-    );
-  } else {
-    return (
-      <Link href={`/echange`} className={styles.container}>
-        <div className={styles.trade}>
-          <h2 className={styles.title}>Echanges</h2>
+  return (
+    <Link
+      href={`/echange`}
+      className={trade ? styles.container : styles.containerNoTrade}
+    >
+      <h2 className={trade ? styles.title : styles.titleNoTrade}>Echanges</h2>
+      <div className={styles.trade}>
+        {trade && (
           <Image
             src="/notification.png"
             alt="Notification d'échange"
-            height={20}
-            width={20}
+            height={24}
+            width={24}
             className={styles.notification}
           />
-          <div className="cardsContainer">
-            <Image
-              src={trade?.requested_card_img}
-              alt="Carte proposée"
-              height={70}
-              width={50}
-              className={styles.card}
-            />
-            <Image src="/tradeIcon.png" alt="Echange" width={24} height={24} />
-            <Image
-              src={trade?.offered_card_img}
-              alt="Carte proposée"
-              height={70}
-              width={50}
-              className={styles.card}
-            />
-          </div>
+        )}
+        <div className={styles.cardsContainer}>
+          <Image
+            src={!trade ? "/cardVerso.png" : trade?.requested_card_img}
+            alt="Carte proposée"
+            height={100}
+            width={71}
+            className={styles.card}
+          />
+          <Image
+            src="/tradeIcon.png"
+            alt="Echange"
+            width={36}
+            height={36}
+            className={styles.tradeIcon}
+          />
+          <Image
+            src={!trade ? "/cardVerso.png" : trade?.offered_card_img}
+            alt="Carte proposée"
+            height={100}
+            width={71}
+            className={styles.card}
+          />
         </div>
-      </Link>
-    );
-  }
+      </div>
+    </Link>
+  );
 }
