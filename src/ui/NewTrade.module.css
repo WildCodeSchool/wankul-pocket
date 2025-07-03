@@ -4,6 +4,7 @@
 .searchSection {
   width: 250px;
   margin: 0 auto 2rem;
+  position: relative;
 
   .input {
     width: 100%;
@@ -11,6 +12,8 @@
     text-align: center;
     opacity: 1;
     backdrop-filter: none;
+    position: relative;
+    z-index: 2;
   }
 }
 
