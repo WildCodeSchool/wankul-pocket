@@ -1,7 +1,17 @@
 import { userMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { UserModel } from "@/model/UserModel";
+import { Update } from "next/dist/build/swc/types";
 import { NextResponse } from "next/server";
+
+interface UpdateResult {
+  affectedRows: number;
+  warningStatus?: number;
+}
+interface UpdateProfilPicture {
+  profil_picture_id: number;
+  email: string;
+}
 
 export async function GET(
   _req: Request,
@@ -32,6 +42,30 @@ export async function GET(
     return NextResponse.json(results[0]);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]) :", error);
+    return NextResponse.json({ error: userMessages.server }, { status: 500 });
+  }
+}
+
+export async function PATCH(req: Request) {
+  try {
+    const newProfilPic = (await req.json()) as UpdateProfilPicture;
+    const { email, profil_picture_id } = newProfilPic;
+
+    const [result] = (await db.query(
+      "UPDATE user SET profil_picture_id = ? WHERE email = ?",
+      [profil_picture_id, email]
+    )) as [UpdateResult, unknown];
+
+    if (result.affectedRows === 0) {
+      return NextResponse.json(
+        { error: userMessages.notFound || "Echange non trouvé" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ message: userMessages.updateSuccess });
+  } catch (error) {
+    console.error("Erreur MySQL (PATCH) :", error);
     return NextResponse.json({ error: userMessages.server }, { status: 500 });
   }
 }
