@@ -1,5 +1,5 @@
 import { TradeModel } from "@/model/TradeModel";
-import { getall } from "@/service/TradeService";
+import { getAll } from "@/service/TradeService";
 import NewTrade from "@/ui/NewTrade";
 import ProposedTrade from "@/ui/ProposedTrade";
 import SentTrade from "@/ui/SentTrade";
@@ -18,11 +18,11 @@ export default async function Echange() {
       </>
     );
   }
-  const receivedTrades: TradeModel[] = await getall(
+  const receivedTrades: TradeModel[] = await getAll(
     session?.user?.email,
     "received"
   );
-  const sentTrades: TradeModel[] = await getall(session?.user?.email, "sent");
+  const sentTrades: TradeModel[] = await getAll(session?.user?.email, "sent");
   const displayedReceivedTrade: TradeModel | null =
     receivedTrades.length > 0 ? receivedTrades[0] : null;
   const displayedSentTrade: TradeModel | null =
