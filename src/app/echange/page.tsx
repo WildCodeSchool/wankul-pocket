@@ -7,13 +7,13 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import styles from "./TradePage.module.css";
 
-interface EchangeProps {
+interface TradeProps {
   searchParams: Promise<{
     friendId?: string;
   }>;
 }
 
-export default async function Echange({ searchParams }: EchangeProps) {
+export default async function Trade({ searchParams }: TradeProps) {
   const session = await getServerSession();
 
   if (!session?.user?.email) {
