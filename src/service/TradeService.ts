@@ -14,7 +14,7 @@ export async function addOne(email: string | undefined, trade: newTradeModel) {
   return addTrade(email, trade);
 }
 
-export async function getall(email: string, type: TradeType = "received") {
+export async function getAll(email: string, type: TradeType = "received") {
   return getTrades(email, type);
 }
 
