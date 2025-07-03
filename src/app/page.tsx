@@ -47,10 +47,8 @@ export default async function Homepage() {
 
   return (
     <div className={styles.homepage}>
-      <section className={styles.topRow}>
-        <HomepageTrade trade={displayedTrade} />
-        <HomepageCollection collection={collection} />
-      </section>
+      <HomepageTrade trade={displayedTrade} />
+      <HomepageCollection collection={collection} />
       <HomepageBoosters boosters={boosters} />
     </div>
   );

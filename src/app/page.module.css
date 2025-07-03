@@ -3,15 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 35px;
+  gap: 35px 0.5rem;
   max-width: 540px;
   margin: 0 auto;
-}
-
-.topRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
 }
