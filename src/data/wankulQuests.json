@@ -1,0 +1,381 @@
+[
+  { "name": "Nouveau pote", "mission": "Avoir 1 ami", "reward": 5 },
+  { "name": "Petite bande", "mission": "Avoir 5 amis", "reward": 10 },
+  { "name": "Groupe soudé", "mission": "Avoir 10 amis", "reward": 20 },
+  { "name": "Tribu sociale", "mission": "Avoir 20 amis", "reward": 40 },
+  { "name": "Armée de potes", "mission": "Avoir 50 amis", "reward": 100 },
+
+  { "name": "Premier troc", "mission": "Faire 1 échange", "reward": 5 },
+  { "name": "Petit marché", "mission": "Faire 5 échanges", "reward": 10 },
+  { "name": "Échangeur local", "mission": "Faire 10 échanges", "reward": 20 },
+  { "name": "Marchand actif", "mission": "Faire 20 échanges", "reward": 30 },
+  { "name": "Habitué du troc", "mission": "Faire 50 échanges", "reward": 50 },
+  { "name": "Trader reconnu", "mission": "Faire 100 échanges", "reward": 75 },
+  {
+    "name": "Baron des échanges",
+    "mission": "Faire 200 échanges",
+    "reward": 100
+  },
+  { "name": "Maître du deal", "mission": "Faire 300 échanges", "reward": 150 },
+  {
+    "name": "Légende du marché",
+    "mission": "Faire 500 échanges",
+    "reward": 200
+  },
+
+  {
+    "name": "Mini collection",
+    "mission": "Collectionner 5 cartes",
+    "reward": 5
+  },
+  { "name": "Petite pile", "mission": "Collectionner 10 cartes", "reward": 10 },
+  {
+    "name": "Album en cours",
+    "mission": "Collectionner 20 cartes",
+    "reward": 15
+  },
+  {
+    "name": "Collection naissante",
+    "mission": "Collectionner 50 cartes",
+    "reward": 20
+  },
+  {
+    "name": "Collectionneur motivé",
+    "mission": "Collectionner 100 cartes",
+    "reward": 25
+  },
+  {
+    "name": "Fan de cartes",
+    "mission": "Collectionner 150 cartes",
+    "reward": 30
+  },
+  {
+    "name": "Collectionneur sérieux",
+    "mission": "Collectionner 200 cartes",
+    "reward": 35
+  },
+  {
+    "name": "Collector régulier",
+    "mission": "Collectionner 300 cartes",
+    "reward": 40
+  },
+  {
+    "name": "Gros classeur",
+    "mission": "Collectionner 400 cartes",
+    "reward": 45
+  },
+  {
+    "name": "Coffre à cartes",
+    "mission": "Collectionner 500 cartes",
+    "reward": 50
+  },
+  {
+    "name": "Galerie privée",
+    "mission": "Collectionner 600 cartes",
+    "reward": 55
+  },
+  {
+    "name": "Expo semi-pro",
+    "mission": "Collectionner 700 cartes",
+    "reward": 60
+  },
+  {
+    "name": "Collection monstre",
+    "mission": "Collectionner 800 cartes",
+    "reward": 65
+  },
+  { "name": "Savant fou", "mission": "Collectionner 900 cartes", "reward": 70 },
+  {
+    "name": "Collectionneur expert",
+    "mission": "Collectionner 1000 cartes",
+    "reward": 75
+  },
+  {
+    "name": "Maitre du classeur",
+    "mission": "Collectionner 1500 cartes",
+    "reward": 85
+  },
+  {
+    "name": "Historien du deck",
+    "mission": "Collectionner 2000 cartes",
+    "reward": 95
+  },
+  {
+    "name": "Collectionne-tout",
+    "mission": "Collectionner 2500 cartes",
+    "reward": 105
+  },
+  {
+    "name": "Accro aux cartes",
+    "mission": "Collectionner 3000 cartes",
+    "reward": 115
+  },
+  {
+    "name": "Dévoreur de boosters",
+    "mission": "Collectionner 3500 cartes",
+    "reward": 125
+  },
+  {
+    "name": "Machine à collectionner",
+    "mission": "Collectionner 4000 cartes",
+    "reward": 135
+  },
+  {
+    "name": "Cartevivore",
+    "mission": "Collectionner 4500 cartes",
+    "reward": 145
+  },
+  {
+    "name": "Boss du binder",
+    "mission": "Collectionner 5000 cartes",
+    "reward": 160
+  },
+  {
+    "name": "Saison complète",
+    "mission": "Collectionner 6000 cartes",
+    "reward": 175
+  },
+  {
+    "name": "Roi de la collec",
+    "mission": "Collectionner 7000 cartes",
+    "reward": 190
+  },
+  {
+    "name": "Dieu des cartes",
+    "mission": "Collectionner 8000 cartes",
+    "reward": 200
+  },
+  {
+    "name": "Collection infinie",
+    "mission": "Collectionner 9000 cartes",
+    "reward": 210
+  },
+  {
+    "name": "Légende vivante",
+    "mission": "Collectionner 10000 cartes",
+    "reward": 220
+  },
+
+  {
+    "name": "Diversité de base",
+    "mission": "Posséder 10 cartes différentes",
+    "reward": 5
+  },
+  {
+    "name": "Petite variété",
+    "mission": "Posséder 20 cartes différentes",
+    "reward": 10
+  },
+  {
+    "name": "Bon éventail",
+    "mission": "Posséder 50 cartes différentes",
+    "reward": 20
+  },
+  {
+    "name": "Deck varié",
+    "mission": "Posséder 100 cartes différentes",
+    "reward": 30
+  },
+  {
+    "name": "Tout un monde",
+    "mission": "Posséder 150 cartes différentes",
+    "reward": 50
+  },
+  {
+    "name": "Saison 1 complète",
+    "mission": "Posséder les 180 cartes de la saison 1",
+    "reward": 100
+  },
+
+  {
+    "name": "Terrain doublé",
+    "mission": "Posséder une carte terrain en double exemplaire",
+    "reward": 5
+  },
+  {
+    "name": "Terrain triplé",
+    "mission": "Posséder une carte terrain en triple exemplaire",
+    "reward": 10
+  },
+  {
+    "name": "Terrain x5",
+    "mission": "Posséder une carte terrain en quintuple exemplaire",
+    "reward": 15
+  },
+
+  {
+    "name": "Commune doublée",
+    "mission": "Posséder une carte commune en double exemplaire",
+    "reward": 5
+  },
+  {
+    "name": "Commune triplée",
+    "mission": "Posséder une carte commune en triple exemplaire",
+    "reward": 10
+  },
+  {
+    "name": "Commune x5",
+    "mission": "Posséder une carte commune en quintuple exemplaire",
+    "reward": 15
+  },
+
+  {
+    "name": "Peu commune doublée",
+    "mission": "Posséder une carte peu commune en double exemplaire",
+    "reward": 10
+  },
+  {
+    "name": "Peu commune triplée",
+    "mission": "Posséder une carte peu commune en triple exemplaire",
+    "reward": 15
+  },
+  {
+    "name": "Peu commune x5",
+    "mission": "Posséder une carte peu commune en quintuple exemplaire",
+    "reward": 20
+  },
+
+  {
+    "name": "Rare doublée",
+    "mission": "Posséder une carte rare en double exemplaire",
+    "reward": 15
+  },
+  {
+    "name": "Rare triplée",
+    "mission": "Posséder une carte rare en triple exemplaire",
+    "reward": 20
+  },
+  {
+    "name": "Rare x5",
+    "mission": "Posséder une carte rare en quintuple exemplaire",
+    "reward": 30
+  },
+
+  {
+    "name": "Holo 1 doublée",
+    "mission": "Posséder une carte Ultra rare holo 1 en double exemplaire",
+    "reward": 30
+  },
+  {
+    "name": "Holo 1 triplée",
+    "mission": "Posséder une carte Ultra rare holo 1 en triple exemplaire",
+    "reward": 40
+  },
+  {
+    "name": "Holo 1 x5",
+    "mission": "Posséder une carte Ultra rare holo 1 en quintuple exemplaire",
+    "reward": 60
+  },
+
+  {
+    "name": "Holo 2 doublée",
+    "mission": "Posséder une carte Ultra rare holo 2 en double exemplaire",
+    "reward": 30
+  },
+  {
+    "name": "Holo 2 triplée",
+    "mission": "Posséder une carte Ultra rare holo 2 en triple exemplaire",
+    "reward": 40
+  },
+  {
+    "name": "Holo 2 x5",
+    "mission": "Posséder une carte Ultra rare holo 2 en quintuple exemplaire",
+    "reward": 60
+  },
+
+  {
+    "name": "Légendaire Bronze x2",
+    "mission": "Posséder une carte Légendaire Bronze (0.80%) en double exemplaire",
+    "reward": 40
+  },
+  {
+    "name": "Légendaire Bronze x3",
+    "mission": "Posséder une carte Légendaire Bronze (0.80%) en triple exemplaire",
+    "reward": 60
+  },
+  {
+    "name": "Légendaire Bronze x5",
+    "mission": "Posséder une carte Légendaire Bronze (0.80%) en quintuple exemplaire",
+    "reward": 80
+  },
+
+  {
+    "name": "Légendaire Argent x2",
+    "mission": "Posséder une carte Légendaire Argent en double exemplaire",
+    "reward": 50
+  },
+  {
+    "name": "Légendaire Argent x3",
+    "mission": "Posséder une carte Légendaire Argent en triple exemplaire",
+    "reward": 70
+  },
+  {
+    "name": "Légendaire Argent x5",
+    "mission": "Posséder une carte Légendaire Argent en quintuple exemplaire",
+    "reward": 90
+  },
+
+  {
+    "name": "Légendaire Or x2",
+    "mission": "Posséder une carte Légendaire Or en double exemplaire",
+    "reward": 70
+  },
+  {
+    "name": "Légendaire Or x3",
+    "mission": "Posséder une carte Légendaire Or en triple exemplaire",
+    "reward": 100
+  },
+  {
+    "name": "Légendaire Or x5",
+    "mission": "Posséder une carte Légendaire Or en quintuple exemplaire",
+    "reward": 150
+  },
+
+  {
+    "name": "Le duo ultime",
+    "mission": "Détenir Laink et Terracid en Légendaire Or",
+    "reward": 250
+  },
+
+  {
+    "name": "Trois clans, un deck",
+    "mission": "Posséder une carte de 3 clans différents",
+    "reward": 20
+  },
+
+  { "name": "Petit pactole", "mission": "Avoir 100 bananes", "reward": 10 },
+  { "name": "Bananier modeste", "mission": "Avoir 200 bananes", "reward": 20 },
+  { "name": "Pile de bananes", "mission": "Avoir 300 bananes", "reward": 30 },
+  { "name": "Sac de bananes", "mission": "Avoir 500 bananes", "reward": 50 },
+  {
+    "name": "Fortune bananière",
+    "mission": "Avoir 1000 bananes",
+    "reward": 100
+  },
+
+  {
+    "name": "Débutant assidu",
+    "mission": "Compléter 5 quêtes quotidiennes",
+    "reward": 10
+  },
+  {
+    "name": "Régulier du jour",
+    "mission": "Compléter 10 quêtes quotidiennes",
+    "reward": 20
+  },
+  {
+    "name": "Habitué des quêtes",
+    "mission": "Compléter 20 quêtes quotidiennes",
+    "reward": 40
+  },
+  {
+    "name": "Pilier quotidien",
+    "mission": "Compléter 50 quêtes quotidiennes",
+    "reward": 100
+  },
+  {
+    "name": "Fidèle absolu",
+    "mission": "Compléter 100 quêtes quotidiennes",
+    "reward": 200
+  }
+]
