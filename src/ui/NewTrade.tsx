@@ -10,14 +10,12 @@ import ProposeTradeButton from "./ProposeTradeButton";
 import TradeAdd from "./TradeAdd";
 
 export interface NormalizedFriendModel {
-  id: number;
-
+  id: string;
   user1_id: number;
   user1_username: string;
   user1_email: string;
   user1_profil_id: string;
   user1_image_path: string;
-
   user2_id: number;
   user2_username: string;
   user2_email: string;
@@ -25,7 +23,11 @@ export interface NormalizedFriendModel {
   user2_image_path: string;
 }
 
-export default function NewTrade() {
+interface NewTradeProps {
+  preselectedFriendId?: string;
+}
+
+export default function NewTrade({ preselectedFriendId }: NewTradeProps) {
   const { user } = useUserContext();
   const userProfilId = user?.profil_id;
   const [friends, setFriends] = useState<NormalizedFriendModel[]>([]);
@@ -43,8 +45,7 @@ export default function NewTrade() {
         const isUser1 = relation.user_profil_id === userProfilId;
 
         return {
-          id: relation.id,
-
+          id: relation.id.toString(),
           user1_id: isUser1 ? relation.user_id : relation.friend_id,
           user1_username: isUser1
             ? relation.user_username
@@ -56,7 +57,6 @@ export default function NewTrade() {
           user1_image_path: isUser1
             ? relation.user_image_path
             : relation.friend_image_path,
-
           user2_id: isUser1 ? relation.friend_id : relation.user_id,
           user2_username: isUser1
             ? relation.friend_username
@@ -74,6 +74,15 @@ export default function NewTrade() {
       setFriends(normalizedFriends);
     });
   }, [userProfilId]);
+
+  useEffect(() => {
+    if (preselectedFriendId && friends.length > 0) {
+      const friend = friends.find((f) => f.id === preselectedFriendId);
+      if (friend) {
+        setSelectedFriend(friend);
+      }
+    }
+  }, [preselectedFriendId, friends]);
 
   if (!userProfilId) {
     return <div>Chargement...</div>;
@@ -96,6 +105,7 @@ export default function NewTrade() {
     setMyCard(null);
     setFriendCard(null);
   };
+
   return (
     <>
       <section>

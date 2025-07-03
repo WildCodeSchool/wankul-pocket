@@ -1,4 +1,4 @@
-export default function Objectifs() {
+export default function Objectives() {
   return (
     <div>
       <h1>Objectifs</h1>
