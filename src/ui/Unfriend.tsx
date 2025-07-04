@@ -41,8 +41,12 @@ export default function Unfriend({ userId }: UnfriendProps) {
 
   return (
     <>
-      <button onClick={handleButtonClick} className={styles.unfriendButton}>
-        <img src="/unfriend.png" alt="Unfriend" />
+      <button
+        onClick={handleButtonClick}
+        type="button"
+        className={styles.unfriendButton}
+      >
+        <img src="/unfriend.png" alt="Unfriend" className={styles.icon} />
       </button>
       {showModal && (
         <div className={styles.overlay}>
@@ -53,8 +57,12 @@ export default function Unfriend({ userId }: UnfriendProps) {
               ) : (
                 <>
                   <p>Confirmer la suppression</p>
-                  <button onClick={handleConfirmUnfriend}>Oui</button>
-                  <button onClick={handleCancel}>Non</button>
+                  <button onClick={handleConfirmUnfriend} type="button">
+                    Oui
+                  </button>
+                  <button onClick={handleCancel} type="button">
+                    Non
+                  </button>
                 </>
               )}
             </div>

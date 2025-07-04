@@ -1,0 +1,135 @@
+.cardImage {
+  height: 100px;
+  border-radius: 4px;
+}
+
+.cardTerrain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0px 35px;
+}
+
+.cardTerrain > * {
+  rotate: 90deg;
+}
+
+.card45 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card30 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card10 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card2_24 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card1_60 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card0_80 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card0_28 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card0_08 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.623);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background-color: none;
+  border-radius: 10px;
+  position: relative;
+  max-width: 600px;
+  max-height: 80%;
+  width: 90%;
+  overflow: auto;
+  border-radius: 25px;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modalTitle {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.795);
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0.5rem;
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.767));
+}
+
+.containerCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: var(--bubbleBorder);
+  background: var(--bodyGradient2);
+  border-radius: 25px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

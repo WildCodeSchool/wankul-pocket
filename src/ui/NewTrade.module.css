@@ -1,0 +1,37 @@
+.none {
+  display: none;
+}
+.searchSection {
+  width: 250px;
+  margin: 0 auto 2rem;
+  position: relative;
+
+  .input {
+    width: 100%;
+    background-color: var(--bodyGradient1);
+    text-align: center;
+    opacity: 1;
+    backdrop-filter: none;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.list {
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  width: 250px;
+  margin: -2rem auto 0;
+  padding-top: 2rem;
+  border-radius: 20px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.friend {
+  transition: 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--bodyGradient2);
+  }
+}

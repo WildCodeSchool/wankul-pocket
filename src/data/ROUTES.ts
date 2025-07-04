@@ -4,11 +4,15 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 const apiRoutes = {
   INFOS: `${apiUrl}/api/infos`,
   USERS: `${apiUrl}/api/users`,
-  PROFILPICTURES: `${apiUrl}/api/profilpictures`,
+  PROFIL_PICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
+  TRADES: (email: string) => `${apiUrl}/api/users/${email}/trades`,
+  TRADES_BY_ID: (email: string) => `${apiUrl}/api/users/${email}/trades/[id]`,
   COLLECTIONS: (email: string) => `${apiUrl}/api/users/${email}/collections`,
   FRIENDS: `${apiUrl}/api/friends`,
+  FRIEND_DETAILS: (friendProfilId: string) =>
+    `${apiUrl}/api/friends/${friendProfilId}/details`,
 };
 
 const appRoutes = {
@@ -20,6 +24,8 @@ const appRoutes = {
   BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
   CARDS: `${appUrl}/cards`,
   CARDS_ID: (id: number) => `${appUrl}/cards/${id}`,
+  COLLECTION: `${apiUrl}/collection`,
+  TRADES: `${apiUrl}/echange`,
 };
 
 export { apiRoutes, appRoutes };

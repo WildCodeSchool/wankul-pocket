@@ -12,6 +12,9 @@ const cards = JSON.parse(fs.readFileSync(cardsPath, "utf-8"));
 const boostersPath = path.join(__dirname, "../src/data/wankulBoosters.json");
 const boosters = JSON.parse(fs.readFileSync(boostersPath, "utf-8"));
 
+const questsPath = path.join(__dirname, "../src/data/wankulQuests.json");
+const quests = JSON.parse(fs.readFileSync(questsPath, "utf-8"));
+
 const seed = async () => {
   try {
     const db = await mysql.createConnection({
@@ -24,9 +27,11 @@ const seed = async () => {
     await db.query("DELETE FROM card");
     await db.query("DELETE FROM booster");
     await db.query("DELETE FROM user");
+    await db.query("DELETE FROM quest");
     await db.query("ALTER TABLE card AUTO_INCREMENT = 1");
     await db.query("ALTER TABLE booster AUTO_INCREMENT = 1");
     await db.query("ALTER TABLE user AUTO_INCREMENT = 1");
+    await db.query("ALTER TABLE quest AUTO_INCREMENT = 1");
 
     for (const { name, image, season, set_name } of boosters) {
       await db.query(
@@ -61,6 +66,13 @@ const seed = async () => {
           quote,
           booster_id,
         ]
+      );
+    }
+
+    for (const { name, mission, reward } of quests) {
+      await db.query(
+        "INSERT INTO quest (name, mission, reward) VALUES (?, ?, ?)",
+        [name, mission, reward]
       );
     }
 

@@ -1,0 +1,74 @@
+.container,
+.containerNoTrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  background: var(--bubbleGradient);
+  border: var(--bubbleBorder);
+  border-radius: 25px;
+  width: 170px;
+  height: 173px;
+}
+
+.containerNoTrade {
+  padding-bottom: 10px;
+}
+
+.trade {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  height: 120px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.144);
+}
+
+.title,
+.titleNoTrade {
+  position: relative;
+  bottom: -147px;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  background: #6c81e0;
+  border-radius: 25px;
+  width: 100px;
+  z-index: 10;
+}
+
+.titleNoTrade {
+  bottom: -130px;
+}
+
+.notification {
+  position: relative;
+  top: -7px;
+  margin: 0 auto;
+}
+
+.cardsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.tradeIcon {
+  position: relative;
+  margin: 0 -15px;
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  border-radius: 50%;
+}
