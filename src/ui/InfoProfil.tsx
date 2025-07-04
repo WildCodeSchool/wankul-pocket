@@ -10,7 +10,6 @@ import { UserModel } from "@/model/UserModel";
 
 export default function EditProfils() {
   const userContext = useUserContext();
-  console.log(userContext);
   const [tempName, setTempName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 

@@ -1,7 +1,6 @@
 import { userMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { UserModel } from "@/model/UserModel";
-import { Update } from "next/dist/build/swc/types";
 import { NextResponse } from "next/server";
 
 interface UpdateResult {
@@ -58,7 +57,7 @@ export async function PATCH(req: Request) {
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
-        { error: userMessages.notFound || "Echange non trouvé" },
+        { error: userMessages.notFound || "Utilisateur non trouvé" },
         { status: 404 }
       );
     }

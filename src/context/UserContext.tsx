@@ -83,10 +83,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   }, [session, status]);
 
   return (
-    <UserContext.Provider
+    <UserContext
       value={{ user, setUser, updateUserBananas, updateProfilePicture }}
     >
       {children}
-    </UserContext.Provider>
+    </UserContext>
   );
 }

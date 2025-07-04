@@ -1,6 +1,5 @@
 import { apiRoutes } from "@/data/ROUTES";
 import { userMessages } from "@/data/responseMessages";
-import { UserModel } from "@/model/UserModel";
 
 interface UpdateProfilPicture {
   profil_picture_id: number | null;
@@ -21,7 +20,7 @@ export async function updateProfilPicture(
   });
 
   if (res.status === 404) {
-    throw new Error(userMessages.notFound || "Info non trouvée");
+    throw new Error(userMessages.notFound || "Image non trouvée");
   }
 
   if (!res.ok) {

@@ -5,13 +5,6 @@ import { useRouter } from "next/navigation";
 import styles from "@/ui/ChoiceAvatar.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
-import { UserModel } from "@/model/UserModel";
-import { updateProfilPicture } from "@/lib/user/updateProfilPic";
-
-interface UpdateProfilPicture {
-  profil_picture_id: number | null;
-  email: string | undefined;
-}
 
 type Props = { avatarList: ProfilPictureModel[] };
 
@@ -22,11 +15,13 @@ export default function ChoiceAvatar({ avatarList }: Props) {
   const [selectedAvatar, setSelectedAvatar] = useState(
     () => user?.profil_picture_url || ""
   );
-  const [selectedAvatarId, setSelectedAvatarId] = useState<number>(1);
+  const [selectedAvatarId, setSelectedAvatarId] = useState(
+    () => user?.profil_picture_id || 0
+  );
 
   async function handleValidate() {
     try {
-      updateProfilePicture(selectedAvatarId, selectedAvatar);
+      await updateProfilePicture(selectedAvatarId, selectedAvatar);
       router.push("/profil");
     } catch (error) {
       console.error("Erreur lors de la mise à jour de l'avatar :", error);
@@ -47,9 +42,8 @@ export default function ChoiceAvatar({ avatarList }: Props) {
             key={avatar.id}
             className={styles.avatarImage}
             src={avatar.image_path}
-            alt="avatar"
+            alt={"avatar"}
             onClick={() => {
-              console.log("Avatar sélectionné :", avatar.image_path);
               setSelectedAvatarId(avatar.id);
               setSelectedAvatar(avatar.image_path);
             }}
