@@ -4,6 +4,7 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 const apiRoutes = {
   INFOS: `${apiUrl}/api/infos`,
   USERS: `${apiUrl}/api/users`,
+  UPDATE_USER: (email: string) => `${apiUrl}/api/users/${email}`,
   PROFIL_PICTURES: `${apiUrl}/api/profilpictures`,
   BOOSTERS: `${apiUrl}/api/boosters`,
   CARDS: `${apiUrl}/api/cards`,
