@@ -12,8 +12,8 @@ export default function SentTrade({ trade }: SentTradeProps) {
     <section className={styles.container}>
       <div className={styles.topSection}>
         <Image
-          src={trade.from_user_avatar}
-          alt={trade.from_username}
+          src={trade.to_user_avatar}
+          alt={trade.to_username}
           height={50}
           width={50}
         />
