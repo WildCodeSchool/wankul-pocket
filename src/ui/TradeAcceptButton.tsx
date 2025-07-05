@@ -5,11 +5,12 @@ import { addToCollection } from "@/lib/openBooster/addToCollection";
 import { TradeModel } from "@/model/TradeModel";
 import { editCollection, editOne } from "@/service/TradeService";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
+  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AcceptedTradeModel {
@@ -18,9 +19,11 @@ interface AcceptedTradeModel {
   acceptance: boolean;
 }
 
-export const TradeAcceptButton = ({ trade }: ProposedTradeProps) => {
-  const router = useRouter();
-
+export const TradeAcceptButton = ({
+  trade,
+  setIsClicked,
+  setIsAccepted,
+}: ProposedTradeProps) => {
   const handleAccept = async () => {
     const {
       from_user_email,
@@ -58,16 +61,10 @@ export const TradeAcceptButton = ({ trade }: ProposedTradeProps) => {
         addToCollection(from_user_email, [requested_card_id]),
       ]);
       await editOne(to_user_email, acceptedTrade);
-      router.refresh();
-    } catch (error: any | unknown) {
-      console.error("Erreur pendant l'acceptation de l'échange :", error);
-      if (error.response) {
-        console.error("Réponse serveur :", error.response.data);
-      } else if (error.request) {
-        console.error("Aucune réponse reçue :", error.request);
-      } else {
-        console.error("Erreur inconnue :", error.message);
-      }
+      setIsAccepted(true);
+      setIsClicked(true);
+    } catch (error) {
+      console.error("Erreur lors de l'acceptation de l'échange :", error);
     }
   };
 

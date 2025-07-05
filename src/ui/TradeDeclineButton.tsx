@@ -3,11 +3,12 @@
 import { TradeModel } from "@/model/TradeModel";
 import { editOne } from "@/service/TradeService";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
+  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDeclined: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface RefusedTradeModel {
@@ -16,8 +17,11 @@ interface RefusedTradeModel {
   acceptance: boolean;
 }
 
-export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
-  const router = useRouter();
+export const TradeDeclineButton = ({
+  trade,
+  setIsClicked,
+  setIsDeclined,
+}: ProposedTradeProps) => {
   const handleDecline = async () => {
     try {
       const { id: tradeId, to_user_email } = trade;
@@ -27,7 +31,8 @@ export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
         acceptance: false,
       };
       await editOne(to_user_email, refusedTrade);
-      router.refresh();
+      setIsDeclined(true);
+      setIsClicked(true);
     } catch (error) {
       console.error("Erreur lors du refus de l'échange :", error);
     }

@@ -1,6 +1,9 @@
 import { apiRoutes } from "@/data/ROUTES";
 
-export async function addToCollection(emailID: string, cardIds: number[]) {
+export async function addToCollection(
+  emailID: string,
+  cardIds: (number | undefined)[]
+) {
   const res = await fetch(apiRoutes.COLLECTIONS(emailID), {
     method: "POST",
     headers: {
