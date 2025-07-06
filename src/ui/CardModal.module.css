@@ -1,8 +1,8 @@
 .modal {
   position: absolute;
-  top: var(--headerHeight);
+  top: calc(var(--headerHeight) - 2px);
   left: 0;
-  height: var(--pageHeight);
+  height: calc(var(--pageHeight) + 4px);
   width: 100%;
   background-color: var(--modalBackground);
   z-index: 10;
