@@ -35,7 +35,7 @@ export async function GET(
     const values: string[] = [];
 
     if (type === "received") {
-      query += " AND u2.email = ?";
+      query += " AND u2.email = ? AND e.acceptance IS NULL";
     } else if (type === "sent") {
       query += " AND u1.email = ?";
     } else {

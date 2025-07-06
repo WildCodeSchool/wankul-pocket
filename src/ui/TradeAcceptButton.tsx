@@ -3,6 +3,7 @@
 import { UpdatedCard } from "@/lib/collection/patchCollection";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
 import { TradeModel } from "@/model/TradeModel";
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editCollection, editOne } from "@/service/TradeService";
 import Image from "next/image";
 import styles from "./TradeButton.module.css";
@@ -13,12 +14,6 @@ interface ProposedTradeProps {
   setIsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
   setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
   setShowAcceptedContent: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface AcceptedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
 }
 
 export const TradeAcceptButton = ({
@@ -49,9 +44,9 @@ export const TradeAcceptButton = ({
       quantity: requested_card_quantity - 1,
     };
 
-    const acceptedTrade: AcceptedTradeModel = {
+    const acceptedTrade: UpdatedTradeModel = {
       id: tradeId,
-      status: false,
+      status: true,
       acceptance: true,
     };
 

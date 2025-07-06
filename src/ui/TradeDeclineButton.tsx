@@ -1,6 +1,7 @@
 "use client";
 
 import { TradeModel } from "@/model/TradeModel";
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editOne } from "@/service/TradeService";
 import Image from "next/image";
 import styles from "./TradeButton.module.css";
@@ -13,12 +14,6 @@ interface ProposedTradeProps {
   setShowDeclinedContent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface RefusedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
-}
-
 export const TradeDeclineButton = ({
   trade,
   setIsClicked,
@@ -29,9 +24,9 @@ export const TradeDeclineButton = ({
   const handleDecline = async () => {
     try {
       const { id: tradeId, to_user_email } = trade;
-      const refusedTrade: RefusedTradeModel = {
+      const refusedTrade: UpdatedTradeModel = {
         id: tradeId,
-        status: false,
+        status: true,
         acceptance: false,
       };
       await editOne(to_user_email, refusedTrade);
