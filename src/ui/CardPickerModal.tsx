@@ -3,6 +3,7 @@ import { getCollection } from "@/service/CollectionService";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./CardPickerModal.module.css";
+import Loader from "./Loader";
 
 type Props = {
   email: string;
@@ -40,7 +41,7 @@ export default function CardPickerModal({
       <h3>Cartes éligibles à un échange :</h3>
 
       {loading ? (
-        <p>Chargement...</p>
+        <Loader />
       ) : tradableCards.length === 0 ? (
         <p className={styles.noCard}>
           Aucune carte de rareté équivalente trouvée pour procéder à un échange

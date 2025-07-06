@@ -60,13 +60,51 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
 
       {isAccepted && (
         <section className={styles.container}>
-          <p>Echange accepté!</p>
+          <div className={styles.topSection}>
+            <Image
+              src={trade.from_user_avatar}
+              alt={trade.from_username}
+              height={50}
+              width={50}
+            />
+            <h3>Echange effectué avec {trade.from_username} !</h3>
+          </div>
+          <div className={styles.cardsSection}>
+            <div className={styles.cardContainer}>
+              <Image
+                src={trade.offered_card_img}
+                alt="Carte obtenue"
+                height={168}
+                width={120}
+              />
+              <p>Carte obtenue</p>
+            </div>
+            <Image
+              src={"/tradeIcon.png"}
+              alt="Echange"
+              height={30}
+              width={30}
+            />
+            <div className={styles.cardContainer}>
+              <Image
+                src={trade.requested_card_img}
+                alt="Carte donnée"
+                height={168}
+                width={120}
+              />
+              <p>Carte donnée</p>
+            </div>
+          </div>
         </section>
       )}
 
       {isDeclined && (
         <section className={styles.container}>
-          <p>Echange Refusé!</p>
+          <h3>Echange Refusé!</h3>
+          <p>
+            Peut-être une amitié de gâchée mais tu conserves ta carte, et
+            c&apos;est bien ça le plus important!
+          </p>
         </section>
       )}
 
