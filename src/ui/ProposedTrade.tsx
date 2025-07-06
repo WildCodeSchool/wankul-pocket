@@ -16,10 +16,18 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [isAccepted, setIsAccepted] = useState<boolean>(false);
   const [isDeclined, setIsDeclined] = useState<boolean>(false);
+  const [hideContent, setHideContent] = useState(false);
+  const [showAcceptedContent, setShowAcceptedContent] = useState(false);
+  const [showDeclinedContent, setShowDeclinedContent] = useState(false);
+
   return (
     <>
       {!isAccepted && !isDeclined && (
-        <section className={styles.container}>
+        <section
+          className={`${styles.container} ${styles.fade} ${
+            hideContent ? styles.fadeOut : ""
+          }`}
+        >
           <div className={styles.topSection}>
             <Image
               src={trade.from_user_avatar}
@@ -59,7 +67,11 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
       )}
 
       {isAccepted && (
-        <section className={styles.container}>
+        <section
+          className={`${styles.container} ${
+            showAcceptedContent ? styles.fadeIn : ""
+          }`}
+        >
           <div className={styles.topSection}>
             <Image
               src={trade.from_user_avatar}
@@ -99,7 +111,11 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
       )}
 
       {isDeclined && (
-        <section className={styles.container}>
+        <section
+          className={`${styles.container} ${
+            showDeclinedContent ? styles.fadeIn : ""
+          }`}
+        >
           <h3>Echange Refusé!</h3>
           <p>
             Peut-être une amitié de gâchée mais tu conserves ta carte, et
@@ -109,20 +125,32 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
       )}
 
       {!isClicked ? (
-        <div className={styles.buttonSection}>
+        <div
+          className={`${styles.buttonSection} ${styles.fade} ${
+            hideContent ? styles.fadeOut : ""
+          }`}
+        >
           <TradeAcceptButton
             trade={trade}
             setIsClicked={setIsClicked}
             setIsAccepted={setIsAccepted}
+            setHideContent={setHideContent}
+            setShowAcceptedContent={setShowAcceptedContent}
           />
           <TradeDeclineButton
             trade={trade}
             setIsClicked={setIsClicked}
             setIsDeclined={setIsDeclined}
+            setHideContent={setHideContent}
+            setShowDeclinedContent={setShowDeclinedContent}
           />
         </div>
       ) : (
-        <div className={styles.buttonSection}>
+        <div
+          className={`${styles.buttonSection} ${
+            showDeclinedContent || showAcceptedContent ? styles.fadeIn : ""
+          }`}
+        >
           <TradeContinueButton />
         </div>
       )}

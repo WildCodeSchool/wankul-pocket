@@ -11,6 +11,8 @@ interface ProposedTradeProps {
   trade: TradeModel;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   setIsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
+  setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAcceptedContent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AcceptedTradeModel {
@@ -23,6 +25,8 @@ export const TradeAcceptButton = ({
   trade,
   setIsClicked,
   setIsAccepted,
+  setHideContent,
+  setShowAcceptedContent,
 }: ProposedTradeProps) => {
   const handleAccept = async () => {
     const {
@@ -61,8 +65,12 @@ export const TradeAcceptButton = ({
         addToCollection(from_user_email, [requested_card_id]),
       ]);
       await editOne(to_user_email, acceptedTrade);
-      setIsAccepted(true);
-      setIsClicked(true);
+      setHideContent(true);
+      setTimeout(() => {
+        setIsAccepted(true);
+        setShowAcceptedContent(true);
+        setIsClicked(true);
+      }, 400);
     } catch (error) {
       console.error("Erreur lors de l'acceptation de l'échange :", error);
     }
