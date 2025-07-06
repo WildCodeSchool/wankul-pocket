@@ -27,7 +27,7 @@ export default function SentTrade({ trade }: SentTradeProps) {
             height={168}
             width={120}
           />
-          <p>Votre carte</p>
+          <p>Ta carte</p>
         </div>
         <Image src={"/tradeIcon.png"} alt="Echange" height={30} width={30} />
         <div className={styles.cardContainer}>
