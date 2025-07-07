@@ -8,19 +8,10 @@ import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
-  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsDeclined: React.Dispatch<React.SetStateAction<boolean>>;
-  setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowDeclinedContent: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: React.Dispatch<{ type: "DECLINE" }>;
 }
 
-export const TradeDeclineButton = ({
-  trade,
-  setIsClicked,
-  setIsDeclined,
-  setHideContent,
-  setShowDeclinedContent,
-}: ProposedTradeProps) => {
+export const TradeDeclineButton = ({ trade, dispatch }: ProposedTradeProps) => {
   const handleDecline = async () => {
     try {
       const { id: tradeId, to_user_email } = trade;
@@ -30,12 +21,7 @@ export const TradeDeclineButton = ({
         acceptance: false,
       };
       await editOne(to_user_email, refusedTrade);
-      setHideContent(true);
-      setTimeout(() => {
-        setIsDeclined(true);
-        setShowDeclinedContent(true);
-        setIsClicked(true);
-      }, 400);
+      dispatch({ type: "DECLINE" });
     } catch (error) {
       console.error("Erreur lors du refus de l'échange :", error);
     }

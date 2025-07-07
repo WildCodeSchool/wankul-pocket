@@ -10,19 +10,10 @@ import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
-  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
-  setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowAcceptedContent: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: React.Dispatch<{ type: "ACCEPT" }>;
 }
 
-export const TradeAcceptButton = ({
-  trade,
-  setIsClicked,
-  setIsAccepted,
-  setHideContent,
-  setShowAcceptedContent,
-}: ProposedTradeProps) => {
+export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
   const handleAccept = async () => {
     const {
       from_user_email,
@@ -60,12 +51,7 @@ export const TradeAcceptButton = ({
         addToCollection(from_user_email, [requested_card_id]),
       ]);
       await editOne(to_user_email, acceptedTrade);
-      setHideContent(true);
-      setTimeout(() => {
-        setIsAccepted(true);
-        setShowAcceptedContent(true);
-        setIsClicked(true);
-      }, 400);
+      dispatch({ type: "ACCEPT" });
     } catch (error) {
       console.error("Erreur lors de l'acceptation de l'échange :", error);
     }
