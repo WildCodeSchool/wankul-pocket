@@ -2,6 +2,7 @@ import { deleteUser } from "@/lib/user/deleteUser";
 import { getOne } from "@/lib/user/getUser";
 import { getUsers } from "@/lib/user/getUsers";
 import { patchUser } from "@/lib/user/patchUser";
+import { getUserQuestsProgress } from "@/lib/user/getUserQuestProgress";
 import { UserModel } from "@/model/UserModel";
 import { db } from "@/lib/db";
 
@@ -28,6 +29,12 @@ export async function getUserIdByEmail(email: string): Promise<number | null> {
     return null;
   }
   return result[0].id;
+}
+
+export async function getUserQuestsStats(
+  user: UserModel
+): Promise<{ message: string }> {
+  return getUserQuestsProgress(user);
 }
 
 // EVERYTHING THAT'S RELATED TO USER BANANAS //

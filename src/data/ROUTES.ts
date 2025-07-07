@@ -14,6 +14,7 @@ const apiRoutes = {
   FRIEND_DETAILS: (friendProfilId: string) =>
     `${apiUrl}/api/friends/${friendProfilId}/details`,
   QUESTS: `${apiUrl}/api/quests`,
+  QUESTS_PROGRESS: (email: string) => `${apiUrl}/api/users/${email}/quests`,
 };
 
 const appRoutes = {
