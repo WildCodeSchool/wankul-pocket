@@ -1,33 +1,27 @@
 "use client";
 
 import { TradeModel } from "@/model/TradeModel";
+import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editOne } from "@/service/TradeService";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import styles from "./TradeButton.module.css";
 
 interface ProposedTradeProps {
   trade: TradeModel;
+  dispatch: React.Dispatch<{ type: "DECLINE" }>;
 }
 
-interface RefusedTradeModel {
-  id: number;
-  status: boolean;
-  acceptance: boolean;
-}
-
-export const TradeDeclineButton = ({ trade }: ProposedTradeProps) => {
-  const router = useRouter();
+export const TradeDeclineButton = ({ trade, dispatch }: ProposedTradeProps) => {
   const handleDecline = async () => {
     try {
       const { id: tradeId, to_user_email } = trade;
-      const refusedTrade: RefusedTradeModel = {
+      const refusedTrade: UpdatedTradeModel = {
         id: tradeId,
-        status: false,
+        status: true,
         acceptance: false,
       };
       await editOne(to_user_email, refusedTrade);
-      router.refresh();
+      dispatch({ type: "DECLINE" });
     } catch (error) {
       console.error("Erreur lors du refus de l'échange :", error);
     }
