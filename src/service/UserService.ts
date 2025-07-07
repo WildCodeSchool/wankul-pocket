@@ -4,6 +4,7 @@ import { getUsers } from "@/lib/user/getUsers";
 import { patchUser } from "@/lib/user/patchUser";
 import { UserModel } from "@/model/UserModel";
 import { db } from "@/lib/db";
+import { updateProfilPicture } from "@/lib/user/updateProfilPic";
 
 export async function getall() {
   return getUsers();
@@ -95,15 +96,10 @@ export async function updateUserProfilePicture({
   email: string;
   profil_picture_id: number;
 }) {
-  const res = await fetch("/api/profil", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, profil_picture_id }),
-  });
-
-  if (!res.ok) {
-    throw new Error("Erreur lors de la mise à jour de l'avatar");
+  try {
+    await updateProfilPicture({ email, profil_picture_id });
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de l'avatar :", error);
+    throw new Error("Impossible de mettre à jour l'avatar de l'utilisateur.");
   }
 }

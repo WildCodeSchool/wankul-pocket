@@ -6,38 +6,39 @@ import styles from "@/ui/ChoiceAvatar.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
 import { updateProfilPicture } from "@/lib/user/updateProfilPic";
+import { UserModel } from "@/model/UserModel";
 
 type Props = { avatarList: ProfilPictureModel[] };
 
 export default function ChoiceAvatar({ avatarList }: Props) {
   const { user, setUser } = useUserContext();
   const router = useRouter();
-  const userMail = user?.email;
 
-  const [selectedAvatar, setSelectedAvatar] = useState(
-    () => user?.profil_picture_url || ""
-  );
-  const [selectedAvatarId, setSelectedAvatarId] = useState(
-    () => user?.profil_picture_id || 0
-  );
+  const [selectedAvatar, setSelectedAvatar] = useState<{
+    id: number;
+    url: string;
+  }>({
+    id: user?.profil_picture_id ?? 0,
+    url: user?.profil_picture_url ?? "",
+  });
 
   async function handleValidate() {
-    if (!userMail) return;
+    if (!user?.email) return;
 
     try {
       await updateProfilPicture({
-        email: userMail,
-        profil_picture_id: selectedAvatarId,
+        email: user.email,
+        profil_picture_id: selectedAvatar.id,
       });
 
       setUser((prevUser) => {
-        if (!prevUser) return prevUser;
+        if (!prevUser) return null;
 
         return {
           ...prevUser,
-          profil_picture_id: selectedAvatarId,
-          profil_picture_url: selectedAvatar,
-        } as typeof prevUser;
+          profil_picture_id: selectedAvatar.id,
+          profil_picture_url: selectedAvatar.url,
+        } as UserModel;
       });
 
       router.push("/profil");
@@ -50,7 +51,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img src={selectedAvatar} alt="Avatar sélectionné" />
+          <img src={selectedAvatar.url} alt="Avatar sélectionné" />
         </div>
       </div>
 
@@ -61,10 +62,12 @@ export default function ChoiceAvatar({ avatarList }: Props) {
             className={styles.avatarImage}
             src={avatar.image_path}
             alt="avatar"
-            onClick={() => {
-              setSelectedAvatarId(avatar.id);
-              setSelectedAvatar(avatar.image_path);
-            }}
+            onClick={() =>
+              setSelectedAvatar({
+                id: avatar.id,
+                url: avatar.image_path,
+              })
+            }
           />
         ))}
       </div>
