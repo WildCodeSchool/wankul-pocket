@@ -88,3 +88,22 @@ export async function deductBananas(
     throw new Error("Impossible de déduire les bananes de l'utilisateur.");
   }
 }
+export async function updateUserProfilePicture({
+  email,
+  profil_picture_id,
+}: {
+  email: string;
+  profil_picture_id: number;
+}) {
+  const res = await fetch("/api/profil", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, profil_picture_id }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Erreur lors de la mise à jour de l'avatar");
+  }
+}

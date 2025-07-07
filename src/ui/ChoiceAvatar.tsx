@@ -5,13 +5,15 @@ import { useRouter } from "next/navigation";
 import styles from "@/ui/ChoiceAvatar.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
+import { updateProfilPicture } from "@/lib/user/updateProfilPic";
 
 type Props = { avatarList: ProfilPictureModel[] };
 
 export default function ChoiceAvatar({ avatarList }: Props) {
-  const { user, updateProfilePicture } = useUserContext();
+  const { user, setUser } = useUserContext();
   const router = useRouter();
   const userMail = user?.email;
+
   const [selectedAvatar, setSelectedAvatar] = useState(
     () => user?.profil_picture_url || ""
   );
@@ -20,8 +22,24 @@ export default function ChoiceAvatar({ avatarList }: Props) {
   );
 
   async function handleValidate() {
+    if (!userMail) return;
+
     try {
-      await updateProfilePicture(selectedAvatarId, selectedAvatar);
+      await updateProfilPicture({
+        email: userMail,
+        profil_picture_id: selectedAvatarId,
+      });
+
+      setUser((prevUser) => {
+        if (!prevUser) return prevUser;
+
+        return {
+          ...prevUser,
+          profil_picture_id: selectedAvatarId,
+          profil_picture_url: selectedAvatar,
+        } as typeof prevUser;
+      });
+
       router.push("/profil");
     } catch (error) {
       console.error("Erreur lors de la mise à jour de l'avatar :", error);
@@ -32,7 +50,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img src={`${selectedAvatar}`} alt="Avatar sélectionné" />
+          <img src={selectedAvatar} alt="Avatar sélectionné" />
         </div>
       </div>
 
@@ -42,7 +60,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
             key={avatar.id}
             className={styles.avatarImage}
             src={avatar.image_path}
-            alt={"avatar"}
+            alt="avatar"
             onClick={() => {
               setSelectedAvatarId(avatar.id);
               setSelectedAvatar(avatar.image_path);
