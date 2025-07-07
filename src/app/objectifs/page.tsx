@@ -1,9 +1,12 @@
-export default function Objectives() {
+import { getAll } from "@/service/QuestService";
+import DisplayQuests from "@/ui/DisplayQuests";
+
+export default async function Quests() {
+  const quests = await getAll();
+
   return (
     <div>
-      <h1>Objectifs</h1>
-      <p>Bienvenue sur la page des objectifs !</p>
-      <p>Cette page est dédiée à la gestion de vos objectifs.</p>
+      <DisplayQuests quests={quests} />
     </div>
   );
 }

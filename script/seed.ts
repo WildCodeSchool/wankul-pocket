@@ -69,10 +69,26 @@ const seed = async () => {
       );
     }
 
-    for (const { name, mission, reward } of quests) {
+    for (const {
+      name,
+      mission,
+      reward,
+      category,
+      goal_target,
+      goal_quantity,
+      quest_type,
+    } of quests) {
       await db.query(
-        "INSERT INTO quest (name, mission, reward) VALUES (?, ?, ?)",
-        [name, mission, reward]
+        "INSERT INTO quest (name, mission, reward, category, goal_target, goal_quantity, quest_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [
+          name,
+          mission,
+          reward,
+          category,
+          goal_target,
+          goal_quantity,
+          quest_type,
+        ]
       );
     }
 

@@ -13,6 +13,7 @@ const apiRoutes = {
   FRIENDS: `${apiUrl}/api/friends`,
   FRIEND_DETAILS: (friendProfilId: string) =>
     `${apiUrl}/api/friends/${friendProfilId}/details`,
+  QUESTS: `${apiUrl}/api/quests`,
 };
 
 const appRoutes = {
@@ -24,8 +25,9 @@ const appRoutes = {
   BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
   CARDS: `${appUrl}/cards`,
   CARDS_ID: (id: number) => `${appUrl}/cards/${id}`,
-  COLLECTION: `${apiUrl}/collection`,
-  TRADES: `${apiUrl}/echange`,
+  COLLECTION: `${appUrl}/collection`,
+  TRADES: `${appUrl}/echange`,
+  QUESTS: `${appUrl}/objectifs`,
 };
 
 export { apiRoutes, appRoutes };
