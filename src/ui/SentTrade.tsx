@@ -14,14 +14,14 @@ interface SentTradeProps {
 
 export default function SentTrade({ trade }: SentTradeProps) {
   const router = useRouter();
-  const handleAccepted = () => {
+  const handleAccepted = async () => {
     const acceptedTrade: UpdatedTradeModel = {
       id: trade.id,
       status: false,
       acceptance: true,
     };
     const to_user_email = trade.to_user_email;
-    editOne(to_user_email, acceptedTrade);
+    await editOne(to_user_email, acceptedTrade);
     router.refresh();
   };
   const handleDeclined = () => {
