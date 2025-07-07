@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useTransition } from "react";
 import { getFriendDetails } from "@/lib/friends/getFriendDetails";
 import styles from "./FriendDetail.module.css";
 import { CardsModel } from "@/model/CardsModel";
@@ -20,7 +20,8 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   const [friendDetails, setFriendDetails] = useState<FriendDetails | null>(
     null
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -28,18 +29,20 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   useEffect(() => {
     if (!friendProfilId || !isModalOpen) return;
 
-    setIsLoading(true);
-    getFriendDetails(friendProfilId)
-      .then((data) => {
+    setHasLoaded(false);
+    setFriendDetails(null);
+
+    startTransition(async () => {
+      try {
+        const data = await getFriendDetails(friendProfilId);
         setFriendDetails(data || null);
-      })
-      .catch((error) => {
+        setHasLoaded(true);
+      } catch (error) {
         console.error("Error fetching friend details:", error);
         setFriendDetails(null);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+        setHasLoaded(true);
+      }
+    });
   }, [friendProfilId, isModalOpen]);
 
   const cardsByRarity =
@@ -59,7 +62,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
               ×
             </button>
 
-            {isLoading ? (
+            {isPending ? (
               <div className={styles.modalContent}>
                 <Loader />
               </div>
@@ -94,11 +97,11 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
                   ))}
                 </div>
               </div>
-            ) : (
+            ) : hasLoaded ? (
               <div className={styles.modalContent}>
                 <p>Votre ami n'a encore aucune carte à sa collection</p>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       )}

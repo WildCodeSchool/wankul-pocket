@@ -1,5 +1,5 @@
 import styles from "./InfoDroprate.module.css";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { CardsModel } from "@/model/CardsModel";
 import Loader from "@/ui/Loader";
 
@@ -17,7 +17,7 @@ const RARITY_STYLES: { [key: string]: string } = {
 
 export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const cardsByRarity = cards.reduce((acc, card) => {
     const rarity = card.rarity;
@@ -29,11 +29,24 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
   }, {} as { [key: string]: CardsModel[] });
 
   const handleOpen = () => {
-    setIsLoading(true);
     setIsOpen(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
+
+    startTransition(async () => {
+      const imagePromises = cards.map((card) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = card.image_path;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+      } catch (error) {
+        console.error("Erreur lors du chargement des cartes:", error);
+      }
+    });
   };
 
   return (
@@ -49,7 +62,7 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
               ✖
             </button>
             <div className={styles.modalContent}>
-              {isLoading ? (
+              {isPending ? (
                 <div className={styles.loader}>
                   <Loader />
                 </div>
