@@ -1,7 +1,7 @@
 import { CardsModel } from "@/model/CardsModel";
 import { getCollection } from "@/service/CollectionService";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import styles from "./CardPickerModal.module.css";
 import Loader from "./Loader";
 
@@ -19,17 +19,17 @@ export default function CardPickerModal({
   rarity,
 }: Props) {
   const [cards, setCards] = useState<CardsModel[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const tradableCards = cards.filter((card) => card.quantity > 1);
 
   useEffect(() => {
-    const fetchCards = async () => {
-      const data = await getCollection(email, { rarity });
-      setCards(data);
-      setLoading(false);
-    };
+    if (!email) return;
 
-    if (email) fetchCards();
+    startTransition(async () => {
+      await getCollection(email, { rarity }).then((data) => {
+        setCards(data);
+      });
+    });
   }, [email, rarity]);
 
   return (
@@ -40,7 +40,7 @@ export default function CardPickerModal({
       <h2>Sélectionne une carte</h2>
       <h3>Cartes éligibles à un échange :</h3>
 
-      {loading ? (
+      {isPending ? (
         <Loader />
       ) : tradableCards.length === 0 ? (
         <p className={styles.noCard}>

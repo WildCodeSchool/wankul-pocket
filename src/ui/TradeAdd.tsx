@@ -1,8 +1,9 @@
 import { CardsModel } from "@/model/CardsModel";
+import { NormalizedFriendModel } from "@/model/NormalizedFriendModel";
 import Image from "next/image";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import CardPickerModal from "./CardPickerModal";
-import { NormalizedFriendModel } from "./NewTrade";
+import Loader from "./Loader";
 import styles from "./TradeAdd.module.css";
 
 type TradeAddProps = {
@@ -91,18 +92,20 @@ export default function TradeAdd({
         </div>
       </section>
       {isModalOpen && (
-        <CardPickerModal
-          onClose={() => setIsModalOpen(null)}
-          email={isModalOpen === "mine" ? userEmail : friendEmail}
-          rarity={
-            isModalOpen === "friend" ? myCard?.rarity : friendCard?.rarity
-          }
-          onSelect={(card) => {
-            if (isModalOpen === "mine") setMyCard(card);
-            else setFriendCard(card);
-            setIsModalOpen(null);
-          }}
-        />
+        <Suspense fallback={<Loader />}>
+          <CardPickerModal
+            onClose={() => setIsModalOpen(null)}
+            email={isModalOpen === "mine" ? userEmail : friendEmail}
+            rarity={
+              isModalOpen === "friend" ? myCard?.rarity : friendCard?.rarity
+            }
+            onSelect={(card) => {
+              if (isModalOpen === "mine") setMyCard(card);
+              else setFriendCard(card);
+              setIsModalOpen(null);
+            }}
+          />
+        </Suspense>
       )}
     </>
   );
