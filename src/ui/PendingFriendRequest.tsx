@@ -7,6 +7,7 @@ import { useUserContext } from "@/context/UserContext";
 import styles from "./PendingFriendRequest.module.css";
 import { AcceptFriendRequestButton } from "./AcceptFriendRequestButton";
 import { RefuseFriendRequestButton } from "./RefuseFriendRequestButton";
+import Loader from "@/ui/Loader";
 
 export function PendingFriendRequest() {
   const [requests, setRequests] = useState<FriendsModel[]>([]);
@@ -33,7 +34,7 @@ export function PendingFriendRequest() {
   return (
     <div className={styles.container}>
       {loading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         Array.isArray(requests) &&
         requests.length > 0 && (

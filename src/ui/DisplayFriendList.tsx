@@ -8,19 +8,34 @@ import { FriendDetail } from "./FriendDetail";
 import styles from "./DisplayFriendList.module.css";
 import Unfriend from "./Unfriend";
 import TradeFromFriendList from "./TradeFromFriendList";
+import Loader from "./Loader";
 
 export default function DisplayFriendList() {
   const { user } = useUserContext();
   const userProfilId = user?.profil_id;
   const [friends, setFriends] = useState<FriendsModel[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!userProfilId) return;
-    getEveryFriends(userProfilId).then(setFriends);
+
+    setIsLoading(true);
+    getEveryFriends(userProfilId)
+      .then(setFriends)
+      .catch((error) => {
+        console.error("Error fetching friends:", error);
+        setFriends([]);
+      })
+      .finally(() => setIsLoading(false));
   }, [userProfilId]);
 
-  if (!userProfilId) {
-    return <div>User not found</div>;
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <h2>Liste d'amis</h2>
+        <Loader />
+      </div>
+    );
   }
 
   return (
