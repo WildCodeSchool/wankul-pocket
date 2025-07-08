@@ -15,7 +15,6 @@ const apiRoutes = {
     `${apiUrl}/api/friends/${friendProfilId}/details`,
   QUESTS: `${apiUrl}/api/quests`,
   QUESTS_PROGRESS: (email: string) => `${apiUrl}/api/users/${email}/quests`,
-  ADD_BANANAS: (email: string) => `${apiUrl}/api/users/${email}/addBananas`,
   ADD_COMPLETED_QUEST: (email: string) =>
     `${apiUrl}/api/users/${email}/quest-completions`,
   QUESTS_BY_ID: (email: string) =>

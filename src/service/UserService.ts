@@ -4,7 +4,6 @@ import { getUsers } from "@/lib/user/getUsers";
 import { patchUser } from "@/lib/user/patchUser";
 import { UserModel } from "@/model/UserModel";
 import { db } from "@/lib/db";
-import { addBananas } from "@/lib/user/addBananas";
 
 export async function getall() {
   return getUsers();
@@ -88,8 +87,4 @@ export async function deductBananas(
     console.error("Erreur lors de la déduction des bananes :", error);
     throw new Error("Impossible de déduire les bananes de l'utilisateur.");
   }
-}
-
-export async function addTheBananas(user: UserModel): Promise<UserModel> {
-  return addBananas(user);
 }
