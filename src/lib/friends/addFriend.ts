@@ -1,4 +1,3 @@
-import { friendsMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
 import { FriendsModel } from "@/model/FriendsModel";
 

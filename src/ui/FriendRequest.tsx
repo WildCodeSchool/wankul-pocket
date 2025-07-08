@@ -6,7 +6,6 @@ import { useState } from "react";
 import { addOne } from "@/service/FriendsService";
 import { friendsMessages } from "@/data/responseMessages";
 import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
 import { FriendsModel } from "@/model/FriendsModel";
 
 export default function FriendRequest() {
@@ -14,7 +13,6 @@ export default function FriendRequest() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const { user } = useUserContext();
-  const router = useRouter();
 
   const profileIDRegex = /^[a-zA-Z0-9-]{19}$/;
 
@@ -65,8 +63,9 @@ export default function FriendRequest() {
         setSuccess(friendsMessages.addFriendSuccess);
         setError("");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(friendsMessages.addFail);
+      console.error("Erreur : ", err);
       setSuccess("");
     }
   };

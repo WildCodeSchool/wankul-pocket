@@ -1,7 +1,22 @@
 import { friendsMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
+import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import { NextRequest, NextResponse } from "next/server";
+
+interface FriendRow extends RowDataPacket {
+  id: number;
+  user_profil_id: string;
+  friend_profil_id: string;
+  user_username: string;
+  friend_username: string;
+  user_id: number;
+  friend_id: number;
+  user_email: string;
+  friend_email: string;
+  user_image_path: string | null;
+  friend_image_path: string | null;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -54,10 +69,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const [result] = (await db.query(
+    const [result] = await db.query<ResultSetHeader>(
       "INSERT INTO is_friend (user_profil_id, friend_profil_id, status, acceptance) VALUES (?, ?, ?, ?)",
       [user_profil_id.trim(), friend_profil_id.trim(), status, acceptance]
-    )) as [any, unknown];
+    );
 
     return NextResponse.json({
       message: friendsMessages.addSuccess,
@@ -107,7 +122,7 @@ export async function GET(req: NextRequest) {
 
       return NextResponse.json(friendsRequests, { status: 200 });
     } else {
-      const [allFriends] = (await db.query(
+      const [allFriends] = await db.query<FriendRow[]>(
         `SELECT 
       f.id,
       f.user_profil_id,
@@ -129,7 +144,7 @@ export async function GET(req: NextRequest) {
      (f.user_profil_id = ? OR f.friend_profil_id = ?)
      AND f.status = 0 AND f.acceptance = 1`,
         [myId, myId]
-      )) as [any[], unknown];
+      );
 
       return NextResponse.json(allFriends, { status: 200 });
     }
@@ -160,10 +175,10 @@ export async function PATCH(req: Request) {
       );
     }
 
-    const [result] = (await db.query(
+    const [result] = await db.query<ResultSetHeader>(
       "UPDATE is_friend SET status = ?, acceptance = ? WHERE id = ?",
       [0, 1, id]
-    )) as [any, unknown];
+    );
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
