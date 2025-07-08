@@ -1,21 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
 import styles from "./InfoProfil.module.css";
 import { useUserContext } from "@/context/UserContext";
-import { UserModel } from "@/model/UserModel";
+import { updateUsername } from "@/lib/user/updateUsername";
 
 export default function EditProfils() {
   const userContext = useUserContext();
   const [tempName, setTempName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleNameSubmit = () => {
-    if (tempName.trim()) {
-      // userContext setUser for name
+  useEffect(() => {
+    setTempName(userContext.user?.username || "");
+  }, [userContext.user?.username]);
+
+  const handleNameSubmit = async () => {
+    if (tempName.trim() && userContext.user?.email) {
+      try {
+        await updateUsername({
+          email: userContext.user.email,
+          username: tempName,
+        });
+
+        userContext.setUser({
+          ...userContext.user,
+          username: tempName,
+        } as any);
+      } catch (err) {
+        console.error("Erreur lors de la mise à jour du nom :", err);
+      }
+
       setIsEditing(false);
     }
   };
