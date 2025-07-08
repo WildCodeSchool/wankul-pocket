@@ -13,7 +13,6 @@ import { useUserContext } from "./UserContext";
 
 type QuestProgressContextType = {
   progress: QuestProgressModel | null;
-  loading: boolean;
   error: string | null;
   refreshProgress: () => void;
 };
@@ -35,7 +34,6 @@ export const useQuestProgressContext = () => {
 
 export function QuestProgressProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<QuestProgressModel | null>(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { user } = useUserContext();
 
@@ -44,7 +42,6 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    setLoading(true);
     setError(null);
 
     try {
@@ -55,8 +52,6 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
       console.error("❌ Erreur lors du fetch:", err);
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
       setProgress(null);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -68,7 +63,7 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
     fetchProgress();
   }, [user]);
 
-  const contextValue = { progress, loading, error, refreshProgress };
+  const contextValue = { progress, error, refreshProgress };
 
   return (
     <QuestProgressContext.Provider value={contextValue}>
