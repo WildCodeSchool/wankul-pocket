@@ -31,11 +31,11 @@ export async function GET(
   }
 
   try {
-    let query = `SELECT e.id, u1.username AS from_username, u1.email AS from_user_email, u2.username AS to_username, u2.email AS to_user_email, u1.id AS from_user_id, u2.id AS to_user_id, pp.image_path AS from_user_avatar, c1.image_path AS offered_card_img, c2.image_path AS requested_card_img, c1.id AS offered_card_id, c2.id AS requested_card_id, uc1.quantity AS offered_card_quantity, uc2.quantity AS requested_card_quantity, e.status, e.acceptance FROM exchange AS e JOIN user AS u1 ON e.from_user_id = u1.id JOIN user AS u2 ON e.to_user_id = u2.id JOIN profil_picture AS pp ON u1.profil_picture_id = pp.id JOIN card AS c1 ON e.offered_card_id = c1.id JOIN card AS c2 ON e.requested_card_id = c2.id JOIN collection AS uc1 ON e.from_user_id = uc1.user_id AND e.offered_card_id = uc1.card_id JOIN collection AS uc2 ON e.to_user_id = uc2.user_id AND e.requested_card_id = uc2.card_id WHERE e.status = 1`;
+    let query = `SELECT e.id, u1.username AS from_username, u1.email AS from_user_email, u2.username AS to_username, u2.email AS to_user_email, u1.id AS from_user_id, u2.id AS to_user_id, pp1.image_path AS from_user_avatar, pp2.image_path AS to_user_avatar, c1.image_path AS offered_card_img, c2.image_path AS requested_card_img, c1.id AS offered_card_id, c2.id AS requested_card_id, uc1.quantity AS offered_card_quantity, uc2.quantity AS requested_card_quantity, e.status, e.acceptance FROM exchange AS e JOIN user AS u1 ON e.from_user_id = u1.id JOIN user AS u2 ON e.to_user_id = u2.id JOIN profil_picture AS pp1 ON u1.profil_picture_id = pp1.id JOIN profil_picture AS pp2 ON u2.profil_picture_id = pp2.id JOIN card AS c1 ON e.offered_card_id = c1.id JOIN card AS c2 ON e.requested_card_id = c2.id JOIN collection AS uc1 ON e.from_user_id = uc1.user_id AND e.offered_card_id = uc1.card_id JOIN collection AS uc2 ON e.to_user_id = uc2.user_id AND e.requested_card_id = uc2.card_id WHERE e.status = 1`;
     const values: string[] = [];
 
     if (type === "received") {
-      query += " AND u2.email = ?";
+      query += " AND u2.email = ? AND e.acceptance IS NULL";
     } else if (type === "sent") {
       query += " AND u1.email = ?";
     } else {

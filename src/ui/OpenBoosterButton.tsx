@@ -1,11 +1,12 @@
 "use client";
 
-import styles from "./OpenBoosterButton.module.css";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards } from "@/context/OpenedCardsContext";
+import { useUserContext } from "@/context/UserContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import styles from "./OpenBoosterButton.module.css";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -54,7 +55,14 @@ export default function OpenBoosterButton({
         <span className={styles.text}>Ouvrir</span>
         <span className={styles.cost}>
           (10
-          <img src="/banana.png" alt="Banana" className={styles.bananaIcon} />)
+          <Image
+            src="/banana.png"
+            alt="Banana"
+            className={styles.bananaIcon}
+            height={16}
+            width={16}
+          />
+          )
         </span>
       </p>
     </button>

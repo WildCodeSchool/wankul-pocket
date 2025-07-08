@@ -1,5 +1,3 @@
-import { CardsModel } from "./CardsModel";
-
 export class FriendsModel {
   constructor(
     private _id: number,
