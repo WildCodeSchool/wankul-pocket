@@ -4,7 +4,8 @@ import styles from "./FriendRequest.module.css";
 
 import { useUserContext } from "@/context/UserContext";
 import { friendsMessages } from "@/data/responseMessages";
-import { FriendPayload, FriendsModel } from "@/model/FriendsModel";
+import { FriendPayload } from "@/model/FriendPayload";
+import { FriendsModel } from "@/model/FriendsModel";
 import { addOne } from "@/service/FriendsService";
 import { useState } from "react";
 

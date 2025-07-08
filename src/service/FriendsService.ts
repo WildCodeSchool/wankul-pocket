@@ -3,7 +3,8 @@ import { addFriend } from "@/lib/friends/addFriend";
 import { getAllFriends } from "@/lib/friends/getAllFriends";
 import { getFriendsRequests } from "@/lib/friends/getFriendsRequests";
 import { refuseRequest } from "@/lib/friends/refuseFriendRequest";
-import { FriendPayload, FriendsModel } from "@/model/FriendsModel";
+import { FriendPayload } from "@/model/FriendPayload";
+import { FriendsModel } from "@/model/FriendsModel";
 
 export async function addOne(friend: FriendPayload) {
   return addFriend(friend);
