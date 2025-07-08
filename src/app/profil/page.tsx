@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import styles from "./profil.module.css";
 
 export default function ProfilPage() {
@@ -23,7 +24,12 @@ export default function ProfilPage() {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img src={`/profilpic/${avatar}`} alt="Avatar sélectionné" />
+          <Image
+            src={`/profilpic/${avatar}`}
+            alt="Avatar sélectionné"
+            height={276}
+            width={276}
+          />
         </div>
         <p className={styles.username}>{avatarName}</p>
       </div>

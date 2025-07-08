@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import styles from "@/ui/HomepageBoosters.module.css";
 import { BoosterModel } from "@/model/BoosterModel";
+import styles from "@/ui/HomepageBoosters.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
 export function HomepageBoosters({ boosters }: { boosters: BoosterModel[] }) {
   return (
@@ -17,10 +18,12 @@ export function HomepageBoosters({ boosters }: { boosters: BoosterModel[] }) {
                 booster.name !== "Origins" ? styles.disabled : ""
               }`}
             >
-              <img
+              <Image
                 src={booster.image}
                 alt={booster.name}
                 className={styles.image}
+                height={200}
+                width={120}
               />
             </li>
           ))}

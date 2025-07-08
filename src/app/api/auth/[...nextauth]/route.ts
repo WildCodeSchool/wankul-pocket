@@ -1,7 +1,17 @@
 import { db } from "@/lib/db";
+import { getUniqueProfilID } from "@/utils/getUniqueProfilID";
+import type { RowDataPacket } from "mysql2/promise";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { getUniqueProfilID } from "@/utils/getUniqueProfilID";
+
+interface UserRow {
+  id: number;
+  username: string;
+  email: string;
+  created_at: Date;
+  profil_picture_id: number;
+  profil_id: string;
+}
 
 const handler = NextAuth({
   providers: [
@@ -29,7 +39,7 @@ const handler = NextAuth({
       const name = user.name ? user.name.split(" ")[0] : "Gilbert";
 
       try {
-        const [rows]: any = await db.query(
+        const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
           "SELECT * FROM user WHERE email = ?",
           [user.email]
         );

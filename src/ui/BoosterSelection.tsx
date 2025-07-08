@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { getCardsByBoosterId } from "@/lib/getCardsByBoosterID";
 import { BoosterModel } from "@/model/BoosterModel";
 import { CardsModel } from "@/model/CardsModel";
-import { InfoDroprate } from "./InfoDroprate";
-import { getCardsByBoosterId } from "@/lib/getCardsByBoosterID";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import styles from "./BoosterSelection.module.css";
+import { InfoDroprate } from "./InfoDroprate";
 
 export default function BoosterSelection({
   boosters,
@@ -49,10 +50,12 @@ export default function BoosterSelection({
     <div className={styles.container}>
       {selectedBooster && (
         <div className={styles.selectedBooster}>
-          <img
+          <Image
             src={selectedBooster.image}
             alt={selectedBooster.name}
             className={styles.selectedBoosterImage}
+            height={295}
+            width={172}
           />
           <h3>{selectedBooster.name}</h3>
         </div>
@@ -79,12 +82,13 @@ export default function BoosterSelection({
                   handleSelectBooster(booster);
                 }
               }}
-              aria-disabled={isDisabled}
             >
-              <img
+              <Image
                 src={booster.image}
                 alt={booster.name}
                 className={styles.boosterImage}
+                height={165}
+                width={96}
               />
               {isDisabled && (
                 <p className={styles.disabledText}>

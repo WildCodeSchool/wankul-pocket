@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { refuseFriendRequest } from "@/service/FriendsService";
 import { friendsMessages } from "@/data/responseMessages";
+import { refuseFriendRequest } from "@/service/FriendsService";
+import Image from "next/image";
+import { useState } from "react";
 import styles from "./Unfriend.module.css";
 
 interface UnfriendProps {
@@ -46,7 +47,13 @@ export default function Unfriend({ userId }: UnfriendProps) {
         type="button"
         className={styles.unfriendButton}
       >
-        <img src="/unfriend.png" alt="Unfriend" className={styles.icon} />
+        <Image
+          src="/unfriend.png"
+          alt="Unfriend"
+          className={styles.icon}
+          height={24}
+          width={24}
+        />
       </button>
       {showModal && (
         <div className={styles.overlay}>

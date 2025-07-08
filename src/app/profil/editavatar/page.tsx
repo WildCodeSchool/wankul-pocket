@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import styles from "./editavatar.module.css";
 import { avatarList } from "@/data/avatarList";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import styles from "./editavatar.module.css";
 
 export default function EditAvatarPage() {
   const router = useRouter();
@@ -27,7 +28,12 @@ export default function EditAvatarPage() {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img src={`/profilpic/${selectedAvatar}`} alt="Avatar sélectionné" />
+          <Image
+            src={`/profilpic/${selectedAvatar}`}
+            alt="Avatar sélectionné"
+            height={276}
+            width={276}
+          />
         </div>
         <p className={styles.username}>{avatarName || "Nom de l’avatar"}</p>
       </div>
@@ -42,12 +48,14 @@ export default function EditAvatarPage() {
 
       <div className={styles.grid}>
         {avatarList.map((avatar) => (
-          <img
+          <Image
             key={avatar}
             src={`/profilpic/${avatar}`}
             alt={avatar}
             onClick={() => setSelectedAvatar(avatar)}
             className={styles.avatarImage}
+            height={100}
+            width={100}
           />
         ))}
       </div>

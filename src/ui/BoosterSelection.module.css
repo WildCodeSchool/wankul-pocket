@@ -99,10 +99,6 @@
   cursor: grabbing;
 }
 
-.selectedBoosterImage {
-  height: 80%;
-}
-
 .disabledBooster {
   opacity: 0.5;
   cursor: not-allowed;
