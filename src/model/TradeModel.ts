@@ -7,6 +7,7 @@ export class TradeModel {
     private _to_user_email: string,
     private _from_user_id: number,
     private _to_user_id: number,
+    private _to_user_avatar: string,
     private _from_user_avatar: string,
     private _offered_card_img: string,
     private _requested_card_img: string,
@@ -68,6 +69,10 @@ export class TradeModel {
 
   set to_user_email(value: string) {
     this._to_user_email = value;
+  }
+
+  get to_user_avatar(): string {
+    return this._to_user_avatar;
   }
 
   get from_user_avatar(): string {

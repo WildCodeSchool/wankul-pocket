@@ -2,27 +2,14 @@
 
 import { useUserContext } from "@/context/UserContext";
 import { CardsModel } from "@/model/CardsModel";
-import { FriendsModel } from "@/model/FriendsModel";
+import { NormalizedFriendModel } from "@/model/NormalizedFriendModel";
 import { getEveryFriends } from "@/service/FriendsService";
+import { normalizeFriends } from "@/utils/normalizeFriends";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 import styles from "./NewTrade.module.css";
 import ProposeTradeButton from "./ProposeTradeButton";
 import TradeAdd from "./TradeAdd";
-
-export interface NormalizedFriendModel {
-  id: string;
-  user1_id: number;
-  user1_username: string;
-  user1_email: string;
-  user1_profil_id: string;
-  user1_image_path: string;
-  user2_id: number;
-  user2_username: string;
-  user2_email: string;
-  user2_profil_id: string;
-  user2_image_path: string;
-}
-
 interface NewTradeProps {
   preselectedFriendId?: string;
 }
@@ -41,36 +28,7 @@ export default function NewTrade({ preselectedFriendId }: NewTradeProps) {
     if (!userProfilId) return;
 
     getEveryFriends(userProfilId).then((fetchedFriends) => {
-      const normalizedFriends = fetchedFriends.map((relation: FriendsModel) => {
-        const isUser1 = relation.user_profil_id === userProfilId;
-
-        return {
-          id: relation.id.toString(),
-          user1_id: isUser1 ? relation.user_id : relation.friend_id,
-          user1_username: isUser1
-            ? relation.user_username
-            : relation.friend_username,
-          user1_email: isUser1 ? relation.user_email : relation.friend_email,
-          user1_profil_id: isUser1
-            ? relation.user_profil_id
-            : relation.friend_profil_id,
-          user1_image_path: isUser1
-            ? relation.user_image_path
-            : relation.friend_image_path,
-          user2_id: isUser1 ? relation.friend_id : relation.user_id,
-          user2_username: isUser1
-            ? relation.friend_username
-            : relation.user_username,
-          user2_email: isUser1 ? relation.friend_email : relation.user_email,
-          user2_profil_id: isUser1
-            ? relation.friend_profil_id
-            : relation.user_profil_id,
-          user2_image_path: isUser1
-            ? relation.friend_image_path
-            : relation.user_image_path,
-        };
-      });
-
+      const normalizedFriends = normalizeFriends(fetchedFriends, userProfilId);
       setFriends(normalizedFriends);
     });
   }, [userProfilId]);
@@ -85,7 +43,7 @@ export default function NewTrade({ preselectedFriendId }: NewTradeProps) {
   }, [preselectedFriendId, friends]);
 
   if (!userProfilId) {
-    return <div>Chargement...</div>;
+    return <Loader />;
   }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

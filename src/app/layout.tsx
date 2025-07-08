@@ -1,13 +1,19 @@
 import { CollectionProvider } from "@/context/CollectionContext";
+import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
 import { UserProvider } from "@/context/UserContext";
 import { QuestProgressProvider } from "@/context/QuestProgressContext";
+import { DisplayRandomWankul } from "@/ui/DisplayRandomWankul";
 import Header from "@/ui/Header";
 import Tapbar from "@/ui/Tapbar";
+import type { Metadata } from "next";
 import { Jaldi } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./SessionWrapper";
-import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
-import { DisplayRandomWankul } from "@/ui/DisplayRandomWankul";
+
+export const metadata: Metadata = {
+  title: "Wankul Pocket",
+  description: "Collectionne les cartes Wankul et échange les avec tes amis!",
+};
 
 const jaldi = Jaldi({
   variable: "--font-jaldi",
