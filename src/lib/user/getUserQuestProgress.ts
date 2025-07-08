@@ -1,7 +1,10 @@
 import { userMessages } from "@/data/responseMessages";
 import { apiRoutes } from "@/data/ROUTES";
+import { QuestProgressModel } from "@/model/QuestProgressModel";
 
-export async function getUserQuestsProgress(email: string) {
+export async function getUserQuestsProgress(
+  email: string
+): Promise<QuestProgressModel> {
   const res = await fetch(apiRoutes.QUESTS_PROGRESS(email), {
     method: "GET",
     headers: {
@@ -11,5 +14,14 @@ export async function getUserQuestsProgress(email: string) {
   });
 
   if (!res.ok) throw new Error(userMessages.error);
-  return res.json();
+
+  const data = await res.json();
+
+  return new QuestProgressModel(
+    data.user_id,
+    data.bananas,
+    data.friends_count,
+    data.trades_count,
+    data.collection
+  );
 }

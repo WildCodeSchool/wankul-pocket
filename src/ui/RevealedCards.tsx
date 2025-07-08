@@ -71,7 +71,7 @@ export default function RevealedCards() {
                       styles[camelCaseRarity] || ""
                     }`}
                   />
-                  <p className={styles.new}>{quantity === 0 ? "NEW" : ""}</p>
+                  <p className={styles.new}>{quantity === 1 ? "NEW" : ""}</p>
                 </div>
               </div>
             </li>

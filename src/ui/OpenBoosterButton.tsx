@@ -6,6 +6,9 @@ import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards } from "@/context/OpenedCardsContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
+import { useCollectionContext } from "@/context/CollectionContext";
+import { getOne } from "@/lib/collection/getUserCollection";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -17,6 +20,8 @@ export default function OpenBoosterButton({
   const router = useRouter();
   const { user, updateUserBananas } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
+  const { setCollection } = useCollectionContext();
+  const { refreshProgress } = useQuestProgressContext();
 
   const handleOpening = async () => {
     if (!user) {
@@ -33,6 +38,13 @@ export default function OpenBoosterButton({
 
         const formattedCards: CardsModel[] = cards;
         updateOpenedCards(formattedCards);
+
+        const updateCollection = await getOne(user.email);
+        if (Array.isArray(updateCollection)) {
+          setCollection(updateCollection);
+        }
+
+        refreshProgress();
 
         router.push(`/booster/${boosterId}/reveal`);
       } catch (error) {

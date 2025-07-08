@@ -24,6 +24,7 @@ const QuestProgressContext = createContext<QuestProgressContextType | null>(
 
 export const useQuestProgressContext = () => {
   const context = useContext(QuestProgressContext);
+
   if (!context) {
     throw new Error(
       "useQuestProgressContext must be used within a QuestProgressProvider"
@@ -39,15 +40,19 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
   const { user } = useUserContext();
 
   const fetchProgress = async () => {
-    if (!user?.email) return;
+    if (!user?.email) {
+      return;
+    }
 
     setLoading(true);
     setError(null);
 
     try {
       const res = await getUserQuestsStats(user.email);
+
       setProgress(res);
     } catch (err) {
+      console.error("❌ Erreur lors du fetch:", err);
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
       setProgress(null);
     } finally {
@@ -63,9 +68,11 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
     fetchProgress();
   }, [user]);
 
+  const contextValue = { progress, loading, error, refreshProgress };
+
   return (
-    <QuestProgressContext value={{ progress, loading, error, refreshProgress }}>
+    <QuestProgressContext.Provider value={contextValue}>
       {children}
-    </QuestProgressContext>
+    </QuestProgressContext.Provider>
   );
 }

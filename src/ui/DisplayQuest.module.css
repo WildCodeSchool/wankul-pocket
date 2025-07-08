@@ -48,3 +48,7 @@
   min-width: 50px;
   min-height: 50px;
 }
+
+.questCompleted {
+  background: linear-gradient(to bottom, #00ff085e, #7aff81b1);
+}

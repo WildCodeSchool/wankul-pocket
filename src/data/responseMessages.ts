@@ -16,6 +16,8 @@ const userMessages = {
   addSuccess: "Utilisateur ajouté avec succès",
   notFound: "Aucun utilisateur trouvé avec cet ID",
   updateSuccess: "Utilisateur mis à jour avec succès",
+  addBananasFail:
+    "Erreur lors de l'ajout de bananes, veuillez réessayer ultérieurement",
 };
 
 const profilPictureMessages = {

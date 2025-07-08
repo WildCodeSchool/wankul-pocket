@@ -4,10 +4,13 @@ export class QuestProgressModel {
     private _bananas: number,
     private _friends_count: number,
     private _trades_count: number,
-    private card_id: number,
-    private _card_quantity: number,
-    private _card_rarity: string,
-    private _card_clan: string
+    private _collection: Array<{
+      card_id: number;
+      quantity: number;
+      rarity: string;
+      name: string;
+      clan: string;
+    }>
   ) {}
   get userId(): number {
     return this.user_id;
@@ -22,16 +25,14 @@ export class QuestProgressModel {
   get trades(): number {
     return this._trades_count;
   }
-  get cardId(): number {
-    return this.card_id;
-  }
-  get cardQuantity(): number {
-    return this._card_quantity;
-  }
-  get cardRarity(): string {
-    return this._card_rarity;
-  }
-  get cardClan(): string {
-    return this._card_clan;
+
+  get collection(): Array<{
+    card_id: number;
+    quantity: number;
+    rarity: string;
+    name: string;
+    clan: string;
+  }> {
+    return this._collection;
   }
 }
