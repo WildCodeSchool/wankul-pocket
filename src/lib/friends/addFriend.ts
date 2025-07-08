@@ -1,7 +1,7 @@
 import { apiRoutes } from "@/data/ROUTES";
-import { FriendsModel } from "@/model/FriendsModel";
+import { FriendPayload } from "@/model/FriendsModel";
 
-export async function addFriend(is_friend: FriendsModel) {
+export async function addFriend(is_friend: FriendPayload) {
   const res = await fetch(apiRoutes.FRIENDS, {
     method: "POST",
     headers: {

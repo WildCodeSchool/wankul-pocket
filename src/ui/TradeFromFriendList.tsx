@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./TradeFromFriendList.module.css";
 
@@ -14,7 +15,13 @@ export default function TradeFromFriendList({ friendId }: TradeButtonProps) {
 
   return (
     <button className={styles.tradeButton} onClick={handleTradeClick}>
-      <img src="tradeIcon.png" alt="Trade Icon" className={styles.icon} />
+      <Image
+        src={"/tradeIcon.png"}
+        alt="Trade Icon"
+        className={styles.icon}
+        width={24}
+        height={24}
+      />
     </button>
   );
 }

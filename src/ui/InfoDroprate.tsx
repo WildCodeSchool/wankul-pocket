@@ -1,6 +1,7 @@
-import styles from "./InfoDroprate.module.css";
-import { useState } from "react";
 import { CardsModel } from "@/model/CardsModel";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "./InfoDroprate.module.css";
 
 const RARITY_STYLES: { [key: string]: string } = {
   Terrain: styles.cardTerrain,
@@ -56,10 +57,12 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
                     <ul className={className}>
                       {rarityCards.map((card) => (
                         <li key={card.id}>
-                          <img
+                          <Image
                             src={card.image_path}
                             alt={card.name}
                             className={styles.cardImage}
+                            height={100}
+                            width={72}
                           />
                         </li>
                       ))}

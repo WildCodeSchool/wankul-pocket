@@ -2,11 +2,11 @@
 
 import styles from "./FriendRequest.module.css";
 
-import { useState } from "react";
-import { addOne } from "@/service/FriendsService";
-import { friendsMessages } from "@/data/responseMessages";
 import { useUserContext } from "@/context/UserContext";
-import { FriendsModel } from "@/model/FriendsModel";
+import { friendsMessages } from "@/data/responseMessages";
+import { FriendPayload, FriendsModel } from "@/model/FriendsModel";
+import { addOne } from "@/service/FriendsService";
+import { useState } from "react";
 
 export default function FriendRequest() {
   const [targetProfileID, setProfileID] = useState("");
@@ -49,13 +49,13 @@ export default function FriendRequest() {
         true,
         false
       );
-      const friendPayload = {
+      const friendPayload: FriendPayload = {
         user_profil_id: friend.user_profil_id,
         friend_profil_id: friend.friend_profil_id,
         status: friend.status,
         acceptance: friend.acceptance,
       };
-      const response = await addOne(friendPayload as any);
+      const response = await addOne(friendPayload);
       if (response.error) {
         setError(response.error || friendsMessages.alreadyFriends);
         setSuccess("");
