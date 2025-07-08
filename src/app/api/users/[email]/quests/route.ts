@@ -1,13 +1,8 @@
 import { collectionMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
-import { UserModel } from "@/model/UserModel";
+import { RowDataPacket } from "mysql2";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
 import { NextResponse } from "next/server";
-
-interface UpdateResult {
-  affectedRows: number;
-  warningStatus?: number;
-}
 
 export async function GET(
   _req: Request,
@@ -22,25 +17,28 @@ export async function GET(
     );
   }
   try {
-    const [rows] = await db.query<any[]>(
-      `SELECT 
+    const [rows] = await db.query<RowDataPacket[]>(
+      `
+      SELECT 
     u.id AS user_id,
     u.bananas,
 
     (
       SELECT COUNT(*) 
       FROM is_friend 
-      WHERE user_profil_id = u.profil_id 
-         OR friend_profil_id = u.profil_id
-    ) AS is_friend_mentions,
+      WHERE (user_profil_id = u.profil_id 
+         OR friend_profil_id = u.profil_id)
+         AND acceptance = 1
+    ) AS friends_count,
 
 
     (
       SELECT COUNT(*) 
       FROM exchange 
-      WHERE from_user_id = u.id 
-         OR to_user_id = u.id
-    ) AS exchange_count,
+      WHERE (from_user_id = u.id 
+         OR to_user_id = u.id)
+         AND acceptance = 1
+    ) AS trades_count,
 
 
     (

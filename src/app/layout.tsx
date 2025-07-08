@@ -1,5 +1,6 @@
 import { CollectionProvider } from "@/context/CollectionContext";
 import { UserProvider } from "@/context/UserContext";
+import { QuestProgressProvider } from "@/context/QuestProgressContext";
 import Header from "@/ui/Header";
 import Tapbar from "@/ui/Tapbar";
 import { Jaldi } from "next/font/google";
@@ -26,10 +27,12 @@ export default function RootLayout({
           <UserProvider>
             <OpenedCardsProvider>
               <CollectionProvider>
-                <Header />
-                <main>{children}</main>
-                <DisplayRandomWankul />
-                <Tapbar />
+                <QuestProgressProvider>
+                  <Header />
+                  <main>{children}</main>
+                  <DisplayRandomWankul />
+                  <Tapbar />
+                </QuestProgressProvider>
               </CollectionProvider>
             </OpenedCardsProvider>
           </UserProvider>
