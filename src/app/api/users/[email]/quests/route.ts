@@ -1,14 +1,17 @@
-import { collectionMessages } from "@/data/responseMessages";
+import { collectionMessages, questMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
 import { NextResponse } from "next/server";
+import { getUserIdByEmail } from "@/service/UserService";
 
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: { email: string } }
 ) {
   const userEmail = params.email;
+  const { searchParams } = new URL(req.url);
+  const type = searchParams.get("type");
 
   if (typeof userEmail !== "string") {
     return NextResponse.json(
@@ -16,7 +19,34 @@ export async function GET(
       { status: 400 }
     );
   }
+
   try {
+    if (type === "list") {
+      const userId = await getUserIdByEmail(userEmail);
+
+      if (!userId) {
+        return NextResponse.json(
+          { error: "Utilisateur non trouvé" },
+          { status: 404 }
+        );
+      }
+
+      const [rows] = await db.query(
+        `SELECT 
+          quest.*,
+          completed_quests.id as id_completed,
+          completed_quests.quest_id as quest_id_completed,
+          completed_quests.user_id as user_id_completed
+        FROM quest 
+        LEFT JOIN completed_quests ON quest.id = completed_quests.quest_id AND completed_quests.user_id = ?
+        ORDER BY quest.category ASC`,
+        [userId]
+      );
+
+      const questRows = Array.isArray(rows) ? rows : [];
+      return NextResponse.json(questRows);
+    }
+
     const [rows] = await db.query<RowDataPacket[]>(
       `
       SELECT 
@@ -69,12 +99,14 @@ export async function GET(
           }
         : null;
 
-    console.log("Résultat de la requête :", result);
     return NextResponse.json(result);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]/quests) :", error);
     return NextResponse.json(
-      { error: collectionMessages.server },
+      {
+        error:
+          type === "list" ? questMessages.server : collectionMessages.server,
+      },
       { status: 500 }
     );
   }

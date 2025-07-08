@@ -1,12 +1,9 @@
-import { getAll } from "@/service/QuestService";
 import DisplayQuests from "@/ui/DisplayQuests";
 
-export default async function Quests() {
-  const quests = await getAll();
-
+export default function Quests() {
   return (
     <div>
-      <DisplayQuests quests={quests} />
+      <DisplayQuests />
     </div>
   );
 }

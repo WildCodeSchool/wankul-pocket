@@ -17,13 +17,14 @@ export class QuestValidator {
         return progress.bananas >= quest.goal_target;
 
       case "Collection":
-        return progress.collection.length >= quest.goal_target;
+        const totalCards = progress.collection.reduce(
+          (sum, card) => sum + card.quantity,
+          0
+        );
+        return totalCards >= quest.goal_target;
 
       case "Diversité":
-        const uniqueCards = new Set(
-          progress.collection.map((card) => card.card_id)
-        );
-        return uniqueCards.size >= quest.goal_target;
+        return progress.collection.length >= quest.goal_target;
 
       case "Clan":
         const uniqueClans = new Set(

@@ -1,8 +1,7 @@
 import { db } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
-import { QuestValidator } from "./QuestValidator";
+import { isQuestCompleted } from "./QuestService";
 import { QuestModel } from "@/model/QuestModel";
-import { QuestProgressModel } from "@/model/QuestProgressModel";
 import { getUserQuestsProgress } from "@/lib/user/getUserQuestProgress";
 
 interface InsertResult {
@@ -67,7 +66,7 @@ export async function manageQuestCompletion(
     ""
   );
 
-  const isValidated = QuestValidator.validateQuest(questModel, userProgress);
+  const isValidated = isQuestCompleted(questModel, userProgress);
   if (!isValidated) {
     throw new Error("Quest completion requirements not met");
   }

@@ -1,21 +1,96 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useTransition, useReducer } from "react";
 import styles from "./DisplayQuest.module.css";
 import { QuestModel } from "@/model/QuestModel";
 import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useUserContext } from "@/context/UserContext";
-import { QuestValidator } from "@/service/QuestValidator";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
-import { questValidation } from "@/service/QuestService";
-import Image from "next/image";
+import {
+  questValidation,
+  getAllQuestsByUserId,
+  isQuestCompleted as serviceIsQuestCompleted,
+} from "@/service/QuestService";
+import Loader from "@/ui/Loader";
+import RewardAnimation from "./RewardAnimation";
+import QuestList from "./QuestList";
 
-export default function DisplayQuests({ quests }: { quests: QuestModel[] }) {
+interface QuestState {
+  quests: QuestModel[];
+  completedQuestIds: Set<number>;
+  animatingRewards: Map<number, number>;
+  currentValidatingQuest: number | null;
+}
+
+type QuestAction =
+  | { type: "SET_QUESTS"; payload: QuestModel[] }
+  | { type: "START_VALIDATION"; questId: number }
+  | { type: "COMPLETE_QUEST"; questId: number; reward: number }
+  | { type: "STOP_ANIMATION"; questId: number }
+  | { type: "VALIDATION_ERROR"; questId: number };
+
+function questReducer(state: QuestState, action: QuestAction): QuestState {
+  switch (action.type) {
+    case "SET_QUESTS":
+      return { ...state, quests: action.payload };
+
+    case "START_VALIDATION":
+      return { ...state, currentValidatingQuest: action.questId };
+
+    case "COMPLETE_QUEST":
+      return {
+        ...state,
+        completedQuestIds: new Set(state.completedQuestIds).add(action.questId),
+        animatingRewards: new Map(state.animatingRewards).set(
+          action.questId,
+          action.reward
+        ),
+        currentValidatingQuest: null,
+      };
+
+    case "STOP_ANIMATION":
+      const newRewards = new Map(state.animatingRewards);
+      newRewards.delete(action.questId);
+      return { ...state, animatingRewards: newRewards };
+
+    case "VALIDATION_ERROR":
+      return { ...state, currentValidatingQuest: null };
+
+    default:
+      return state;
+  }
+}
+
+const initialQuestState: QuestState = {
+  quests: [],
+  completedQuestIds: new Set(),
+  animatingRewards: new Map(),
+  currentValidatingQuest: null,
+};
+
+export default function DisplayQuests() {
   const { progress, refreshProgress } = useQuestProgressContext();
   const { user, updateUserBananas } = useUserContext();
-  const [validatingQuests, setValidatingQuests] = useState<Set<number>>(
-    new Set()
-  );
+  const [state, dispatch] = useReducer(questReducer, initialQuestState);
+  const [isLoadingQuests, startQuestsTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const fetchQuests = async () => {
+      if (!user?.email) return;
+
+      startQuestsTransition(async () => {
+        try {
+          const questsData = await getAllQuestsByUserId(user);
+          dispatch({ type: "SET_QUESTS", payload: questsData });
+        } catch (error) {
+          console.error("Erreur lors du fetch des quêtes:", error);
+        }
+      });
+    };
+
+    fetchQuests();
+  }, [user?.email]);
 
   const isQuestCompleted = (quest: QuestModel): boolean => {
     if (!progress || !user) return false;
@@ -28,50 +103,58 @@ export default function DisplayQuests({ quests }: { quests: QuestModel[] }) {
       progress.collection || []
     );
 
-    return QuestValidator.validateQuest(quest, questProgress);
+    return serviceIsQuestCompleted(quest, questProgress);
   };
 
   const validateQuest = async (quest: QuestModel) => {
-    if (!user || validatingQuests.has(quest.id)) return;
+    if (!user || isPending || state.currentValidatingQuest === quest.id) return;
 
-    setValidatingQuests((prev) => new Set(prev).add(quest.id));
+    startTransition(async () => {
+      dispatch({ type: "START_VALIDATION", questId: quest.id });
 
-    try {
-      const response = await questValidation(user, quest);
-      if (response.ok) {
-        const data = await response.json();
+      try {
+        const data = await questValidation(user, quest);
         updateUserBananas(user.bananas + data.reward_added);
+
+        dispatch({
+          type: "COMPLETE_QUEST",
+          questId: quest.id,
+          reward: quest.reward,
+        });
+
+        setTimeout(() => {
+          dispatch({ type: "STOP_ANIMATION", questId: quest.id });
+        }, 2000);
+
         refreshProgress();
-      } else {
-        const errorData = await response.json();
-        console.error(
-          "Erreur lors de la création de quest completion:",
-          errorData.error
-        );
+      } catch (error) {
+        console.error("Erreur lors de la validation:", error);
+        dispatch({ type: "VALIDATION_ERROR", questId: quest.id });
       }
-    } catch (error) {
-      console.error("Erreur lors de la validation:", error);
-    } finally {
-      setValidatingQuests((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(quest.id);
-        return newSet;
-      });
-    }
+    });
   };
 
-  const questsByCategory = quests
-    .filter((quest) => !quest.user_id_completed)
-    .reduce((acc, quest) => {
-      const category = quest.category;
-      const isCompleted = isQuestCompleted(quest);
+  const questsByCategory = state.quests
+    .filter(
+      (quest: QuestModel) =>
+        !quest.user_id_completed && !state.completedQuestIds.has(quest.id)
+    )
+    .reduce(
+      (
+        acc: Record<string, { quest: QuestModel; isCompleted: boolean }>,
+        quest: QuestModel
+      ) => {
+        const category = quest.category;
+        const isCompleted = isQuestCompleted(quest);
 
-      if (!acc[category] || quest.reward < acc[category].quest.reward) {
-        acc[category] = { quest, isCompleted };
-      }
+        if (!acc[category] || quest.reward < acc[category].quest.reward) {
+          acc[category] = { quest, isCompleted };
+        }
 
-      return acc;
-    }, {} as Record<string, { quest: QuestModel; isCompleted: boolean }>);
+        return acc;
+      },
+      {} as Record<string, { quest: QuestModel; isCompleted: boolean }>
+    );
 
   const filteredQuests = Object.values(questsByCategory).sort((a, b) => {
     if (a.isCompleted && !b.isCompleted) return -1;
@@ -79,45 +162,28 @@ export default function DisplayQuests({ quests }: { quests: QuestModel[] }) {
     return a.quest.reward - b.quest.reward;
   });
 
+  if (isLoadingQuests) {
+    return (
+      <div className={styles.questContainer}>
+        <h1 className={styles.title}>Quêtes</h1>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.questContainer}>
       <h1 className={styles.title}>Quêtes</h1>
-      <ul className={styles.questList}>
-        {filteredQuests.map((questData) => (
-          <li
-            key={questData.quest.id}
-            className={`${styles.questCard} ${
-              questData.isCompleted ? styles.questCompleted : ""
-            }`}
-            onClick={() =>
-              questData.isCompleted && validateQuest(questData.quest)
-            }
-            style={{
-              cursor: questData.isCompleted ? "pointer" : "default",
-            }}
-          >
-            <div className={styles.rewardContainer}>
-              <Image
-                src="/banana.png"
-                alt="Récompense"
-                width={16}
-                height={16}
-              />
-              <p className={styles.questReward}>+{questData.quest.reward}</p>
-            </div>
-            <div className={styles.content}>
-              <h2 className={styles.questTitle}>
-                {questData.quest.name}
-                {questData.isCompleted}
-                {validatingQuests.has(questData.quest.id) && " 🔄"}
-              </h2>
-              <p className={styles.questDescription}>
-                {questData.quest.mission}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
+
+      {Array.from(state.animatingRewards.entries()).map(([questId, reward]) => (
+        <RewardAnimation key={questId} questId={questId} reward={reward} />
+      ))}
+
+      <QuestList
+        filteredQuests={filteredQuests}
+        currentValidatingQuest={state.currentValidatingQuest}
+        onQuestClick={validateQuest}
+      />
     </div>
   );
 }

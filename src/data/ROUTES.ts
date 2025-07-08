@@ -18,6 +18,8 @@ const apiRoutes = {
   ADD_BANANAS: (email: string) => `${apiUrl}/api/users/${email}/addBananas`,
   ADD_COMPLETED_QUEST: (email: string) =>
     `${apiUrl}/api/users/${email}/quest-completions`,
+  QUESTS_BY_ID: (email: string) =>
+    `${apiUrl}/api/users/${email}/quests?type=list`,
 };
 
 const appRoutes = {
