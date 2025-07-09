@@ -80,7 +80,7 @@ const seed = async () => {
     await db.query("ALTER TABLE profil_picture AUTO_INCREMENT = 1");
 
     await db.query(`
-  INSERT INTO profil_picture (id, image_path) VALUES
+  INSERT INTO profil_picture (image_path) VALUES
   ("/perso1.png)",
   ("/perso2.png)",
   ("/perso3.png)",
