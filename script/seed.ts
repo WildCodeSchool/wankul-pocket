@@ -91,9 +91,6 @@ const seed = async () => {
   "perso8.png"
 `);
 
-
-`);
-
     await db.end();
     console.log("🌱 Database seeded successfully");
   } catch (err) {
