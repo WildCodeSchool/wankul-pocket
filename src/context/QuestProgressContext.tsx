@@ -66,8 +66,6 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
   const contextValue = { progress, error, refreshProgress };
 
   return (
-    <QuestProgressContext.Provider value={contextValue}>
-      {children}
-    </QuestProgressContext.Provider>
+    <QuestProgressContext value={contextValue}>{children}</QuestProgressContext>
   );
 }
