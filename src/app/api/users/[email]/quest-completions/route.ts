@@ -75,7 +75,6 @@ export async function GET(
   try {
     const userEmail = params.email;
 
-    // Récupération directe des completions de quêtes
     const [completions] = await db.query<RowDataPacket[]>(
       `SELECT 
         cq.id,
