@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
-import styles from "./InfoProfil.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { updateUsername } from "@/lib/user/updateUsername";
-import Image from "next/image"; // ✅ Import de la balise optimisée
+import { UserModel } from "@/model/UserModel";
+import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./InfoProfil.module.css";
 
 export default function EditProfils() {
   const userContext = useUserContext();
@@ -28,7 +29,7 @@ export default function EditProfils() {
         userContext.setUser({
           ...userContext.user,
           username: tempName,
-        } as any);
+        } as UserModel);
       } catch (err) {
         console.error("Erreur lors de la mise à jour du nom :", err);
       }
