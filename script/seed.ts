@@ -91,10 +91,7 @@ const seed = async () => {
   "perso8.png"
 `);
 
-    await db.query(`
-  INSERT INTO user (username, email, profil_picture_id, bananas, profil_id)
-  VALUES
-  
+
 `);
 
     await db.end();
