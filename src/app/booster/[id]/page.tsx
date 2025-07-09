@@ -7,13 +7,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import styles from "./boosterId.module.css";
 
-interface PageParams {
-  params: {
-    id: string;
-  };
-}
-
-export default async function InfoDetailPage({ params }: PageParams) {
+export default async function InfoDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const idNum = parseInt(params.id, 10);
   if (isNaN(idNum)) {
     notFound();
