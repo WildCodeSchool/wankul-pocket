@@ -9,6 +9,7 @@ export interface OpenedCard {
   image_path: string;
   rarity: string;
   quantity: number;
+  isNew?: boolean;
 }
 
 const OpenedCardsContext = createContext<{

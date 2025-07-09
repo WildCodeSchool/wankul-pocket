@@ -3,12 +3,11 @@
 import styles from "./OpenBoosterButton.module.css";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
-import { useOpenedCards } from "@/context/OpenedCardsContext";
+import { useOpenedCards, OpenedCard } from "@/context/OpenedCardsContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
 import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useCollectionContext } from "@/context/CollectionContext";
-import { getOne } from "@/lib/collection/getUserCollection";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -20,7 +19,7 @@ export default function OpenBoosterButton({
   const router = useRouter();
   const { user, updateUserBananas } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
-  const { setCollection } = useCollectionContext();
+  const { setCollection, collection } = useCollectionContext();
   const { refreshProgress } = useQuestProgressContext();
 
   const handleOpening = async () => {
@@ -37,12 +36,36 @@ export default function OpenBoosterButton({
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
         const formattedCards: CardsModel[] = cards;
-        updateOpenedCards(formattedCards);
 
-        const updateCollection = await getOne(user.email);
-        if (Array.isArray(updateCollection)) {
-          setCollection(updateCollection);
-        }
+        const cardsWithNewFlag = formattedCards.map((newCard) => {
+          const existingCard = collection?.find(
+            (card: CardsModel) => card.id === newCard.id
+          );
+          return {
+            ...newCard,
+            isNew: !existingCard || existingCard.quantity === 0,
+          };
+        }) as OpenedCard[];
+
+        updateOpenedCards(cardsWithNewFlag);
+
+        setCollection((prevCollection) => {
+          const updatedCollection = [...prevCollection];
+
+          formattedCards.forEach((newCard) => {
+            const existingCardIndex = updatedCollection.findIndex(
+              (card) => card.id === newCard.id
+            );
+
+            if (existingCardIndex !== -1) {
+              updatedCollection[existingCardIndex].quantity += newCard.quantity;
+            } else {
+              updatedCollection.push(newCard);
+            }
+          });
+
+          return updatedCollection;
+        });
 
         refreshProgress();
 

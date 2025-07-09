@@ -64,6 +64,10 @@ export class CardsModel {
     return this._quantity;
   }
 
+  set quantity(value: number) {
+    this._quantity = value;
+  }
+
   get season(): number {
     return this._season;
   }
