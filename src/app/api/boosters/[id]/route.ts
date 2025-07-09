@@ -1,13 +1,12 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import { boostersMessages } from "@/data/responseMessages";
+import { db } from "@/lib/db";
 import type { BoosterModel } from "@/model/BoosterModel";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
-  const boosterId = parseInt(params.id, 10);
+export async function GET(_req: NextRequest) {
+  const pathname = _req.nextUrl.pathname;
+  const idStr = pathname.split("/").pop();
+  const boosterId = parseInt(idStr || "", 10);
   if (isNaN(boosterId)) {
     return NextResponse.json(
       { error: boostersMessages.invalidId },

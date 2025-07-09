@@ -1,12 +1,10 @@
-import { NextResponse, NextRequest } from "next/server";
-import { db } from "@/lib/db";
 import { friendsMessages } from "@/data/responseMessages";
+import { db } from "@/lib/db";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { friendProfilId: string } }
-) {
-  const { friendProfilId } = params;
+export async function GET(request: NextRequest) {
+  const segments = request.nextUrl.pathname.split("/").filter(Boolean);
+  const friendProfilId = segments[segments.length - 2];
 
   if (!friendProfilId) {
     return NextResponse.json({ error: friendsMessages.error }, { status: 400 });

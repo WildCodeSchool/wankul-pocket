@@ -9,11 +9,9 @@ interface UpdateResult {
   warningStatus?: number;
 }
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { email: string } }
-) {
-  const userEmail = params.email;
+export async function GET(_req: NextRequest) {
+  const segments = _req.nextUrl.pathname.split("/").filter(Boolean);
+  const userEmail = segments[segments.length - 2];
   const { searchParams } = new URL(_req.url);
   const rarity = searchParams.get("rarity");
 
@@ -55,11 +53,9 @@ export async function GET(
   }
 }
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { email: string } }
-) {
-  const email = params.email;
+export async function POST(request: NextRequest) {
+  const segments = request.nextUrl.pathname.split("/").filter(Boolean);
+  const email = segments[segments.length - 2];
 
   try {
     const body = await request.json();
@@ -102,13 +98,11 @@ export async function POST(
   }
 }
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { email: string } }
-) {
+export async function PATCH(req: NextRequest) {
   try {
     const { id, quantity } = (await req.json()) as CardsModel;
-    const userEmail = params.email;
+    const segments = req.nextUrl.pathname.split("/").filter(Boolean);
+    const userEmail = segments[segments.length - 2];
     if (typeof userEmail !== "string") {
       return NextResponse.json(
         { error: collectionMessages.invalidEmail },

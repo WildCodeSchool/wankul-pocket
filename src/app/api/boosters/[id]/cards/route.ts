@@ -1,13 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getCardsByBoosterId } from "@/service/CardsService";
-import { manageOpening } from "@/service/BoosterService";
 import { cardsMessages } from "@/data/responseMessages";
+import { manageOpening } from "@/service/BoosterService";
+import { getCardsByBoosterId } from "@/service/CardsService";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const boosterId = parseInt(params.id, 10);
+export async function GET(request: NextRequest) {
+  const segments = request.nextUrl.pathname.split("/").filter(Boolean);
+  const idStr = segments[segments.length - 2];
+  const boosterId = parseInt(idStr || "", 10);
   if (isNaN(boosterId)) {
     return NextResponse.json(
       { error: cardsMessages.invalidId },
