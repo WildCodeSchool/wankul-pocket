@@ -10,6 +10,7 @@
     var(--tapBarGradientTop),
     var(--tapBarGradientBottom)
   );
+  z-index: 99;
 }
 
 .none {

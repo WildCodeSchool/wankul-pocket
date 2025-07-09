@@ -2,19 +2,18 @@
 
 import styles from "./FriendRequest.module.css";
 
-import { useState } from "react";
-import { addOne } from "@/service/FriendsService";
-import { friendsMessages } from "@/data/responseMessages";
 import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
+import { friendsMessages } from "@/data/responseMessages";
+import { FriendPayload } from "@/model/FriendPayload";
 import { FriendsModel } from "@/model/FriendsModel";
+import { addOne } from "@/service/FriendsService";
+import { useState } from "react";
 
 export default function FriendRequest() {
   const [targetProfileID, setProfileID] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const { user } = useUserContext();
-  const router = useRouter();
 
   const profileIDRegex = /^[a-zA-Z0-9-]{19}$/;
 
@@ -51,13 +50,13 @@ export default function FriendRequest() {
         true,
         false
       );
-      const friendPayload = {
+      const friendPayload: FriendPayload = {
         user_profil_id: friend.user_profil_id,
         friend_profil_id: friend.friend_profil_id,
         status: friend.status,
         acceptance: friend.acceptance,
       };
-      const response = await addOne(friendPayload as any);
+      const response = await addOne(friendPayload);
       if (response.error) {
         setError(response.error || friendsMessages.alreadyFriends);
         setSuccess("");
@@ -65,8 +64,9 @@ export default function FriendRequest() {
         setSuccess(friendsMessages.addFriendSuccess);
         setError("");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(friendsMessages.addFail);
+      console.error("Erreur : ", err);
       setSuccess("");
     }
   };

@@ -1,10 +1,10 @@
 export const avatarList = [
-  "perso 1.png",
-  "perso 2.png",
-  "perso 3.png",
-  "perso 4.png",
-  "perso 5.png",
-  "perso 6.png",
-  "perso 7.png",
-  "perso 8.png",
+  "perso1.png",
+  "perso2.png",
+  "perso3.png",
+  "perso4.png",
+  "perso5.png",
+  "perso6.png",
+  "perso7.png",
+  "perso8.png",
 ];

@@ -1,14 +1,15 @@
 "use client";
 
-import { getEveryFriends } from "@/service/FriendsService";
 import { useUserContext } from "@/context/UserContext";
 import { FriendsModel } from "@/model/FriendsModel";
+import { getEveryFriends } from "@/service/FriendsService";
+import Image from "next/image";
 import { useEffect, useState, useTransition } from "react";
-import { FriendDetail } from "./FriendDetail";
 import styles from "./DisplayFriendList.module.css";
-import Unfriend from "./Unfriend";
+import { FriendDetail } from "./FriendDetail";
 import TradeFromFriendList from "./TradeFromFriendList";
 import Loader from "./Loader";
+import Unfriend from "./Unfriend";
 
 export default function DisplayFriendList() {
   const { user } = useUserContext();
@@ -32,7 +33,7 @@ export default function DisplayFriendList() {
 
   return (
     <div className={styles.container}>
-      <h2>Liste d'amis</h2>
+      <h2>Liste d&apos;amis</h2>
       {isPending && <Loader />}
       {!isPending && (
         <ul className={styles.friendList}>
@@ -48,7 +49,7 @@ export default function DisplayFriendList() {
               <div key={friend.id} className={styles.friendDetail}>
                 <FriendDetail friendProfilId={friendProfilId}>
                   <li className={styles.friendItem}>
-                    <img
+                    <Image
                       className={styles.friendImage}
                       src={
                         isMe
@@ -56,6 +57,8 @@ export default function DisplayFriendList() {
                           : `${friend.user_image_path}`
                       }
                       alt={username}
+                      height={50}
+                      width={50}
                     />
 
                     <p>{username}</p>

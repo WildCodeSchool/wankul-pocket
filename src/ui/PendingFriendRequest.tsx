@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
-import { getAllRequests } from "@/service/FriendsService";
+import { useUserContext, useTransition } from "@/context/UserContext";
 import { FriendsModel } from "@/model/FriendsModel";
-import { useUserContext } from "@/context/UserContext";
-import styles from "./PendingFriendRequest.module.css";
+import { getAllRequests } from "@/service/FriendsService";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { AcceptFriendRequestButton } from "./AcceptFriendRequestButton";
+import styles from "./PendingFriendRequest.module.css";
 import { RefuseFriendRequestButton } from "./RefuseFriendRequestButton";
 import Loader from "@/ui/Loader";
 
@@ -41,14 +42,16 @@ export function PendingFriendRequest() {
       {isPending && <Loader />}
       {!isPending && Array.isArray(requests) && requests.length > 0 && (
         <div className={styles.requestContainer}>
-          <h2>Demande d'ami en attente</h2>
+          <h2>Demande d&apos;ami en attente</h2>
           <ul className={styles.requestList}>
             {requests.map((request: FriendsModel) => (
               <li key={request.id} className={styles.requestItem}>
-                <img
-                  src={request.friend_image_path}
+                <Image
+                  src={request.friend_image_path || "/profilpic/perso1.png"}
                   className={styles.friendImage}
                   alt="Profil"
+                  height={50}
+                  width={50}
                 />
                 <span className={styles.requestText}>
                   {request.friend_username || request.user_profil_id} veut être

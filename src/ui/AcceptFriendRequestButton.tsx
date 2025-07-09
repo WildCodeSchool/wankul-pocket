@@ -1,5 +1,6 @@
-import { acceptRequest } from "@/service/FriendsService";
 import { FriendsModel } from "@/model/FriendsModel";
+import { acceptRequest } from "@/service/FriendsService";
+import Image from "next/image";
 
 interface Props {
   friend: FriendsModel;
@@ -18,7 +19,7 @@ export function AcceptFriendRequestButton({ friend, onAccepted }: Props) {
 
   return (
     <button onClick={handleAccept}>
-      <img src="/accept.png" alt="Accepter" />
+      <Image src="/accept.png" alt="Accepter" height={24} width={24} />
     </button>
   );
 }
