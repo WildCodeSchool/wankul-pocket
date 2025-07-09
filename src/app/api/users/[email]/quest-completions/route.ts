@@ -1,13 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { questMessages } from "@/data/responseMessages";
 import { manageQuestCompletion } from "@/service/QuestCompletionService";
 import { db } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 
-export async function POST(
-  req: Request,
-  { params }: { params: { email: string } }
-) {
+export async function POST(req: NextRequest) {
   try {
     const referer = req.headers.get("referer");
     if (!referer || !referer.includes("/objectifs")) {
@@ -18,7 +15,8 @@ export async function POST(
     }
 
     const { user_id, quest_id, reward } = await req.json();
-    const userEmail = params.email;
+    const segments = req.nextUrl.pathname.split("/").filter(Boolean);
+    const userEmail = segments[segments.length - 2];
 
     if (
       typeof user_id !== "number" ||
@@ -68,12 +66,10 @@ export async function POST(
   }
 }
 
-export async function GET(
-  req: Request,
-  { params }: { params: { email: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
-    const userEmail = params.email;
+    const segments = req.nextUrl.pathname.split("/").filter(Boolean);
+    const userEmail = segments[segments.length - 2];
 
     const [completions] = await db.query<RowDataPacket[]>(
       `SELECT 

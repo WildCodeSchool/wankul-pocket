@@ -2,14 +2,12 @@ import { collectionMessages, questMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { getUserIdByEmail } from "@/service/UserService";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { email: string } }
-) {
-  const userEmail = params.email;
+export async function GET(req: NextRequest) {
+  const segments = req.nextUrl.pathname.split("/").filter(Boolean);
+  const userEmail = segments[segments.length - 2];
   const { searchParams } = new URL(req.url);
   const type = searchParams.get("type");
 

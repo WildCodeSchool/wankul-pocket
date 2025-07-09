@@ -1,4 +1,3 @@
-import { getAllQuests } from "@/lib/quest/getQuests";
 import { getUserQuestsProgress } from "@/lib/user/getUserQuestProgress";
 import { getAllQuestsById } from "@/lib/quest/getAllQuestsById";
 import { UserModel } from "@/model/UserModel";
@@ -6,10 +5,6 @@ import { QuestModel } from "@/model/QuestModel";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
 import { validateQuest } from "@/lib/quest/validateQuest";
 import { QuestValidator } from "@/utils/QuestValidator";
-
-export async function getAll() {
-  return getAllQuests();
-}
 
 export async function getUserQuestsStats(email: string) {
   return getUserQuestsProgress(email);
