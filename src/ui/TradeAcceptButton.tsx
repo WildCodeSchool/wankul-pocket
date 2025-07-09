@@ -7,6 +7,7 @@ import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editCollection, editOne } from "@/service/TradeService";
 import Image from "next/image";
 import styles from "./TradeButton.module.css";
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
 
 interface ProposedTradeProps {
   trade: TradeModel;
@@ -14,6 +15,8 @@ interface ProposedTradeProps {
 }
 
 export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
+  const { refreshProgress } = useQuestProgressContext();
+
   const handleAccept = async () => {
     const {
       from_user_email,
@@ -52,6 +55,7 @@ export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
       ]);
       await editOne(to_user_email, acceptedTrade);
       dispatch({ type: "ACCEPT" });
+      refreshProgress();
     } catch (error) {
       console.error("Erreur lors de l'acceptation de l'échange :", error);
     }

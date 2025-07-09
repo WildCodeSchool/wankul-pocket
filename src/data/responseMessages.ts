@@ -16,6 +16,8 @@ const userMessages = {
   addSuccess: "Utilisateur ajouté avec succès",
   notFound: "Aucun utilisateur trouvé avec cet ID",
   updateSuccess: "Utilisateur mis à jour avec succès",
+  addBananasFail:
+    "Erreur lors de l'ajout de bananes, veuillez réessayer ultérieurement",
 };
 
 const profilPictureMessages = {
@@ -138,6 +140,26 @@ const friendsMessages = {
   noRequests: "Aucune demande d'ami en attente",
 };
 
+const questMessages = {
+  error:
+    "Erreur lors de la récupération de la liste des quêtes, veuillez réessayer ultérieurement",
+  errorDetail: "Erreur lors de la récupération de la liste des quêtes",
+  server: "Une erreur est survenue, veuillez réessayer plus tard",
+  invalidId: "Contenu invalide, veuillez recommencer",
+  invalidEmail: "Contenu invalide, veuillez recommencer",
+  deleted: "Quête supprimée avec succès",
+  deleteFail:
+    "erreur lors de la suppression de la quête, veuillez réessayer ultérieurement",
+  addFail:
+    "erreur lors de l'ajout de la quête, veuillez réessayer ultérieurement",
+  editFail:
+    "erreur lors de la modification de la quête, veuillez réessayer ultérieurement",
+  invalidData: "Les données fournies sont invalides",
+  addSuccess: "Quête ajoutée avec succès",
+  notFound: "Aucune quête trouvée avec cet ID",
+  updateSuccess: "Quête mise à jour avec succès",
+};
+
 export {
   boostersMessages,
   cardsMessages,
@@ -146,4 +168,5 @@ export {
   profilPictureMessages,
   tradesMessages,
   userMessages,
+  questMessages,
 };

@@ -13,6 +13,12 @@ const apiRoutes = {
   FRIENDS: `${apiUrl}/api/friends`,
   FRIEND_DETAILS: (friendProfilId: string) =>
     `${apiUrl}/api/friends/${friendProfilId}/details`,
+  QUESTS: `${apiUrl}/api/quests`,
+  QUESTS_PROGRESS: (email: string) => `${apiUrl}/api/users/${email}/quests`,
+  ADD_COMPLETED_QUEST: (email: string) =>
+    `${apiUrl}/api/users/${email}/quest-completions`,
+  QUESTS_BY_ID: (email: string) =>
+    `${apiUrl}/api/users/${email}/quests?type=list`,
 };
 
 const appRoutes = {
@@ -22,6 +28,7 @@ const appRoutes = {
   CARDS_ID: (id: number) => `${appUrl}/cards/${id}`,
   COLLECTION: `${appUrl}/collection`,
   TRADES: `${appUrl}/echange`,
+  QUESTS: `${appUrl}/objectifs`,
 };
 
 export { apiRoutes, appRoutes };

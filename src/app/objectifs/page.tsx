@@ -1,9 +1,9 @@
-export default function Objectives() {
+import DisplayQuests from "@/ui/DisplayQuests";
+
+export default function Quests() {
   return (
     <div>
-      <h1>Objectifs</h1>
-      <p>Bienvenue sur la page des objectifs !</p>
-      <p>Cette page est dédiée à la gestion de vos objectifs.</p>
+      <DisplayQuests />
     </div>
   );
 }

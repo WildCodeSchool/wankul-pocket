@@ -76,7 +76,7 @@ export default function RevealedCards() {
                     height={180}
                     width={150}
                   />
-                  <p className={styles.new}>{quantity === 0 ? "NEW" : ""}</p>
+                  <p className={styles.new}>{card.isNew ? "NEW" : ""}</p>
                 </div>
               </div>
             </li>
