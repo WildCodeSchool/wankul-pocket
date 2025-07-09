@@ -423,11 +423,29 @@
     "quest_type": "standard"
   },
   {
-    "name": "Saison 1 complète",
-    "mission": "Posséder les 180 cartes de la saison 1",
+    "name": "Moultes cartes",
+    "mission": "Posséder 200 cartes différentes",
     "reward": 100,
     "category": "Diversité",
-    "goal_target": 180,
+    "goal_target": 200,
+    "goal_quantity": null,
+    "quest_type": "standard"
+  },
+  {
+    "name": "Moultes moultes cartes",
+    "mission": "Posséder 300 cartes différentes",
+    "reward": 100,
+    "category": "Diversité",
+    "goal_target": 300,
+    "goal_quantity": null,
+    "quest_type": "standard"
+  },
+  {
+    "name": "Ca vaut pas un oeuf sur un ordinateur",
+    "mission": "Posséder 400 cartes différentes",
+    "reward": 100,
+    "category": "Diversité",
+    "goal_target": 400,
     "goal_quantity": null,
     "quest_type": "standard"
   },
@@ -594,7 +612,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Bronze x2",
+    "name": "Légendaire Bronze doublée",
     "mission": "Posséder une carte Légendaire Bronze en double exemplaire",
     "reward": 40,
     "category": "Duplication Légendaire Bronze",
@@ -603,7 +621,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Bronze x3",
+    "name": "Légendaire Bronze triplée",
     "mission": "Posséder une carte Légendaire Bronze en triple exemplaire",
     "reward": 60,
     "category": "Duplication Légendaire Bronze",
@@ -621,7 +639,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Argent x2",
+    "name": "Légendaire Argent doublée",
     "mission": "Posséder une carte Légendaire Argent en double exemplaire",
     "reward": 50,
     "category": "Duplication Légendaire Argent",
@@ -630,7 +648,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Argent x3",
+    "name": "Légendaire Argent triplée",
     "mission": "Posséder une carte Légendaire Argent en triple exemplaire",
     "reward": 70,
     "category": "Duplication Légendaire Argent",
@@ -648,7 +666,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Or x2",
+    "name": "Légendaire Or doublée",
     "mission": "Posséder une carte Légendaire Or en double exemplaire",
     "reward": 70,
     "category": "Duplication Légendaire Or",
@@ -657,7 +675,7 @@
     "quest_type": "standard"
   },
   {
-    "name": "Légendaire Or x3",
+    "name": "Légendaire Or triplée",
     "mission": "Posséder une carte Légendaire Or en triple exemplaire",
     "reward": 100,
     "category": "Duplication Légendaire Or",
@@ -684,11 +702,47 @@
     "quest_type": "standard"
   },
   {
+    "name": "Le duo ultime mais en double",
+    "mission": "Détenir Laink et Terracid en Légendaire Or en double exemplaire",
+    "reward": 400,
+    "category": "Rareté spéciale",
+    "goal_target": null,
+    "goal_quantity": 2,
+    "quest_type": "standard"
+  },
+  {
     "name": "Trois clans, un deck",
     "mission": "Posséder une carte de 3 clans différents",
     "reward": 20,
     "category": "Clan",
     "goal_target": 3,
+    "goal_quantity": null,
+    "quest_type": "standard"
+  },
+  {
+    "name": "Guerre des clans",
+    "mission": "Posséder une carte de 5 clans différents",
+    "reward": 30,
+    "category": "Clan",
+    "goal_target": 5,
+    "goal_quantity": null,
+    "quest_type": "standard"
+  },
+  {
+    "name": "Pour les gouverner tous",
+    "mission": "Posséder une carte de 7 clans différents",
+    "reward": 40,
+    "category": "Clan",
+    "goal_target": 7,
+    "goal_quantity": null,
+    "quest_type": "standard"
+  },
+  {
+    "name": "Maître des clans",
+    "mission": "Posséder une carte de 10 clans différents",
+    "reward": 50,
+    "category": "Clan",
+    "goal_target": 10,
     "goal_quantity": null,
     "quest_type": "standard"
   },
