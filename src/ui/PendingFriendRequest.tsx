@@ -1,10 +1,10 @@
 "use client";
 
-import { useUserContext, useTransition } from "@/context/UserContext";
+import { useUserContext } from "@/context/UserContext";
 import { FriendsModel } from "@/model/FriendsModel";
 import { getAllRequests } from "@/service/FriendsService";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { AcceptFriendRequestButton } from "./AcceptFriendRequestButton";
 import styles from "./PendingFriendRequest.module.css";
 import { RefuseFriendRequestButton } from "./RefuseFriendRequestButton";
