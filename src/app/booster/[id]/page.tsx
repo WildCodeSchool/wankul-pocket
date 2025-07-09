@@ -10,9 +10,10 @@ import styles from "./boosterId.module.css";
 export default async function InfoDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const idNum = parseInt(params.id, 10);
+  const { id } = await params;
+  const idNum = parseInt(id || "", 10);
   if (isNaN(idNum)) {
     notFound();
   }
