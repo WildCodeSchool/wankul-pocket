@@ -1,22 +1,11 @@
 import { userMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { UserModel } from "@/model/UserModel";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-interface UpdateResult {
-  affectedRows: number;
-  warningStatus?: number;
-}
-interface UpdateProfilPicture {
-  profil_picture_id: number;
-  email: string;
-}
-
-export async function GET(
-  _req: Request,
-  { params }: { params: { email: string } }
-) {
-  const userEmail = params.email;
+export async function GET(_req: NextRequest) {
+  const pathname = _req.nextUrl.pathname;
+  const userEmail = pathname.split("/").pop();
   if (typeof userEmail !== "string") {
     return NextResponse.json(
       { error: userMessages.invalidEmail },
