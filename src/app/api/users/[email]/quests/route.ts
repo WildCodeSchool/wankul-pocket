@@ -39,6 +39,7 @@ export async function GET(
           completed_quests.user_id as user_id_completed
         FROM quest 
         LEFT JOIN completed_quests ON quest.id = completed_quests.quest_id AND completed_quests.user_id = ?
+        WHERE quest.quest_type = 'standard'
         ORDER BY quest.category ASC`,
         [userId]
       );

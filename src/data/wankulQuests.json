@@ -595,7 +595,7 @@
   },
   {
     "name": "Légendaire Bronze x2",
-    "mission": "Posséder une carte Légendaire Bronze (0.80%) en double exemplaire",
+    "mission": "Posséder une carte Légendaire Bronze en double exemplaire",
     "reward": 40,
     "category": "Duplication Légendaire Bronze",
     "goal_target": null,
@@ -604,7 +604,7 @@
   },
   {
     "name": "Légendaire Bronze x3",
-    "mission": "Posséder une carte Légendaire Bronze (0.80%) en triple exemplaire",
+    "mission": "Posséder une carte Légendaire Bronze en triple exemplaire",
     "reward": 60,
     "category": "Duplication Légendaire Bronze",
     "goal_target": null,
@@ -613,7 +613,7 @@
   },
   {
     "name": "Légendaire Bronze x5",
-    "mission": "Posséder une carte Légendaire Bronze (0.80%) en quintuple exemplaire",
+    "mission": "Posséder une carte Légendaire Bronze en quintuple exemplaire",
     "reward": 80,
     "category": "Duplication Légendaire Bronze",
     "goal_target": null,
