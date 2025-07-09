@@ -1,5 +1,7 @@
-import BoosterSelection from "@/ui/BoosterSelection";
+export const dynamic = "force-dynamic";
+
 import { getBoosters } from "@/lib/getBoosters";
+import BoosterSelection from "@/ui/BoosterSelection";
 
 import styles from "./boosterSelection.module.css";
 
