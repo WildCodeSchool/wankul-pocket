@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import styles from "@/ui/ChoiceAvatar.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
@@ -17,9 +18,20 @@ export default function ChoiceAvatar({ avatarList }: Props) {
   const [selectedAvatar, setSelectedAvatar] = useState<{
     id: number;
     url: string;
-  }>({
-    id: user?.profil_picture_id ?? 0,
-    url: user?.profil_picture_url ?? "",
+  }>(() => {
+    if (user?.profil_picture_id && user.profil_picture_url) {
+      return {
+        id: user.profil_picture_id,
+        url: user.profil_picture_url,
+      };
+    } else if (avatarList.length > 0) {
+      return {
+        id: avatarList[0].id,
+        url: avatarList[0].image_path,
+      };
+    } else {
+      return { id: 0, url: "/profilpic/default.png" };
+    }
   });
 
   async function handleValidate() {
@@ -33,7 +45,6 @@ export default function ChoiceAvatar({ avatarList }: Props) {
 
       setUser((prevUser) => {
         if (!prevUser) return null;
-
         return {
           ...prevUser,
           profil_picture_id: selectedAvatar.id,
@@ -51,17 +62,25 @@ export default function ChoiceAvatar({ avatarList }: Props) {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img src={selectedAvatar.url} alt="Avatar sélectionné" />
+          <Image
+            src={selectedAvatar.url}
+            alt="Avatar sélectionné"
+            width={120}
+            height={120}
+            className={styles.avatarImage}
+          />
         </div>
       </div>
 
       <div className={styles.grid}>
         {avatarList.map((avatar) => (
-          <img
+          <Image
             key={avatar.id}
             className={styles.avatarImage}
             src={avatar.image_path}
-            alt="avatar"
+            alt={`Avatar ${avatar.id}`}
+            width={100}
+            height={100}
             onClick={() =>
               setSelectedAvatar({
                 id: avatar.id,

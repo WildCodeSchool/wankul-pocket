@@ -6,6 +6,7 @@ import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
 import styles from "./InfoProfil.module.css";
 import { useUserContext } from "@/context/UserContext";
 import { updateUsername } from "@/lib/user/updateUsername";
+import Image from "next/image"; // ✅ Import de la balise optimisée
 
 export default function EditProfils() {
   const userContext = useUserContext();
@@ -40,10 +41,15 @@ export default function EditProfils() {
     <div className={styles.pageContainer}>
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
-          <img
-            src={`${userContext.user?.profil_picture_url}`}
-            alt="Avatar sélectionné"
-          />
+          {userContext.user?.profil_picture_url && (
+            <Image
+              src={userContext.user.profil_picture_url}
+              alt="Avatar sélectionné"
+              width={120}
+              height={120}
+              className={styles.avatarImage}
+            />
+          )}
         </div>
 
         <div className={styles.nameWrapper}>
@@ -65,7 +71,7 @@ export default function EditProfils() {
                   onClick={() => setIsEditing(true)}
                   className={styles.editButton}
                 >
-                  <img
+                  <Image
                     src="/crayon.svg"
                     alt="Modifier le nom"
                     width={18}

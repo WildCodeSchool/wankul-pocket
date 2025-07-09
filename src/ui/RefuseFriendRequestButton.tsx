@@ -1,5 +1,5 @@
 import { refuseFriendRequest } from "@/service/FriendsService";
-import { friendsMessages } from "@/data/responseMessages";
+import Image from "next/image";
 
 interface Props {
   id: number;
@@ -18,7 +18,7 @@ export function RefuseFriendRequestButton({ id, onRefused }: Props) {
 
   return (
     <button onClick={handleRefuse}>
-      <img src="/refuse.png" alt="Refuser" />
+      <Image src="/refuse.png" alt="Refuser" height={24} width={24} />
     </button>
   );
 }

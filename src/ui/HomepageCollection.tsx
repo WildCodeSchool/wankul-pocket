@@ -1,8 +1,9 @@
 "use client";
 
-import styles from "@/ui/HomepageCollection.module.css";
-import Link from "next/link";
 import { CardsModel } from "@/model/CardsModel";
+import styles from "@/ui/HomepageCollection.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
 export function HomepageCollection({
   collection,
@@ -26,19 +27,23 @@ export function HomepageCollection({
           {safeCollection.length === 0
             ? [...Array(4)].map((_, i) => (
                 <li key={i}>
-                  <img
+                  <Image
                     src="/cardVerso.png"
                     alt="Carte Verso"
                     className={styles.image}
+                    height={120}
+                    width={86}
                   />
                 </li>
               ))
             : sortedCollection.map((item) => (
                 <li key={item.id} className={styles.collectionItem}>
-                  <img
+                  <Image
                     src={item.image_path}
                     alt={item.name}
                     className={styles.image}
+                    height={120}
+                    width={86}
                   />
                 </li>
               ))}

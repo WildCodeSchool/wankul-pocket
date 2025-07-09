@@ -1,5 +1,5 @@
-import EditProfil from "@/ui/InfoProfil";
+import InfoProfil from "@/ui/InfoProfil";
 
 export default function ProfilPage() {
-  return <EditProfil />;
+  return <InfoProfil />;
 }

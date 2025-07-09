@@ -1,11 +1,9 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import styles from "./GoogleConnexion.module.css";
-import { signIn, useSession } from "next-auth/react";
 
 export default function GoogleConnexion() {
-  const { data: session } = useSession();
-
   return (
     <div>
       <button

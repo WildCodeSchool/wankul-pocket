@@ -1,10 +1,11 @@
 "use client";
 
-import styles from "./RevealedCards.module.css";
-import { OpenedCard, useOpenedCards } from "@/context/OpenedCardsContext";
-import { useState, useEffect } from "react";
 import { useCollectionContext } from "@/context/CollectionContext";
-import { useRouter, useParams } from "next/navigation";
+import { OpenedCard, useOpenedCards } from "@/context/OpenedCardsContext";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import styles from "./RevealedCards.module.css";
 
 export default function RevealedCards() {
   const { openedCards } = useOpenedCards();
@@ -57,19 +58,23 @@ export default function RevealedCards() {
                 }`}
               >
                 <div className={styles.cardFront}>
-                  <img
+                  <Image
                     src="/cardVerso.png"
                     alt="Card Back"
                     className={`${styles.cardImage}`}
+                    height={180}
+                    width={150}
                   />
                 </div>
                 <div className={styles.cardBack}>
-                  <img
+                  <Image
                     src={card.image_path}
                     alt={card.name}
                     className={`${styles.cardImage} ${
                       styles[camelCaseRarity] || ""
                     }`}
+                    height={180}
+                    width={150}
                   />
                   <p className={styles.new}>{quantity === 0 ? "NEW" : ""}</p>
                 </div>

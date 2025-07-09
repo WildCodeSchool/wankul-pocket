@@ -1,3 +1,5 @@
+import { apiRoutes } from "@/data/ROUTES";
+
 interface UpdateUsernamePayload {
   email: string;
   username: string;
@@ -7,7 +9,7 @@ export async function updateUsername({
   email,
   username,
 }: UpdateUsernamePayload): Promise<void> {
-  const res = await fetch("/api/profil", {
+  const res = await fetch(`${apiRoutes.USERS}/${email}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

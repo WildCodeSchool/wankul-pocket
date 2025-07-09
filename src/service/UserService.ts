@@ -1,10 +1,11 @@
+import { db } from "@/lib/db";
 import { deleteUser } from "@/lib/user/deleteUser";
 import { getOne } from "@/lib/user/getUser";
 import { getUsers } from "@/lib/user/getUsers";
 import { patchUser } from "@/lib/user/patchUser";
-import { UserModel } from "@/model/UserModel";
-import { db } from "@/lib/db";
 import { updateProfilPicture } from "@/lib/user/updateProfilPic";
+import { UserModel } from "@/model/UserModel";
+import type { RowDataPacket } from "mysql2/promise";
 
 export async function getall() {
   return getUsers();
@@ -33,12 +34,16 @@ export async function getUserIdByEmail(email: string): Promise<number | null> {
 
 // EVERYTHING THAT'S RELATED TO USER BANANAS //
 
+interface BananasRow extends RowDataPacket {
+  bananas: number;
+}
+
 export async function getUserBananas(userId: number): Promise<number> {
   try {
-    const result = await db.query(`SELECT bananas FROM user WHERE id = ?`, [
-      userId,
-    ]);
-    const rows = Array.isArray(result[0]) ? result[0] : (result as any[]);
+    const [rows] = await db.query<BananasRow[]>(
+      `SELECT bananas FROM user WHERE id = ?`,
+      [userId]
+    );
 
     if (rows.length === 0) {
       throw new Error("Utilisateur introuvable.");

@@ -1,14 +1,6 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import { boostersMessages } from "@/data/responseMessages";
-
-interface BoosterResponse {
-  id: number;
-  name: string;
-  image: string;
-  season: number;
-  set_name: string;
-}
+import { db } from "@/lib/db";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
