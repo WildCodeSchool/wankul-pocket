@@ -1,9 +1,16 @@
-import ChoiceAvatar from "@/ui/ChoiceAvatar";
-import { getall } from "@/service/ProfilPictureService";
+export const dynamic = "force-dynamic";
+
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
+import { getall } from "@/service/ProfilPictureService";
+import ChoiceAvatar from "@/ui/ChoiceAvatar";
 
 export default async function EditAvatarPage() {
-  const avatarList: ProfilPictureModel[] = await getall();
+  let avatarList: ProfilPictureModel[] = [];
+  try {
+    avatarList = await getall();
+  } catch (err) {
+    console.error("Erreur de fetch", err);
+  }
 
   return <ChoiceAvatar avatarList={avatarList} />;
 }
