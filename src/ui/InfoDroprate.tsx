@@ -1,6 +1,7 @@
+import { useState, useTransition } from "react";
 import { CardsModel } from "@/model/CardsModel";
+import Loader from "@/ui/Loader";
 import Image from "next/image";
-import { useState } from "react";
 import styles from "./InfoDroprate.module.css";
 
 const RARITY_STYLES: { [key: string]: string } = {
@@ -17,6 +18,7 @@ const RARITY_STYLES: { [key: string]: string } = {
 
 export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const cardsByRarity = cards.reduce((acc, card) => {
     const rarity = card.rarity;
@@ -27,9 +29,30 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
     return acc;
   }, {} as { [key: string]: CardsModel[] });
 
+  const handleOpen = () => {
+    setIsOpen(true);
+
+    startTransition(async () => {
+      const imagePromises = cards.map((card) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = card.image_path;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+      } catch (error) {
+        console.error("Erreur lors du chargement des cartes:", error);
+      }
+    });
+  };
+
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Infos</button>
+      <button onClick={handleOpen}>Infos</button>
       {isOpen && (
         <div className={styles.overlay} onClick={() => setIsOpen(false)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -40,36 +63,51 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
               ✖
             </button>
             <div className={styles.modalContent}>
-              <h2 className={styles.modalTitle}>
-                Informations sur les taux de drop
-              </h2>
+              {isPending ? (
+                <div className={styles.loader}>
+                  <Loader />
+                </div>
+              ) : (
+                <>
+                  <h2 className={styles.modalTitle}>
+                    Informations sur les taux de drop
+                  </h2>
 
-              {Object.entries(cardsByRarity).map(([rarity, rarityCards]) => {
-                const officialRate = rarityCards[0]?.official_rate || 0;
-                const percentage = `${officialRate}%`;
-                const className = RARITY_STYLES[rarity] || styles.defaultCard;
+                  {cards.length === 0 ? (
+                    <p>Aucune carte disponible</p>
+                  ) : (
+                    Object.entries(cardsByRarity).map(
+                      ([rarity, rarityCards]) => {
+                        const officialRate = rarityCards[0]?.official_rate || 0;
+                        const percentage = `${officialRate}%`;
+                        const className =
+                          RARITY_STYLES[rarity] || styles.defaultCard;
 
-                return (
-                  <div key={rarity} className={styles.containerCards}>
-                    <h3>
-                      {rarity} ({percentage})
-                    </h3>
-                    <ul className={className}>
-                      {rarityCards.map((card) => (
-                        <li key={card.id}>
-                          <Image
-                            src={card.image_path}
-                            alt={card.name}
-                            className={styles.cardImage}
-                            height={100}
-                            width={72}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
+                        return (
+                          <div key={rarity} className={styles.containerCards}>
+                            <h3>
+                              {rarity} ({percentage})
+                            </h3>
+                            <ul className={className}>
+                              {rarityCards.map((card) => (
+                                <li key={card.id}>
+                                  <Image
+                                    src={card.image_path}
+                                    alt={card.name}
+                                    className={styles.cardImage}
+                                    height={100}
+                                    width={72}
+                                  />
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      }
+                    )
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
