@@ -32,9 +32,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (!session?.user?.email) {
-        return;
-      }
+      if (!session?.user?.email) return;
 
       try {
         const data = await getOne(session.user.email);

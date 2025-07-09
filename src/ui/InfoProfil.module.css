@@ -1,0 +1,107 @@
+.bubble {
+  width: var(--bubbleWidth);
+  height: var(--bubbleHeight);
+  border: var(--buttonBorder);
+  border-radius: 20px;
+  padding: 2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarContainer {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bubblesGroup {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rem;
+  color: white;
+}
+
+.avatarBubble {
+  width: 276px;
+  height: 276px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.avatarBubble img {
+  width: 100%;
+  height: 100%;
+}
+
+.bubbleText {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* NOUVEAU : enveloppe du nom + bouton centrée */
+.nameWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Aligne le nom et le crayon horizontalement */
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.inputName {
+  font-size: 1rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.input {
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  max-width: 250px;
+}
