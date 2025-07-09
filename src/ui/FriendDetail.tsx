@@ -20,7 +20,6 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   const [friendDetails, setFriendDetails] = useState<FriendDetails | null>(
     null
   );
-  const [hasLoaded, setHasLoaded] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const openModal = () => setIsModalOpen(true);
@@ -29,18 +28,15 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   useEffect(() => {
     if (!friendProfilId || !isModalOpen) return;
 
-    setHasLoaded(false);
     setFriendDetails(null);
 
     startTransition(async () => {
       try {
         const data = await getFriendDetails(friendProfilId);
         setFriendDetails(data || null);
-        setHasLoaded(true);
       } catch (error) {
         console.error("Error fetching friend details:", error);
         setFriendDetails(null);
-        setHasLoaded(true);
       }
     });
   }, [friendProfilId, isModalOpen]);
@@ -97,11 +93,11 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
                   ))}
                 </div>
               </div>
-            ) : hasLoaded ? (
+            ) : (
               <div className={styles.modalContent}>
                 <p>Votre ami n'a encore aucune carte à sa collection</p>
               </div>
-            ) : null}
+            )}
           </div>
         </div>
       )}
