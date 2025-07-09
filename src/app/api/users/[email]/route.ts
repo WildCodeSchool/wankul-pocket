@@ -3,6 +3,11 @@ import { db } from "@/lib/db";
 import { UserModel } from "@/model/UserModel";
 import { NextRequest, NextResponse } from "next/server";
 
+interface UpdateResult {
+  affectedRows: number;
+  warningStatus?: number;
+}
+
 export async function GET(_req: NextRequest) {
   const pathname = _req.nextUrl.pathname;
   const userEmail = pathname.split("/").pop();
