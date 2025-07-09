@@ -1,13 +1,12 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import { cardsMessages } from "@/data/responseMessages";
+import { db } from "@/lib/db";
 import type { CardsModel } from "@/model/CardsModel";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
-  const cardId = parseInt(params.id, 10);
+export async function GET(_req: NextRequest) {
+  const pathname = _req.nextUrl.pathname;
+  const idStr = pathname.split("/").pop();
+  const cardId = parseInt(idStr || "", 10);
   if (isNaN(cardId)) {
     return NextResponse.json(
       { error: cardsMessages.invalidId },

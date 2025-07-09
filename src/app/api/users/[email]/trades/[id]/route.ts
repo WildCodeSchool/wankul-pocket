@@ -1,12 +1,11 @@
 import { tradesMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  _req: Request,
-  { params }: { params: { email: string; id: string } }
-) {
-  const tradeId = parseInt(params.id, 10);
+export async function DELETE(_req: NextRequest) {
+  const pathname = _req.nextUrl.pathname;
+  const idStr = pathname.split("/").pop();
+  const tradeId = parseInt(idStr || "", 10);
 
   if (isNaN(tradeId)) {
     return NextResponse.json(
