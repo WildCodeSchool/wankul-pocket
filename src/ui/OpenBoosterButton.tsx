@@ -4,10 +4,11 @@ import styles from "./OpenBoosterButton.module.css";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import { useOpenedCards, OpenedCard } from "@/context/OpenedCardsContext";
-import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
-import { CardsModel } from "@/model/CardsModel";
 import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useCollectionContext } from "@/context/CollectionContext";
+import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
+import { CardsModel } from "@/model/CardsModel";
+import Image from "next/image";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -89,7 +90,14 @@ export default function OpenBoosterButton({
         <span className={styles.text}>Ouvrir</span>
         <span className={styles.cost}>
           (10
-          <img src="/banana.png" alt="Banana" className={styles.bananaIcon} />)
+          <Image
+            src="/banana.png"
+            alt="Banana"
+            className={styles.bananaIcon}
+            height={16}
+            width={16}
+          />
+          )
         </span>
       </p>
     </button>

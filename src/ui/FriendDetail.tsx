@@ -1,7 +1,9 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useTransition } from "react";
 import { getFriendDetails } from "@/lib/friends/getFriendDetails";
-import styles from "./FriendDetail.module.css";
 import { CardsModel } from "@/model/CardsModel";
+import Loader from "@/ui/Loader";
+import Image from "next/image";
+import styles from "./FriendDetail.module.css";
 
 interface FriendDetails {
   username: string;
@@ -19,6 +21,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   const [friendDetails, setFriendDetails] = useState<FriendDetails | null>(
     null
   );
+  const [isPending, startTransition] = useTransition();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -26,18 +29,21 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
   useEffect(() => {
     if (!friendProfilId || !isModalOpen) return;
 
-    getFriendDetails(friendProfilId)
-      .then((data) => {
+    setFriendDetails(null);
+
+    startTransition(async () => {
+      try {
+        const data = await getFriendDetails(friendProfilId);
         setFriendDetails(data || null);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching friend details:", error);
         setFriendDetails(null);
-      });
+      }
+    });
   }, [friendProfilId, isModalOpen]);
 
   const cardsByRarity =
-    friendDetails?.cards.reduce((acc, card) => {
+    friendDetails?.cards?.reduce((acc, card) => {
       acc[card.rarity] = (acc[card.rarity] || 0) + 1;
       return acc;
     }, {} as Record<string, number>) || {};
@@ -53,16 +59,24 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
               ×
             </button>
 
-            {friendDetails ? (
+            {isPending ? (
               <div className={styles.modalContent}>
-                <img
+                <Loader />
+              </div>
+            ) : friendDetails ? (
+              <div className={styles.modalContent}>
+                <Image
                   src={friendDetails.user_image_path}
                   alt={friendDetails.username}
                   className={styles.friendImage}
+                  height={80}
+                  width={80}
                 />
                 <h3>{friendDetails.username}</h3>
                 <div>
-                  <h3>Collection ({friendDetails.cards.length} cartes)</h3>
+                  <h3>
+                    Collection ({friendDetails.cards?.length || 0} cartes)
+                  </h3>
                   {Object.entries(cardsByRarity).map(([rarity, count]) => (
                     <p key={rarity}>
                       <strong>{rarity}:</strong> &nbsp;{count}
@@ -71,12 +85,14 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
                 </div>
 
                 <div className={styles.cardsGrid}>
-                  {friendDetails.cards.map((card) => (
+                  {friendDetails.cards?.map((card) => (
                     <div key={card.id} className={styles.cardItem}>
-                      <img
+                      <Image
                         src={card.image_path}
                         alt={`Carte ${card.id}`}
                         className={styles.cardImage}
+                        height={100}
+                        width={71}
                       />
                     </div>
                   ))}
@@ -84,7 +100,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
               </div>
             ) : (
               <div className={styles.modalContent}>
-                <p>Votre ami n'a encore aucune carte à sa collection</p>
+                <p>Votre ami n&apos;a encore aucune carte à sa collection</p>
               </div>
             )}
           </div>

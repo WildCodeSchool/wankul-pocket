@@ -1,10 +1,11 @@
-import { notFound } from "next/navigation";
+import { boostersMessages } from "@/data/responseMessages";
 import type { BoosterModel } from "@/model/BoosterModel";
 import { getOneById } from "@/service/BoosterService";
-import { boostersMessages } from "@/data/responseMessages";
-import styles from "./boosterId.module.css";
-import OpenBoosterButton from "@/ui/OpenBoosterButton";
 import BackToBoosterSelection from "@/ui/BackToBoosterSelection";
+import OpenBoosterButton from "@/ui/OpenBoosterButton";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import styles from "./boosterId.module.css";
 
 interface PageParams {
   params: {
@@ -30,10 +31,12 @@ export default async function InfoDetailPage({ params }: PageParams) {
     <div className={styles.container}>
       <h2>Booster selectionné : {booster.name}</h2>
       <article className={styles.card}>
-        <img
+        <Image
           src={booster.image}
           alt={booster.name}
           className={styles.boosterImage}
+          height={343}
+          width={200}
         />
       </article>
       <OpenBoosterButton boosterId={booster.id} />
