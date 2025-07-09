@@ -38,22 +38,16 @@ export default function OpenBoosterButton({
 
         const formattedCards: CardsModel[] = cards;
 
-        const cardsWithNewFlag = formattedCards.map((newCard) => {
-          const existingCard = collection?.find(
-            (card: CardsModel) => card.id === newCard.id
-          );
-          return {
-            ...newCard,
-            isNew: !existingCard || existingCard.quantity === 0,
-          };
-        }) as OpenedCard[];
-
-        updateOpenedCards(cardsWithNewFlag);
+        let cardsWithNewFlag: OpenedCard[];
 
         setCollection((prevCollection) => {
           const updatedCollection = [...prevCollection];
 
-          formattedCards.forEach((newCard) => {
+          cardsWithNewFlag = formattedCards.map((newCard) => {
+            const existingCard = prevCollection?.find(
+              (card: CardsModel) => card.id === newCard.id
+            );
+
             const existingCardIndex = updatedCollection.findIndex(
               (card) => card.id === newCard.id
             );
@@ -63,10 +57,17 @@ export default function OpenBoosterButton({
             } else {
               updatedCollection.push(newCard);
             }
-          });
+
+            return {
+              ...newCard,
+              isNew: !existingCard || existingCard.quantity === 0,
+            };
+          }) as OpenedCard[];
 
           return updatedCollection;
         });
+
+        updateOpenedCards(cardsWithNewFlag!);
 
         refreshProgress();
 
