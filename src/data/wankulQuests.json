@@ -561,7 +561,7 @@
     "name": "Holo 1 doublée",
     "mission": "Posséder une carte Ultra rare holo 1 en double exemplaire",
     "reward": 30,
-    "category": "Duplication Rare",
+    "category": "Duplication Ultra rare holo 1",
     "goal_target": null,
     "goal_quantity": 2,
     "quest_type": "standard"
@@ -570,7 +570,7 @@
     "name": "Holo 1 triplée",
     "mission": "Posséder une carte Ultra rare holo 1 en triple exemplaire",
     "reward": 40,
-    "category": "Duplication Rare",
+    "category": "Duplication Ultra rare holo 1",
     "goal_target": null,
     "goal_quantity": 3,
     "quest_type": "standard"
@@ -579,7 +579,7 @@
     "name": "Holo 1 x5",
     "mission": "Posséder une carte Ultra rare holo 1 en quintuple exemplaire",
     "reward": 60,
-    "category": "Duplication Rare",
+    "category": "Duplication Ultra rare holo 1",
     "goal_target": null,
     "goal_quantity": 5,
     "quest_type": "standard"
