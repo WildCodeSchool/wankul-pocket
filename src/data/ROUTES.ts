@@ -15,6 +15,10 @@ const apiRoutes = {
     `${apiUrl}/api/friends/${friendProfilId}/details`,
 };
 
+const publicRoutes = {
+  PROFILS: `/profilpic`,
+};
+
 const appRoutes = {
   BOOSTERS: `${appUrl}/boosters`,
   BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
@@ -24,4 +28,4 @@ const appRoutes = {
   TRADES: `${appUrl}/echange`,
 };
 
-export { apiRoutes, appRoutes };
+export { apiRoutes, appRoutes, publicRoutes };
