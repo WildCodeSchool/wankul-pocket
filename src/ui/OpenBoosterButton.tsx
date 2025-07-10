@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./OpenBoosterButton.module.css";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/context/UserContext";
-import { useOpenedCards, OpenedCard } from "@/context/OpenedCardsContext";
-import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useCollectionContext } from "@/context/CollectionContext";
+import { OpenedCard, useOpenedCards } from "@/context/OpenedCardsContext";
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
+import { useUserContext } from "@/context/UserContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import styles from "./OpenBoosterButton.module.css";
 
 interface OpenBoosterButtonProps {
   boosterId: number;
@@ -20,7 +20,7 @@ export default function OpenBoosterButton({
   const router = useRouter();
   const { user, updateUserBananas } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
-  const { setCollection, collection } = useCollectionContext();
+  const { setCollection } = useCollectionContext();
   const { refreshProgress } = useQuestProgressContext();
 
   const handleOpening = async () => {
