@@ -1,9 +1,9 @@
 import { CardsModel } from "@/model/CardsModel";
 import { newTradeModel } from "@/model/NewTradeModel";
+import { NormalizedFriendModel } from "@/model/NormalizedFriendModel";
 import { addOne } from "@/service/TradeService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { NormalizedFriendModel } from "./NewTrade";
 import styles from "./ProposeTradeButton.module.css";
 
 interface TradeBtnProps {

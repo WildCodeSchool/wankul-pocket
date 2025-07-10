@@ -1,6 +1,8 @@
 "use client";
 
-import { useOpenedCards } from "@/context/OpenedCardsContext";
+import { useCollectionContext } from "@/context/CollectionContext";
+import { OpenedCard, useOpenedCards } from "@/context/OpenedCardsContext";
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useUserContext } from "@/context/UserContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
@@ -18,6 +20,8 @@ export default function OpenBoosterButton({
   const router = useRouter();
   const { user, updateUserBananas } = useUserContext();
   const { updateOpenedCards } = useOpenedCards();
+  const { setCollection } = useCollectionContext();
+  const { refreshProgress } = useQuestProgressContext();
 
   const handleOpening = async () => {
     if (!user) {
@@ -33,7 +37,39 @@ export default function OpenBoosterButton({
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
         const formattedCards: CardsModel[] = cards;
-        updateOpenedCards(formattedCards);
+
+        let cardsWithNewFlag: OpenedCard[];
+
+        setCollection((prevCollection) => {
+          const updatedCollection = [...prevCollection];
+
+          cardsWithNewFlag = formattedCards.map((newCard) => {
+            const existingCard = prevCollection?.find(
+              (card: CardsModel) => card.id === newCard.id
+            );
+
+            const existingCardIndex = updatedCollection.findIndex(
+              (card) => card.id === newCard.id
+            );
+
+            if (existingCardIndex !== -1) {
+              updatedCollection[existingCardIndex].quantity += newCard.quantity;
+            } else {
+              updatedCollection.push(newCard);
+            }
+
+            return {
+              ...newCard,
+              isNew: !existingCard || existingCard.quantity === 0,
+            };
+          }) as OpenedCard[];
+
+          return updatedCollection;
+        });
+
+        updateOpenedCards(cardsWithNewFlag!);
+
+        refreshProgress();
 
         router.push(`/booster/${boosterId}/reveal`);
       } catch (error) {

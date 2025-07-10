@@ -73,7 +73,11 @@ CREATE TABLE IF NOT EXISTS quest(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
   mission VARCHAR(255) NOT NULL,
-  reward INT NOT NULL
+  reward INT NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  goal_target INT,
+  goal_quantity INT,
+  quest_type ENUM('standard', 'daily', 'weekly', 'monthly', 'event', 'limited') NOT NULL DEFAULT 'standard'
 );
 
 CREATE TABLE IF NOT EXISTS completed_quests(

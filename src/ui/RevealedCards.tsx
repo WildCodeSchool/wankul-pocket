@@ -1,6 +1,5 @@
 "use client";
 
-import { useCollectionContext } from "@/context/CollectionContext";
 import { OpenedCard, useOpenedCards } from "@/context/OpenedCardsContext";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -10,7 +9,6 @@ import styles from "./RevealedCards.module.css";
 export default function RevealedCards() {
   const { openedCards } = useOpenedCards();
   const [pageLoaded, setPageLoaded] = useState(false);
-  const { collection } = useCollectionContext();
   const router = useRouter();
   const params = useParams();
   const boosterId =
@@ -32,8 +30,6 @@ export default function RevealedCards() {
     <>
       <ul className={styles.revealedCards}>
         {openedCards.map((card: OpenedCard, index: number) => {
-          const collectionCard = collection?.find((c) => c.id === card.id);
-          const quantity = collectionCard ? collectionCard.quantity : 0;
           const camelCaseRarity = card.rarity
             .toLowerCase()
             .split(" ")
@@ -76,7 +72,7 @@ export default function RevealedCards() {
                     height={180}
                     width={150}
                   />
-                  <p className={styles.new}>{quantity === 0 ? "NEW" : ""}</p>
+                  <p className={styles.new}>{card.isNew ? "NEW" : ""}</p>
                 </div>
               </div>
             </li>
