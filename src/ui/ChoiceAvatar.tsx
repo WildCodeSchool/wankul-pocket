@@ -8,6 +8,7 @@ import { useUserContext } from "@/context/UserContext";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
 import { updateProfilPicture } from "@/lib/user/updateProfilPic";
 import { UserModel } from "@/model/UserModel";
+import { publicRoutes } from "@/data/ROUTES";
 
 type Props = { avatarList: ProfilPictureModel[] };
 
@@ -30,7 +31,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
         url: avatarList[0].image_path,
       };
     } else {
-      return { id: 0, url: "/profilpic/default.png" };
+      return { id: 0, url: "default.png" };
     }
   });
 
@@ -63,7 +64,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
           <Image
-            src={selectedAvatar.url}
+            src={`${publicRoutes.PROFILS}/${selectedAvatar.url}`}
             alt="Avatar sélectionné"
             width={120}
             height={120}
@@ -77,7 +78,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
           <Image
             key={avatar.id}
             className={styles.avatarImage}
-            src={avatar.image_path}
+            src={`${publicRoutes.PROFILS}/${avatar.image_path}`}
             alt={`Avatar ${avatar.id}`}
             width={100}
             height={100}

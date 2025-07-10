@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
+import { publicRoutes } from "@/data/ROUTES";
 
 export default function Header() {
   const { user } = useUserContext();
@@ -28,7 +29,7 @@ export default function Header() {
     <header className={styles.globalHeader}>
       <Link href={"/profil"} className={styles.profilLink}>
         <Image
-          src={user?.profil_picture_url}
+          src={`${publicRoutes.PROFILS}/${user.profil_picture_url}`}
           alt="Avatar de profil"
           height={50}
           width={50}

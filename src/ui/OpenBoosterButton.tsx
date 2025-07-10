@@ -6,6 +6,8 @@ import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { useUserContext } from "@/context/UserContext";
 import { getBoosterOpening } from "@/lib/openBooster/getBoosterOpening";
 import { CardsModel } from "@/model/CardsModel";
+import { useState } from "react";
+import Loader from "@/ui/Loader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./OpenBoosterButton.module.css";
@@ -22,6 +24,7 @@ export default function OpenBoosterButton({
   const { updateOpenedCards } = useOpenedCards();
   const { setCollection } = useCollectionContext();
   const { refreshProgress } = useQuestProgressContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpening = async () => {
     if (!user) {
@@ -33,7 +36,10 @@ export default function OpenBoosterButton({
 
     if (user.bananas >= boosterCost) {
       try {
+        setIsLoading(true);
+
         updateUserBananas(user.bananas - boosterCost);
+
         const cards = await getBoosterOpening(boosterId, user.id, user.email);
 
         const formattedCards: CardsModel[] = cards;
@@ -70,11 +76,11 @@ export default function OpenBoosterButton({
         updateOpenedCards(cardsWithNewFlag!);
 
         refreshProgress();
-
-        router.push(`/booster/${boosterId}/reveal`);
+        await router.push(`/booster/${boosterId}/reveal`);
       } catch (error) {
         console.error("Erreur lors de l’ouverture du booster :", error);
         updateUserBananas(user.bananas + boosterCost);
+        setIsLoading(false);
       }
     }
   };
@@ -85,22 +91,28 @@ export default function OpenBoosterButton({
         !user || user.bananas < 10 ? styles.disabled : ""
       }`}
       onClick={handleOpening}
-      disabled={!user || user.bananas < 10}
+      disabled={!user || user.bananas < 10 || isLoading}
     >
-      <p className={styles.buttonContent}>
-        <span className={styles.text}>Ouvrir</span>
-        <span className={styles.cost}>
-          (10
-          <Image
-            src="/banana.png"
-            alt="Banana"
-            className={styles.bananaIcon}
-            height={16}
-            width={16}
-          />
-          )
-        </span>
-      </p>
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <p className={styles.buttonContent}>
+          <span className={styles.text}>Ouvrir</span>
+          <span className={styles.cost}>
+            (10
+            <Image
+              src="/banana.png"
+              alt="Banana"
+              className={styles.bananaIcon}
+              height={16}
+              width={16}
+            />
+            )
+          </span>
+        </p>
+      )}
     </button>
   );
 }
