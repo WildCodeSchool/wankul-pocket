@@ -21,6 +21,10 @@ const apiRoutes = {
     `${apiUrl}/api/users/${email}/quests?type=list`,
 };
 
+const publicRoutes = {
+  PROFILS: `/profilpic`,
+};
+
 const appRoutes = {
   BOOSTERS: `${appUrl}/boosters`,
   BOOSTERS_ID: (id: number) => `${appUrl}/boosters/${id}`,
@@ -31,4 +35,4 @@ const appRoutes = {
   QUESTS: `${appUrl}/objectifs`,
 };
 
-export { apiRoutes, appRoutes };
+export { apiRoutes, appRoutes, publicRoutes };

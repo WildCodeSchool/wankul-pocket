@@ -23,7 +23,7 @@ const seed = async () => {
       password: MYSQL_DB_PASSWORD,
       database: MYSQL_DB_NAME,
     });
-
+    await db.execute("SET FOREIGN_KEY_CHECKS = 0");
     await db.query("DELETE FROM card");
     await db.query("DELETE FROM booster");
     await db.query("DELETE FROM user");
@@ -96,9 +96,18 @@ const seed = async () => {
     await db.query("ALTER TABLE profil_picture AUTO_INCREMENT = 1");
 
     await db.query(`
-      INSERT INTO profil_picture (image_path) VALUES ("/profilpic/perso1.png"), ("/profilpic/perso2.png"), ("/profilpic/perso3.png"), ("/profilpic/perso4.png"), ("/profilpic/perso5.png"), ("/profilpic/perso6.png"), ("/profilpic/perso7.png"), ("/profilpic/perso8.png")`);
 
-
+  INSERT INTO profil_picture (image_path) VALUES
+  ("perso1.png"),
+  ("perso2.png"),
+  ("perso3.png"),
+  ("perso4.png"),   
+  ("perso5.png"),
+  ("perso6.png"),
+  ("perso7.png"),
+  ("perso8.png");
+`);
+    await db.execute("SET FOREIGN_KEY_CHECKS = 1");
     await db.end();
     console.log("🌱 Database seeded successfully");
   } catch (err) {

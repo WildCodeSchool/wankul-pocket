@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./InfoProfil.module.css";
+import { publicRoutes } from "@/data/ROUTES";
 
 export default function EditProfils() {
   const userContext = useUserContext();
@@ -44,7 +45,7 @@ export default function EditProfils() {
         <div className={styles.avatarBubble}>
           {userContext.user?.profil_picture_url && (
             <Image
-              src={userContext.user.profil_picture_url}
+              src={`${publicRoutes.PROFILS}/${userContext.user.profil_picture_url}`}
               alt="Avatar sélectionné"
               width={120}
               height={120}
