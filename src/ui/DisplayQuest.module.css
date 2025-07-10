@@ -1,0 +1,105 @@
+.questContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.questList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  gap: 16px;
+}
+
+.questCard {
+  display: flex;
+  align-items: center;
+  background: var(--bubbleGradient);
+  border: var(--bubbleBorder);
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.rewardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: var(--bubbleGradient);
+  border: var(--bubbleBorder);
+  border-radius: 15px;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.questCompleted {
+  background: linear-gradient(to bottom, #00ff085e, #7aff81b1);
+}
+
+.rewardAnimation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(115, 241, 115, 0.842);
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #333;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0px 10px rgba(255, 215, 0, 0.4);
+  border: var(--bubbleBorder);
+  animation: rewardFadeUp 2s ease-out forwards;
+}
+
+@keyframes rewardFadeUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -60%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80%) scale(0.8);
+  }
+}
+
+.loaderContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

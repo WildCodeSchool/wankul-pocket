@@ -69,12 +69,35 @@ const seed = async () => {
       );
     }
 
-    for (const { name, mission, reward } of quests) {
+    for (const {
+      name,
+      mission,
+      reward,
+      category,
+      goal_target,
+      goal_quantity,
+      quest_type,
+    } of quests) {
       await db.query(
-        "INSERT INTO quest (name, mission, reward) VALUES (?, ?, ?)",
-        [name, mission, reward]
+        "INSERT INTO quest (name, mission, reward, category, goal_target, goal_quantity, quest_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [
+          name,
+          mission,
+          reward,
+          category,
+          goal_target,
+          goal_quantity,
+          quest_type,
+        ]
       );
     }
+
+    await db.query("DELETE FROM profil_picture");
+    await db.query("ALTER TABLE profil_picture AUTO_INCREMENT = 1");
+
+    await db.query(`
+      INSERT INTO profil_picture (image_path) VALUES ("/profilpic/perso1.png"), ("/profilpic/perso2.png"), ("/profilpic/perso3.png"), ("/profilpic/perso4.png"), ("/profilpic/perso5.png"), ("/profilpic/perso6.png"), ("/profilpic/perso7.png"), ("/profilpic/perso8.png")`);
+
 
     await db.end();
     console.log("🌱 Database seeded successfully");

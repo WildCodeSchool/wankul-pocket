@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { BoosterModel } from "@/model/BoosterModel";
 import { CardsModel } from "@/model/CardsModel";
 import { TradeModel } from "@/model/TradeModel";

@@ -1,7 +1,7 @@
-import { useState, useTransition } from "react";
 import { CardsModel } from "@/model/CardsModel";
 import Loader from "@/ui/Loader";
 import Image from "next/image";
+import { useState, useTransition } from "react";
 import styles from "./InfoDroprate.module.css";
 
 const RARITY_STYLES: { [key: string]: string } = {
@@ -35,7 +35,7 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
     startTransition(async () => {
       const imagePromises = cards.map((card) => {
         return new Promise((resolve, reject) => {
-          const img = new Image();
+          const img = new window.Image();
           img.onload = resolve;
           img.onerror = reject;
           img.src = card.image_path;
