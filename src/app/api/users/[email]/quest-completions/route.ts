@@ -1,8 +1,8 @@
-import { NextResponse, NextRequest } from "next/server";
 import { questMessages } from "@/data/responseMessages";
-import { manageQuestCompletion } from "@/service/QuestCompletionService";
 import { db } from "@/lib/db";
+import { manageQuestCompletion } from "@/service/QuestCompletionService";
 import { RowDataPacket } from "mysql2";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,23 +40,29 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(result, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Erreur dans la route quest-completions:", error);
 
-    if (error.message === "Quest completion already exists") {
-      return NextResponse.json({ error: error.message }, { status: 409 });
-    }
     if (
-      error.message === "User not found" ||
-      error.message === "Quest not found"
+      typeof error === "object" &&
+      error !== null &&
+      "message" in error &&
+      typeof (error as { message: unknown }).message === "string"
     ) {
-      return NextResponse.json({ error: error.message }, { status: 404 });
-    }
-    if (error.message === "Quest completion requirements not met") {
-      return NextResponse.json({ error: error.message }, { status: 422 });
-    }
-    if (error.message === "Invalid reward amount") {
-      return NextResponse.json({ error: error.message }, { status: 400 });
+      const message = (error as { message: string }).message;
+
+      if (message === "Quest completion already exists") {
+        return NextResponse.json({ error: message }, { status: 409 });
+      }
+      if (message === "User not found" || message === "Quest not found") {
+        return NextResponse.json({ error: message }, { status: 404 });
+      }
+      if (message === "Quest completion requirements not met") {
+        return NextResponse.json({ error: message }, { status: 422 });
+      }
+      if (message === "Invalid reward amount") {
+        return NextResponse.json({ error: message }, { status: 400 });
+      }
     }
 
     return NextResponse.json(
