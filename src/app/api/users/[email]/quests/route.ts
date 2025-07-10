@@ -71,14 +71,17 @@ export async function GET(req: NextRequest) {
 
 
     (
-      SELECT JSON_ARRAYAGG(
-        JSON_OBJECT(
-          'card_id', c.id,
-          'quantity', col.quantity,
-          'rarity', c.rarity,
-          'name', c.name,
-          'clan', c.clan
-        )
+      SELECT COALESCE(
+        JSON_ARRAYAGG(
+          JSON_OBJECT(
+            'card_id', c.id,
+            'quantity', col.quantity,
+            'rarity', c.rarity,
+            'name', c.name,
+            'clan', c.clan
+          )
+        ),
+        JSON_ARRAY()
       )
       FROM collection col
       JOIN card c ON c.id = col.card_id
@@ -90,13 +93,38 @@ export async function GET(req: NextRequest) {
       [userEmail]
     );
 
+    console.log("Raw query result:", rows);
+    console.log("First row:", rows[0]);
+    console.log("Collection type:", typeof rows[0]?.collection);
+    console.log("Collection value:", rows[0]?.collection);
+
     const result =
       rows && (rows[0] as QuestProgressModel)
         ? {
             ...rows[0],
-            collection: rows[0].collection || [],
+            collection: (() => {
+              const collectionData = rows[0].collection;
+
+              if (Array.isArray(collectionData)) {
+                return collectionData;
+              }
+
+              if (typeof collectionData === "string") {
+                try {
+                  return JSON.parse(collectionData);
+                } catch (error) {
+                  console.error("Error parsing collection JSON:", error);
+                  return [];
+                }
+              }
+
+              return [];
+            })(),
           }
         : null;
+
+    console.log("Final result:", result);
+    return NextResponse.json(result);
 
     return NextResponse.json(result);
   } catch (error) {
