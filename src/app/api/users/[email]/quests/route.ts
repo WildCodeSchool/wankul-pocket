@@ -93,11 +93,6 @@ export async function GET(req: NextRequest) {
       [userEmail]
     );
 
-    console.log("Raw query result:", rows);
-    console.log("First row:", rows[0]);
-    console.log("Collection type:", typeof rows[0]?.collection);
-    console.log("Collection value:", rows[0]?.collection);
-
     const result =
       rows && (rows[0] as QuestProgressModel)
         ? {
@@ -122,9 +117,6 @@ export async function GET(req: NextRequest) {
             })(),
           }
         : null;
-
-    console.log("Final result:", result);
-    return NextResponse.json(result);
 
     return NextResponse.json(result);
   } catch (error) {
