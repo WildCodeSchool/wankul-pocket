@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
-import { notFound } from "next/navigation";
 
+import { notFound } from "next/navigation";
 import { ProfilPictureModel } from "@/model/ProfilPictureModel";
 import { getall } from "@/service/ProfilPictureService";
 import ChoiceAvatar from "@/ui/ChoiceAvatar";
