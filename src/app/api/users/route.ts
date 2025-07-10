@@ -9,7 +9,30 @@ interface UpdateResult {
 }
 
 export async function PATCH(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const type = searchParams.get("type");
+
   try {
+    if (type === "add-bananas") {
+      const auth = req.headers.get("authorization");
+      if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
+        return new Response("Unauthorized", { status: 401 });
+      }
+
+      const [result] = (await db.query(
+        "UPDATE user SET bananas = bananas + 1"
+      )) as [UpdateResult, unknown];
+
+      if (result.affectedRows === 0) {
+        return NextResponse.json(
+          { error: userMessages.notFound || "Aucun utilisateur mis à jour" },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json({ message: userMessages.updateSuccess });
+    }
+
     const payload = (await req.json()) as UserModel;
     const { id, username, email, bananas, profil_picture_id, profil_id } =
       payload;
