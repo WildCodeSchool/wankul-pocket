@@ -64,7 +64,7 @@ export default function ChoiceAvatar({ avatarList }: Props) {
       <div className={styles.avatarContainer}>
         <div className={styles.avatarBubble}>
           <Image
-            src={selectedAvatar.url}
+            src={`${publicRoutes.PROFILS}/${selectedAvatar.url}`}
             alt="Avatar sélectionné"
             width={120}
             height={120}
