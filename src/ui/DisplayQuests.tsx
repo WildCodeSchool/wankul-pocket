@@ -95,12 +95,16 @@ export default function DisplayQuests() {
   const isQuestCompleted = (quest: QuestModel): boolean => {
     if (!progress || !user) return false;
 
+    const collection = Array.isArray(progress.collection)
+      ? progress.collection
+      : [];
+
     const questProgress = new QuestProgressModel(
       user.id,
       progress.bananas,
       progress.friends,
       progress.trades,
-      progress.collection || []
+      collection
     );
 
     return serviceIsQuestCompleted(quest, questProgress);
