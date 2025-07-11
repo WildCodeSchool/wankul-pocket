@@ -10,6 +10,7 @@ import { FriendDetail } from "./FriendDetail";
 import TradeFromFriendList from "./TradeFromFriendList";
 import Loader from "./Loader";
 import Unfriend from "./Unfriend";
+import { publicRoutes } from "@/data/ROUTES";
 
 export default function DisplayFriendList() {
   const { user } = useUserContext();
@@ -53,8 +54,8 @@ export default function DisplayFriendList() {
                       className={styles.friendImage}
                       src={
                         isMe
-                          ? `${friend.friend_image_path}`
-                          : `${friend.user_image_path}`
+                          ? `${publicRoutes.PROFILS}/${friend.friend_image_path}`
+                          : `${publicRoutes.PROFILS}/${friend.user_image_path}`
                       }
                       alt={username}
                       height={50}

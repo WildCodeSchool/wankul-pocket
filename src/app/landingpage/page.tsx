@@ -25,8 +25,8 @@ export default function LandingPage() {
         })()}`}
         alt="Wankul aléatoire"
         className={styles.wankulImage}
-        height={350}
-        width={350}
+        height={300}
+        width={300}
       />
     </div>
   );

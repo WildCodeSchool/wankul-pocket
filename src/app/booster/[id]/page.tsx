@@ -34,8 +34,8 @@ export default async function InfoDetailPage({
           src={booster.image}
           alt={booster.name}
           className={styles.boosterImage}
-          height={343}
-          width={200}
+          height={515}
+          width={300}
         />
       </article>
       <OpenBoosterButton boosterId={booster.id} />

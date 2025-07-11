@@ -1,5 +1,6 @@
 "use client";
 
+import { publicRoutes } from "@/data/ROUTES";
 import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editOne } from "@/service/TradeService";
@@ -39,7 +40,7 @@ export default function SentTrade({ trade }: SentTradeProps) {
       <section className={styles.container}>
         <div className={styles.topSection}>
           <Image
-            src={trade.to_user_avatar}
+            src={`${publicRoutes.PROFILS}/${trade.to_user_avatar}`}
             alt={trade.to_username}
             height={50}
             width={50}

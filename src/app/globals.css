@@ -47,6 +47,28 @@ body {
   overflow-x: hidden;
 }
 
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 body {
   color: var(--foreground);
   height: 100dvh;

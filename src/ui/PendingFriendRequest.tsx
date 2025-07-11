@@ -9,6 +9,7 @@ import { AcceptFriendRequestButton } from "./AcceptFriendRequestButton";
 import styles from "./PendingFriendRequest.module.css";
 import { RefuseFriendRequestButton } from "./RefuseFriendRequestButton";
 import Loader from "@/ui/Loader";
+import { publicRoutes } from "@/data/ROUTES";
 
 export function PendingFriendRequest() {
   const [requests, setRequests] = useState<FriendsModel[]>([]);
@@ -47,7 +48,7 @@ export function PendingFriendRequest() {
             {requests.map((request: FriendsModel) => (
               <li key={request.id} className={styles.requestItem}>
                 <Image
-                  src={request.friend_image_path || "/profilpic/perso1.png"}
+                  src={`${publicRoutes.PROFILS}/${request.friend_image_path}`}
                   className={styles.friendImage}
                   alt="Profil"
                   height={50}
