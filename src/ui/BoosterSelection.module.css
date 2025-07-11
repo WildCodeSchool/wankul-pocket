@@ -3,7 +3,7 @@
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   text-align: center;
   gap: 20px;
   height: 100%;

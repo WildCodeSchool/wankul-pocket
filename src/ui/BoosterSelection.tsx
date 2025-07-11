@@ -89,6 +89,7 @@ export default function BoosterSelection({
                 className={styles.boosterImage}
                 height={165}
                 width={96}
+                sizes="(max-width: 480px) 60px, (max-width: 768px) 80px, 96px"
               />
               {isDisabled && (
                 <p className={styles.disabledText}>
