@@ -1,15 +1,14 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
+import { publicRoutes } from "@/data/ROUTES";
 import { updateUsername } from "@/lib/user/updateUsername";
 import { UserModel } from "@/model/UserModel";
 import GoogleDeconnexion from "@/ui/GoogleDeconnexion";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./InfoProfil.module.css";
-import { publicRoutes } from "@/data/ROUTES";
-import { useRouter } from "next/navigation";
 
 export default function EditProfils() {
   const userContext = useUserContext();
