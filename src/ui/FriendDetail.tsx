@@ -66,7 +66,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
             ) : friendDetails ? (
               <div className={styles.modalContent}>
                 <Image
-                  src={friendDetails.user_image_path}
+                  src={`/profilpic/${friendDetails.user_image_path}`}
                   alt={friendDetails.username}
                   className={styles.friendImage}
                   height={80}

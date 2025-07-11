@@ -53,8 +53,8 @@ export default function DisplayFriendList() {
                       className={styles.friendImage}
                       src={
                         isMe
-                          ? `${friend.friend_image_path}`
-                          : `${friend.user_image_path}`
+                          ? `/profilpic/${friend.friend_image_path}`
+                          : `/profilpic/${friend.user_image_path}`
                       }
                       alt={username}
                       height={50}

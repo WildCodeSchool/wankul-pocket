@@ -47,7 +47,9 @@ export function PendingFriendRequest() {
             {requests.map((request: FriendsModel) => (
               <li key={request.id} className={styles.requestItem}>
                 <Image
-                  src={request.friend_image_path || "/profilpic/perso1.png"}
+                  src={`/profilpic/${
+                    request.friend_image_path || "perso1.png"
+                  }`}
                   className={styles.friendImage}
                   alt="Profil"
                   height={50}
