@@ -59,19 +59,6 @@
   transform: scale(1.05);
 }
 
-.button {
-  padding: var(--buttonPadding);
-  background: var(--bubbleGradient);
-  color: var(--textColor);
-  font-size: var(--buttonFontSize);
-  font-weight: var(--buttonFontWeight);
-  border-radius: var(--buttonBorderRadius);
-  border: var(--buttonBorder);
-  cursor: pointer;
-  transition: var(--buttonTransition);
-  margin-top: 1rem;
-}
-
 .button:hover {
   background-color: #0059c1;
 }
