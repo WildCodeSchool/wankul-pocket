@@ -1,5 +1,6 @@
 "use client";
 
+import { publicRoutes } from "@/data/ROUTES";
 import { TradeModel } from "@/model/TradeModel";
 import Image from "next/image";
 import { useReducer } from "react";
@@ -70,7 +71,7 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
         >
           <div className={styles.topSection}>
             <Image
-              src={trade.from_user_avatar}
+              src={`${publicRoutes.PROFILS}/${trade.to_user_avatar}`}
               alt={trade.from_username}
               height={50}
               width={50}
@@ -114,7 +115,7 @@ export default function ProposedTrade({ trade }: ProposedTradeProps) {
         >
           <div className={styles.topSection}>
             <Image
-              src={trade.from_user_avatar}
+              src={`${publicRoutes.PROFILS}/${trade.to_user_avatar}`}
               alt={trade.from_username}
               height={50}
               width={50}

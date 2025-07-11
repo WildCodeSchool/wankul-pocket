@@ -91,7 +91,12 @@ export default function CardWithAnim({ card }: CardWithAnimProps) {
       onTouchEnd={handleTouchEnd}
     >
       <div className={styles.contentCard}>
-        <Image src={card.image_path} alt={card.name} width={300} height={419} />
+        <Image
+          src={card.image_path}
+          alt={card.name}
+          width={card.rarity === "Terrain" ? 214 : 180}
+          height={card.rarity === "Terrain" ? 300 : 251}
+        />
         <div className={card.is_holo ? styles.holoLayer : styles.none}></div>
         <div className={card.is_holo ? styles.illusion : styles.none}></div>
       </div>
