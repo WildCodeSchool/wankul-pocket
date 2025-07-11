@@ -9,11 +9,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./InfoProfil.module.css";
 import { publicRoutes } from "@/data/ROUTES";
+import { useRouter } from "next/navigation";
 
 export default function EditProfils() {
   const userContext = useUserContext();
   const [tempName, setTempName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setTempName(userContext.user?.username || "");
@@ -37,6 +39,10 @@ export default function EditProfils() {
 
       setIsEditing(false);
     }
+  };
+
+  const handleAvatarEdit = () => {
+    router.push("/profil/editer-avatar");
   };
 
   return (
@@ -89,10 +95,8 @@ export default function EditProfils() {
       <div className={styles.bubblesGroup}>
         <div>
           <div className={styles.bubble}>
-            <button>
-              <Link href="/profil/editer-avatar" className={styles.bubbleText}>
-                Changer mon avatar
-              </Link>
+            <button onClick={handleAvatarEdit} className={styles.bubbleText}>
+              Changer mon avatar
             </button>
           </div>
         </div>
