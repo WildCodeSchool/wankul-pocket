@@ -14,14 +14,12 @@ export default function Header() {
   if (!user) {
     return (
       <header className={styles.globalHeader}>
-        <Link href={"/"}>
-          <Image
-            src={"/headerLogo.png"}
-            alt="Logo Wankul Pocket"
-            height={50}
-            width={125}
-          />
-        </Link>
+        <Image
+          src={"/headerLogo.png"}
+          alt="Logo Wankul Pocket"
+          height={50}
+          width={125}
+        />
       </header>
     );
   }
