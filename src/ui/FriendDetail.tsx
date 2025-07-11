@@ -4,6 +4,7 @@ import { CardsModel } from "@/model/CardsModel";
 import Loader from "@/ui/Loader";
 import Image from "next/image";
 import styles from "./FriendDetail.module.css";
+import { publicRoutes } from "@/data/ROUTES";
 
 interface FriendDetails {
   username: string;
@@ -66,7 +67,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
             ) : friendDetails ? (
               <div className={styles.modalContent}>
                 <Image
-                  src={friendDetails.user_image_path}
+                  src={`${publicRoutes.PROFILS}/${friendDetails.user_image_path}`}
                   alt={friendDetails.username}
                   className={styles.friendImage}
                   height={80}
