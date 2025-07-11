@@ -89,11 +89,14 @@ export default function EditProfils() {
       <div className={styles.bubblesGroup}>
         <div>
           <div className={styles.bubble}>
-            <Link href="/profil/editer-avatar" className={styles.bubbleText}>
-              Changer mon avatar
-            </Link>
+            <button>
+              <Link href="/profil/editer-avatar" className={styles.bubbleText}>
+                Changer mon avatar
+              </Link>
+            </button>
           </div>
         </div>
+        <p>CODE AMI : {userContext.user?.profil_id}</p>
 
         <p className={styles.sectionTitle}>Statistique</p>
 
