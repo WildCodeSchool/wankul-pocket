@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 import { publicRoutes } from "@/data/ROUTES";
+import BananaLoader from "./BananaLoader";
 
 export default function Header() {
   const { user } = useUserContext();
@@ -42,12 +43,7 @@ export default function Header() {
         />
       </Link>
       <Link href={"/booster"} className={styles.bananasLink}>
-        <Image
-          src={"/banana.png"}
-          alt="Compteur de bananes"
-          height={35}
-          width={35}
-        />
+        <BananaLoader />
         <p>{user?.bananas}</p>
       </Link>
       <nav className={styles.headerNav}>
