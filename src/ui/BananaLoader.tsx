@@ -14,7 +14,8 @@ export default function BananaLoader() {
       const seconds = now.getSeconds();
 
       const totalSeconds = minutes * 60 + seconds;
-      const progressPercentage = (totalSeconds / 3600) * 100;
+      const SecondsPerHour = 3600;
+      const progressPercentage = (totalSeconds / SecondsPerHour) * 100;
 
       setProgress(progressPercentage);
     };
@@ -28,7 +29,13 @@ export default function BananaLoader() {
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
-    <div className={styles.loaderContainer}>
+    <div
+      className={styles.loaderContainer}
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(progress)}
+    >
       <svg className={styles.progressRing} width="56" height="56">
         <circle
           className={styles.progressBackground}
@@ -56,7 +63,7 @@ export default function BananaLoader() {
       <div className={styles.bananaContainer}>
         <Image
           src="/banana.png"
-          alt="Banana"
+          alt="Loading next Banana"
           width={32}
           height={32}
           className={styles.bananaImage}
