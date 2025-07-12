@@ -43,7 +43,7 @@ export default function RevealedCards() {
             <li
               key={index}
               className={`${styles.card} ${
-                pageLoaded ? styles.fadeIn : styles.hiddenBeforeFade
+                pageLoaded ? `${styles.fadeIn} ${styles[camelCaseRarity]}` : styles.hiddenBeforeFade
               }`}
               style={pageLoaded ? { animationDelay: `${index * 0.12}s` } : {}}
               onClick={() => handleReveal(index.toString())}
@@ -57,7 +57,9 @@ export default function RevealedCards() {
                   <Image
                     src="/cardVerso.png"
                     alt="Card Back"
-                    className={`${styles.cardImage}`}
+                    className={`${styles.cardImage} ${
+                      styles[camelCaseRarity] || ""
+                    }`}
                     height={180}
                     width={150}
                   />
