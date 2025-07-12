@@ -46,11 +46,9 @@
 }
 
 .bananasLink {
-  img {
-    margin-top: -2px;
-  }
   p {
     line-height: 0.8;
+    margin-bottom: 5px;
   }
 }
 

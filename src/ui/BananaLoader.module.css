@@ -1,0 +1,54 @@
+.loaderContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  transform: translateY(-3px);
+}
+
+.progressRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.progressBackground {
+  opacity: 0.3;
+}
+
+.progressCircle {
+  transition: stroke-dashoffset 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+}
+
+.bananaContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bananaImage {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Animation légère pour rendre le loader plus vivant */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.bananaContainer:hover .bananaImage {
+  animation: pulse 1.5s ease-in-out infinite;
+}
