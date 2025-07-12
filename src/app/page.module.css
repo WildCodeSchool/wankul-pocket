@@ -7,3 +7,15 @@
   max-width: 540px;
   margin: 0 auto;
 }
+
+@media (max-width: 379px) {
+  .homepage {
+    max-width: 350px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .homepage {
+    max-width: 800px;
+  }
+}
