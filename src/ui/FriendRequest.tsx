@@ -80,7 +80,7 @@ export default function FriendRequest() {
           type="text"
           value={targetProfileID}
           onChange={handleChange}
-          placeholder="Entrer le profilID"
+          placeholder="Entrer le Code Ami"
           maxLength={19}
           minLength={19}
           pattern="[a-zA-Z0-9-]{19}"

@@ -17,6 +17,7 @@ export default function DisplayFriendList() {
   const userProfilId = user?.profil_id;
   const [friends, setFriends] = useState<FriendsModel[]>([]);
   const [isPending, startTransition] = useTransition();
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     if (!userProfilId) return;
@@ -32,13 +33,28 @@ export default function DisplayFriendList() {
     });
   }, [userProfilId]);
 
+  const filteredFriends = friends.filter((friend) => {
+    const isMe = friend.user_profil_id === userProfilId;
+    const username = isMe
+      ? friend.friend_username || "Unknown"
+      : friend.user_username || "Unknown";
+    return username.toLowerCase().includes(filter.toLowerCase());
+  });
+
   return (
     <div className={styles.container}>
       <h2>Liste d&apos;amis</h2>
+      <input
+        type="text"
+        placeholder="Rechercher un ami..."
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className={styles.filterInput}
+      />
       {isPending && <Loader />}
       {!isPending && (
         <ul className={styles.friendList}>
-          {friends.map((friend) => {
+          {filteredFriends.map((friend) => {
             const isMe = friend.user_profil_id === userProfilId;
             const username = isMe
               ? friend.friend_username || "Unknown"
