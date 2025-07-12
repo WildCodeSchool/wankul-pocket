@@ -51,7 +51,11 @@ export default function DisplayFriendList() {
         onChange={(e) => setFilter(e.target.value)}
         className={styles.filterInput}
       />
-      {isPending && <Loader />}
+      {isPending && (
+        <div className={styles.loadingContainer}>
+          <Loader />
+        </div>
+      )}
       {!isPending && (
         <ul className={styles.friendList}>
           {filteredFriends.map((friend) => {

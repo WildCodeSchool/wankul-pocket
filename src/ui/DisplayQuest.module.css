@@ -26,6 +26,22 @@
   gap: 10px;
 }
 
+.questCard:hover {
+  border: 1px solid white;
+}
+
+@keyframes questClickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -102,4 +118,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@keyframes questItemArrival {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.questList > .questCard {
+  animation: questItemArrival 0.5s ease-out;
+  animation-fill-mode: both;
 }
