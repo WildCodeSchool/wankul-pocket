@@ -1,3 +1,17 @@
+@keyframes bounceArrival {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .homepage {
   display: flex;
   flex-wrap: wrap;
@@ -6,4 +20,10 @@
   gap: 35px 0.5rem;
   max-width: 540px;
   margin: 0 auto;
+}
+
+.homepage > * {
+  animation: bounceArrival 0.6s ease-out;
+  animation-delay: calc((var(--total-items) - var(--item-index)) * 0.1s);
+  animation-fill-mode: both;
 }

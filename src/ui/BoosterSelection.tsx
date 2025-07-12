@@ -18,12 +18,17 @@ export default function BoosterSelection({
     null
   );
   const [cards, setCards] = useState<CardsModel[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     if (boosters.length > 0) {
       setSelectedBooster(boosters[0]);
     }
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
   }, [boosters]);
 
   useEffect(() => {
@@ -47,9 +52,13 @@ export default function BoosterSelection({
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isLoaded ? styles.loaded : ""}`}>
       {selectedBooster && (
-        <div className={styles.selectedBooster}>
+        <div
+          className={`${styles.selectedBooster} ${
+            isLoaded ? styles.selectedBoosterAnimated : ""
+          }`}
+        >
           <Image
             src={selectedBooster.image}
             alt={selectedBooster.name}
@@ -60,14 +69,26 @@ export default function BoosterSelection({
           <h3>{selectedBooster.name}</h3>
         </div>
       )}
-      <div className={styles.buttonsContainer}>
+      <div
+        className={`${styles.buttonsContainer} ${
+          isLoaded ? styles.buttonsContainerAnimated : ""
+        }`}
+      >
         <button className={styles.selectButton} onClick={navigateToBoosterPage}>
           Sélectionner ce booster
         </button>
-        {selectedBooster && <InfoDroprate cards={cards} />}
+        {selectedBooster && (
+          <div className={`${isLoaded ? styles.infoDroprateAnimated : ""}`}>
+            <InfoDroprate cards={cards} />
+          </div>
+        )}
       </div>
-      <ul className={styles.boosterList}>
-        {boosters.map((booster) => {
+      <ul
+        className={`${styles.boosterList} ${
+          isLoaded ? styles.boosterListAnimated : ""
+        }`}
+      >
+        {boosters.map((booster, index) => {
           const isDisabled = booster.id !== boosters[0].id;
           return (
             <li
@@ -76,7 +97,12 @@ export default function BoosterSelection({
                 selectedBooster?.id === booster.id
                   ? styles.boosterItemSelected
                   : ""
-              } ${isDisabled ? styles.disabledBooster : ""}`}
+              } ${isDisabled ? styles.disabledBooster : ""} ${
+                isLoaded ? styles.boosterItemAnimated : ""
+              }`}
+              style={{
+                animationDelay: isLoaded ? `${0.2 + index * 0.02}s` : undefined,
+              }}
               onClick={() => {
                 if (!isDisabled) {
                   handleSelectBooster(booster);
