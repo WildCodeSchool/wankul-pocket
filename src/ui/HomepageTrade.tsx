@@ -26,7 +26,7 @@ export default function HomepageTrade({ trade }: Props) {
         )}
         <div className={styles.cardsContainer}>
           <Image
-            src={!trade ? "/cardVerso.png" : trade?.requested_card_img}
+            src={!trade ? "/cardVerso.png" : trade?.offered_card_img}
             alt="Carte proposée"
             height={100}
             width={71}
@@ -40,7 +40,7 @@ export default function HomepageTrade({ trade }: Props) {
             className={styles.tradeIcon}
           />
           <Image
-            src={!trade ? "/cardVerso.png" : trade?.offered_card_img}
+            src={!trade ? "/cardVerso.png" : trade?.requested_card_img}
             alt="Carte proposée"
             height={100}
             width={71}

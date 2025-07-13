@@ -1,7 +1,8 @@
 import { db } from "@/lib/db";
 import { getUniqueProfilID } from "@/utils/getUniqueProfilID";
 import type { RowDataPacket } from "mysql2/promise";
-import NextAuth from "next-auth";
+import NextAuth, { Account, Profile, SessionStrategy, User } from "next-auth";
+import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 
 interface UserRow {
@@ -13,7 +14,7 @@ interface UserRow {
   profil_id: string;
 }
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -27,14 +28,19 @@ const handler = NextAuth({
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as SessionStrategy,
   },
-
   callbacks: {
-    async signIn({ user }) {
-      if (!user.email) {
-        return false;
-      }
+    async signIn({
+      user,
+    }: {
+      user: AdapterUser | User;
+      account: Account | null;
+      profile?: Profile;
+      email?: { verificationRequest?: boolean };
+      credentials?: Record<string, unknown>;
+    }) {
+      if (!user.email) return false;
 
       const name = user.name ? user.name.split(" ")[0] : "Gilbert";
 
@@ -47,9 +53,7 @@ const handler = NextAuth({
         if (rows.length === 0) {
           const profilID = await getUniqueProfilID();
           await db.query(
-            `INSERT INTO user 
-    (username, email, created_at, profil_picture_id, profil_id) 
-   VALUES (?, ?, NOW(), ?, ?)`,
+            `INSERT INTO user (username, email, created_at, profil_picture_id, profil_id) VALUES (?, ?, NOW(), ?, ?)`,
             [name, user.email, 1, profilID]
           );
         }
@@ -61,6 +65,8 @@ const handler = NextAuth({
       }
     },
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
