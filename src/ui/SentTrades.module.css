@@ -4,10 +4,10 @@
   background: var(--bubbleGradient);
   border-radius: var(--buttonRadius);
   border: var(--buttonBorder);
-  padding: 2rem 1rem;
-  gap: 2rem;
+  gap: 1rem;
   margin: 1rem auto 0;
-  width: clamp(300px, 100%, 500px);
+  padding: 2rem;
+  width: clamp(300px, 100%, 800px);
 }
 
 .topSection {
@@ -44,4 +44,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+  .cardContainer {
+    img {
+      height: 250px;
+      width: 179px;
+    }
+  }
 }

@@ -30,11 +30,17 @@ export default function TradeAdd({
   return (
     <>
       <section className={styles.container}>
-        <p>
-          {selectedFriend
-            ? `Ami sélectionné : ${selectedFriend?.user2_username}`
-            : `Selectionne un ami pour lui proposer un échange`}
-        </p>
+        {selectedFriend ? (
+          <div>
+            <p>
+              Ami sélectionné :{" "}
+              <strong>{selectedFriend?.user2_username}</strong>
+            </p>
+            <p>Sélectionne deux cartes de même rareté</p>
+          </div>
+        ) : (
+          <p>Aucun ami sélectionné</p>
+        )}
         <div className={styles.cardsSection}>
           <div className={styles.cardContainer}>
             <button
@@ -87,7 +93,11 @@ export default function TradeAdd({
                 />
               )}
             </button>
-            <p>Carte demandée</p>
+            <p>
+              {selectedFriend
+                ? `Carte de ${selectedFriend?.user2_username}`
+                : `Carte demandée`}
+            </p>
           </div>
         </div>
       </section>
