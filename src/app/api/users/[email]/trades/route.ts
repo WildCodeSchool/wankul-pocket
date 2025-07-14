@@ -1,10 +1,10 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { tradesMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
 import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { UserModel } from "@/model/UserModel";
+import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
