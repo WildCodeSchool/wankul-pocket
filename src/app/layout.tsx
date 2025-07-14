@@ -13,15 +13,15 @@ import SessionWrapper from "./SessionWrapper";
 export const metadata: Metadata = {
   title: "Wankul Pocket",
   description: "Collectionne les cartes Wankul et échange les avec tes amis!",
-  metadataBase: new URL("https://wankul-pocket.vercel.app"),
+  metadataBase: new URL("https://www.wankulpocket.fr/"),
   openGraph: {
     title: "Wankul Pocket",
     description: "Collectionne les cartes Wankul et échange les avec tes amis!",
-    url: "https://wankul-pocket.vercel.app/",
+    url: "https://www.wankulpocket.fr/",
     siteName: "Wankul Pocket",
     images: [
       {
-        url: "https://wankul-pocket.vercel.app/OGImage.png",
+        url: "https://www.wankulpocket.fr/OGImage.png",
         width: 1200,
         height: 630,
         alt: "Aperçu de Wankul Pocket",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wankul Pocket",
     description: "Collectionne les cartes Wankul et échange les avec tes amis!",
-    images: ["https://wankul-pocket.vercel.app/OGImage.png"],
+    images: ["https://www.wankulpocket.fr/OGImage.png"],
   },
 };
 
