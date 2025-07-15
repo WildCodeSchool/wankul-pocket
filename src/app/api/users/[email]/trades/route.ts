@@ -146,8 +146,8 @@ export async function POST(req: NextRequest) {
     }
 
     if (
-      currentUser[0].pending_exchange_count > 0 ||
-      friend[0].pending_exchange_count > 0
+      currentUser[0]?.pending_exchange_count > 0 ||
+      friend[0]?.pending_exchange_count > 0
     ) {
       return NextResponse.json(
         {
@@ -157,13 +157,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const userProfilId = currentUser[0].profil_id;
+    const userProfilId = currentUser[0]?.profil_id;
     const friendProfilId = friend[0]?.profil_id;
     const [isFriend] = (await db.query(
-      "SELECT 1 FROM is_friend WHERE acceptance = true AND ((user_profil_id = ? AND friend_profil_id = ?) OR (user_profil_id = ? AND friend_profil_id = ?))",
+      "SELECT 1 FROM is_friend WHERE acceptance = 1 AND ((user_profil_id = ? AND friend_profil_id = ?) OR (user_profil_id = ? AND friend_profil_id = ?))",
       [userProfilId, friendProfilId, friendProfilId, userProfilId]
     )) as [FriendsModel[], unknown];
-    if (!isFriend || isFriend.length === 0) {
+    if (isFriend.length === 0) {
       return NextResponse.json(
         {
           error: tradesMessages.noFriend,
@@ -172,7 +172,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (currentUser[0].card_quantity <= 1 && friend[0].card_quantity <= 1) {
+    if (currentUser[0].card_quantity <= 1 || friend[0].card_quantity <= 1) {
       return NextResponse.json(
         {
           error: tradesMessages.quantity,
