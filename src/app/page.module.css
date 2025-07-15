@@ -24,6 +24,5 @@
 
 .homepage > * {
   animation: bounceArrival 0.6s ease-out;
-  animation-delay: calc((var(--total-items) - var(--item-index)) * 0.1s);
   animation-fill-mode: both;
 }
