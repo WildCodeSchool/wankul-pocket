@@ -44,7 +44,7 @@ export class QuestValidator {
         const hasTerracid = progress.collection.some(
           (card) => card.name === "Terracid" && card.rarity === "Légendaire Or"
         );
-        return hasLaink && hasTerracid;
+        return (hasLaink && hasTerracid) || false;
 
       case "Duplication Commune":
         return this.validateDuplication(
