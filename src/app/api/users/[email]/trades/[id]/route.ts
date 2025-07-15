@@ -30,14 +30,14 @@ export async function DELETE(_req: NextRequest) {
 
     if (!currentTrade || currentTrade.length === 0) {
       return NextResponse.json(
-        { error: "Échange introuvable." },
+        { error: tradesMessages.invalidData },
         { status: 404 }
       );
     }
 
     if (currentTrade[0].email !== userEmail) {
       return NextResponse.json(
-        { error: "Tu n’es pas autorisé à supprimer cet échange." },
+        { error: tradesMessages.noUser },
         { status: 403 }
       );
     }
