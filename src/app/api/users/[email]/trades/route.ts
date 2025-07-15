@@ -19,6 +19,15 @@ interface UpdateResult {
   warningStatus?: number;
 }
 
+interface CheckUser {
+  id: number;
+  profil_id: string;
+  card_quantity: number;
+  card_rarity: string;
+  card_id: number;
+  pending_exchange_count: number;
+}
+
 export async function GET(_req: NextRequest) {
   const segments = _req.nextUrl.pathname.split("/").filter(Boolean);
   const userEmail = segments[segments.length - 2];
@@ -92,7 +101,7 @@ export async function POST(req: NextRequest) {
 
     if (from_user_id === to_user_id) {
       return NextResponse.json(
-        { error: "Tu ne peux pas te proposer d'échange à toi-même!" },
+        { error: tradesMessages.tradeToSelf },
         { status: 400 }
       );
     }
@@ -100,108 +109,81 @@ export async function POST(req: NextRequest) {
     if (requested_card_id === offered_card_id) {
       return NextResponse.json(
         {
-          error:
-            "Tu ne peux pas proposer d'échange entre deux cartes identiques!",
+          error: tradesMessages.tradeSameCard,
         },
         { status: 400 }
       );
     }
 
     const [currentUser] = (await db.query(
-      "SELECT id FROM user WHERE email = ? LIMIT 1",
-      [userEmail]
-    )) as [UserModel[], unknown];
+      "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.email = ?",
+      [offered_card_id, userEmail]
+    )) as [CheckUser[], unknown];
+    const [friend] = (await db.query(
+      "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.id = ?",
+      [requested_card_id, to_user_id]
+    )) as [CheckUser[], unknown];
+
     if (!currentUser?.[0]) {
       return NextResponse.json(
-        { error: "Utilisateur introuvable." },
+        { error: tradesMessages.noUser },
+        { status: 404 }
+      );
+    }
+    if (!friend?.[0]) {
+      return NextResponse.json(
+        { error: tradesMessages.noUser },
         { status: 404 }
       );
     }
     if (currentUser[0].id !== from_user_id) {
       return NextResponse.json(
         {
-          error:
-            "Seul l'utilisateur autorisé peut envoyer une demande d'échange",
+          error: tradesMessages.noUser,
         },
         { status: 400 }
       );
     }
 
-    const [pendingTrade] = (await db.query(
-      "SELECT * FROM exchange WHERE acceptance IS NULL AND ((from_user_id = ? AND to_user_id = ?) OR (from_user_id = ? AND to_user_id = ?))",
-      [from_user_id, to_user_id, to_user_id, from_user_id]
-    )) as [TradeModel[], unknown];
-    if (pendingTrade && pendingTrade.length > 0) {
+    if (
+      currentUser[0].pending_exchange_count > 0 ||
+      friend[0].pending_exchange_count > 0
+    ) {
       return NextResponse.json(
         {
-          error:
-            "Une demande d'échange est déjà en cours pour l'un des deux joueurs, retente plus tard!",
+          error: tradesMessages.pendingTrade,
         },
         { status: 400 }
       );
     }
 
-    const [userProfilRow] = (await db.query(
-      "SELECT u.profil_id FROM user AS u JOIN is_friend AS f ON f.user_profil_id = u.profil_id WHERE u.id = ?",
-      [from_user_id]
-    )) as unknown as [Array<{ profil_id: string }>, unknown];
-    const [friendProfilRow] = (await db.query(
-      "SELECT u.profil_id FROM user AS u JOIN is_friend AS f ON f.friend_profil_id = u.profil_id WHERE u.id = ?",
-      [to_user_id]
-    )) as unknown as [Array<{ profil_id: string }>, unknown];
-    const userProfilId = userProfilRow[0]?.profil_id;
-    const friendProfilId = friendProfilRow[0]?.profil_id;
+    const userProfilId = currentUser[0].profil_id;
+    const friendProfilId = friend[0]?.profil_id;
     const [isFriend] = (await db.query(
-      "SELECT 1 FROM is_friend WHERE acceptance = true AND user_profil_id = ? AND friend_profil_id = ?",
-      [userProfilId, friendProfilId]
+      "SELECT 1 FROM is_friend WHERE acceptance = true AND ((user_profil_id = ? AND friend_profil_id = ?) OR (user_profil_id = ? AND friend_profil_id = ?))",
+      [userProfilId, friendProfilId, friendProfilId, userProfilId]
     )) as [FriendsModel[], unknown];
     if (!isFriend || isFriend.length === 0) {
       return NextResponse.json(
         {
-          error:
-            "Tu ne peux proposer un échange qu'à un joueur de ta liste d'ami",
+          error: tradesMessages.noFriend,
         },
         { status: 400 }
       );
     }
 
-    const [offeredCard] = (await db.query(
-      "SELECT col.quantity, col.user_id, col.card_id, c.rarity FROM collection AS col JOIN card AS c ON c.id = col.card_id WHERE user_id = ? AND card_id = ?",
-      [from_user_id, offered_card_id]
-    )) as unknown as [
-      Array<{
-        quantity: number;
-        user_id: number;
-        card_id: number;
-        rarity: string;
-      }>,
-      unknown
-    ];
-    const [requestedCard] = (await db.query(
-      "SELECT col.quantity, col.user_id, col.card_id, c.rarity FROM collection AS col JOIN card AS c ON c.id = col.card_id WHERE user_id = ? AND card_id = ?",
-      [to_user_id, requested_card_id]
-    )) as unknown as [
-      Array<{
-        quantity: number;
-        user_id: number;
-        card_id: number;
-        rarity: string;
-      }>,
-      unknown
-    ];
-    if (offeredCard[0].quantity <= 1 || requestedCard[0].quantity <= 1) {
+    if (currentUser[0].card_quantity <= 1 && friend[0].card_quantity <= 1) {
       return NextResponse.json(
         {
-          error:
-            "Seules des cartes possédées en double exemplaire minimum peuvent être échangées",
+          error: tradesMessages.quantity,
         },
         { status: 400 }
       );
     }
-    if (offeredCard[0].rarity !== requestedCard[0].rarity) {
+    if (currentUser[0].card_rarity !== friend[0].card_rarity) {
       return NextResponse.json(
         {
-          error: "Seules deux cartes de même rareté peuvent être échangées",
+          error: tradesMessages.rarity,
         },
         { status: 400 }
       );
