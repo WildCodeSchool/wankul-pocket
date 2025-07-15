@@ -35,8 +35,10 @@ const handler = NextAuth({
       if (!user.email) {
         return false;
       }
-
-      const name = user.name ? user.name.split(" ")[0].slice(0, 25) : "Gilbert";
+      const maxUsernameLength = 25;
+      const name = user.name
+        ? user.name.split(" ")[0].slice(0, maxUsernameLength)
+        : "Gilbert";
 
       try {
         const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
