@@ -4,7 +4,9 @@ import { getRandomCard } from "../utils/getRandomCard";
 export function selectCards(cards: CardsModel[]): CardsModel[] {
   const randomChance = Math.random() * 100;
 
-  if (randomChance <= 0.5) {
+  const goldenPack = 0.5;
+
+  if (randomChance <= goldenPack) {
     const ultraRareCards = cards.filter(
       (card) => card.official_rate && card.official_rate < 3
     );
