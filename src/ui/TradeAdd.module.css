@@ -5,6 +5,7 @@
   margin: 1rem auto 0;
   padding: 1rem;
   border-radius: var(--buttonRadius);
+  box-shadow: var(--bubbleShadow);
 }
 
 .cardsSection {

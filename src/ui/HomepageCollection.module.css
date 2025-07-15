@@ -9,6 +9,11 @@
   border-radius: 25px;
   min-width: 170px;
   max-width: 200px;
+  box-shadow: var(--bubbleShadow);
+}
+
+.container:active {
+  transform: scale(0.99);
 }
 
 .collection {
@@ -61,10 +66,13 @@
   font-weight: lighter;
   margin-bottom: 10px;
   text-align: center;
-  background: #6c81e0;
+  background: var(--bubbleGradient);
   border-radius: 25px;
   width: 100px;
   z-index: 10;
+  box-shadow: var(--bubbleShadow);
+  border: var(--bubbleBorder);
+  backdrop-filter: blur(5px);
 }
 
 .disabled {
