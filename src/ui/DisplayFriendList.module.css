@@ -45,6 +45,7 @@
   max-width: 400px;
   box-sizing: border-box;
   cursor: pointer;
+  box-shadow: var(--bubbleShadow);
 }
 
 .friendItem:hover {

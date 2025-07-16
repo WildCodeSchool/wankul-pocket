@@ -10,6 +10,7 @@
   background: var(--bubbleGradient);
   overflow-y: hidden;
   overflow-x: hidden;
+  box-shadow: var(--bubbleShadow);
 }
 
 .container {

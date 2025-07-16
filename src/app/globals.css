@@ -11,8 +11,8 @@
   --headerLinkGradientTop: rgba(217, 217, 217, 0.2);
   --headerLinkGradientBottom: rgba(217, 217, 217, 0.1);
   --tapBarHeight: 70px;
-  --tapBarGradientTop: rgba(255, 255, 255, 0.1);
-  --tapBarGradientBottom: rgba(255, 255, 255, 0);
+  --tapBarGradientTop: rgba(255, 255, 255, 0.2);
+  --tapBarGradientBottom: rgba(255, 255, 255, 0.05);
   --activeIconGradientTop: rgba(255, 255, 255, 0.2);
   --activeIconGradientBottom: rgba(255, 255, 255, 0);
   --activeIconBoxShadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -20,9 +20,10 @@
   --modalBackground: rgba(11, 53, 108, 0.9);
   --bubbleGradient: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
   );
+  --bubbleShadow: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
   --bubbleBorder: 1px solid rgba(255, 255, 255, 0.13);
   --bubbleTitleBackground: #6c81e0;
   --pageHeight: calc(100dvh - (var(--headerHeight) + var(--tapBarHeight)));
@@ -140,6 +141,7 @@ button {
   background: var(--bubbleGradient);
   cursor: pointer;
   color: white;
+  box-shadow: var(--bubbleShadow);
 }
 
 button:active {
