@@ -24,6 +24,7 @@
   width: 100%;
   padding: 10px;
   gap: 10px;
+  box-shadow: var(--bubbleShadow);
 }
 
 .questCard:hover {
@@ -67,6 +68,7 @@
 
 .questCompleted {
   background: linear-gradient(to bottom, #00ff085e, #7aff81b1);
+  box-shadow: var(--bubbleShadow);
 }
 
 .rewardAnimation {
