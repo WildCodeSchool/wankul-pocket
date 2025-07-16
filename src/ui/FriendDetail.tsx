@@ -96,6 +96,7 @@ export function FriendDetail({ friendProfilId, children }: FriendDetailProps) {
                           className={styles.cardImage}
                           height={100}
                           width={71}
+                          unoptimized={true}
                         />
                       </div>
                     ))}
