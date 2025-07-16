@@ -71,21 +71,6 @@
   margin-left: auto;
 }
 
-.filterInput {
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.filterInput:focus {
-  outline: none;
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.filterInput::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
