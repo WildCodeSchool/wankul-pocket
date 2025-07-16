@@ -20,6 +20,8 @@ export default function SentTrade({ trade }: SentTradeProps) {
       id: trade.id,
       status: false,
       acceptance: true,
+      from_user_id: trade.from_user_id,
+      to_user_id: trade.to_user_id,
     };
     const to_user_email = trade.to_user_email;
     await editOne(to_user_email, acceptedTrade);
@@ -30,6 +32,8 @@ export default function SentTrade({ trade }: SentTradeProps) {
       id: trade.id,
       status: false,
       acceptance: false,
+      from_user_id: trade.from_user_id,
+      to_user_id: trade.to_user_id,
     };
     const to_user_email = trade.to_user_email;
     editOne(to_user_email, declinedTrade);

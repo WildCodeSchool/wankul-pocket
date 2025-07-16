@@ -77,3 +77,44 @@
 .disabled {
   filter: grayscale(100%);
 }
+
+@media (max-width: 379px) {
+  .container {
+    width: 280px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+  }
+
+  .image {
+    height: 150px;
+    width: auto;
+    border-radius: 7px;
+  }
+
+  .title {
+    bottom: -197px;
+  }
+
+  .boosterList li:not(:first-child) {
+    margin-left: -45px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .container {
+    width: 500px;
+    padding-bottom: 30px;
+    border-radius: 30px;
+  }
+
+  .image {
+    height: 250px;
+    width: auto;
+    border-radius: 15px;
+  }
+
+  .title {
+    width: 150px;
+    bottom: -312px;
+  }
+}

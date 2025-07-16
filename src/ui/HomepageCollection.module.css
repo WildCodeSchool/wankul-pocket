@@ -7,8 +7,7 @@
   background: var(--bubbleGradient);
   border: var(--bubbleBorder);
   border-radius: 25px;
-  min-width: 170px;
-  max-width: 200px;
+  width: 170px;
   box-shadow: var(--bubbleShadow);
 }
 
@@ -77,4 +76,48 @@
 
 .disabled {
   filter: grayscale(100%);
+}
+
+@media (max-width: 379px) {
+  .container {
+    width: 140px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+  }
+
+  .image {
+    height: 90px;
+    width: auto;
+    border-radius: 4px;
+  }
+
+  .title {
+    bottom: -137px;
+  }
+
+  .collectionList li:not(:first-child) {
+    margin-left: -50px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .container {
+    width: 240px;
+    padding-bottom: 30px;
+    border-radius: 30px;
+  }
+
+  .image {
+    height: 150px;
+    width: auto;
+    border-radius: 8px;
+  }
+
+  .title {
+    bottom: -212px;
+  }
+
+  .collectionList li:not(:first-child) {
+    margin-left: -75px;
+  }
 }

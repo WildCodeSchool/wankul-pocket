@@ -68,12 +68,13 @@ export default function NewTrade({ preselectedFriendId }: NewTradeProps) {
     <>
       <section>
         <div className={styles.searchSection}>
+          <p>Sélectionne un ami pour proposer un échange</p>
           <input
             type="text"
-            placeholder="Selectionner un ami"
+            placeholder="Rechercher un ami"
             onChange={handleSearchChange}
             value={search}
-            maxLength={255}
+            maxLength={25}
             className={styles.input}
           />
           {search.length > 0 && (

@@ -80,24 +80,3 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: userMessages.server }, { status: 500 });
   }
 }
-
-export async function DELETE(req: Request) {
-  try {
-    const url = new URL(req.url);
-    const idParam = url.searchParams.get("id");
-    const userId = idParam !== null ? parseInt(idParam, 10) : NaN;
-
-    if (isNaN(userId)) {
-      return NextResponse.json(
-        { error: userMessages.invalidId },
-        { status: 400 }
-      );
-    }
-
-    await db.query("DELETE FROM user WHERE id = ?", [userId]);
-    return NextResponse.json({ message: userMessages.deleted });
-  } catch (error) {
-    console.error("Erreur MySQL (DELETE) :", error);
-    return NextResponse.json({ error: userMessages.server }, { status: 500 });
-  }
-}
