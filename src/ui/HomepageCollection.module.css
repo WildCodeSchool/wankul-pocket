@@ -7,8 +7,12 @@
   background: var(--bubbleGradient);
   border: var(--bubbleBorder);
   border-radius: 25px;
-  min-width: 170px;
-  max-width: 200px;
+  width: 170px;
+  box-shadow: var(--bubbleShadow);
+}
+
+.container:active {
+  transform: scale(0.99);
 }
 
 .collection {
@@ -61,12 +65,59 @@
   font-weight: lighter;
   margin-bottom: 10px;
   text-align: center;
-  background: #6c81e0;
+  background: rgb(89, 114, 215);
   border-radius: 25px;
   width: 100px;
   z-index: 10;
+  box-shadow: var(--bubbleShadow);
+  border: var(--bubbleBorder);
+  backdrop-filter: blur(5px);
 }
 
 .disabled {
   filter: grayscale(100%);
+}
+
+@media (max-width: 379px) {
+  .container {
+    width: 140px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+  }
+
+  .image {
+    height: 90px;
+    width: auto;
+    border-radius: 4px;
+  }
+
+  .title {
+    bottom: -137px;
+  }
+
+  .collectionList li:not(:first-child) {
+    margin-left: -50px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .container {
+    width: 240px;
+    padding-bottom: 30px;
+    border-radius: 30px;
+  }
+
+  .image {
+    height: 150px;
+    width: auto;
+    border-radius: 8px;
+  }
+
+  .title {
+    bottom: -212px;
+  }
+
+  .collectionList li:not(:first-child) {
+    margin-left: -75px;
+  }
 }

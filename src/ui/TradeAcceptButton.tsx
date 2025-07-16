@@ -1,5 +1,6 @@
 "use client";
 
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import { UpdatedCard } from "@/lib/collection/patchCollection";
 import { addToCollection } from "@/lib/openBooster/addToCollection";
 import { TradeModel } from "@/model/TradeModel";
@@ -7,7 +8,6 @@ import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editCollection, editOne } from "@/service/TradeService";
 import Image from "next/image";
 import styles from "./TradeButton.module.css";
-import { useQuestProgressContext } from "@/context/QuestProgressContext";
 
 interface ProposedTradeProps {
   trade: TradeModel;
@@ -42,6 +42,8 @@ export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
       id: tradeId,
       status: true,
       acceptance: true,
+      from_user_id: trade.from_user_id,
+      to_user_id: trade.to_user_id,
     };
 
     try {

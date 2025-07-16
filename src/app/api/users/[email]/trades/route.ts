@@ -1,7 +1,11 @@
 import { tradesMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
+import { FriendsModel } from "@/model/FriendsModel";
 import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
+import { UserModel } from "@/model/UserModel";
+import { authOptions } from "@/utils/authOptions";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface InsertResult {
@@ -13,6 +17,15 @@ interface InsertResult {
 interface UpdateResult {
   affectedRows: number;
   warningStatus?: number;
+}
+
+interface CheckUser {
+  id: number;
+  profil_id: string;
+  card_quantity: number;
+  card_rarity: string;
+  card_id: number;
+  pending_exchange_count: number;
 }
 
 export async function GET(_req: NextRequest) {
@@ -55,7 +68,9 @@ export async function GET(_req: NextRequest) {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  const userEmail = session?.user?.email;
   try {
     const {
       from_user_id,
@@ -84,6 +99,96 @@ export async function POST(req: Request) {
       );
     }
 
+    if (from_user_id === to_user_id) {
+      return NextResponse.json(
+        { error: tradesMessages.tradeToSelf },
+        { status: 400 }
+      );
+    }
+
+    if (requested_card_id === offered_card_id) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.tradeSameCard,
+        },
+        { status: 400 }
+      );
+    }
+
+    const [currentUser] = (await db.query(
+      "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.email = ?",
+      [offered_card_id, userEmail]
+    )) as [CheckUser[], unknown];
+    const [friend] = (await db.query(
+      "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.id = ?",
+      [requested_card_id, to_user_id]
+    )) as [CheckUser[], unknown];
+
+    if (!currentUser?.[0]) {
+      return NextResponse.json(
+        { error: tradesMessages.noUser },
+        { status: 404 }
+      );
+    }
+    if (!friend?.[0]) {
+      return NextResponse.json(
+        { error: tradesMessages.noUser },
+        { status: 404 }
+      );
+    }
+    if (currentUser[0].id !== from_user_id) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.noUser,
+        },
+        { status: 400 }
+      );
+    }
+
+    if (
+      currentUser[0]?.pending_exchange_count > 0 ||
+      friend[0]?.pending_exchange_count > 0
+    ) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.pendingTrade,
+        },
+        { status: 400 }
+      );
+    }
+
+    const userProfilId = currentUser[0]?.profil_id;
+    const friendProfilId = friend[0]?.profil_id;
+    const [isFriend] = (await db.query(
+      "SELECT 1 FROM is_friend WHERE acceptance = 1 AND ((user_profil_id = ? AND friend_profil_id = ?) OR (user_profil_id = ? AND friend_profil_id = ?))",
+      [userProfilId, friendProfilId, friendProfilId, userProfilId]
+    )) as [FriendsModel[], unknown];
+    if (isFriend.length === 0) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.noFriend,
+        },
+        { status: 400 }
+      );
+    }
+
+    if (currentUser[0].card_quantity <= 1 || friend[0].card_quantity <= 1) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.quantity,
+        },
+        { status: 400 }
+      );
+    }
+    if (currentUser[0].card_rarity !== friend[0].card_rarity) {
+      return NextResponse.json(
+        {
+          error: tradesMessages.rarity,
+        },
+        { status: 400 }
+      );
+    }
+
     const [result] = (await db.query(
       "INSERT INTO exchange (from_user_id, to_user_id, offered_card_id, requested_card_id, status, acceptance) VALUES (?, ?, ?, ?, ?, ?)",
       [
@@ -107,9 +212,12 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
+  const session = await getServerSession(authOptions);
+  const userEmail = session?.user?.email;
   try {
     const updatedExchange = (await req.json()) as UpdatedTradeModel;
-    const { id, status, acceptance } = updatedExchange;
+    const { id, status, acceptance, from_user_id, to_user_id } =
+      updatedExchange;
     if (typeof id !== "number" || isNaN(id)) {
       return NextResponse.json(
         { error: tradesMessages.invalidId },
@@ -120,6 +228,40 @@ export async function PATCH(req: Request) {
       return NextResponse.json(
         { error: tradesMessages.invalidData },
         { status: 400 }
+      );
+    }
+
+    const [currentUser] = (await db.query(
+      "SELECT id FROM user WHERE email = ? LIMIT 1",
+      [userEmail]
+    )) as [UserModel[], unknown];
+    if (!currentUser?.[0]) {
+      return NextResponse.json(
+        { error: "Utilisateur non authentifié ou introuvable." },
+        { status: 401 }
+      );
+    }
+    if (currentUser[0].id === to_user_id) {
+      if (typeof acceptance !== "boolean") {
+        return NextResponse.json(
+          { error: "Seul le destinataire peut répondre à l’échange." },
+          { status: 400 }
+        );
+      }
+    } else if (currentUser[0].id === from_user_id) {
+      if (status !== false || acceptance === null) {
+        return NextResponse.json(
+          {
+            error:
+              "Tu peux archiver uniquement un échange déjà répondu (accepté ou refusé).",
+          },
+          { status: 400 }
+        );
+      }
+    } else {
+      return NextResponse.json(
+        { error: "Tu n’es pas autorisé à modifier cet échange." },
+        { status: 403 }
       );
     }
 

@@ -4,6 +4,7 @@ import { friendsMessages } from "@/data/responseMessages";
 import { refuseFriendRequest } from "@/service/FriendsService";
 import Image from "next/image";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./Unfriend.module.css";
 
 interface UnfriendProps {
@@ -55,27 +56,29 @@ export default function Unfriend({ userId }: UnfriendProps) {
           width={24}
         />
       </button>
-      {showModal && (
-        <div className={styles.overlay}>
-          <div className={styles.modal}>
-            <div className={styles["modal-content"]}>
-              {deleted ? (
-                <p>{friendsMessages.deleted}</p>
-              ) : (
-                <>
-                  <p>Confirmer la suppression</p>
-                  <button onClick={handleConfirmUnfriend} type="button">
-                    Oui
-                  </button>
-                  <button onClick={handleCancel} type="button">
-                    Non
-                  </button>
-                </>
-              )}
+      {showModal &&
+        createPortal(
+          <div className={styles.overlay}>
+            <div className={styles.modal}>
+              <div className={styles["modal-content"]}>
+                {deleted ? (
+                  <p>{friendsMessages.deleted}</p>
+                ) : (
+                  <>
+                    <p>Confirmer la suppression</p>
+                    <button onClick={handleConfirmUnfriend} type="button">
+                      Oui
+                    </button>
+                    <button onClick={handleCancel} type="button">
+                      Non
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

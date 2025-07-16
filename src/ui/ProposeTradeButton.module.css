@@ -1,5 +1,5 @@
 .button {
-  margin: 2rem auto 0;
+  margin: 1rem auto 0;
   width: clamp(100px, 50%, 200px);
   cursor: pointer;
 }
