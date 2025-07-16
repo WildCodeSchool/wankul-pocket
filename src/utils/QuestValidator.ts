@@ -39,12 +39,12 @@ export class QuestValidator {
 
       case "Rareté spéciale":
         const hasLaink = progress.collection.some(
-          (card) => card.name === "Laink" && card.rarity === "Légendaire Or"
+          (card) => card.name === "LAINK" && card.rarity === "Légendaire Or"
         );
         const hasTerracid = progress.collection.some(
-          (card) => card.name === "Terracid" && card.rarity === "Légendaire Or"
+          (card) => card.name === "TERRACID" && card.rarity === "Légendaire Or"
         );
-        return (hasLaink && hasTerracid) || false;
+        return hasLaink && hasTerracid;
 
       case "Duplication Commune":
         return this.validateDuplication(
