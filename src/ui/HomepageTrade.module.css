@@ -43,13 +43,12 @@
   font-size: 1rem;
   font-weight: lighter;
   text-align: center;
-  background: var(--bubbleGradient);
+  background: rgb(89, 114, 215);
   border-radius: 25px;
   width: 100px;
   z-index: 10;
   box-shadow: var(--bubbleShadow);
   border: var(--bubbleBorder);
-  backdrop-filter: blur(5px);
 }
 
 .titleNoTrade {
@@ -136,7 +135,7 @@
   }
 
   .titleNoTrade {
-    bottom: -152px;
+    bottom: -153px;
   }
 
   .tradeIcon {

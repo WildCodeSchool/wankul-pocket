@@ -47,11 +47,22 @@ export default async function Homepage() {
     displayedTrade = null;
   }
 
+  const components = [
+    <HomepageTrade trade={displayedTrade} />,
+    <HomepageCollection collection={collection} />,
+    <HomepageBoosters boosters={boosters} />,
+  ];
+
   return (
     <div className={styles.homepage}>
-      <HomepageTrade trade={displayedTrade} />
-      <HomepageCollection collection={collection} />
-      <HomepageBoosters boosters={boosters} />
+      {components.map((component, index) => (
+        <div
+          key={index}
+          style={{ animationDelay: `${(components.length - index) * 0.1}s` }}
+        >
+          {component}
+        </div>
+      ))}
     </div>
   );
 }
