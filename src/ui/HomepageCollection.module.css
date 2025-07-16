@@ -65,7 +65,7 @@
   font-weight: lighter;
   margin-bottom: 10px;
   text-align: center;
-  background: var(--bubbleGradient);
+  background: rgb(89, 114, 215);
   border-radius: 25px;
   width: 100px;
   z-index: 10;
