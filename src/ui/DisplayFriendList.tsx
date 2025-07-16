@@ -51,15 +51,22 @@ export default function DisplayFriendList() {
                 <FriendDetail friendProfilId={friendProfilId}>
                   <li className={styles.friendItem}>
                     <Image
-                      className={styles.friendImage}
-                      src={
-                        isMe
-                          ? `${publicRoutes.PROFILS}/${friend.friend_image_path}`
-                          : `${publicRoutes.PROFILS}/${friend.user_image_path}`
-                      }
-                      alt={username}
-                      height={50}
-                      width={50}
+                      src={card.image_path}
+                      alt={card.name}
+                      className={styles.cardImage}
+                      height={100}
+                      width={72}
+                      unoptimized={true}
+                      onError={(e) => {
+                        console.error(`❌ Image failed to load:`, {
+                          name: card.name,
+                          path: card.image_path,
+                          id: card.id,
+                        });
+                      }}
+                      onLoad={() => {
+                        console.log(`✅ Image loaded: ${card.name}`);
+                      }}
                     />
 
                     <p>{username}</p>

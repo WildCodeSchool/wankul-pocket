@@ -99,6 +99,7 @@ export function InfoDroprate({ cards }: { cards: CardsModel[] }) {
                                 className={styles.cardImage}
                                 height={100}
                                 width={72}
+                                unoptimized={true}
                               />
                             </li>
                           ))}
