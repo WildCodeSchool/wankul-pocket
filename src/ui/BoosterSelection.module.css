@@ -90,6 +90,7 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.3s ease-out;
+  box-shadow: var(--bubbleShadow);
 }
 
 .boosterListAnimated {
@@ -194,6 +195,7 @@
   overflow-y: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  box-shadow: var(--bubbleShadow);
 }
 
 .selectedBooster::-webkit-scrollbar {

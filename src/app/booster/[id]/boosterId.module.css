@@ -54,6 +54,7 @@
   opacity: 0;
   transform: translateY(30px) scale(0.95);
   animation: cardAppear 0.3s ease-out 0.1s both;
+  box-shadow: var(--bubbleShadow);
 }
 
 @keyframes cardAppear {
