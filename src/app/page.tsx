@@ -48,9 +48,9 @@ export default async function Homepage() {
   }
 
   const components = [
-    <HomepageTrade trade={displayedTrade} />,
-    <HomepageCollection collection={collection} />,
-    <HomepageBoosters boosters={boosters} />,
+    <HomepageTrade key="trade" trade={displayedTrade} />,
+    <HomepageCollection key="collection" collection={collection} />,
+    <HomepageBoosters key="boosters" boosters={boosters} />,
   ];
 
   return (
