@@ -2,12 +2,13 @@
   display: none;
 }
 .searchSection {
-  width: 250px;
-  margin: 0 auto 2rem;
+  width: 300px;
+  margin: 0 auto;
   position: relative;
 
   .input {
     width: 100%;
+    margin-top: 0.5rem;
     background-color: var(--bodyGradient1);
     text-align: center;
     opacity: 1;
@@ -19,8 +20,8 @@
 
 .list {
   border: var(--bubbleBorder);
-  background: var(--bubbleGradient);
-  width: 250px;
+  background: var(--bodyGradient1);
+  width: 300px;
   margin: -2rem auto 0;
   padding-top: 2rem;
   border-radius: 20px;

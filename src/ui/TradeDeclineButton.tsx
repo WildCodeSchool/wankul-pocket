@@ -19,6 +19,8 @@ export const TradeDeclineButton = ({ trade, dispatch }: ProposedTradeProps) => {
         id: tradeId,
         status: true,
         acceptance: false,
+        from_user_id: trade.from_user_id,
+        to_user_id: trade.to_user_id,
       };
       await editOne(to_user_email, refusedTrade);
       dispatch({ type: "DECLINE" });
