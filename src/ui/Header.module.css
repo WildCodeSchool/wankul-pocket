@@ -52,7 +52,17 @@
   }
 }
 
-.notificationBubble {
+.notificationBubbleQuests {
+  position: absolute;
+  top: 5px;
+  background-color: red;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.notificationBubbleFriends {
   position: absolute;
   top: 5px;
   right: 75px;

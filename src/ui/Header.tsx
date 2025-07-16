@@ -11,10 +11,8 @@ import BananaLoader from "./BananaLoader";
 
 export default function Header() {
   const { user, friendRequestsCount } = useUserContext();
-  const { completedQuestsCount } = useQuestProgressContext();
+  const { completeableQuestsCount } = useQuestProgressContext();
   const pathname = usePathname();
-
-  console.log("Completed Quests Count:", completedQuestsCount);
 
   if (!user) {
     return (
@@ -77,7 +75,7 @@ export default function Header() {
             >
               Amis
               {friendRequestsCount > 0 && (
-                <span className={styles.notificationBubble}></span>
+                <span className={styles.notificationBubbleFriends}></span>
               )}
             </Link>
           </li>
@@ -89,8 +87,8 @@ export default function Header() {
               }
             >
               Objectifs
-              {completedQuestsCount > 0 && (
-                <span className={styles.notificationBubble}></span>
+              {completeableQuestsCount > 0 && (
+                <span className={styles.notificationBubbleQuests}></span>
               )}
             </Link>
           </li>

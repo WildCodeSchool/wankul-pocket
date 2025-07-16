@@ -39,10 +39,16 @@ export class QuestValidator {
 
       case "Rareté spéciale":
         const hasLaink = progress.collection.some(
-          (card) => card.name === "LAINK" && card.rarity === "Légendaire Or"
+          (card) =>
+            card.name === "LAINK" &&
+            card.rarity === "Légendaire Or" &&
+            card.quantity >= quest.goal_quantity
         );
         const hasTerracid = progress.collection.some(
-          (card) => card.name === "TERRACID" && card.rarity === "Légendaire Or"
+          (card) =>
+            card.name === "TERRACID" &&
+            card.rarity === "Légendaire Or" &&
+            card.quantity >= quest.goal_quantity
         );
         return hasLaink && hasTerracid;
 

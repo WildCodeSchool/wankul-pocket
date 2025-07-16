@@ -1,21 +1,29 @@
 "use client";
 
 import {
-  createContext,
-  useContext,
   useEffect,
   useState,
+  createContext,
+  useContext,
   ReactNode,
+  useMemo,
 } from "react";
 import { QuestProgressModel } from "@/model/QuestProgressModel";
-import { getUserQuestsStats } from "@/service/QuestService";
+import { QuestModel } from "@/model/QuestModel";
+import {
+  getUserQuestsStats,
+  getAllQuestsByUserId,
+  isQuestCompleted as serviceIsQuestCompleted,
+} from "@/service/QuestService";
 import { useUserContext } from "./UserContext";
 
 type QuestProgressContextType = {
   progress: QuestProgressModel | null;
+  quests: QuestModel[];
+  completeableQuests: QuestModel[];
+  completeableQuestsCount: number;
   error: string | null;
-  completedQuestsCount: number;
-  refreshProgress: (completedCount: number) => void;
+  refreshProgress: () => void;
 };
 
 const QuestProgressContext = createContext<QuestProgressContextType | null>(
@@ -24,58 +32,75 @@ const QuestProgressContext = createContext<QuestProgressContextType | null>(
 
 export const useQuestProgressContext = () => {
   const context = useContext(QuestProgressContext);
-
-  if (!context) {
+  if (!context)
     throw new Error(
       "useQuestProgressContext must be used within a QuestProgressProvider"
     );
-  }
   return context;
 };
 
 export function QuestProgressProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<QuestProgressModel | null>(null);
+  const [quests, setQuests] = useState<QuestModel[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [completedQuestsCount, setCompletedQuestsCount] = useState<number>(0);
   const { user } = useUserContext();
 
-  const fetchProgress = async () => {
-    if (!user?.email) {
-      return;
-    }
-
+  const fetchAll = async () => {
+    if (!user?.email) return;
     setError(null);
-
     try {
-      const res = await getUserQuestsStats(user.email);
-
-      setProgress(res);
+      const [progressRes, questsRes] = await Promise.all([
+        getUserQuestsStats(user.email),
+        getAllQuestsByUserId(user),
+      ]);
+      setProgress(progressRes);
+      setQuests(questsRes);
     } catch (err) {
-      console.error("❌ Erreur lors du fetch:", err);
-      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      setError("Erreur lors du fetch");
       setProgress(null);
+      setQuests([]);
     }
   };
 
-  const refreshProgress = (newCompletedQuestsCount?: number) => {
-    fetchProgress();
-    if (newCompletedQuestsCount !== undefined) {
-      setCompletedQuestsCount(newCompletedQuestsCount); // Update the count
-    }
-  };
+  const refreshProgress = () => fetchAll();
 
   useEffect(() => {
-    fetchProgress();
+    fetchAll();
   }, [user]);
+
+  const completeableQuests = useMemo(
+    () =>
+      quests.filter(
+        (quest) =>
+          !quest.user_id_completed &&
+          progress &&
+          user &&
+          serviceIsQuestCompleted(
+            quest,
+            new QuestProgressModel(
+              user.id,
+              progress.bananas,
+              progress.friends,
+              progress.trades,
+              Array.isArray(progress.collection) ? progress.collection : []
+            )
+          )
+      ),
+    [quests, progress, user]
+  );
 
   const contextValue = {
     progress,
+    quests,
+    completeableQuests,
+    completeableQuestsCount: completeableQuests.length,
     error,
     refreshProgress,
-    completedQuestsCount,
   };
 
   return (
-    <QuestProgressContext value={contextValue}>{children}</QuestProgressContext>
+    <QuestProgressContext.Provider value={contextValue}>
+      {children}
+    </QuestProgressContext.Provider>
   );
 }
