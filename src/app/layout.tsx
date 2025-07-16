@@ -1,7 +1,7 @@
 import { CollectionProvider } from "@/context/CollectionContext";
 import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
-import { UserProvider } from "@/context/UserContext";
 import { QuestProgressProvider } from "@/context/QuestProgressContext";
+import { UserProvider } from "@/context/UserContext";
 import { DisplayRandomWankul } from "@/ui/DisplayRandomWankul";
 import Header from "@/ui/Header";
 import Tapbar from "@/ui/Tapbar";
@@ -13,6 +13,28 @@ import SessionWrapper from "./SessionWrapper";
 export const metadata: Metadata = {
   title: "Wankul Pocket",
   description: "Collectionne les cartes Wankul et échange les avec tes amis!",
+  metadataBase: new URL("https://www.wankulpocket.fr/"),
+  openGraph: {
+    title: "Wankul Pocket",
+    description: "Collectionne les cartes Wankul et échange les avec tes amis!",
+    url: "https://www.wankulpocket.fr/",
+    siteName: "Wankul Pocket",
+    images: [
+      {
+        url: "https://www.wankulpocket.fr/OGImage.png",
+        width: 1200,
+        height: 630,
+        alt: "Aperçu de Wankul Pocket",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wankul Pocket",
+    description: "Collectionne les cartes Wankul et échange les avec tes amis!",
+    images: ["https://www.wankulpocket.fr/OGImage.png"],
+  },
 };
 
 const jaldi = Jaldi({

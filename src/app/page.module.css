@@ -26,3 +26,15 @@
   animation: bounceArrival 0.6s ease-out;
   animation-fill-mode: both;
 }
+
+@media (max-width: 379px) {
+  .homepage {
+    max-width: 350px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .homepage {
+    max-width: 800px;
+  }
+}
