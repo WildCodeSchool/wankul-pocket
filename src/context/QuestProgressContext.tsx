@@ -14,7 +14,8 @@ import { useUserContext } from "./UserContext";
 type QuestProgressContextType = {
   progress: QuestProgressModel | null;
   error: string | null;
-  refreshProgress: () => void;
+  completedQuestsCount: number;
+  refreshProgress: (completedCount: number) => void;
 };
 
 const QuestProgressContext = createContext<QuestProgressContextType | null>(
@@ -35,6 +36,7 @@ export const useQuestProgressContext = () => {
 export function QuestProgressProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<QuestProgressModel | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [completedQuestsCount, setCompletedQuestsCount] = useState<number>(0);
   const { user } = useUserContext();
 
   const fetchProgress = async () => {
@@ -55,15 +57,23 @@ export function QuestProgressProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const refreshProgress = () => {
+  const refreshProgress = (newCompletedQuestsCount?: number) => {
     fetchProgress();
+    if (newCompletedQuestsCount !== undefined) {
+      setCompletedQuestsCount(newCompletedQuestsCount); // Update the count
+    }
   };
 
   useEffect(() => {
     fetchProgress();
   }, [user]);
 
-  const contextValue = { progress, error, refreshProgress };
+  const contextValue = {
+    progress,
+    error,
+    refreshProgress,
+    completedQuestsCount,
+  };
 
   return (
     <QuestProgressContext value={contextValue}>{children}</QuestProgressContext>

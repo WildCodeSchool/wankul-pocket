@@ -52,6 +52,17 @@
   box-shadow: 0 0 10px var(--activeIconBoxShadow);
 }
 
+.notificationBubble {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 @media screen and (min-width: 900px) {
   .globalNav {
     display: none;

@@ -2,11 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 
 import styles from "./Tapbar.module.css";
 
 export default function Tapbar() {
   const pathname = usePathname();
+  const { user, friendRequestsCount } = useUserContext();
+
   return (
     <nav
       className={pathname === "/landingpage" ? styles.none : styles.globalNav}
@@ -65,6 +68,9 @@ export default function Tapbar() {
                 height={41}
                 width={41}
               />
+              {friendRequestsCount > 0 && (
+                <span className={styles.notificationBubble}></span>
+              )}
             </div>
           </Link>
         </li>

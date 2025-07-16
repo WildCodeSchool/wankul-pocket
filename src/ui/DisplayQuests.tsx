@@ -20,6 +20,7 @@ interface QuestState {
   completedQuestIds: Set<number>;
   animatingRewards: Map<number, number>;
   currentValidatingQuest: number | null;
+  completedQuestsCount: number;
 }
 
 type QuestAction =
@@ -27,7 +28,8 @@ type QuestAction =
   | { type: "START_VALIDATION"; questId: number }
   | { type: "COMPLETE_QUEST"; questId: number; reward: number }
   | { type: "STOP_ANIMATION"; questId: number }
-  | { type: "VALIDATION_ERROR"; questId: number };
+  | { type: "VALIDATION_ERROR"; questId: number }
+  | { type: "UPDATE_COMPLETED_COUNT"; count: number };
 
 function questReducer(state: QuestState, action: QuestAction): QuestState {
   switch (action.type) {
@@ -56,16 +58,19 @@ function questReducer(state: QuestState, action: QuestAction): QuestState {
     case "VALIDATION_ERROR":
       return { ...state, currentValidatingQuest: null };
 
+    case "UPDATE_COMPLETED_COUNT":
+      return { ...state, completedQuestsCount: action.count };
+
     default:
       return state;
   }
 }
-
 const initialQuestState: QuestState = {
   quests: [],
   completedQuestIds: new Set(),
   animatingRewards: new Map(),
   currentValidatingQuest: null,
+  completedQuestsCount: 0,
 };
 
 export default function DisplayQuests() {
@@ -83,6 +88,12 @@ export default function DisplayQuests() {
         try {
           const questsData = await getAllQuestsByUserId(user);
           dispatch({ type: "SET_QUESTS", payload: questsData });
+
+          // Calculer le nombre de quêtes complétées et mettre à jour le QuestProgressContext
+          const completedQuestsCount = questsData.filter((quest: QuestModel) =>
+            isQuestCompleted(quest)
+          ).length;
+          refreshProgress(completedQuestsCount);
         } catch (error) {
           console.error("Erreur lors du fetch des quêtes:", error);
         }
@@ -91,6 +102,15 @@ export default function DisplayQuests() {
 
     fetchQuests();
   }, [user?.email]);
+
+  useEffect(() => {
+    const completedQuestsCount = state.quests.filter((quest: QuestModel) =>
+      isQuestCompleted(quest)
+    ).length;
+
+    dispatch({ type: "UPDATE_COMPLETED_COUNT", count: completedQuestsCount });
+    refreshProgress(completedQuestsCount);
+  }, [state.quests]);
 
   const isQuestCompleted = (quest: QuestModel): boolean => {
     if (!progress || !user) return false;
@@ -130,7 +150,7 @@ export default function DisplayQuests() {
           dispatch({ type: "STOP_ANIMATION", questId: quest.id });
         }, 2000);
 
-        refreshProgress();
+        refreshProgress(state.completedQuestIds.size);
       } catch (error) {
         console.error("Erreur lors de la validation:", error);
         dispatch({ type: "VALIDATION_ERROR", questId: quest.id });

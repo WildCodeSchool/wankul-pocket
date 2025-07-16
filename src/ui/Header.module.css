@@ -52,6 +52,17 @@
   }
 }
 
+.notificationBubble {
+  position: absolute;
+  top: 5px;
+  right: 75px;
+  background-color: red;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 @media screen and (min-width: 900px) {
   .globalHeader {
     justify-content: space-between;

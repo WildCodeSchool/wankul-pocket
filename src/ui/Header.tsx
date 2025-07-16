@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
+import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +10,11 @@ import { publicRoutes } from "@/data/ROUTES";
 import BananaLoader from "./BananaLoader";
 
 export default function Header() {
-  const { user } = useUserContext();
+  const { user, friendRequestsCount } = useUserContext();
+  const { completedQuestsCount } = useQuestProgressContext();
   const pathname = usePathname();
+
+  console.log("Completed Quests Count:", completedQuestsCount);
 
   if (!user) {
     return (
@@ -72,6 +76,9 @@ export default function Header() {
               className={pathname === "/amis" ? styles.active : styles.link}
             >
               Amis
+              {friendRequestsCount > 0 && (
+                <span className={styles.notificationBubble}></span>
+              )}
             </Link>
           </li>
           <li className={styles.listItem}>
@@ -82,6 +89,9 @@ export default function Header() {
               }
             >
               Objectifs
+              {completedQuestsCount > 0 && (
+                <span className={styles.notificationBubble}></span>
+              )}
             </Link>
           </li>
         </ul>
