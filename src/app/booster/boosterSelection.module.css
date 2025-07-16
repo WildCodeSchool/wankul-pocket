@@ -4,4 +4,16 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  animation: fadeInContainer 0.8s ease-out forwards;
+}
+
+@keyframes fadeInContainer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -39,6 +39,7 @@ export default async function Trade({ searchParams }: TradeProps) {
 
   return (
     <section className={styles.page}>
+      <h1 className={styles.title}>Echanges de cartes</h1>
       {displayedReceivedTrade && (
         <ProposedTrade trade={displayedReceivedTrade} />
       )}

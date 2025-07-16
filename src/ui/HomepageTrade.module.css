@@ -10,6 +10,12 @@
   border-radius: 25px;
   width: 170px;
   height: 173px;
+  box-shadow: var(--bubbleShadow);
+}
+
+.container:active,
+.containerNoTrade:active {
+  transform: scale(0.99);
 }
 
 .containerNoTrade {
@@ -37,10 +43,12 @@
   font-size: 1rem;
   font-weight: lighter;
   text-align: center;
-  background: #6c81e0;
+  background: rgb(89, 114, 215);
   border-radius: 25px;
   width: 100px;
   z-index: 10;
+  box-shadow: var(--bubbleShadow);
+  border: var(--bubbleBorder);
 }
 
 .titleNoTrade {
@@ -71,4 +79,74 @@
   border: var(--bubbleBorder);
   background: var(--bubbleGradient);
   border-radius: 50%;
+}
+
+@media (max-width: 379px) {
+  .container,
+  .containerNoTrade {
+    width: 140px;
+    height: 137px;
+    border-radius: 20px;
+    padding-bottom: 15px;
+  }
+
+  .containerNoTrade {
+    padding-bottom: 8px;
+  }
+
+  .title,
+  .titleNoTrade {
+    bottom: -127px;
+  }
+
+  .titleNoTrade {
+    bottom: -112px;
+  }
+
+  .tradeIcon {
+    margin: 0 -20px;
+    z-index: 10;
+  }
+
+  .card {
+    transform: scale(0.8);
+  }
+
+  .notification {
+    top: 5px;
+  }
+}
+
+@media (min-height: 800px) and (min-width: 800px) {
+  .container,
+  .containerNoTrade {
+    width: 240px;
+    height: 212px;
+    border-radius: 30px;
+  }
+
+  .containerNoTrade {
+    padding-bottom: 20px;
+  }
+
+  .title,
+  .titleNoTrade {
+    bottom: -167px;
+  }
+
+  .titleNoTrade {
+    bottom: -153px;
+  }
+
+  .tradeIcon {
+    margin: 0;
+    z-index: 10;
+  }
+
+  .card {
+    transform: scale(1.35);
+  }
+  .notification {
+    top: -25px;
+  }
 }

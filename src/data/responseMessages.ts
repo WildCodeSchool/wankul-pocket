@@ -115,6 +115,16 @@ const tradesMessages = {
   addSuccess: "Echange ajouté avec succès",
   notFound: "Aucun échange trouvé avec cet ID",
   updateSuccess: "Echange mis à jour avec succès",
+  tradeToSelf: "Tu ne peux pas te proposer d'échange à toi-même!",
+  tradeSameCard:
+    "Tu ne peux pas proposer d'échange entre deux cartes identiques!",
+  noUser: "Utilisateur introuvable ou non autorisé à procéder à cette action.",
+  pendingTrade:
+    "Une demande d'échange est déjà en cours pour l'un des deux joueurs, retente plus tard!",
+  noFriend: "Tu ne peux proposer un échange qu'à un joueur de ta liste d'ami",
+  quantity:
+    "Seules des cartes possédées en double exemplaire minimum peuvent être échangées",
+  rarity: "Seules deux cartes de même rareté peuvent être échangées",
 };
 
 const friendsMessages = {
@@ -166,7 +176,7 @@ export {
   collectionMessages,
   friendsMessages,
   profilPictureMessages,
+  questMessages,
   tradesMessages,
   userMessages,
-  questMessages,
 };
