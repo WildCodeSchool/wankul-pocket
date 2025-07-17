@@ -105,6 +105,9 @@ export function HomepageNotifications() {
             </div>
           </Link>
         )}
+        {completeableQuests.length > 0 && friendRequestsCount > 0 && (
+          <div className={styles.notificationSeparator}> | </div>
+        )}
         {completeableQuests.length > 0 && (
           <Link
             href="/objectifs"
