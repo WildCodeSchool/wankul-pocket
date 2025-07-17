@@ -9,10 +9,12 @@ interface Props {
 }
 
 export function AcceptFriendRequestButton({ friend, onAccepted }: Props) {
+  const { refreshProgress } = useQuestProgressContext();
   const handleAccept = async () => {
     try {
       await acceptRequest(friend);
       onAccepted?.();
+      refreshProgress();
     } catch (error) {
       console.error("Failed to accept friend request:", error);
     }

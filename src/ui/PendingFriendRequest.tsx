@@ -14,7 +14,7 @@ import { publicRoutes } from "@/data/ROUTES";
 export function PendingFriendRequest() {
   const [requests, setRequests] = useState<FriendsModel[]>([]);
   const [isPending, startTransition] = useTransition();
-  const { user, refreshFriendRequests } = useUserContext();
+  const { user } = useUserContext();
 
   useEffect(() => {
     if (!user?.profil_id) return;
@@ -32,12 +32,10 @@ export function PendingFriendRequest() {
 
   const handleAccepted = (id: number) => {
     setRequests((prev) => prev.filter((req) => req.id !== id));
-    refreshFriendRequests();
   };
 
   const handleRefused = (id: number) => {
     setRequests((prev) => prev.filter((req) => req.id !== id));
-    refreshFriendRequests();
   };
 
   return (

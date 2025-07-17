@@ -2,15 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUserContext } from "@/context/UserContext";
-import { useQuestProgressContext } from "@/context/QuestProgressContext";
 
 import styles from "./Tapbar.module.css";
 
 export default function Tapbar() {
   const pathname = usePathname();
-  const { friendRequestsCount } = useUserContext();
-  const { completeableQuestsCount } = useQuestProgressContext();
 
   return (
     <nav
@@ -70,9 +66,6 @@ export default function Tapbar() {
                 height={41}
                 width={41}
               />
-              {friendRequestsCount > 0 && (
-                <span className={styles.notificationBubbleFriends}></span>
-              )}
             </div>
           </Link>
         </li>
@@ -89,9 +82,6 @@ export default function Tapbar() {
                 height={41}
                 width={41}
               />
-              {completeableQuestsCount > 0 && (
-                <span className={styles.notificationBubbleQuests}></span>
-              )}
             </div>
           </Link>
         </li>

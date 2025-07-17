@@ -1,7 +1,6 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
-import { useQuestProgressContext } from "@/context/QuestProgressContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,7 +10,6 @@ import BananaLoader from "./BananaLoader";
 
 export default function Header() {
   const { user } = useUserContext();
-  const { completeableQuestsCount } = useQuestProgressContext();
   const pathname = usePathname();
 
   if (!user) {
@@ -84,9 +82,6 @@ export default function Header() {
               }
             >
               Objectifs
-              {completeableQuestsCount > 0 && (
-                <span className={styles.notificationBubbleQuests}></span>
-              )}
             </Link>
           </li>
         </ul>

@@ -22,8 +22,6 @@ export default function CardPickerModal({
   const [isPending, startTransition] = useTransition();
   const tradableCards = cards.filter((card) => card.quantity > 1);
 
-  console.log("Cards available for trade:", tradableCards);
-
   useEffect(() => {
     if (!email) return;
 
