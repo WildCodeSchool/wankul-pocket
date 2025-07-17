@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+}
+
+.updateSection,
+.teamSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+
+  p {
+    margin: 0.5rem auto;
+    text-align: center;
+  }
+}
