@@ -4,6 +4,7 @@ import { collectionMessages } from "@/data/responseMessages";
 export type UpdatedCard = {
   id: number;
   quantity: number;
+  user_id?: number;
 };
 
 export async function patchCollection(

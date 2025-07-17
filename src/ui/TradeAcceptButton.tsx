@@ -21,6 +21,8 @@ export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
     const {
       from_user_email,
       to_user_email,
+      from_user_id,
+      to_user_id,
       offered_card_id,
       offered_card_quantity,
       requested_card_id,
@@ -31,11 +33,13 @@ export const TradeAcceptButton = ({ trade, dispatch }: ProposedTradeProps) => {
     const offeredCard: UpdatedCard = {
       id: Number(offered_card_id),
       quantity: offered_card_quantity - 1,
+      user_id: from_user_id,
     };
 
     const requestedCard: UpdatedCard = {
       id: Number(requested_card_id),
       quantity: requested_card_quantity - 1,
+      user_id: to_user_id,
     };
 
     const acceptedTrade: UpdatedTradeModel = {
