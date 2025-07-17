@@ -5,7 +5,6 @@ import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { UserModel } from "@/model/UserModel";
 import { authOptions } from "@/utils/authOptions";
-import { getCorsHeaders, handleOptionsRequest } from "@/utils/cors";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -29,24 +28,16 @@ interface CheckUser {
   pending_exchange_count: number;
 }
 
-export async function OPTIONS(req: NextRequest) {
-  return handleOptionsRequest(req);
-}
-
 export async function GET(_req: NextRequest) {
   const segments = _req.nextUrl.pathname.split("/").filter(Boolean);
   const userEmail = segments[segments.length - 2];
   const { searchParams } = new URL(_req.url);
   const type = searchParams.get("type") || "received";
 
-  const origin = _req.headers.get("origin");
-  const corsHeaders = getCorsHeaders(origin);
-  if (!corsHeaders) return new NextResponse("Forbidden", { status: 403 });
-
   if (typeof userEmail !== "string") {
     return NextResponse.json(
       { error: tradesMessages.invalidEmail },
-      { status: 400, headers: corsHeaders }
+      { status: 400 }
     );
   }
 
@@ -61,7 +52,7 @@ export async function GET(_req: NextRequest) {
     } else {
       return NextResponse.json(
         { error: "Paramètre 'type' invalide" },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -70,24 +61,17 @@ export async function GET(_req: NextRequest) {
     const [rows] = await db.query(query, values);
     const results = Array.isArray(rows) ? (rows as TradeModel[]) : [];
 
-    return NextResponse.json(results, { headers: corsHeaders });
+    return NextResponse.json(results);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]/trades) :", error);
 
-    return NextResponse.json(
-      { error: tradesMessages.server },
-      { status: 500, headers: corsHeaders }
-    );
+    return NextResponse.json({ error: tradesMessages.server }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
-
-  const origin = req.headers.get("origin");
-  const corsHeaders = getCorsHeaders(origin);
-  if (!corsHeaders) return new NextResponse("Forbidden", { status: 403 });
 
   try {
     const {
@@ -113,14 +97,14 @@ export async function POST(req: NextRequest) {
     ) {
       return NextResponse.json(
         { error: tradesMessages.invalidData },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
     if (from_user_id === to_user_id) {
       return NextResponse.json(
         { error: tradesMessages.tradeToSelf },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -129,7 +113,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.tradeSameCard,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -145,13 +129,13 @@ export async function POST(req: NextRequest) {
     if (!currentUser?.[0]) {
       return NextResponse.json(
         { error: tradesMessages.noUser },
-        { status: 404, headers: corsHeaders }
+        { status: 404 }
       );
     }
     if (!friend?.[0]) {
       return NextResponse.json(
         { error: tradesMessages.noUser },
-        { status: 404, headers: corsHeaders }
+        { status: 404 }
       );
     }
     if (currentUser[0].id !== from_user_id) {
@@ -159,7 +143,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.noUser,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -171,7 +155,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.pendingTrade,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -186,7 +170,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.noFriend,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -195,7 +179,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.quantity,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
     if (currentUser[0].card_rarity !== friend[0].card_rarity) {
@@ -203,7 +187,7 @@ export async function POST(req: NextRequest) {
         {
           error: tradesMessages.rarity,
         },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -219,28 +203,19 @@ export async function POST(req: NextRequest) {
       ]
     )) as [InsertResult, unknown];
 
-    return NextResponse.json(
-      {
-        message: tradesMessages.addSuccess,
-        insertedId: result.insertId,
-      },
-      { headers: corsHeaders }
-    );
+    return NextResponse.json({
+      message: tradesMessages.addSuccess,
+      insertedId: result.insertId,
+    });
   } catch (error) {
     console.error("Erreur MySQL (POST) :", error);
-    return NextResponse.json(
-      { error: tradesMessages.server },
-      { status: 500, headers: corsHeaders }
-    );
+    return NextResponse.json({ error: tradesMessages.server }, { status: 500 });
   }
 }
 
 export async function PATCH(req: Request) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
-  const origin = req.headers.get("origin");
-  const corsHeaders = getCorsHeaders(origin);
-  if (!corsHeaders) return new NextResponse("Forbidden", { status: 403 });
 
   try {
     const updatedExchange = (await req.json()) as UpdatedTradeModel;
@@ -249,13 +224,13 @@ export async function PATCH(req: Request) {
     if (typeof id !== "number" || isNaN(id)) {
       return NextResponse.json(
         { error: tradesMessages.invalidId },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
     if (typeof status !== "boolean" || typeof acceptance !== "boolean") {
       return NextResponse.json(
         { error: tradesMessages.invalidData },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -266,14 +241,14 @@ export async function PATCH(req: Request) {
     if (!currentUser?.[0]) {
       return NextResponse.json(
         { error: "Utilisateur non authentifié ou introuvable." },
-        { status: 401, headers: corsHeaders }
+        { status: 401 }
       );
     }
     if (currentUser[0].id === to_user_id) {
       if (typeof acceptance !== "boolean") {
         return NextResponse.json(
           { error: "Seul le destinataire peut répondre à l’échange." },
-          { status: 400, headers: corsHeaders }
+          { status: 400 }
         );
       }
     } else if (currentUser[0].id === from_user_id) {
@@ -283,13 +258,13 @@ export async function PATCH(req: Request) {
             error:
               "Tu peux archiver uniquement un échange déjà répondu (accepté ou refusé).",
           },
-          { status: 400, headers: corsHeaders }
+          { status: 400 }
         );
       }
     } else {
       return NextResponse.json(
         { error: "Tu n’es pas autorisé à modifier cet échange." },
-        { status: 403, headers: corsHeaders }
+        { status: 403 }
       );
     }
 
@@ -301,19 +276,13 @@ export async function PATCH(req: Request) {
     if (result.affectedRows === 0) {
       return NextResponse.json(
         { error: tradesMessages.notFound || "Echange non trouvé" },
-        { status: 404, headers: corsHeaders }
+        { status: 404 }
       );
     }
 
-    return NextResponse.json(
-      { message: tradesMessages.updateSuccess },
-      { headers: corsHeaders }
-    );
+    return NextResponse.json({ message: tradesMessages.updateSuccess });
   } catch (error) {
     console.error("Erreur MySQL (PATCH) :", error);
-    return NextResponse.json(
-      { error: tradesMessages.server },
-      { status: 500, headers: corsHeaders }
-    );
+    return NextResponse.json({ error: tradesMessages.server }, { status: 500 });
   }
 }
