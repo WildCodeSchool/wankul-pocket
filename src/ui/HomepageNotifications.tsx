@@ -80,16 +80,12 @@ export function HomepageNotifications() {
     }
   }, [user]);
 
-  if (friendRequestsCount === 0 && completeableQuests.length === 0) {
-    return null;
-  }
-
   return (
     <div
       className={
-        friendRequestsCount === 0 && completeableQuests.length === 0
-          ? styles.none
-          : styles.container
+        friendRequestsCount > 0 || completeableQuests.length > 0
+          ? styles.container
+          : `${styles.container} ${styles.none}`
       }
     >
       <div className={styles.notifications}>

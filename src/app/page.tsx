@@ -49,7 +49,6 @@ export default async function Homepage() {
   }
 
   const components = [
-    <HomepageNotifications />,
     <HomepageTrade trade={displayedTrade} />,
     <HomepageCollection collection={collection} />,
     <HomepageBoosters boosters={boosters} />,
@@ -57,14 +56,17 @@ export default async function Homepage() {
 
   return (
     <div className={styles.homepage}>
-      {components.map((component, index) => (
-        <div
-          key={index}
-          style={{ animationDelay: `${(components.length - index) * 0.1}s` }}
-        >
-          {component}
-        </div>
-      ))}
+      <HomepageNotifications />
+      <div className={styles.components}>
+        {components.map((component, index) => (
+          <div
+            key={index}
+            style={{ animationDelay: `${(components.length - index) * 0.1}s` }}
+          >
+            {component}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
