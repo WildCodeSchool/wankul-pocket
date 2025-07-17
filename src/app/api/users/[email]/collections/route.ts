@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const { id, quantity } = (await req.json()) as CardsModel;
+    const { id, quantity, user_id } = (await req.json()) as CardsModel;
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
     if (typeof userEmail !== "string") {
@@ -113,9 +113,12 @@ export async function PATCH(req: NextRequest) {
     if (
       typeof quantity !== "number" ||
       isNaN(quantity) ||
-      quantity < 0 ||
+      quantity < 1 ||
       typeof id !== "number" ||
-      isNaN(id)
+      isNaN(id) ||
+      typeof user_id !== "number" ||
+      isNaN(id) ||
+      user_id < 0
     ) {
       return NextResponse.json(
         { error: collectionMessages.invalidData },
@@ -124,8 +127,8 @@ export async function PATCH(req: NextRequest) {
     }
 
     const [result] = (await db.query(
-      "UPDATE collection SET quantity = ? WHERE card_id = ?",
-      [quantity, id]
+      "UPDATE collection SET quantity = ? WHERE card_id = ? AND user_id = ?",
+      [quantity, id, user_id]
     )) as [UpdateResult, unknown];
 
     if (result.affectedRows === 0) {
