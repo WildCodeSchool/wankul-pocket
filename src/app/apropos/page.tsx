@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./AproposPage.module.css";
 
 export default function Apropos() {
@@ -31,6 +33,44 @@ export default function Apropos() {
           web en formation, et ce projet constitue notre travail de fin
           d’études.
         </p>
+        <ul className={styles.avatars}>
+          <li>
+            <Image
+              src={"/jordanCard.png"}
+              alt={"Jordan"}
+              height={139}
+              width={100}
+            />
+            <div className={styles.linksContainer}>
+              <Link href={"/"}>L</Link>
+              <Link href={"/"}>G</Link>
+            </div>
+          </li>
+          <li>
+            <Image
+              src={"/julesCard.png"}
+              alt={"Jules"}
+              height={139}
+              width={100}
+            />
+            <div className={styles.linksContainer}>
+              <Link href={"/"}>L</Link>
+              <Link href={"/"}>G</Link>
+            </div>
+          </li>
+          <li>
+            <Image
+              src={"/salahCard.png"}
+              alt={"Salah"}
+              height={139}
+              width={100}
+            />
+            <div className={styles.linksContainer}>
+              <Link href={"/"}>L</Link>
+              <Link href={"/"}>G</Link>
+            </div>
+          </li>
+        </ul>
       </section>
     </>
   );
