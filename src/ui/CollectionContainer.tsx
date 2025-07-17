@@ -102,7 +102,7 @@ export default function CollectionContainer({ collection }: Props) {
                 key={card.id}
                 className={styles.cardItem}
                 onClick={() => setSelectedCard(card)}
-                initial={{ opacity: 0, scale: 0.8, translateY: -15 }}
+                initial={{ opacity: 0, scale: 0.1, translateY: -20 }}
                 whileInView={{ opacity: 1, scale: 1, translateY: 0 }}
               >
                 <Image
