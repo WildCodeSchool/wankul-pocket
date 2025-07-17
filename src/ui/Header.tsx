@@ -10,7 +10,7 @@ import { publicRoutes } from "@/data/ROUTES";
 import BananaLoader from "./BananaLoader";
 
 export default function Header() {
-  const { user, friendRequestsCount } = useUserContext();
+  const { user } = useUserContext();
   const { completeableQuestsCount } = useQuestProgressContext();
   const pathname = usePathname();
 
@@ -74,9 +74,6 @@ export default function Header() {
               className={pathname === "/amis" ? styles.active : styles.link}
             >
               Amis
-              {friendRequestsCount > 0 && (
-                <span className={styles.notificationBubbleFriends}></span>
-              )}
             </Link>
           </li>
           <li className={styles.listItem}>

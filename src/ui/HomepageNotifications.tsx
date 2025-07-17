@@ -1,0 +1,131 @@
+"use client";
+
+import { getAllRequests } from "@/service/FriendsService";
+import { useState, useEffect, useMemo } from "react";
+import { useUserContext } from "@/context/UserContext";
+import {
+  getUserQuestsStats,
+  getAllQuestsByUserId,
+  isQuestCompleted as serviceIsQuestCompleted,
+} from "@/service/QuestService";
+import styles from "./HomepageNotifications.module.css";
+import { QuestProgressModel } from "@/model/QuestProgressModel";
+import { QuestModel } from "@/model/QuestModel";
+import Link from "next/link";
+
+export function HomepageNotifications() {
+  const { user } = useUserContext();
+  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
+  const [progress, setProgress] = useState<QuestProgressModel | null>(null);
+  const [quests, setQuests] = useState<QuestModel[]>([]);
+
+  const refreshFriendRequests = async () => {
+    if (!user?.profil_id) return;
+
+    try {
+      const requests = await getAllRequests(user.profil_id);
+      setFriendRequestsCount(Array.isArray(requests) ? requests.length : 0);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des demandes d'amis :",
+        error
+      );
+      setFriendRequestsCount(0);
+    }
+  };
+
+  const fetchAll = async () => {
+    if (!user?.email) return;
+    try {
+      const [progressRes, questsRes] = await Promise.all([
+        getUserQuestsStats(user.email),
+        getAllQuestsByUserId(user),
+      ]);
+      setProgress(progressRes);
+      setQuests(questsRes);
+    } catch (err) {
+      setProgress(null);
+      setQuests([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchAll();
+  }, [user]);
+
+  const completeableQuests = useMemo(
+    () =>
+      quests.filter(
+        (quest) =>
+          !quest.user_id_completed &&
+          progress &&
+          user &&
+          serviceIsQuestCompleted(
+            quest,
+            new QuestProgressModel(
+              user.id,
+              progress.bananas,
+              progress.friends,
+              progress.trades,
+              Array.isArray(progress.collection) ? progress.collection : []
+            )
+          )
+      ),
+    [quests, progress, user]
+  );
+
+  useEffect(() => {
+    if (user?.profil_id) {
+      refreshFriendRequests();
+    }
+  }, [user]);
+
+  if (friendRequestsCount === 0 && completeableQuests.length === 0) {
+    return null;
+  }
+
+  return (
+    <div
+      className={
+        friendRequestsCount === 0 && completeableQuests.length === 0
+          ? styles.none
+          : styles.container
+      }
+    >
+      <div className={styles.notifications}>
+        {friendRequestsCount > 0 && (
+          <Link
+            href="/amis"
+            className={styles.notificationLink}
+            style={{ flex: 1 }}
+          >
+            <div className={styles.notificationBubble}>
+              <p>
+                <span className={styles.notificationBubbleFriends}>
+                  {friendRequestsCount}
+                </span>{" "}
+                demande(s) d'amis
+              </p>
+            </div>
+          </Link>
+        )}
+        {completeableQuests.length > 0 && (
+          <Link
+            href="/objectifs"
+            className={styles.notificationLink}
+            style={{ flex: 1 }}
+          >
+            <div className={styles.notificationBubble}>
+              <p>
+                Quêtes à valider :{" "}
+                <span className={styles.notificationBubbleQuests}>
+                  {completeableQuests.length}
+                </span>
+              </p>
+            </div>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}

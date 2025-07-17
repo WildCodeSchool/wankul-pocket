@@ -9,6 +9,7 @@ import { getAll } from "@/service/TradeService";
 import { HomepageBoosters } from "@/ui/HomepageBoosters";
 import { HomepageCollection } from "@/ui/HomepageCollection";
 import HomepageTrade from "@/ui/HomepageTrade";
+import { HomepageNotifications } from "@/ui/HomepageNotifications";
 import { getServerSession } from "next-auth";
 import styles from "./page.module.css";
 
@@ -48,6 +49,7 @@ export default async function Homepage() {
   }
 
   const components = [
+    <HomepageNotifications />,
     <HomepageTrade trade={displayedTrade} />,
     <HomepageCollection collection={collection} />,
     <HomepageBoosters boosters={boosters} />,
