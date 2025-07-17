@@ -31,46 +31,110 @@ export default function Apropos() {
         <p>
           Cette application n’est pas officielle, nous sommes trois développeurs
           web en formation, et ce projet constitue notre travail de fin
-          d’études.
+          d’études. Nous ne tirons aucun bénéfice de cette application et ne
+          sommes en aucun cas affiliés à Wankul.
         </p>
         <ul className={styles.avatars}>
           <li>
             <Image
               src={"/jordanCard.png"}
               alt={"Jordan"}
-              height={139}
-              width={100}
+              height={209}
+              width={150}
             />
             <div className={styles.linksContainer}>
-              <Link href={"/"}>L</Link>
-              <Link href={"/"}>G</Link>
+              <Link
+                href={"https://www.linkedin.com/in/jordan-pieton-005946121/"}
+                target="blank"
+              >
+                <Image
+                  src={"/linkedIn.png"}
+                  alt="LinkedIn"
+                  height={32}
+                  width={32}
+                />
+              </Link>
+              <Link href={"https://github.com/Jordan-182"} target="blank">
+                <Image
+                  src={"/github.png"}
+                  alt="Github"
+                  height={32}
+                  width={32}
+                />
+              </Link>
             </div>
           </li>
           <li>
             <Image
               src={"/julesCard.png"}
               alt={"Jules"}
-              height={139}
-              width={100}
+              height={209}
+              width={150}
             />
             <div className={styles.linksContainer}>
-              <Link href={"/"}>L</Link>
-              <Link href={"/"}>G</Link>
+              <Link
+                href={"https://www.linkedin.com/in/jules-clauwaert/"}
+                target="blank"
+              >
+                <Image
+                  src={"/linkedIn.png"}
+                  alt="LinkedIn"
+                  height={32}
+                  width={32}
+                />
+              </Link>
+              <Link href={"https://github.com/Salvak613"} target="blank">
+                <Image
+                  src={"/github.png"}
+                  alt="Github"
+                  height={32}
+                  width={32}
+                />
+              </Link>
             </div>
           </li>
           <li>
             <Image
               src={"/salahCard.png"}
               alt={"Salah"}
-              height={139}
-              width={100}
+              height={209}
+              width={150}
             />
             <div className={styles.linksContainer}>
-              <Link href={"/"}>L</Link>
-              <Link href={"/"}>G</Link>
+              <Link
+                href={
+                  "https://www.linkedin.com/in/salahedine-imoussaine-78b7a21b9/"
+                }
+                target="blank"
+              >
+                <Image
+                  src={"/linkedIn.png"}
+                  alt="LinkedIn"
+                  height={32}
+                  width={32}
+                />
+              </Link>
+              <Link href={"https://github.com/salah-hnt"} target="blank">
+                <Image
+                  src={"/github.png"}
+                  alt="Github"
+                  height={32}
+                  width={32}
+                />
+              </Link>
             </div>
           </li>
         </ul>
+      </section>
+      <section className={styles.legalSection}>
+        <h2>Mentions légales</h2>
+        <p>
+          Vous pouvez consulter les mentions légales de notre application sur{" "}
+          <Link href={"/legal"}>
+            <strong>cette page</strong>
+          </Link>
+          .
+        </p>
       </section>
     </>
   );
