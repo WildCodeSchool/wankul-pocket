@@ -103,6 +103,7 @@ export async function PATCH(req: NextRequest) {
     const { id, quantity, user_id } = (await req.json()) as CardsModel;
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
+
     if (typeof userEmail !== "string") {
       return NextResponse.json(
         { error: collectionMessages.invalidEmail },
