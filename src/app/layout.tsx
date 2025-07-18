@@ -50,6 +50,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <meta
+          property="og:image"
+          content="https://www.wankulpocket.fr/OGImage.png"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.wankulpocket.fr/OGImage.png"
+        />
+      </head>
       <body className={`${jaldi.variable}`}>
         <SessionWrapper>
           <UserProvider>
