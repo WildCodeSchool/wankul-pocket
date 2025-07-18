@@ -48,6 +48,7 @@ export function HomepageNotifications() {
       setProgress(progressRes);
       setQuests(questsRes);
     } catch (err) {
+      console.error("Erreur lors de la récupération des quêtes :", err);
       setProgress(null);
       setQuests([]);
     }
@@ -99,7 +100,7 @@ export function HomepageNotifications() {
                 <span className={styles.notificationBubbleFriends}>
                   {friendRequestsCount}
                 </span>{" "}
-                demande(s) d'amis
+                demande(s) d&apos;amis
               </p>
             </div>
           </Link>
