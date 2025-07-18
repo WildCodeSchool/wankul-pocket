@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const { user_id, quest_id, reward } = await req.json();
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
-    if (!sessionUserEmail || userEmail) {
+    if (!sessionUserEmail || sessionUserEmail !== userEmail) {
       return NextResponse.json(
         {
           error: "Utilisateur non autorisé",
