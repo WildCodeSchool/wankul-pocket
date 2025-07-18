@@ -64,6 +64,7 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json(results);
   } catch (error) {
     console.error("Erreur MySQL (GET /api/users/[email]/trades) :", error);
+
     return NextResponse.json({ error: tradesMessages.server }, { status: 500 });
   }
 }
@@ -71,6 +72,7 @@ export async function GET(_req: NextRequest) {
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
+
   try {
     const {
       from_user_id,
@@ -214,6 +216,7 @@ export async function POST(req: NextRequest) {
 export async function PATCH(req: Request) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
+
   try {
     const updatedExchange = (await req.json()) as UpdatedTradeModel;
     const { id, status, acceptance, from_user_id, to_user_id } =

@@ -1,12 +1,12 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
+import { publicRoutes } from "@/data/ROUTES";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./Header.module.css";
-import { publicRoutes } from "@/data/ROUTES";
 import BananaLoader from "./BananaLoader";
+import styles from "./Header.module.css";
 
 export default function Header() {
   const { user } = useUserContext();
@@ -48,6 +48,14 @@ export default function Header() {
       </Link>
       <nav className={styles.headerNav}>
         <ul className={styles.linksContainer}>
+          <li className={styles.listItem}>
+            <Link
+              href="/"
+              className={pathname === "/" ? styles.active : styles.link}
+            >
+              Accueil
+            </Link>
+          </li>
           <li className={styles.listItem}>
             <Link
               href="/collection"

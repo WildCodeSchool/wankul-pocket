@@ -13,7 +13,8 @@ export class CardsModel {
     private _booster_id: number,
     private _quantity: number,
     private _season: number,
-    private _set_name: string
+    private _set_name: string,
+    private _user_id?: number
   ) {}
 
   get id(): number {
@@ -74,5 +75,9 @@ export class CardsModel {
 
   get set_name(): string {
     return this._set_name;
+  }
+
+  get user_id(): number | undefined {
+    return this._user_id;
   }
 }

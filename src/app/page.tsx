@@ -11,6 +11,8 @@ import { HomepageCollection } from "@/ui/HomepageCollection";
 import HomepageTrade from "@/ui/HomepageTrade";
 import { HomepageNotifications } from "@/ui/HomepageNotifications";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default async function Homepage() {
@@ -49,9 +51,9 @@ export default async function Homepage() {
   }
 
   const components = [
-    <HomepageTrade trade={displayedTrade} />,
-    <HomepageCollection collection={collection} />,
-    <HomepageBoosters boosters={boosters} />,
+    <HomepageTrade key="trade" trade={displayedTrade} />,
+    <HomepageCollection key="collection" collection={collection} />,
+    <HomepageBoosters key="boosters" boosters={boosters} />,
   ];
 
   return (
@@ -67,6 +69,9 @@ export default async function Homepage() {
           </div>
         ))}
       </div>
+      <Link href={"/apropos"} className={styles.linkAbout}>
+        <Image src={"/infoIcon.png"} alt="Info" width={32} height={32} />
+      </Link>
     </div>
   );
 }

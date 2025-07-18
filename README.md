@@ -1,3 +1,5 @@
+ICI ON TEST
+
 # Scholar Next.js - Projet Pédagogique
 
 Ce projet est une application développée avec **Next.js 15**. Il s'agit d'un support d'apprentissage pour comprendre l'utilisation des routes API, des composants Server & Client, de la base de données MySQL.
