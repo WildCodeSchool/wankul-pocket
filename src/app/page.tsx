@@ -10,6 +10,8 @@ import { HomepageBoosters } from "@/ui/HomepageBoosters";
 import { HomepageCollection } from "@/ui/HomepageCollection";
 import HomepageTrade from "@/ui/HomepageTrade";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default async function Homepage() {
@@ -63,6 +65,9 @@ export default async function Homepage() {
           {component}
         </div>
       ))}
+      <Link href={"/apropos"} className={styles.linkAbout}>
+        <Image src={"/infoIcon.png"} alt="Info" width={32} height={32} />
+      </Link>
     </div>
   );
 }

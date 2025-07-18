@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dotenv": "^16.5.0",
+    "motion": "^12.23.5",
     "mysql2": "^3.14.1",
     "next": "15.3.2",
     "next-auth": "^4.24.11",

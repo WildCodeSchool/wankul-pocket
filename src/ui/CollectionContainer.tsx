@@ -1,6 +1,7 @@
 "use client";
 
 import { CardsModel } from "@/model/CardsModel";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import CardModal from "./CardModal";
@@ -97,10 +98,12 @@ export default function CollectionContainer({ collection }: Props) {
         ) : (
           <ul className={styles.container}>
             {filteredCards.map((card) => (
-              <li
+              <motion.li
                 key={card.id}
                 className={styles.cardItem}
                 onClick={() => setSelectedCard(card)}
+                initial={{ opacity: 0, scale: 0.1, translateY: -20 }}
+                whileInView={{ opacity: 1, scale: 1, translateY: 0 }}
               >
                 <Image
                   src={card.image_path}
@@ -111,7 +114,7 @@ export default function CollectionContainer({ collection }: Props) {
                 <div className={styles.quantity}>
                   <p>{card.quantity}</p>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
         )}
