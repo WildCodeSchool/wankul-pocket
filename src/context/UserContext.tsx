@@ -49,7 +49,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   }, [session, status]);
 
   return (
-    <UserContext value={{ user, setUser, updateUserBananas }}>
+    <UserContext
+      value={{
+        user,
+        setUser,
+        updateUserBananas,
+      }}
+    >
       {children}
     </UserContext>
   );

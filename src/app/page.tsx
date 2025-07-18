@@ -9,6 +9,7 @@ import { getAll } from "@/service/TradeService";
 import { HomepageBoosters } from "@/ui/HomepageBoosters";
 import { HomepageCollection } from "@/ui/HomepageCollection";
 import HomepageTrade from "@/ui/HomepageTrade";
+import { HomepageNotifications } from "@/ui/HomepageNotifications";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,14 +58,17 @@ export default async function Homepage() {
 
   return (
     <div className={styles.homepage}>
-      {components.map((component, index) => (
-        <div
-          key={index}
-          style={{ animationDelay: `${(components.length - index) * 0.1}s` }}
-        >
-          {component}
-        </div>
-      ))}
+      <HomepageNotifications />
+      <div className={styles.components}>
+        {components.map((component, index) => (
+          <div
+            key={index}
+            style={{ animationDelay: `${(components.length - index) * 0.1}s` }}
+          >
+            {component}
+          </div>
+        ))}
+      </div>
       <Link href={"/apropos"} className={styles.linkAbout}>
         <Image src={"/infoIcon.png"} alt="Info" width={32} height={32} />
       </Link>
