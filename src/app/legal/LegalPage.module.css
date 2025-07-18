@@ -16,3 +16,15 @@
     font-style: italic;
   }
 }
+
+.linkContainer {
+  display: flex;
+  margin-top: 0.8rem;
+}
+
+.backLink {
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+}

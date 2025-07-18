@@ -31,7 +31,8 @@ export default function Legal() {
         <h3>Hébergement de la base de données :</h3>
         <p>
           Alwaysdata <br /> 91 rue du Faubourg Saint-Honoré <br /> 75008 Paris,
-          France 91789, États-Unis <br />
+          France 91789
+          <br />
           <Link href={"https://www.alwaysdata.com"} target="blank">
             https://www.alwaysdata.com
           </Link>
@@ -90,6 +91,11 @@ export default function Legal() {
           l&apos;application.
         </p>
       </section>
+      <div className={styles.linkContainer}>
+        <Link href={"/apropos"} className={styles.backLink}>
+          &larr; Retour
+        </Link>
+      </div>
     </>
   );
 }

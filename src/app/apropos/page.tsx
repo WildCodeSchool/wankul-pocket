@@ -10,7 +10,7 @@ export default function Apropos() {
         <h2>Dernières mises à jour</h2>
         <p>
           Depuis notre dernière mise à jour, les joueurs bénéficient des
-          fonctionnailtés suivantes :
+          fonctionnalités suivantes :
         </p>
         <ul>
           <li>
