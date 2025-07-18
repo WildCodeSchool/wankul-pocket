@@ -1,7 +1,7 @@
 "use client";
 
 import { getAllRequests } from "@/service/FriendsService";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useUserContext } from "@/context/UserContext";
 import {
   getUserQuestsStats,
@@ -19,7 +19,7 @@ export function HomepageNotifications() {
   const [progress, setProgress] = useState<QuestProgressModel | null>(null);
   const [quests, setQuests] = useState<QuestModel[]>([]);
 
-  const refreshFriendRequests = async () => {
+  const refreshFriendRequests = useCallback(async () => {
     if (!user?.profil_id) return;
 
     try {
@@ -32,10 +32,14 @@ export function HomepageNotifications() {
       );
       setFriendRequestsCount(0);
     }
-  };
+  }, [user]);
 
-  const fetchAll = async () => {
-    if (!user?.email) return;
+  const fetchAll = useCallback(async () => {
+    if (!user) {
+      setProgress(null);
+      setQuests([]);
+      return;
+    }
     try {
       const [progressRes, questsRes] = await Promise.all([
         getUserQuestsStats(user.email),
@@ -47,10 +51,6 @@ export function HomepageNotifications() {
       setProgress(null);
       setQuests([]);
     }
-  };
-
-  useEffect(() => {
-    fetchAll();
   }, [user]);
 
   const completeableQuests = useMemo(
@@ -74,11 +74,10 @@ export function HomepageNotifications() {
     [quests, progress, user]
   );
 
-  useEffect(() => {
-    if (user?.profil_id) {
-      refreshFriendRequests();
-    }
-  }, [user]);
+ useEffect(() => {
+  fetchAll();
+  refreshFriendRequests();
+}, [user]);
 
   return (
     <div
