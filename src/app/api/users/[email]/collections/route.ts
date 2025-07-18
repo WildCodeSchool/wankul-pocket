@@ -2,8 +2,6 @@ import { collectionMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
 import { getUserIdByEmail } from "@/service/UserService";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface UpdateResult {
@@ -60,16 +58,6 @@ export async function POST(request: NextRequest) {
   const email = segments[segments.length - 2];
 
   try {
-    const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email;
-    if (!userEmail || userEmail !== email) {
-      return NextResponse.json(
-        {
-          error: "Utilisateur non autorisé",
-        },
-        { status: 400 }
-      );
-    }
     const body = await request.json();
 
     const cardIds: number[] = body.cardIds;
@@ -115,16 +103,7 @@ export async function PATCH(req: NextRequest) {
     const { id, quantity, user_id } = (await req.json()) as CardsModel;
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
-    const session = await getServerSession(authOptions);
-    const sessionUserEmail = session?.user?.email;
-    if (!sessionUserEmail || sessionUserEmail !== userEmail) {
-      return NextResponse.json(
-        {
-          error: "Utilisateur non autorisé",
-        },
-        { status: 400 }
-      );
-    }
+
     if (typeof userEmail !== "string") {
       return NextResponse.json(
         { error: collectionMessages.invalidEmail },
