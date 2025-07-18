@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email;
-    if (!userEmail) {
+    if (!userEmail || userEmail !== email) {
       return NextResponse.json(
         {
           error: "Utilisateur non autorisé",
@@ -112,9 +112,12 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   try {
+    const { id, quantity, user_id } = (await req.json()) as CardsModel;
+    const segments = req.nextUrl.pathname.split("/").filter(Boolean);
+    const userEmail = segments[segments.length - 2];
     const session = await getServerSession(authOptions);
     const sessionUserEmail = session?.user?.email;
-    if (!sessionUserEmail) {
+    if (!sessionUserEmail || sessionUserEmail !== userEmail) {
       return NextResponse.json(
         {
           error: "Utilisateur non autorisé",
@@ -122,9 +125,6 @@ export async function PATCH(req: NextRequest) {
         { status: 400 }
       );
     }
-    const { id, quantity, user_id } = (await req.json()) as CardsModel;
-    const segments = req.nextUrl.pathname.split("/").filter(Boolean);
-    const userEmail = segments[segments.length - 2];
     if (typeof userEmail !== "string") {
       return NextResponse.json(
         { error: collectionMessages.invalidEmail },
