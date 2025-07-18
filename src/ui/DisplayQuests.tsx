@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useTransition, useReducer } from "react";
+import { useEffect, useTransition, useReducer, useMemo } from "react";
 import styles from "./DisplayQuest.module.css";
 import { QuestModel } from "@/model/QuestModel";
 import { useQuestProgressContext } from "@/context/QuestProgressContext";
@@ -138,33 +138,41 @@ export default function DisplayQuests() {
     });
   };
 
-  const questsByCategory = state.quests
-    .filter(
-      (quest: QuestModel) =>
-        !quest.user_id_completed && !state.completedQuestIds.has(quest.id)
-    )
-    .reduce(
-      (
-        acc: Record<string, { quest: QuestModel; isCompleted: boolean }>,
-        quest: QuestModel
-      ) => {
-        const category = quest.category;
-        const isCompleted = isQuestCompleted(quest);
+  const questsByCategory = useMemo(
+    () =>
+      state.quests
+        .filter(
+          (quest: QuestModel) =>
+            !quest.user_id_completed && !state.completedQuestIds.has(quest.id)
+        )
+        .reduce(
+          (
+            acc: Record<string, { quest: QuestModel; isCompleted: boolean }>,
+            quest: QuestModel
+          ) => {
+            const category = quest.category;
+            const isCompleted = isQuestCompleted(quest);
 
-        if (!acc[category] || quest.reward < acc[category].quest.reward) {
-          acc[category] = { quest, isCompleted };
-        }
+            if (!acc[category] || quest.reward < acc[category].quest.reward) {
+              acc[category] = { quest, isCompleted };
+            }
 
-        return acc;
-      },
-      {} as Record<string, { quest: QuestModel; isCompleted: boolean }>
-    );
+            return acc;
+          },
+          {} as Record<string, { quest: QuestModel; isCompleted: boolean }>
+        ),
+    [state.quests, state.completedQuestIds, isQuestCompleted]
+  );
 
-  const filteredQuests = Object.values(questsByCategory).sort((a, b) => {
-    if (a.isCompleted && !b.isCompleted) return -1;
-    if (!a.isCompleted && b.isCompleted) return 1;
-    return a.quest.reward - b.quest.reward;
-  });
+  const filteredQuests = useMemo(
+    () =>
+      Object.values(questsByCategory).sort((a, b) => {
+        if (a.isCompleted && !b.isCompleted) return -1;
+        if (!a.isCompleted && b.isCompleted) return 1;
+        return a.quest.reward - b.quest.reward;
+      }),
+    [questsByCategory]
+  );
 
   if (isLoadingQuests) {
     return (
