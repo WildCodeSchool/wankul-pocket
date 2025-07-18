@@ -1,0 +1,45 @@
+.title {
+  text-align: center;
+}
+
+.updateSection,
+.teamSection,
+.legalSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+
+  h2 {
+    font-style: italic;
+  }
+
+  p {
+    margin: 0.5rem auto;
+    text-align: center;
+    max-width: 85ch;
+  }
+}
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  li {
+    height: 209px;
+  }
+}
+
+.linksContainer {
+  color: var(--bodyGradient2);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: -52px;
+  padding: 0.3rem;
+  gap: 1rem;
+}
