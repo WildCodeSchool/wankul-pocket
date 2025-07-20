@@ -26,24 +26,18 @@ export default function CardPickerModal({
   const tradableCards = userCards.filter((card) => card.quantity > 1);
 
   useEffect(() => {
-    if (!email) return;
+    if (!email || !otherEmail) return;
 
-    startTransition(async () => {
-      await getCollection(email, { rarity }).then((data) => {
-        setUserCards(data);
+    startTransition(() => {
+      Promise.all([
+        getCollection(email, { rarity }),
+        getCollection(otherEmail, { rarity }),
+      ]).then(([userData, otherData]) => {
+        setUserCards(userData);
+        setCompareCards(otherData);
       });
     });
-  }, [email, rarity]);
-
-  useEffect(() => {
-    if (!otherEmail) return;
-
-    startTransition(async () => {
-      await getCollection(otherEmail, { rarity }).then((data) => {
-        setCompareCards(data);
-      });
-    });
-  }, [otherEmail, rarity]);
+  }, [email, otherEmail, rarity]);
 
   return (
     <section className={styles.modal}>
