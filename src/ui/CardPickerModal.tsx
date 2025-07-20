@@ -7,6 +7,7 @@ import Loader from "./Loader";
 
 type Props = {
   email: string;
+  otherEmail: string;
   onClose: () => void;
   onSelect: (card: CardsModel) => void;
   rarity?: string | undefined;
@@ -14,23 +15,35 @@ type Props = {
 
 export default function CardPickerModal({
   email,
+  otherEmail,
   onClose,
   onSelect,
   rarity,
 }: Props) {
-  const [cards, setCards] = useState<CardsModel[]>([]);
+  const [userCards, setUserCards] = useState<CardsModel[]>([]);
+  const [compareCards, setCompareCards] = useState<CardsModel[]>([]);
   const [isPending, startTransition] = useTransition();
-  const tradableCards = cards.filter((card) => card.quantity > 1);
+  const tradableCards = userCards.filter((card) => card.quantity > 1);
 
   useEffect(() => {
     if (!email) return;
 
     startTransition(async () => {
       await getCollection(email, { rarity }).then((data) => {
-        setCards(data);
+        setUserCards(data);
       });
     });
   }, [email, rarity]);
+
+  useEffect(() => {
+    if (!otherEmail) return;
+
+    startTransition(async () => {
+      await getCollection(otherEmail, { rarity }).then((data) => {
+        setCompareCards(data);
+      });
+    });
+  }, [otherEmail, rarity]);
 
   return (
     <section className={styles.modal}>
@@ -50,18 +63,26 @@ export default function CardPickerModal({
         <div className={styles.cardContainer}>
           {tradableCards
             .filter((card) => card.quantity > 1)
-            .map((card) => (
-              <div key={card.id} onClick={() => onSelect(card)}>
-                <Image
-                  src={card.image_path}
-                  alt={card.name}
-                  height={192}
-                  width={137}
-                />
-                <p>{card.name}</p>
-                <p className={styles.quantity}>{card.quantity}</p>
-              </div>
-            ))}
+            .map((card) => {
+              const matchingCard = compareCards.find((c) => c.id === card.id);
+              return (
+                <div key={card.id} onClick={() => onSelect(card)}>
+                  <Image
+                    src={card.image_path}
+                    alt={card.name}
+                    height={192}
+                    width={137}
+                  />
+                  <p>{card.name}</p>
+                  <p className={styles.quantity}>{card.quantity}</p>
+                  <p className={styles.compareQuantity}>
+                    {matchingCard && matchingCard.quantity > 0
+                      ? `Carte déjà obtenue`
+                      : `Carte pas obtenue`}
+                  </p>
+                </div>
+              );
+            })}
         </div>
       )}
     </section>

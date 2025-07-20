@@ -31,7 +31,7 @@ export default function TradeAdd({
     <>
       <section className={styles.container}>
         {selectedFriend ? (
-          <div>
+          <div className={styles.topRow}>
             <p>
               Ami sélectionné :{" "}
               <strong>{selectedFriend?.user2_username}</strong>
@@ -39,7 +39,9 @@ export default function TradeAdd({
             <p>Sélectionne deux cartes de même rareté</p>
           </div>
         ) : (
-          <p>Aucun ami sélectionné</p>
+          <div className={styles.topRow}>
+            <p>Aucun ami sélectionné</p>
+          </div>
         )}
         <div className={styles.cardsSection}>
           <div className={styles.cardContainer}>
@@ -106,6 +108,7 @@ export default function TradeAdd({
           <CardPickerModal
             onClose={() => setIsModalOpen(null)}
             email={isModalOpen === "mine" ? userEmail : friendEmail}
+            otherEmail={isModalOpen === "friend" ? userEmail : friendEmail}
             rarity={
               isModalOpen === "friend" ? myCard?.rarity : friendCard?.rarity
             }
