@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Unfriend.module.css";
+import { useFriendListContext } from "@/context/FriendListContext";
 
 interface UnfriendProps {
   userId: number;
@@ -14,6 +15,7 @@ interface UnfriendProps {
 export default function Unfriend({ userId }: UnfriendProps) {
   const [showModal, setShowModal] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const { removeFriend } = useFriendListContext();
 
   async function handleConfirmUnfriend() {
     try {
@@ -22,7 +24,8 @@ export default function Unfriend({ userId }: UnfriendProps) {
       setTimeout(() => {
         setShowModal(false);
         setDeleted(false);
-      }, 2000);
+        removeFriend(userId);
+      }, 1200);
     } catch (error) {
       console.error("Failed to unfriend user:", error);
       setShowModal(false);

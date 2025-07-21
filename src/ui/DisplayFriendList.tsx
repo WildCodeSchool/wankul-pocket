@@ -1,8 +1,8 @@
 "use client";
 
 import { useUserContext } from "@/context/UserContext";
+import { useFriendListContext } from "@/context/FriendListContext";
 import { FriendsModel } from "@/model/FriendsModel";
-import { getEveryFriends } from "@/service/FriendsService";
 import Image from "next/image";
 import { useEffect, useState, useTransition, useMemo } from "react";
 import styles from "./DisplayFriendList.module.css";
@@ -15,23 +15,9 @@ import { publicRoutes } from "@/data/ROUTES";
 export default function DisplayFriendList() {
   const { user } = useUserContext();
   const userProfilId = user?.profil_id;
-  const [friends, setFriends] = useState<FriendsModel[]>([]);
   const [isPending, startTransition] = useTransition();
   const [filter, setFilter] = useState("");
-
-  useEffect(() => {
-    if (!userProfilId) return;
-
-    startTransition(async () => {
-      try {
-        const friends = await getEveryFriends(userProfilId);
-        setFriends(friends);
-      } catch (error) {
-        console.error("Error fetching friends:", error);
-        setFriends([]);
-      }
-    });
-  }, [userProfilId]);
+  const { friends, setFriends } = useFriendListContext();
 
   const filteredFriends = useMemo(() => {
     return friends.filter((friend) => {
