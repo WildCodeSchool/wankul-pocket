@@ -69,7 +69,6 @@ export default function CardPickerModal({
                   />
                   <p>{card.name}</p>
                   <p className={styles.quantity}>{card.quantity}</p>
-
                   {matchingCard && matchingCard.quantity > 0 ? (
                     <div className={styles.possession}>
                       <Image
