@@ -19,7 +19,6 @@ export function AcceptFriendRequestButton({ friend, onAccepted }: Props) {
       onAccepted?.();
       refreshProgress();
       refreshFriends();
-      console.log("Friend request accepted:", friend);
     } catch (error) {
       console.error("Failed to accept friend request:", error);
     }
