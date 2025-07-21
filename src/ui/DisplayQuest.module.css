@@ -71,6 +71,10 @@
   box-shadow: var(--bubbleShadow);
 }
 
+.validateAllQuestsButton {
+  margin-bottom: 10px;
+}
+
 .rewardAnimation {
   position: fixed;
   top: 50%;

@@ -138,6 +138,18 @@ export default function DisplayQuests() {
     });
   };
 
+  const validateAllQuests = async () => {
+    if (!user || isPending) return;
+
+    const completedQuests = filteredQuests.filter(
+      (q) => q.isCompleted && !state.completedQuestIds.has(q.quest.id)
+    );
+    for (const q of completedQuests) {
+      await validateQuest(q.quest);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  };
+
   const questsByCategory = useMemo(
     () =>
       state.quests
@@ -186,6 +198,15 @@ export default function DisplayQuests() {
   return (
     <div className={styles.questContainer}>
       <h1 className={styles.title}>Quêtes</h1>
+
+      {filteredQuests.some((q) => q.isCompleted) ? (
+        <button
+          onClick={validateAllQuests}
+          className={styles.validateAllQuestsButton}
+        >
+          Valider toutes les quêtes
+        </button>
+      ) : null}
 
       {Array.from(state.animatingRewards.entries()).map(([questId, reward]) => (
         <RewardAnimation key={questId} questId={questId} reward={reward} />
