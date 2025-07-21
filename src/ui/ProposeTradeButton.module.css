@@ -3,3 +3,11 @@
   width: clamp(100px, 50%, 200px);
   cursor: pointer;
 }
+
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 16px;
+}

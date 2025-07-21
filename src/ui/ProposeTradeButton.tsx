@@ -4,6 +4,7 @@ import { NormalizedFriendModel } from "@/model/NormalizedFriendModel";
 import { addOne } from "@/service/TradeService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Loader from "./Loader";
 import styles from "./ProposeTradeButton.module.css";
 
 interface TradeBtnProps {
@@ -20,6 +21,7 @@ export default function ProposeTradeButton({
   const router = useRouter();
   const friendEmail: string | undefined = selectedFriend?.user2_email;
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const newTrade: newTradeModel = {
     from_user_id: selectedFriend?.user1_id,
     to_user_id: selectedFriend?.user2_id,
@@ -29,6 +31,7 @@ export default function ProposeTradeButton({
     acceptance: null,
   };
   async function handleClick() {
+    setIsLoading(true);
     if (myCard !== null && friendCard !== null) {
       await addOne(friendEmail, newTrade);
       router.refresh();
@@ -43,7 +46,13 @@ export default function ProposeTradeButton({
         onClick={handleClick}
         disabled={!(myCard && friendCard)}
       >
-        Proposer
+        {isLoading ? (
+          <div className={styles.loaderContainer}>
+            <Loader />
+          </div>
+        ) : (
+          "Proposer"
+        )}
       </button>
       {errorMessage && (
         <p>
