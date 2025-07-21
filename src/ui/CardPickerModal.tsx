@@ -69,11 +69,19 @@ export default function CardPickerModal({
                   />
                   <p>{card.name}</p>
                   <p className={styles.quantity}>{card.quantity}</p>
-                  <p className={styles.compareQuantity}>
-                    {matchingCard && matchingCard.quantity > 0
-                      ? `Carte déjà obtenue`
-                      : `Carte pas obtenue`}
-                  </p>
+
+                  {matchingCard && matchingCard.quantity > 0 ? (
+                    <div className={styles.possession}>
+                      <Image
+                        src={"/cardsIcon.png"}
+                        alt="Carte déjà obtenue"
+                        height={20}
+                        width={20}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               );
             })}
