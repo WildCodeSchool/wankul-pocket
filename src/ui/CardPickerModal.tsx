@@ -55,35 +55,33 @@ export default function CardPickerModal({
         </p>
       ) : (
         <div className={styles.cardContainer}>
-          {tradableCards
-            .filter((card) => card.quantity > 1)
-            .map((card) => {
-              const matchingCard = compareCards.find((c) => c.id === card.id);
-              return (
-                <div key={card.id} onClick={() => onSelect(card)}>
-                  <Image
-                    src={card.image_path}
-                    alt={card.name}
-                    height={192}
-                    width={137}
-                  />
-                  <p>{card.name}</p>
-                  <p className={styles.quantity}>{card.quantity}</p>
-                  {matchingCard && matchingCard.quantity > 0 ? (
-                    <div className={styles.possession}>
-                      <Image
-                        src={"/cardsIcon.png"}
-                        alt="Carte déjà obtenue"
-                        height={20}
-                        width={20}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              );
-            })}
+          {tradableCards.map((card) => {
+            const matchingCard = compareCards.find((c) => c.id === card.id);
+            return (
+              <div key={card.id} onClick={() => onSelect(card)}>
+                <Image
+                  src={card.image_path}
+                  alt={card.name}
+                  height={192}
+                  width={137}
+                />
+                <p>{card.name}</p>
+                <p className={styles.quantity}>{card.quantity}</p>
+                {matchingCard && matchingCard.quantity > 0 ? (
+                  <div className={styles.possession}>
+                    <Image
+                      src={"/cardsIcon.png"}
+                      alt="Carte déjà obtenue"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </section>
