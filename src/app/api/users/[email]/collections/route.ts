@@ -2,6 +2,8 @@ import { collectionMessages } from "@/data/responseMessages";
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
 import { getUserIdByEmail } from "@/service/UserService";
+import { authOptions } from "@/utils/authOptions";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface UpdateResult {
@@ -56,6 +58,12 @@ export async function GET(_req: NextRequest) {
 export async function POST(request: NextRequest) {
   const segments = request.nextUrl.pathname.split("/").filter(Boolean);
   const email = segments[segments.length - 2];
+
+  const session = await getServerSession(authOptions);
+  const sessionEmail = session?.user?.email;
+
+  console.log(session); // return NULL
+  console.log(sessionEmail); // return UNDEFINED
 
   try {
     const body = await request.json();
