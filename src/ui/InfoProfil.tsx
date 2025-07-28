@@ -70,6 +70,7 @@ export default function EditProfils() {
                 onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
                 autoFocus
                 className={styles.inputName}
+                maxLength={24}
               />
             ) : (
               <>
