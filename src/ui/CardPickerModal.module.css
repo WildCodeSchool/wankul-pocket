@@ -93,6 +93,11 @@
   margin-top: 2rem;
 }
 
+.season {
+  font-size: 1.3rem;
+  margin-bottom: -1rem;
+}
+
 @media screen and (min-width: 900px) {
   .modal {
     height: var(--landingPageHeight);
