@@ -58,7 +58,7 @@ export async function PATCH(req: Request) {
         {
           error: "Utilisateur non autorisé",
         },
-        { status: 400 }
+        { status: 401 }
       );
     }
 

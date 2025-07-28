@@ -9,6 +9,7 @@ export async function addToCollection(
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include", // 🔥 Ajout pour inclure les cookies
     body: JSON.stringify({ cardIds }),
   });
 

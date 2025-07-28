@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
         {
           error: "Utilisateur non autorisé",
         },
-        { status: 400 }
+        { status: 401 }
       );
     }
 

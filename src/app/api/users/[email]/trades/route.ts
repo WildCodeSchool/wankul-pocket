@@ -73,9 +73,6 @@ export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
 
-  console.log(session); // return bien la session avec un objet user comprenant name, email et image
-  console.log(userEmail); // return bien mon mail
-
   try {
     const {
       from_user_id,

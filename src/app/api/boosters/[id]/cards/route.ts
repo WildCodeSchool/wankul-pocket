@@ -32,8 +32,7 @@ export async function GET(request: NextRequest) {
       }
 
       const userId = parseInt(userIdHeader, 10);
-      const emailID = emailHeader;
-      const openedCards = await manageOpening(boosterId, userId, emailID);
+      const openedCards = await manageOpening(boosterId, userId);
       return NextResponse.json(openedCards, { status: 200 });
     }
 
