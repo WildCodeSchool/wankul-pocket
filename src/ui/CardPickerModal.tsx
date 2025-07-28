@@ -7,6 +7,7 @@ import Loader from "./Loader";
 
 type Props = {
   email: string;
+  otherEmail: string;
   onClose: () => void;
   onSelect: (card: CardsModel) => void;
   rarity?: string | undefined;
@@ -14,23 +15,29 @@ type Props = {
 
 export default function CardPickerModal({
   email,
+  otherEmail,
   onClose,
   onSelect,
   rarity,
 }: Props) {
-  const [cards, setCards] = useState<CardsModel[]>([]);
+  const [userCards, setUserCards] = useState<CardsModel[]>([]);
+  const [compareCards, setCompareCards] = useState<CardsModel[]>([]);
   const [isPending, startTransition] = useTransition();
-  const tradableCards = cards.filter((card) => card.quantity > 1);
+  const tradableCards = userCards.filter((card) => card.quantity > 1);
 
   useEffect(() => {
-    if (!email) return;
+    if (!email || !otherEmail) return;
 
-    startTransition(async () => {
-      await getCollection(email, { rarity }).then((data) => {
-        setCards(data);
+    startTransition(() => {
+      Promise.all([
+        getCollection(email, { rarity }),
+        getCollection(otherEmail, { rarity }),
+      ]).then(([userData, otherData]) => {
+        setUserCards(userData);
+        setCompareCards(otherData);
       });
     });
-  }, [email, rarity]);
+  }, [email, otherEmail, rarity]);
 
   return (
     <section className={styles.modal}>
@@ -48,9 +55,9 @@ export default function CardPickerModal({
         </p>
       ) : (
         <div className={styles.cardContainer}>
-          {tradableCards
-            .filter((card) => card.quantity > 1)
-            .map((card) => (
+          {tradableCards.map((card) => {
+            const matchingCard = compareCards.find((c) => c.id === card.id);
+            return (
               <div key={card.id} onClick={() => onSelect(card)}>
                 <Image
                   src={card.image_path}
@@ -60,8 +67,21 @@ export default function CardPickerModal({
                 />
                 <p>{card.name}</p>
                 <p className={styles.quantity}>{card.quantity}</p>
+                {matchingCard && matchingCard.quantity > 0 ? (
+                  <div className={styles.possession}>
+                    <Image
+                      src={"/cardsIcon.png"}
+                      alt="Carte déjà obtenue"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-            ))}
+            );
+          })}
         </div>
       )}
     </section>

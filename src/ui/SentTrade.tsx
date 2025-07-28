@@ -4,6 +4,7 @@ import { publicRoutes } from "@/data/ROUTES";
 import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { editOne } from "@/service/TradeService";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./SentTrades.module.css";
@@ -80,33 +81,73 @@ export default function SentTrade({ trade }: SentTradeProps) {
   } else if (trade.acceptance) {
     return (
       <section className={styles.container}>
-        <h3>Echange accepté!</h3>
-        <p>{trade.to_username} a accepté ta demande d&apos;échange!</p>
+        <AnimatePresence>
+          <motion.h3
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            Échange accepté!
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            {trade.to_username} a accepté ta demande d&apos;échange!
+          </motion.p>
 
-        <div className={styles.cardsSection}>
-          <div className={styles.cardContainer}>
-            <Image
-              src={trade.requested_card_img}
-              alt="Carte obtenue"
-              height={168}
-              width={120}
+          <div className={styles.cardsSection}>
+            <motion.div
+              className={styles.cardContainer}
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Image
+                src={trade.requested_card_img}
+                alt="Carte obtenue"
+                height={168}
+                width={120}
+              />
+              <p>Carte obtenue</p>
+            </motion.div>
+
+            <motion.img
+              src="/tradeIcon.png"
+              alt="Echange"
+              height={30}
+              width={30}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: 360 }}
+              transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
             />
-            <p>Carte obtenue</p>
+
+            <motion.div
+              className={styles.cardContainer}
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Image
+                src={trade.offered_card_img}
+                alt="Carte donnée"
+                height={168}
+                width={120}
+              />
+              <p>Carte donnée</p>
+            </motion.div>
           </div>
-          <Image src={"/tradeIcon.png"} alt="Echange" height={30} width={30} />
-          <div className={styles.cardContainer}>
-            <Image
-              src={trade.offered_card_img}
-              alt="Carte donnée"
-              height={168}
-              width={120}
-            />
-            <p>Carte donnée</p>
-          </div>
-        </div>
-        <div className={styles.buttonSection}>
-          <button onClick={handleAccepted}>Continuer</button>
-        </div>
+
+          <motion.div
+            className={styles.buttonSection}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            <button onClick={handleAccepted}>Continuer</button>
+          </motion.div>
+        </AnimatePresence>
       </section>
     );
   } else if (!trade.acceptance) {

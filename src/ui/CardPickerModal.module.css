@@ -75,6 +75,20 @@
   font-weight: bold;
 }
 
+.possession {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: var(--bodyGradient2);
+  border: 1px solid var(--bodyGradient2);
+  border-radius: 50%;
+  right: -82%;
+  top: -4.5rem;
+  height: 26px;
+  width: 26px;
+}
+
 .noCard {
   margin-top: 2rem;
 }
