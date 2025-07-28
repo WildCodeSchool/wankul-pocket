@@ -1,20 +1,20 @@
 import { CardsModel } from "@/model/CardsModel";
 
 export function getRandomCard(cards: CardsModel[]): CardsModel {
-  const totalDropRate = cards.reduce(
-    (sum, card) => sum + Number(card.drop_rate || 0),
+  const totalOfficialRate = cards.reduce(
+    (sum, card) => sum + Number(card.official_rate || 0),
     0
   );
-  if (totalDropRate === 0) {
+  if (totalOfficialRate === 0) {
     throw new Error(
-      "Le total des drop_rate est nul, impossible de sélectionner une carte."
+      "Le total des official_rate est nul, impossible de sélectionner une carte."
     );
   }
-  const randomValue = Math.random() * totalDropRate;
+  const randomValue = Math.random() * totalOfficialRate;
   let cumulativeRate = 0;
   for (const card of cards) {
-    const dropRate = Number(card.drop_rate || 0);
-    cumulativeRate += dropRate;
+    const officialRate = Number(card.official_rate || 0);
+    cumulativeRate += officialRate;
     if (randomValue <= cumulativeRate) {
       return card;
     }
