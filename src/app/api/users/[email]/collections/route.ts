@@ -24,23 +24,6 @@ export async function GET(_req: NextRequest) {
     );
   }
 
-  const session = await getServerSession(authOptions);
-  const sessionEmail = session?.user?.email;
-
-  if (!session || !sessionEmail) {
-    return NextResponse.json(
-      { error: "Authentification requise." },
-      { status: 401 }
-    );
-  }
-
-  if (sessionEmail !== userEmail) {
-    return NextResponse.json(
-      { error: "Accès non autorisé à cette collection." },
-      { status: 403 }
-    );
-  }
-
   try {
     let query = `
       SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, 
@@ -87,13 +70,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (sessionEmail !== email) {
-    return NextResponse.json(
-      { error: "Accès non autorisé à cette collection." },
-      { status: 403 }
-    );
-  }
-
   try {
     const body = await request.json();
 
@@ -111,14 +87,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Utilisateur introuvable." },
         { status: 404 }
-      );
-    }
-
-    const sessionUserId = await getUserIdByEmail(sessionEmail);
-    if (sessionUserId !== userId) {
-      return NextResponse.json(
-        { error: "Incohérence d'authentification." },
-        { status: 403 }
       );
     }
 
@@ -166,13 +134,6 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    if (sessionEmail !== userEmail) {
-      return NextResponse.json(
-        { error: "Accès non autorisé à cette collection." },
-        { status: 403 }
-      );
-    }
-
     if (
       typeof quantity !== "number" ||
       isNaN(quantity) ||
@@ -186,14 +147,6 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json(
         { error: collectionMessages.invalidData },
         { status: 400 }
-      );
-    }
-
-    const sessionUserId = await getUserIdByEmail(sessionEmail);
-    if (sessionUserId !== user_id) {
-      return NextResponse.json(
-        { error: "Tentative de modification non autorisée." },
-        { status: 403 }
       );
     }
 
