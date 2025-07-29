@@ -17,6 +17,7 @@ export default function CollectionContainer({ collection }: Props) {
   const [sort, setSort] = useState("rarity-asc");
   const seasonOne: number = 1;
   const seasonTwo: number = 2;
+  const totalCards: number = 335;
   const { seasonOneCards, seasonTwoCards } = useMemo(() => {
     const filteredAndSorted = collection
       .filter((card) => card.name.toLowerCase().includes(search.toLowerCase()))
@@ -129,7 +130,7 @@ export default function CollectionContainer({ collection }: Props) {
       </nav>
       <p className={styles.overallCount}>
         Cartes obtenues toutes saisons confondues :{" "}
-        {seasonOneCards.length + seasonTwoCards.length} / 335
+        {seasonOneCards.length + seasonTwoCards.length} / {totalCards}
       </p>
       <section className={styles.mainContainer}>
         {selectedCard && (
