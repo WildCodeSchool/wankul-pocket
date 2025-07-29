@@ -75,6 +75,10 @@
   background: linear-gradient(to bottom, #7a7878f3, #adadad63);
 }
 
+.validateAllQuestsButton {
+  margin-bottom: 10px;
+}
+
 .rewardAnimation {
   position: fixed;
   top: 50%;
