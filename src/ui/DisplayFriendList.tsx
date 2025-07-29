@@ -2,9 +2,8 @@
 
 import { useUserContext } from "@/context/UserContext";
 import { useFriendListContext } from "@/context/FriendListContext";
-import { FriendsModel } from "@/model/FriendsModel";
 import Image from "next/image";
-import { useEffect, useState, useTransition, useMemo } from "react";
+import { useState, useTransition, useMemo } from "react";
 import styles from "./DisplayFriendList.module.css";
 import { FriendDetail } from "./FriendDetail";
 import TradeFromFriendList from "./TradeFromFriendList";
@@ -15,9 +14,9 @@ import { publicRoutes } from "@/data/ROUTES";
 export default function DisplayFriendList() {
   const { user } = useUserContext();
   const userProfilId = user?.profil_id;
-  const [isPending, startTransition] = useTransition();
+  const [isPending] = useTransition();
   const [filter, setFilter] = useState("");
-  const { friends, setFriends } = useFriendListContext();
+  const { friends } = useFriendListContext();
 
   const filteredFriends = useMemo(() => {
     return friends.filter((friend) => {
