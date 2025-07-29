@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useTransition, useReducer, useMemo } from "react";
+import { useEffect, useTransition, useReducer, useMemo, useRef } from "react";
 import styles from "./DisplayQuest.module.css";
 import { QuestModel } from "@/model/QuestModel";
 import { useQuestProgressContext } from "@/context/QuestProgressContext";
@@ -14,12 +14,14 @@ import {
 import Loader from "@/ui/Loader";
 import RewardAnimation from "./RewardAnimation";
 import QuestList from "./QuestList";
+import FinishedQuests from "./FinishedQuests";
 
 interface QuestState {
   quests: QuestModel[];
   completedQuestIds: Set<number>;
   animatingRewards: Map<number, number>;
   currentValidatingQuest: number | null;
+  openFinishedQuests?: boolean;
 }
 
 type QuestAction =
@@ -27,7 +29,8 @@ type QuestAction =
   | { type: "START_VALIDATION"; questId: number }
   | { type: "COMPLETE_QUEST"; questId: number; reward: number }
   | { type: "STOP_ANIMATION"; questId: number }
-  | { type: "VALIDATION_ERROR"; questId: number };
+  | { type: "VALIDATION_ERROR"; questId: number }
+  | { type: "OPEN_FINISHED_QUESTS"; payload: boolean };
 
 function questReducer(state: QuestState, action: QuestAction): QuestState {
   switch (action.type) {
@@ -56,6 +59,9 @@ function questReducer(state: QuestState, action: QuestAction): QuestState {
     case "VALIDATION_ERROR":
       return { ...state, currentValidatingQuest: null };
 
+    case "OPEN_FINISHED_QUESTS":
+      return { ...state, openFinishedQuests: action.payload };
+
     default:
       return state;
   }
@@ -66,9 +72,10 @@ const initialQuestState: QuestState = {
   completedQuestIds: new Set(),
   animatingRewards: new Map(),
   currentValidatingQuest: null,
+  openFinishedQuests: false,
 };
-
 export default function DisplayQuests() {
+  const finishedTitleRef = useRef<HTMLHeadingElement>(null);
   const { progress, refreshProgress } = useQuestProgressContext();
   const { user, updateUserBananas } = useUserContext();
   const [state, dispatch] = useReducer(questReducer, initialQuestState);
@@ -91,6 +98,15 @@ export default function DisplayQuests() {
 
     fetchQuests();
   }, [user?.email]);
+
+  useEffect(() => {
+    if (state.openFinishedQuests && finishedTitleRef.current) {
+      finishedTitleRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [state.openFinishedQuests]);
 
   const isQuestCompleted = (quest: QuestModel): boolean => {
     if (!progress || !user) return false;
@@ -155,7 +171,10 @@ export default function DisplayQuests() {
       state.quests
         .filter(
           (quest: QuestModel) =>
-            !quest.user_id_completed && !state.completedQuestIds.has(quest.id)
+            // J'exclus pour l'instant les quêtes quotidiennes en attendant qu'on les ajoute
+            quest.category !== "Quotidienne" &&
+            !quest.user_id_completed &&
+            !state.completedQuestIds.has(quest.id)
         )
         .reduce(
           (
@@ -184,6 +203,15 @@ export default function DisplayQuests() {
         return a.quest.reward - b.quest.reward;
       }),
     [questsByCategory]
+  );
+
+  const terminatedQuests = useMemo(
+    () =>
+      state.quests.filter(
+        (quest: QuestModel) =>
+          quest.user_id_completed && !state.completedQuestIds.has(quest.id)
+      ),
+    [state.quests, state.completedQuestIds]
   );
 
   if (isLoadingQuests) {
@@ -217,6 +245,22 @@ export default function DisplayQuests() {
         currentValidatingQuest={state.currentValidatingQuest}
         onQuestClick={validateQuest}
       />
+      <h2
+        className={styles.titleFinished}
+        ref={finishedTitleRef}
+        onClick={() =>
+          dispatch({
+            type: "OPEN_FINISHED_QUESTS",
+            payload: !state.openFinishedQuests,
+          })
+        }
+      >
+        Quêtes Terminées {state.openFinishedQuests ? "▾" : "▴"}
+      </h2>
+
+      {state.openFinishedQuests && (
+        <FinishedQuests terminatedQuests={terminatedQuests} />
+      )}
     </div>
   );
 }
