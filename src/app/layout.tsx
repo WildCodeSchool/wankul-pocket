@@ -1,5 +1,6 @@
 import { CollectionProvider } from "@/context/CollectionContext";
 import { OpenedCardsProvider } from "@/context/OpenedCardsContext";
+import { FriendListProvider } from "@/context/FriendListContext";
 import { QuestProgressProvider } from "@/context/QuestProgressContext";
 import { UserProvider } from "@/context/UserContext";
 import { DisplayRandomWankul } from "@/ui/DisplayRandomWankul";
@@ -65,12 +66,14 @@ export default function RootLayout({
           <UserProvider>
             <OpenedCardsProvider>
               <CollectionProvider>
-                <QuestProgressProvider>
-                  <Header />
-                  <main>{children}</main>
-                  <DisplayRandomWankul />
-                  <Tapbar />
-                </QuestProgressProvider>
+                <FriendListProvider>
+                  <QuestProgressProvider>
+                    <Header />
+                    <main>{children}</main>
+                    <DisplayRandomWankul />
+                    <Tapbar />
+                  </QuestProgressProvider>
+                </FriendListProvider>
               </CollectionProvider>
             </OpenedCardsProvider>
           </UserProvider>
