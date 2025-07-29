@@ -1,9 +1,8 @@
 import { collectionMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
 import { getUserIdByEmail } from "@/service/UserService";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface UpdateResult {
@@ -60,15 +59,8 @@ export async function POST(request: NextRequest) {
   const segments = request.nextUrl.pathname.split("/").filter(Boolean);
   const email = segments[segments.length - 2];
 
-  const session = await getServerSession(authOptions);
-  const sessionEmail = session?.user?.email;
-
-  if (!session || !sessionEmail) {
-    return NextResponse.json(
-      { error: "Authentification requise." },
-      { status: 401 }
-    );
-  }
+  const auth = await checkUserAuth(email);
+  if (!auth.authorized) return auth.response;
 
   try {
     const body = await request.json();
@@ -124,15 +116,8 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const session = await getServerSession(authOptions);
-    const sessionEmail = session?.user?.email;
-
-    if (!session || !sessionEmail) {
-      return NextResponse.json(
-        { error: "Authentification requise." },
-        { status: 401 }
-      );
-    }
+    const auth = await checkUserAuth(userEmail);
+    if (!auth.authorized) return auth.response;
 
     if (
       typeof quantity !== "number" ||

@@ -1,16 +1,12 @@
 import { questMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { manageQuestCompletion } from "@/service/QuestCompletionService";
-import { authOptions } from "@/utils/authOptions";
 import { RowDataPacket } from "mysql2";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    const sessionUserEmail = session?.user?.email;
-
     const referer = req.headers.get("referer");
     if (!referer || !referer.includes("/objectifs")) {
       return NextResponse.json(
@@ -22,14 +18,8 @@ export async function POST(req: NextRequest) {
     const { user_id, quest_id, reward } = await req.json();
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
-    if (!sessionUserEmail || sessionUserEmail !== userEmail) {
-      return NextResponse.json(
-        {
-          error: "Utilisateur non autorisé",
-        },
-        { status: 401 }
-      );
-    }
+    const auth = await checkUserAuth(userEmail);
+    if (!auth.authorized) return auth.response;
 
     if (
       typeof user_id !== "number" ||

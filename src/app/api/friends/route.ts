@@ -1,9 +1,8 @@
 import { friendsMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
-import { authOptions } from "@/utils/authOptions";
 import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface FriendRow extends RowDataPacket {
@@ -21,8 +20,9 @@ interface FriendRow extends RowDataPacket {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
+
   try {
     const { user_profil_id, friend_profil_id, status, acceptance } =
       await req.json();
@@ -70,15 +70,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: friendsMessages.alreadyRequested },
         { status: 409 }
-      );
-    }
-
-    if (!userEmail) {
-      return NextResponse.json(
-        {
-          error: "Utilisateur non autorisé",
-        },
-        { status: 401 }
       );
     }
 
@@ -174,16 +165,8 @@ export async function PATCH(req: Request) {
   try {
     const payload = await req.json();
     const { id, status, acceptance } = payload;
-    const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email;
-    if (!userEmail) {
-      return NextResponse.json(
-        {
-          error: "Utilisateur non autorisé",
-        },
-        { status: 400 }
-      );
-    }
+    const auth = await checkUserAuth();
+    if (!auth.authorized) return auth.response;
 
     if (typeof id !== "number" || isNaN(id)) {
       return NextResponse.json(
@@ -221,16 +204,8 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
-  if (!userEmail) {
-    return NextResponse.json(
-      {
-        error: "Utilisateur non autorisé",
-      },
-      { status: 400 }
-    );
-  }
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
   try {
     const url = new URL(req.url);
     const idParam = url.searchParams.get("id");
