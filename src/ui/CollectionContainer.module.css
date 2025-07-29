@@ -133,3 +133,16 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .scrollTopBtn {
+    bottom: 1rem;
+    right: 17rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .scrollTopBtn {
+    right: 37rem;
+  }
+}
