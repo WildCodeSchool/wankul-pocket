@@ -1,4 +1,5 @@
 import { questMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { manageQuestCompletion } from "@/service/QuestCompletionService";
 import { RowDataPacket } from "mysql2";
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
     const { user_id, quest_id, reward } = await req.json();
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
+    const auth = await checkUserAuth(userEmail);
+    if (!auth.authorized) return auth.response;
 
     if (
       typeof user_id !== "number" ||

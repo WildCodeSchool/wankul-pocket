@@ -1,19 +1,14 @@
 import { tradesMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(_req: NextRequest) {
   const pathname = _req.nextUrl.pathname;
   const idStr = pathname.split("/").pop();
   const tradeId = parseInt(idStr || "", 10);
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
-
-  if (!userEmail) {
-    return NextResponse.json({ error: tradesMessages.noUser }, { status: 400 });
-  }
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
 
   if (isNaN(tradeId)) {
     return NextResponse.json(
@@ -35,7 +30,7 @@ export async function DELETE(_req: NextRequest) {
       );
     }
 
-    if (currentTrade[0].email !== userEmail) {
+    if (currentTrade[0].email !== auth.email) {
       return NextResponse.json(
         { error: tradesMessages.noUser },
         { status: 403 }

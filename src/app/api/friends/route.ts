@@ -1,4 +1,5 @@
 import { friendsMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
 import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
@@ -19,6 +20,9 @@ interface FriendRow extends RowDataPacket {
 }
 
 export async function POST(req: NextRequest) {
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
+
   try {
     const { user_profil_id, friend_profil_id, status, acceptance } =
       await req.json();
@@ -161,6 +165,8 @@ export async function PATCH(req: Request) {
   try {
     const payload = await req.json();
     const { id, status, acceptance } = payload;
+    const auth = await checkUserAuth();
+    if (!auth.authorized) return auth.response;
 
     if (typeof id !== "number" || isNaN(id)) {
       return NextResponse.json(
@@ -198,6 +204,8 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
   try {
     const url = new URL(req.url);
     const idParam = url.searchParams.get("id");
