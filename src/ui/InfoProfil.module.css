@@ -89,3 +89,30 @@
   text-align: center;
   max-width: 250px;
 }
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.total {
+  font-size: 1.2rem;
+}
+
+.friendCode {
+  border: var(--bubbleBorder);
+  width: 295px;
+  padding: 0 0 0 4px;
+  border-radius: 25px;
+  background: var(--bubbleGradient);
+  box-shadow: var(--bubbleShadow);
+
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    padding: 6px;
+  }
+}

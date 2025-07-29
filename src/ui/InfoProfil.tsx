@@ -1,5 +1,6 @@
 "use client";
 
+import { useCollectionContext } from "@/context/CollectionContext";
 import { useUserContext } from "@/context/UserContext";
 import { publicRoutes } from "@/data/ROUTES";
 import { updateUsername } from "@/lib/user/updateUsername";
@@ -15,10 +16,29 @@ export default function EditProfils() {
   const [tempName, setTempName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
+  const [copied, setCopied] = useState(false);
+  const { collection } = useCollectionContext();
+  const cardsByRarity =
+    collection.reduce((acc, card) => {
+      acc[card.rarity] = (acc[card.rarity] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>) || {};
+  console.log(cardsByRarity);
 
   useEffect(() => {
     setTempName(userContext.user?.username || "");
   }, [userContext.user?.username]);
+
+  const handleCopy = async () => {
+    try {
+      const friendCode = userContext.user?.profil_id || "";
+      await navigator.clipboard.writeText(friendCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Erreur lors de la copie :", err);
+    }
+  };
 
   const handleNameSubmit = async () => {
     if (tempName.trim() && userContext.user?.email) {
@@ -65,6 +85,7 @@ export default function EditProfils() {
               <input
                 type="text"
                 value={tempName}
+                maxLength={25}
                 onChange={(e) => setTempName(e.target.value)}
                 onBlur={handleNameSubmit}
                 onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
@@ -99,10 +120,26 @@ export default function EditProfils() {
             </button>
           </div>
         </div>
-        <p>CODE AMI : {userContext.user?.profil_id}</p>
+        <p className={styles.friendCode}>
+          {copied ? (
+            <span>Code ami copié dans le presse papier</span>
+          ) : (
+            <span>CODE AMI : {userContext.user?.profil_id}</span>
+          )}
+          <button onClick={handleCopy}>Copier</button>
+        </p>
 
-        <p className={styles.sectionTitle}>Statistique</p>
-
+        <div className={styles.stats}>
+          <h3 className={styles.sectionTitle}>Statistiques</h3>
+          <p className={styles.total}>
+            <strong>Cartes possédées </strong>: {collection.length}
+          </p>
+          {Object.entries(cardsByRarity).map(([rarity, count]) => (
+            <p key={rarity}>
+              <strong>{rarity}:</strong> &nbsp;{count}
+            </p>
+          ))}
+        </div>
         <div className={styles.bubble}>
           <GoogleDeconnexion />
         </div>
