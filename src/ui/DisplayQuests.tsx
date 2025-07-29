@@ -171,7 +171,10 @@ export default function DisplayQuests() {
       state.quests
         .filter(
           (quest: QuestModel) =>
-            !quest.user_id_completed && !state.completedQuestIds.has(quest.id)
+            // J'exclus pour l'instant les quêtes quotidiennes en attendant qu'on les ajoute
+            quest.category !== "Quotidienne" &&
+            !quest.user_id_completed &&
+            !state.completedQuestIds.has(quest.id)
         )
         .reduce(
           (
