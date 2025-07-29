@@ -20,7 +20,7 @@ export default function ProposeTradeButton({
 }: TradeBtnProps) {
   const router = useRouter();
   const friendEmail: string | undefined = selectedFriend?.user2_email;
-  const [errorMessage, setErrorMessage] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const newTrade: newTradeModel = {
     from_user_id: selectedFriend?.user1_id,
@@ -33,10 +33,22 @@ export default function ProposeTradeButton({
   async function handleClick() {
     setIsLoading(true);
     if (myCard !== null && friendCard !== null) {
-      await addOne(friendEmail, newTrade);
-      router.refresh();
+      try {
+        await addOne(friendEmail, newTrade);
+        router.refresh();
+      } catch (error: unknown) {
+        console.error("Erreur pendant l'échange :", error);
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+        } else {
+          setErrorMessage("Une erreur inattendue s'est produite.");
+        }
+      } finally {
+        setIsLoading(false);
+      }
     } else {
-      setErrorMessage(true);
+      setIsLoading(false);
+      setErrorMessage("Sélectionne un ami et deux cartes de même rareté.");
     }
   }
   return (
@@ -54,12 +66,7 @@ export default function ProposeTradeButton({
           "Proposer"
         )}
       </button>
-      {errorMessage && (
-        <p>
-          Sélectionne un ami et deux cartes de même rareté afin de proposer un
-          échange.
-        </p>
-      )}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
 }

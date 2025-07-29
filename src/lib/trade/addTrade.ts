@@ -15,6 +15,11 @@ export async function addTrade(
     body: JSON.stringify(trade),
   });
 
-  if (!res.ok) throw new Error(tradesMessages.addFail);
-  return res.json();
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || tradesMessages.addFail);
+  }
+
+  return data;
 }
