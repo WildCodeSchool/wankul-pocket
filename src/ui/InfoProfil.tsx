@@ -72,8 +72,8 @@ export default function EditProfils() {
             <Image
               src={`${publicRoutes.PROFILS}/${userContext.user.profil_picture_url}`}
               alt="Avatar sélectionné"
-              width={120}
-              height={120}
+              width={248}
+              height={248}
               className={styles.avatarImage}
             />
           )}
@@ -102,8 +102,8 @@ export default function EditProfils() {
                   <Image
                     src="/crayon.svg"
                     alt="Modifier le nom"
-                    width={18}
-                    height={18}
+                    width={16}
+                    height={16}
                   />
                 </button>
               </>
@@ -121,7 +121,7 @@ export default function EditProfils() {
           </div>
         </div>
         <div className={styles.codeContainer}>
-          <strong>CODE AMI</strong>
+          <h2>Code ami</h2>
           <p className={styles.friendCode}>
             {copied ? (
               <span className={styles.notif}>Code ami copié!</span>
