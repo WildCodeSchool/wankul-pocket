@@ -9,6 +9,9 @@ const { MYSQL_DB_HOST, MYSQL_DB_USER, MYSQL_DB_PASSWORD, MYSQL_DB_NAME } =
 const cardsPath = path.join(__dirname, "../src/data/wankulCards.json");
 const cards = JSON.parse(fs.readFileSync(cardsPath, "utf-8"));
 
+const cardsS2Path = path.join(__dirname, "../src/data/wankulCardsS2.json");
+const cardsS2 = JSON.parse(fs.readFileSync(cardsS2Path, "utf-8"));
+
 const boostersPath = path.join(__dirname, "../src/data/wankulBoosters.json");
 const boosters = JSON.parse(fs.readFileSync(boostersPath, "utf-8"));
 
@@ -26,11 +29,9 @@ const seed = async () => {
     await db.execute("SET FOREIGN_KEY_CHECKS = 0");
     await db.query("DELETE FROM card");
     await db.query("DELETE FROM booster");
-    await db.query("DELETE FROM user");
     await db.query("DELETE FROM quest");
     await db.query("ALTER TABLE card AUTO_INCREMENT = 1");
     await db.query("ALTER TABLE booster AUTO_INCREMENT = 1");
-    await db.query("ALTER TABLE user AUTO_INCREMENT = 1");
     await db.query("ALTER TABLE quest AUTO_INCREMENT = 1");
 
     for (const { name, image, season, set_name } of boosters) {
@@ -51,7 +52,7 @@ const seed = async () => {
       is_holo,
       quote,
       booster_id,
-    } of cards) {
+    } of [...cards, ...cardsS2]) {
       await db.query(
         "INSERT INTO card (name, image_path, card_number, clan, rarity, drop_rate, official_rate, is_holo, quote, booster_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [

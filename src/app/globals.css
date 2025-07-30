@@ -48,6 +48,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *:focus {
   outline: none;
 }
