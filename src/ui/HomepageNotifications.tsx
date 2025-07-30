@@ -75,10 +75,12 @@ export function HomepageNotifications() {
     [quests, progress, user]
   );
 
- useEffect(() => {
-  fetchAll();
-  refreshFriendRequests();
-}, [user]);
+  console.log("Completeable Quests:", completeableQuests);
+
+  useEffect(() => {
+    fetchAll();
+    refreshFriendRequests();
+  }, [user]);
 
   return (
     <div
