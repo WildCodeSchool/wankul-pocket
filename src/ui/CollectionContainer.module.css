@@ -1,9 +1,44 @@
+.mainContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   padding-top: 1rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem auto;
+
+  button {
+    padding: 0.5rem;
+  }
+}
+
+.overallCount {
+  text-align: center;
+}
+
+.scrollTopBtn {
+  position: absolute;
+  bottom: 5rem;
+  right: 0.5rem;
+  padding: 0;
+  font-size: 1rem;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .noCard {
@@ -96,5 +131,18 @@
     padding: 1rem 4rem;
     max-width: 900px;
     margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .scrollTopBtn {
+    bottom: 1rem;
+    right: 17rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .scrollTopBtn {
+    right: 37rem;
   }
 }

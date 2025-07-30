@@ -16,11 +16,10 @@ export default function CollectionContainer({ collection }: Props) {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("rarity-asc");
   const seasonOne: number = 1;
-  const filteredCards = useMemo(() => {
-    const seasonOneCards = Array.isArray(collection)
-      ? collection.filter((card: CardsModel) => card.season === seasonOne)
-      : [];
-    return seasonOneCards
+  const seasonTwo: number = 2;
+  const totalCards: number = 335;
+  const { seasonOneCards, seasonTwoCards } = useMemo(() => {
+    const filteredAndSorted = collection
       .filter((card) => card.name.toLowerCase().includes(search.toLowerCase()))
       .sort((a, b) => {
         switch (sort) {
@@ -40,11 +39,57 @@ export default function CollectionContainer({ collection }: Props) {
             return 0;
         }
       });
+
+    return {
+      seasonOneCards: filteredAndSorted.filter(
+        (card) => card.season === seasonOne
+      ),
+      seasonTwoCards: filteredAndSorted.filter(
+        (card) => card.season === seasonTwo
+      ),
+    };
   }, [collection, search, sort]);
+
+  function scrollToSection(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  const renderCards = (cards: CardsModel[]) =>
+    cards.length === 0 ? (
+      <p className={styles.noCard}>
+        Aucune carte ne correspond à ta recherche. Ouvre des boosters et
+        commence à collectionner!
+      </p>
+    ) : (
+      <ul className={styles.container}>
+        {cards.map((card) => (
+          <motion.li
+            key={card.id}
+            className={styles.cardItem}
+            onClick={() => setSelectedCard(card)}
+            initial={{ opacity: 0, scale: 0.1, translateY: -20 }}
+            whileInView={{ opacity: 1, scale: 1, translateY: 0 }}
+          >
+            <Image
+              src={card.image_path}
+              alt={card.name}
+              width={150}
+              height={209}
+            />
+            <div className={styles.quantity}>
+              <p>{card.quantity}</p>
+            </div>
+          </motion.li>
+        ))}
+      </ul>
+    );
 
   return (
     <>
-      <section className={styles.forms}>
+      <section className={styles.forms} id="top">
         <form className={styles.searchForm}>
           <label htmlFor="Recherche">
             <Image
@@ -79,46 +124,43 @@ export default function CollectionContainer({ collection }: Props) {
           </select>
         </form>
       </section>
-      <section>
+      <nav className={styles.nav}>
+        <button onClick={() => scrollToSection("seasonOne")}>Saison 1</button>
+        <button onClick={() => scrollToSection("seasonTwo")}>Saison 2</button>
+      </nav>
+      <p className={styles.overallCount}>
+        Cartes obtenues toutes saisons confondues :{" "}
+        {seasonOneCards.length + seasonTwoCards.length} / {totalCards}
+      </p>
+      <section className={styles.mainContainer}>
         {selectedCard && (
           <CardModal
             card={selectedCard}
             onClose={() => setSelectedCard(null)}
           />
         )}
-        <h2 className={styles.season}>Saison 1 : Origins</h2>
+        <h2 className={styles.season} id="seasonOne">
+          Saison 1 : Origins
+        </h2>
         <p className={styles.counter}>
-          Cartes obtenues : {filteredCards?.length} / 180
+          Cartes obtenues : {seasonOneCards?.length} / 180
         </p>
-        {filteredCards.length === 0 ? (
-          <p className={styles.noCard}>
-            Aucune carte ne correspond à ta recherche. Ouvre des boosters et
-            commence à collectionner!
-          </p>
-        ) : (
-          <ul className={styles.container}>
-            {filteredCards.map((card) => (
-              <motion.li
-                key={card.id}
-                className={styles.cardItem}
-                onClick={() => setSelectedCard(card)}
-                initial={{ opacity: 0, scale: 0.1, translateY: -20 }}
-                whileInView={{ opacity: 1, scale: 1, translateY: 0 }}
-              >
-                <Image
-                  src={card.image_path}
-                  alt={card.name}
-                  width={150}
-                  height={209}
-                />
-                <div className={styles.quantity}>
-                  <p>{card.quantity}</p>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        )}
+        {renderCards(seasonOneCards)}
+        <h2 className={styles.season} id="seasonTwo">
+          Saison 2 : Campus
+        </h2>
+        <p className={styles.counter}>
+          Cartes obtenues : {seasonTwoCards?.length} / 180
+        </p>
+        {renderCards(seasonTwoCards)}
       </section>
+      <button
+        onClick={() => scrollToSection("top")}
+        className={styles.scrollTopBtn}
+        aria-label="Remonter en haut de la page"
+      >
+        🠕
+      </button>
     </>
   );
 }

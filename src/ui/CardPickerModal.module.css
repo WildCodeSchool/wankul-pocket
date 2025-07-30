@@ -47,7 +47,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
-  padding: 0 2rem 1rem;
+  padding: 0 2rem 0;
 
   img {
     cursor: pointer;
@@ -96,7 +96,33 @@
 }
 
 .noCard {
-  margin-top: 2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.season {
+  font-size: 1.3rem;
+  margin: -1rem 0 -1.5rem;
+
+  &:first-of-type {
+    margin-top: 1rem;
+  }
+}
+
+.forms {
+  margin: 1rem auto 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 900px;
+}
+
+.searchForm {
+  label {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media screen and (min-width: 900px) {
