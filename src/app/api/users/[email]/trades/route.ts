@@ -1,11 +1,10 @@
 import { tradesMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { FriendsModel } from "@/model/FriendsModel";
 import { TradeModel } from "@/model/TradeModel";
 import { UpdatedTradeModel } from "@/model/UpdatedTradeModel";
 import { UserModel } from "@/model/UserModel";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface InsertResult {
@@ -70,8 +69,8 @@ export async function GET(_req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
 
   try {
     const {
@@ -119,7 +118,7 @@ export async function POST(req: NextRequest) {
 
     const [currentUser] = (await db.query(
       "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.email = ?",
-      [offered_card_id, userEmail]
+      [offered_card_id, auth.email]
     )) as [CheckUser[], unknown];
     const [friend] = (await db.query(
       "SELECT u.id, u.profil_id, col.quantity AS card_quantity, c.rarity AS card_rarity, c.id AS card_id, (SELECT COUNT(*) FROM exchange AS e WHERE (e.from_user_id = u.id OR e.to_user_id = u.id) AND e.acceptance IS NULL) AS pending_exchange_count FROM user AS u JOIN card AS c ON c.id = ? JOIN collection AS col ON col.user_id = u.id AND col.card_id = c.id WHERE u.id = ?",
@@ -214,8 +213,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: Request) {
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
+  const auth = await checkUserAuth();
+  if (!auth.authorized) return auth.response;
 
   try {
     const updatedExchange = (await req.json()) as UpdatedTradeModel;
@@ -236,7 +235,7 @@ export async function PATCH(req: Request) {
 
     const [currentUser] = (await db.query(
       "SELECT id FROM user WHERE email = ? LIMIT 1",
-      [userEmail]
+      [auth.email]
     )) as [UserModel[], unknown];
     if (!currentUser?.[0]) {
       return NextResponse.json(

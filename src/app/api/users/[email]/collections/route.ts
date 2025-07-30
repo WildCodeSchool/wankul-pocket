@@ -1,4 +1,5 @@
 import { collectionMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { CardsModel } from "@/model/CardsModel";
 import { getUserIdByEmail } from "@/service/UserService";
@@ -21,6 +22,7 @@ export async function GET(_req: NextRequest) {
       { status: 400 }
     );
   }
+
   try {
     let query = `
       SELECT c.id, c.name, c.image_path, c.card_number, c.clan, c.rarity, c.official_rate, 
@@ -56,6 +58,9 @@ export async function GET(_req: NextRequest) {
 export async function POST(request: NextRequest) {
   const segments = request.nextUrl.pathname.split("/").filter(Boolean);
   const email = segments[segments.length - 2];
+
+  const auth = await checkUserAuth(email);
+  if (!auth.authorized) return auth.response;
 
   try {
     const body = await request.json();
@@ -103,12 +108,16 @@ export async function PATCH(req: NextRequest) {
     const { id, quantity, user_id } = (await req.json()) as CardsModel;
     const segments = req.nextUrl.pathname.split("/").filter(Boolean);
     const userEmail = segments[segments.length - 2];
+
     if (typeof userEmail !== "string") {
       return NextResponse.json(
         { error: collectionMessages.invalidEmail },
         { status: 400 }
       );
     }
+
+    const auth = await checkUserAuth(userEmail);
+    if (!auth.authorized) return auth.response;
 
     if (
       typeof quantity !== "number" ||
@@ -117,7 +126,7 @@ export async function PATCH(req: NextRequest) {
       typeof id !== "number" ||
       isNaN(id) ||
       typeof user_id !== "number" ||
-      isNaN(id) ||
+      isNaN(user_id) ||
       user_id < 0
     ) {
       return NextResponse.json(

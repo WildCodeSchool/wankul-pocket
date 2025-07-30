@@ -1,4 +1,5 @@
 import { userMessages } from "@/data/responseMessages";
+import { checkUserAuth } from "@/lib/checkUserAuth";
 import { db } from "@/lib/db";
 import { UserModel } from "@/model/UserModel";
 import { NextRequest, NextResponse } from "next/server";
@@ -42,13 +43,8 @@ export async function GET(_req: NextRequest) {
 export async function PATCH(req: Request) {
   try {
     const { email, profil_picture_id, username } = await req.json();
-
-    if (!email) {
-      return NextResponse.json(
-        { error: userMessages.invalidEmail },
-        { status: 400 }
-      );
-    }
+    const auth = await checkUserAuth(email);
+    if (!auth.authorized) return auth.response;
 
     const fieldsToUpdate: string[] = [];
     const values: (string | number)[] = [];
