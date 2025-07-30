@@ -23,15 +23,21 @@ export default function EditProfils() {
       acc[card.rarity] = (acc[card.rarity] || 0) + 1;
       return acc;
     }, {} as Record<string, number>) || {};
-  console.log(cardsByRarity);
+  const USERNAME_MAX_LENGTH: number = 25;
 
   useEffect(() => {
     setTempName(userContext.user?.username || "");
   }, [userContext.user?.username]);
 
   const handleCopy = async () => {
+    const friendCode = userContext.user?.profil_id || "";
+    if (!navigator.clipboard) {
+      alert(
+        "La fonctionnalité de copie n'est pas disponible dans votre navigateur."
+      );
+      return;
+    }
     try {
-      const friendCode = userContext.user?.profil_id || "";
       await navigator.clipboard.writeText(friendCode);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -85,7 +91,7 @@ export default function EditProfils() {
               <input
                 type="text"
                 value={tempName}
-                maxLength={25}
+                maxLength={USERNAME_MAX_LENGTH}
                 onChange={(e) => setTempName(e.target.value)}
                 onBlur={handleNameSubmit}
                 onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
