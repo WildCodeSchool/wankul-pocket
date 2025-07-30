@@ -107,7 +107,7 @@ export default function CardPickerModal({
                       height={192}
                       width={137}
                     />
-                    <p>{card.name}</p>
+                    <p className={styles.cardName}>{card.name}</p>
                     <p className={styles.quantity}>{card.quantity}</p>
                     {matchingCard && matchingCard.quantity > 0 ? (
                       <div className={styles.possession}>
