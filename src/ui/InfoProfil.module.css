@@ -101,16 +101,30 @@
   font-size: 1.2rem;
 }
 
+.codeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .friendCode {
   border: var(--bubbleBorder);
-  width: 295px;
+  width: 220px;
   padding: 0 0 0 4px;
   border-radius: 25px;
   background: var(--bubbleGradient);
   box-shadow: var(--bubbleShadow);
-
   display: flex;
   justify-content: space-between;
+
+  .notif {
+    padding-left: 3rem;
+  }
+
+  .code {
+    padding-left: 1rem;
+  }
 
   button {
     padding: 6px;

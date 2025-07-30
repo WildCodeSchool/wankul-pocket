@@ -120,17 +120,20 @@ export default function EditProfils() {
             </button>
           </div>
         </div>
-        <p className={styles.friendCode}>
-          {copied ? (
-            <span>Code ami copié dans le presse papier</span>
-          ) : (
-            <span>CODE AMI : {userContext.user?.profil_id}</span>
-          )}
-          <button onClick={handleCopy}>Copier</button>
-        </p>
+        <div className={styles.codeContainer}>
+          <strong>CODE AMI</strong>
+          <p className={styles.friendCode}>
+            {copied ? (
+              <span className={styles.notif}>Code ami copié!</span>
+            ) : (
+              <span className={styles.code}>{userContext.user?.profil_id}</span>
+            )}
+            <button onClick={handleCopy}>Copier</button>
+          </p>
+        </div>
 
         <div className={styles.stats}>
-          <h3 className={styles.sectionTitle}>Statistiques</h3>
+          <h2 className={styles.sectionTitle}>Statistiques</h2>
           <p className={styles.total}>
             <strong>Cartes possédées </strong>: {collection.length}
           </p>
