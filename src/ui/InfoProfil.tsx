@@ -1,5 +1,6 @@
 "use client";
 
+import { useCollectionContext } from "@/context/CollectionContext";
 import { useUserContext } from "@/context/UserContext";
 import { publicRoutes } from "@/data/ROUTES";
 import { updateUsername } from "@/lib/user/updateUsername";
@@ -15,10 +16,35 @@ export default function EditProfils() {
   const [tempName, setTempName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
+  const [copied, setCopied] = useState(false);
+  const { collection } = useCollectionContext();
+  const cardsByRarity =
+    collection.reduce((acc, card) => {
+      acc[card.rarity] = (acc[card.rarity] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>) || {};
+  const USERNAME_MAX_LENGTH: number = 25;
 
   useEffect(() => {
     setTempName(userContext.user?.username || "");
   }, [userContext.user?.username]);
+
+  const handleCopy = async () => {
+    const friendCode = userContext.user?.profil_id || "";
+    if (!navigator.clipboard) {
+      alert(
+        "La fonctionnalité de copie n'est pas disponible dans votre navigateur."
+      );
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(friendCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Erreur lors de la copie :", err);
+    }
+  };
 
   const handleNameSubmit = async () => {
     if (tempName.trim() && userContext.user?.email) {
@@ -52,8 +78,8 @@ export default function EditProfils() {
             <Image
               src={`${publicRoutes.PROFILS}/${userContext.user.profil_picture_url}`}
               alt="Avatar sélectionné"
-              width={120}
-              height={120}
+              width={248}
+              height={248}
               className={styles.avatarImage}
             />
           )}
@@ -65,6 +91,7 @@ export default function EditProfils() {
               <input
                 type="text"
                 value={tempName}
+                maxLength={USERNAME_MAX_LENGTH}
                 onChange={(e) => setTempName(e.target.value)}
                 onBlur={handleNameSubmit}
                 onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
@@ -81,8 +108,8 @@ export default function EditProfils() {
                   <Image
                     src="/crayon.svg"
                     alt="Modifier le nom"
-                    width={18}
-                    height={18}
+                    width={16}
+                    height={16}
                   />
                 </button>
               </>
@@ -99,10 +126,29 @@ export default function EditProfils() {
             </button>
           </div>
         </div>
-        <p>CODE AMI : {userContext.user?.profil_id}</p>
+        <div className={styles.codeContainer}>
+          <h2>Code ami</h2>
+          <p className={styles.friendCode}>
+            {copied ? (
+              <span className={styles.notif}>Code ami copié!</span>
+            ) : (
+              <span className={styles.code}>{userContext.user?.profil_id}</span>
+            )}
+            <button onClick={handleCopy}>Copier</button>
+          </p>
+        </div>
 
-        <p className={styles.sectionTitle}>Statistique</p>
-
+        <div className={styles.stats}>
+          <h2 className={styles.sectionTitle}>Statistiques</h2>
+          <p className={styles.total}>
+            <strong>Cartes possédées </strong>: {collection.length}
+          </p>
+          {Object.entries(cardsByRarity).map(([rarity, count]) => (
+            <p key={rarity}>
+              <strong>{rarity}:</strong> &nbsp;{count}
+            </p>
+          ))}
+        </div>
         <div className={styles.bubble}>
           <GoogleDeconnexion />
         </div>

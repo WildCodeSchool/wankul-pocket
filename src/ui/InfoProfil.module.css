@@ -6,7 +6,7 @@
 }
 
 .avatarContainer {
-  margin-top: 3rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,42 +17,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   color: white;
 }
 
 .avatarBubble {
-  width: 276px;
-  height: 276px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-.avatarBubble img {
-  width: 100%;
-  height: 100%;
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
+  box-shadow: var(--bubbleShadow);
 }
 
 .bubbleText {
   color: white;
-  font-weight: bold;
   font-size: 1rem;
+  padding: 0.6rem;
   margin: 0;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
 }
 
-/* NOUVEAU : enveloppe du nom + bouton centrée */
 .nameWrapper {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: 0.5rem 0 0;
 }
 
-/* Aligne le nom et le crayon horizontalement */
 .nameRow {
   display: flex;
   align-items: center;
@@ -60,9 +55,9 @@
 }
 
 .username {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
-  color: black;
+  color: var(--white);
   text-align: center;
 }
 
@@ -70,15 +65,23 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--bubbleBorder);
+  background: var(--bubbleGradient);
 }
 
 .inputName {
   font-size: 1rem;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: 25px;
   border: 1px solid #ccc;
   text-align: center;
+  height: 46px;
+  font-size: 1.5rem;
 }
 
 .input {
@@ -88,4 +91,45 @@
   border: 1px solid #ccc;
   text-align: center;
   max-width: 250px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.total {
+  font-size: 1.2rem;
+}
+
+.codeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendCode {
+  border: var(--bubbleBorder);
+  width: 220px;
+  padding: 0 0 0 4px;
+  border-radius: 25px;
+  background: var(--bubbleGradient);
+  box-shadow: var(--bubbleShadow);
+  display: flex;
+  justify-content: space-between;
+
+  .notif {
+    padding-left: 3rem;
+  }
+
+  .code {
+    padding-left: 1rem;
+  }
+
+  button {
+    padding: 6px;
+  }
 }
