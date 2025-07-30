@@ -20,7 +20,7 @@
   {
     "name": "Groupe soudé",
     "mission": "Avoir 10 amis",
-    "reward": 10,
+    "reward": 15,
     "category": "Ami",
     "goal_target": 10,
     "goal_quantity": null,
@@ -65,7 +65,7 @@
   {
     "name": "Échangeur local",
     "mission": "Faire 10 échanges",
-    "reward": 10,
+    "reward": 15,
     "category": "Échange",
     "goal_target": 10,
     "goal_quantity": null,
@@ -74,7 +74,7 @@
   {
     "name": "Marchand actif",
     "mission": "Faire 20 échanges",
-    "reward": 15,
+    "reward": 20,
     "category": "Échange",
     "goal_target": 20,
     "goal_quantity": null,
@@ -146,7 +146,7 @@
   {
     "name": "Album en cours",
     "mission": "Collectionner 20 cartes",
-    "reward": 10,
+    "reward": 15,
     "category": "Collection",
     "goal_target": 20,
     "goal_quantity": null,
@@ -155,7 +155,7 @@
   {
     "name": "Collection naissante",
     "mission": "Collectionner 50 cartes",
-    "reward": 10,
+    "reward": 20,
     "category": "Collection",
     "goal_target": 50,
     "goal_quantity": null,
@@ -164,7 +164,7 @@
   {
     "name": "Collectionneur motivé",
     "mission": "Collectionner 100 cartes",
-    "reward": 15,
+    "reward": 25,
     "category": "Collection",
     "goal_target": 100,
     "goal_quantity": null,
@@ -173,7 +173,7 @@
   {
     "name": "Fan de cartes",
     "mission": "Collectionner 150 cartes",
-    "reward": 15,
+    "reward": 30,
     "category": "Collection",
     "goal_target": 150,
     "goal_quantity": null,
@@ -182,7 +182,7 @@
   {
     "name": "Collectionneur sérieux",
     "mission": "Collectionner 200 cartes",
-    "reward": 15,
+    "reward": 35,
     "category": "Collection",
     "goal_target": 200,
     "goal_quantity": null,
@@ -191,7 +191,7 @@
   {
     "name": "Collector régulier",
     "mission": "Collectionner 300 cartes",
-    "reward": 20,
+    "reward": 40,
     "category": "Collection",
     "goal_target": 300,
     "goal_quantity": null,
@@ -200,7 +200,7 @@
   {
     "name": "Gros classeur",
     "mission": "Collectionner 400 cartes",
-    "reward": 20,
+    "reward": 45,
     "category": "Collection",
     "goal_target": 400,
     "goal_quantity": null,
@@ -209,7 +209,7 @@
   {
     "name": "Coffre à cartes",
     "mission": "Collectionner 500 cartes",
-    "reward": 25,
+    "reward": 50,
     "category": "Collection",
     "goal_target": 500,
     "goal_quantity": null,
@@ -218,7 +218,7 @@
   {
     "name": "Galerie privée",
     "mission": "Collectionner 600 cartes",
-    "reward": 25,
+    "reward": 55,
     "category": "Collection",
     "goal_target": 600,
     "goal_quantity": null,
@@ -227,7 +227,7 @@
   {
     "name": "Expo semi-pro",
     "mission": "Collectionner 700 cartes",
-    "reward": 30,
+    "reward": 60,
     "category": "Collection",
     "goal_target": 700,
     "goal_quantity": null,
@@ -236,7 +236,7 @@
   {
     "name": "Collection monstre",
     "mission": "Collectionner 800 cartes",
-    "reward": 30,
+    "reward": 65,
     "category": "Collection",
     "goal_target": 800,
     "goal_quantity": null,
@@ -245,7 +245,7 @@
   {
     "name": "Savant fou",
     "mission": "Collectionner 900 cartes",
-    "reward": 35,
+    "reward": 70,
     "category": "Collection",
     "goal_target": 900,
     "goal_quantity": null,
@@ -254,7 +254,7 @@
   {
     "name": "Collectionneur expert",
     "mission": "Collectionner 1000 cartes",
-    "reward": 35,
+    "reward": 75,
     "category": "Collection",
     "goal_target": 1000,
     "goal_quantity": null,
@@ -263,7 +263,7 @@
   {
     "name": "Maitre du classeur",
     "mission": "Collectionner 1500 cartes",
-    "reward": 40,
+    "reward": 80,
     "category": "Collection",
     "goal_target": 1500,
     "goal_quantity": null,
@@ -272,7 +272,7 @@
   {
     "name": "Historien du deck",
     "mission": "Collectionner 2000 cartes",
-    "reward": 40,
+    "reward": 85,
     "category": "Collection",
     "goal_target": 2000,
     "goal_quantity": null,
@@ -281,7 +281,7 @@
   {
     "name": "Collectionne-tout",
     "mission": "Collectionner 2500 cartes",
-    "reward": 50,
+    "reward": 90,
     "category": "Collection",
     "goal_target": 2500,
     "goal_quantity": null,
@@ -290,7 +290,7 @@
   {
     "name": "Accro aux cartes",
     "mission": "Collectionner 3000 cartes",
-    "reward": 50,
+    "reward": 95,
     "category": "Collection",
     "goal_target": 3000,
     "goal_quantity": null,
@@ -299,7 +299,7 @@
   {
     "name": "Dévoreur de boosters",
     "mission": "Collectionner 3500 cartes",
-    "reward": 60,
+    "reward": 100,
     "category": "Collection",
     "goal_target": 3500,
     "goal_quantity": null,
@@ -308,7 +308,7 @@
   {
     "name": "Machine à collectionner",
     "mission": "Collectionner 4000 cartes",
-    "reward": 60,
+    "reward": 105,
     "category": "Collection",
     "goal_target": 4000,
     "goal_quantity": null,
@@ -317,7 +317,7 @@
   {
     "name": "Cartevivore",
     "mission": "Collectionner 4500 cartes",
-    "reward": 70,
+    "reward": 110,
     "category": "Collection",
     "goal_target": 4500,
     "goal_quantity": null,
@@ -326,16 +326,16 @@
   {
     "name": "Boss du binder",
     "mission": "Collectionner 5000 cartes",
-    "reward": 80,
+    "reward": 120,
     "category": "Collection",
     "goal_target": 5000,
     "goal_quantity": null,
     "quest_type": "standard"
   },
   {
-    "name": "Saison complète",
+    "name": "130 !",
     "mission": "Collectionner 6000 cartes",
-    "reward": 80,
+    "reward": 130,
     "category": "Collection",
     "goal_target": 6000,
     "goal_quantity": null,
@@ -344,7 +344,7 @@
   {
     "name": "Roi de la collec",
     "mission": "Collectionner 7000 cartes",
-    "reward": 90,
+    "reward": 140,
     "category": "Collection",
     "goal_target": 7000,
     "goal_quantity": null,
@@ -353,7 +353,7 @@
   {
     "name": "Dieu des cartes",
     "mission": "Collectionner 8000 cartes",
-    "reward": 100,
+    "reward": 150,
     "category": "Collection",
     "goal_target": 8000,
     "goal_quantity": null,
@@ -362,7 +362,7 @@
   {
     "name": "Collection infinie",
     "mission": "Collectionner 9000 cartes",
-    "reward": 100,
+    "reward": 160,
     "category": "Collection",
     "goal_target": 9000,
     "goal_quantity": null,
@@ -371,7 +371,7 @@
   {
     "name": "Légende vivante",
     "mission": "Collectionner 10000 cartes",
-    "reward": 100,
+    "reward": 170,
     "category": "Collection",
     "goal_target": 10000,
     "goal_quantity": null,
@@ -389,7 +389,7 @@
   {
     "name": "Petite variété",
     "mission": "Posséder 20 cartes différentes",
-    "reward": 10,
+    "reward": 15,
     "category": "Diversité",
     "goal_target": 20,
     "goal_quantity": null,
@@ -398,7 +398,7 @@
   {
     "name": "Bon éventail",
     "mission": "Posséder 50 cartes différentes",
-    "reward": 10,
+    "reward": 20,
     "category": "Diversité",
     "goal_target": 50,
     "goal_quantity": null,
@@ -407,7 +407,7 @@
   {
     "name": "Deck varié",
     "mission": "Posséder 100 cartes différentes",
-    "reward": 15,
+    "reward": 25,
     "category": "Diversité",
     "goal_target": 100,
     "goal_quantity": null,
@@ -416,7 +416,7 @@
   {
     "name": "Tout un monde",
     "mission": "Posséder 150 cartes différentes",
-    "reward": 25,
+    "reward": 30,
     "category": "Diversité",
     "goal_target": 150,
     "goal_quantity": null,
@@ -425,7 +425,7 @@
   {
     "name": "Moultes cartes",
     "mission": "Posséder 200 cartes différentes",
-    "reward": 50,
+    "reward": 35,
     "category": "Diversité",
     "goal_target": 200,
     "goal_quantity": null,
@@ -434,7 +434,7 @@
   {
     "name": "Moultes moultes cartes",
     "mission": "Posséder 300 cartes différentes",
-    "reward": 50,
+    "reward": 40,
     "category": "Diversité",
     "goal_target": 300,
     "goal_quantity": null,
@@ -443,7 +443,7 @@
   {
     "name": "Ca vaut pas un oeuf sur un ordinateur",
     "mission": "Posséder 400 cartes différentes",
-    "reward": 50,
+    "reward": 45,
     "category": "Diversité",
     "goal_target": 400,
     "goal_quantity": null,
@@ -470,7 +470,7 @@
   {
     "name": "Terrain x5",
     "mission": "Posséder une carte terrain en quintuple exemplaire",
-    "reward": 5,
+    "reward": 15,
     "category": "Duplication Terrain",
     "goal_target": null,
     "goal_quantity": 5,
@@ -497,7 +497,7 @@
   {
     "name": "Commune x5",
     "mission": "Posséder une carte commune en quintuple exemplaire",
-    "reward": 5,
+    "reward": 15,
     "category": "Duplication Commune",
     "goal_target": null,
     "goal_quantity": 5,
@@ -515,7 +515,7 @@
   {
     "name": "Peu commune triplée",
     "mission": "Posséder une carte peu commune en triple exemplaire",
-    "reward": 10,
+    "reward": 15,
     "category": "Duplication Peu Commune",
     "goal_target": null,
     "goal_quantity": 3,
@@ -524,7 +524,7 @@
   {
     "name": "Peu commune x5",
     "mission": "Posséder une carte peu commune en quintuple exemplaire",
-    "reward": 10,
+    "reward": 20,
     "category": "Duplication Peu Commune",
     "goal_target": null,
     "goal_quantity": 5,
@@ -542,7 +542,7 @@
   {
     "name": "Rare triplée",
     "mission": "Posséder une carte rare en triple exemplaire",
-    "reward": 10,
+    "reward": 15,
     "category": "Duplication Rare",
     "goal_target": null,
     "goal_quantity": 3,
@@ -551,7 +551,7 @@
   {
     "name": "Rare x5",
     "mission": "Posséder une carte rare en quintuple exemplaire",
-    "reward": 15,
+    "reward": 20,
     "category": "Duplication Rare",
     "goal_target": null,
     "goal_quantity": 5,
